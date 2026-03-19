@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/screens/home_screen.dart';
+
 void main() {
   runApp(const MainApp());
 }
 
+/// Root widget - Web-first application (Stage 1: no backend)
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: "Blue's Lab",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
+      home: const HomeScreen(),
     );
   }
 }

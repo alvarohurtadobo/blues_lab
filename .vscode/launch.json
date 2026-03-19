@@ -1,11 +1,26 @@
 {
-    "version": "0.1.0",
-    "configurations": [
-      {
-        "name": "Development (dev)",
-        "request": "launch",
-        "type": "dart",
-        "program": "lib/main.dart",
-      }
-    ]
-  }
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "Web (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "chrome"]
+    },
+    {
+      "name": "Web (Edge)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "edge"]
+    },
+    {
+      "name": "Web (Server)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "web-server"]
+    }
+  ]
+}
