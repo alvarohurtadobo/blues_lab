@@ -1,6 +1,5 @@
+import 'package:blues_lab/demo.dart';
 import 'package:flutter/material.dart';
-
-import 'presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,7 +18,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const PoMaHomePage(),
     );
   }
 }
