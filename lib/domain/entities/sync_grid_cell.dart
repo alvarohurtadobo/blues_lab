@@ -1,17 +1,16 @@
 import 'package:blues_lab/domain/entities/sync_grid_cell_kind.dart';
 import 'package:blues_lab/domain/value_objects/sync_grid_energy.dart';
 
-/// Celda de un sync grid tal como se serializa en `pairgrids.json` y en eventos
-/// del tipo `syncTile` / `gridTile` del cliente web.
+/// A sync grid cell as serialized in `pairgrids.json` and in web client events
+/// such as `syncTile` / `gridTile`.
 ///
-/// - [position]: dos caracteres ASCII; índices de columna y fila en el layout
-///   hexagonal se obtienen con `codeUnitAt(0|1)` menos los offsets base
-///   (`colStart` / `rowStart`, típicamente 65 en el sitio).
-/// - [target]: interpretación según [kind] — prefijo `STAT_`, id de movimiento
-///   como string, o la constante `"PKMN"` para nodos ligados al Pokémon.
-/// - [skill]: identificador en catálogo `skills.json`; `0` si no aplica.
-/// - [level]: nivel mínimo de sync move requerido para desbloquear el nodo.
-/// - [custom]: cinco enteros auxiliares definidos por el juego (a menudo ceros).
+/// - [position]: two ASCII characters; column/row indices in the hex layout are
+///   `codeUnitAt(0|1)` minus base offsets (`colStart` / `rowStart`, typically 65).
+/// - [target]: meaning depends on [kind] — `STAT_` prefix, move id as string, or
+///   `"PKMN"` for Pokémon-bound nodes.
+/// - [skill]: id in `skills.json`; `0` when unused.
+/// - [level]: minimum sync move level required to unlock the node.
+/// - [custom]: five auxiliary integers from game data (often zeros).
 class SyncGridCell {
   const SyncGridCell({
     required this.position,
@@ -33,7 +32,7 @@ class SyncGridCell {
   final int skill;
   final int level;
 
-  /// Coste de energía de la casilla (derivado de [orbs], misma regla que el web).
+  /// Energy cost for the tile (from [orbs], same rule as the web app).
   double get energyCost => gridTileEnergyFromOrbs(orbs);
 
   factory SyncGridCell.fromJson(Map<String, dynamic> json) {

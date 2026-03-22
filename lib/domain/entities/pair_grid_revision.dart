@@ -1,19 +1,19 @@
 import 'package:blues_lab/domain/entities/sync_grid_cell.dart';
 
-/// Una revisión del grid de sincronización para un par concreto (`gridId` en el mapa raíz).
+/// One revision of the sync grid for a given pair (`gridId` in the root map).
 ///
-/// El historial del mismo par puede contener varias revisiones ordenadas por
-/// [date] (timestamp o versión según el origen de datos).
+/// History for the same pair may contain several revisions ordered by [date]
+/// (timestamp or version depending on the data source).
 class PairGridRevision {
   const PairGridRevision({
     required this.date,
     required this.cells,
   });
 
-  /// Marca temporal o identificador de versión del layout.
+  /// Timestamp or layout version id.
   final int date;
 
-  /// Todas las celdas activas en esta revisión.
+  /// All active cells in this revision.
   final List<SyncGridCell> cells;
 
   factory PairGridRevision.fromJson(Map<String, dynamic> json) {

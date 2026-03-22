@@ -1,7 +1,7 @@
 import 'package:blues_lab/domain/entities/sync_grid_cell.dart';
 import 'package:blues_lab/presentation/models/grid_tile.dart';
 
-/// Evento emitido al interpretar una celda (p. ej. `onParsedStatTile` en el web).
+/// Fired when a cell has been parsed (e.g. `onParsedStatTile` on web).
 class ParsedTileEvent {
   const ParsedTileEvent({
     required this.syncTile,
@@ -12,7 +12,7 @@ class ParsedTileEvent {
   final int index;
 }
 
-/// Par celda de datos + casilla de UI al alternar o quitar selección (`_toggleTile`).
+/// Data cell plus UI tile when toggling selection (`_toggleTile`).
 class SyncGridTilePair {
   const SyncGridTilePair({
     required this.syncTile,

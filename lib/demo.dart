@@ -1,7 +1,7 @@
-// PoMaTools — vista mínima del home (sync grid hexagonal).
+// PoMaTools — minimal home-style sync grid (hex layout).
 //
-// Los datos de demo viven en `assets/data/demo/`; el resto de JSON en `assets/data/`
-// del sitio original está en `assets/data/` e `assets/i18n/`.
+// Demo data lives under `assets/data/demo/`; production JSON is under `assets/data/`
+// and `assets/i18n/` from the original site export.
 
 import 'dart:math' as math;
 
@@ -18,7 +18,7 @@ import 'package:blues_lab/presentation/theme/sync_grid_tile_palette.dart';
 const int _kColStart = 65;
 const int _kRowStart = 65;
 
-/// Primera revisión del primer par del mapa cargado, proyectada al layout hex.
+/// First revision of the first pair in the loaded map, projected to the hex layout.
 Future<List<PlacedSyncTile>> loadDemoPlacedTiles() async {
   const ds = PairGridsAssetDataSource();
   final map = await ds.loadMap(AppConstants.pairGridsDemoAssetPath);
@@ -51,7 +51,7 @@ Future<List<PlacedSyncTile>> loadDemoPlacedTiles() async {
   return out;
 }
 
-/// Cuatro hexágonos estilo `arc` (multi-grid en el sitio fuerza clase arc en índices 6–9).
+/// Four `arc`-style hex tiles (multi-grid on web forces arc class at indices 6–9).
 List<PlacedSyncTile> arcOverlayTiles(List<PlacedSyncTile> base) {
   if (base.isEmpty) return const [];
   var maxY = 0.0;
@@ -90,7 +90,7 @@ List<PlacedSyncTile> arcOverlayTiles(List<PlacedSyncTile> base) {
 }
 
 // ---------------------------------------------------------------------------
-// Pintura hex (mismos puntos relativos que el SVG 60×52 del sitio)
+// Hex paint path (same control points as the 60×52 SVG on the site)
 // ---------------------------------------------------------------------------
 
 Path hexPath(Size size) {
@@ -165,7 +165,7 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
         _loadError = null;
       });
     } catch (e, st) {
-      debugPrint('Error cargando ${AppConstants.pairGridsDemoAssetPath}: $e\n$st');
+      debugPrint('Failed to load ${AppConstants.pairGridsDemoAssetPath}: $e\n$st');
       if (!mounted) return;
       setState(() => _loadError = e);
     }
@@ -214,7 +214,7 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Sync grid (hex). Toca casillas. Ajusta nivel sync y energía como en el home.',
+                    'Sync grid (hex). Tap tiles. Adjust sync level and energy like the home screen.',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
@@ -226,7 +226,7 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Nivel sync: ${_syncLevel.round()}'),
+                Text('Sync level: ${_syncLevel.round()}'),
                 Slider(
                   value: _syncLevel,
                   min: 1,
@@ -235,7 +235,7 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
                   label: '${_syncLevel.round()}',
                   onChanged: (v) => setState(() => _syncLevel = v),
                 ),
-                Text('Presupuesto energía: ${_energyBudget.toStringAsFixed(1)}'),
+                Text('Energy budget: ${_energyBudget.toStringAsFixed(1)}'),
                 Slider(
                   value: _energyBudget,
                   min: 0,
@@ -244,13 +244,13 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
                 ),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text('Oscurecer si supera límite de energía (como ENERGY_CAP)'),
+                  title: const Text('Dim tiles that exceed energy budget (ENERGY_CAP-style)'),
                   value: _energyCap,
                   onChanged: (v) => setState(() => _energyCap = v),
                 ),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text('Mostrar slots “arc” (índices 6–9, multi-grid)'),
+                  title: const Text('Show “arc” slots (indices 6–9, multi-grid)'),
                   value: _showArcDemo,
                   onChanged: (v) => setState(() => _showArcDemo = v),
                 ),
@@ -264,8 +264,8 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(24),
                       child: Text(
-                        'No se pudo cargar el JSON de demo.\n'
-                        'Ejecuta `flutter pub get` y comprueba que exista ${AppConstants.pairGridsDemoAssetPath}.\n\n$_loadError',
+                        'Could not load demo JSON.\n'
+                        'Run `flutter pub get` and ensure ${AppConstants.pairGridsDemoAssetPath} exists.\n\n$_loadError',
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -317,7 +317,7 @@ class _GridLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (tiles.isEmpty) {
-      return const Center(child: Text('Sin celdas'));
+      return const Center(child: Text('No tiles'));
     }
 
     double minX = double.infinity;
@@ -398,7 +398,7 @@ class _HexTile extends StatelessWidget {
 
     return Tooltip(
       message: '${c.kind.wire} · ${placed.styleClass.label}\n'
-          'pos ${c.position} · lvl ${c.level} · orbs ${c.orbs} · energía ${c.energyCost.toStringAsFixed(1)}',
+          'pos ${c.position} · lvl ${c.level} · orbs ${c.orbs} · energy ${c.energyCost.toStringAsFixed(1)}',
       child: GestureDetector(
         onTap: onTap,
         child: CustomPaint(

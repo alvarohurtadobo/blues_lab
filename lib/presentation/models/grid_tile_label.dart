@@ -1,5 +1,4 @@
-/// Etiqueta de texto posicionada sobre una casilla del grid (equivalente a la salida
-/// de `_setLabels` en el cliente web).
+/// Text label positioned on a grid tile (same role as `_setLabels` output on web).
 class GridTileLabel {
   const GridTileLabel({
     required this.text,
@@ -8,6 +7,6 @@ class GridTileLabel {
 
   final String text;
 
-  /// Desplazamiento vertical en coordenadas del layout SVG/grid.
+  /// Vertical offset in SVG/grid layout coordinates.
   final double dy;
 }

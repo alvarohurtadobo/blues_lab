@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:blues_lab/domain/value_objects/sync_grid_tile_style.dart';
 
-/// Colores de relleno y borde por [SyncGridTileStyleClass], tomados de las variables
-/// `--bs-tile-*` del CSS compilado del sitio original.
+/// Fill and stroke colors per [SyncGridTileStyleClass] from compiled site CSS
+/// variables (`--bs-tile-*`).
 class SyncGridTilePalette {
   SyncGridTilePalette._();
 

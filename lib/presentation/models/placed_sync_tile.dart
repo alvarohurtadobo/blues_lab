@@ -1,7 +1,7 @@
 import 'package:blues_lab/domain/entities/sync_grid_cell.dart';
 import 'package:blues_lab/domain/value_objects/sync_grid_tile_style.dart';
 
-/// Celda del sync grid ya proyectada en el plano del layout hexagonal de la demo.
+/// Sync grid cell projected onto the hex demo layout plane.
 class PlacedSyncTile {
   const PlacedSyncTile({
     required this.index,

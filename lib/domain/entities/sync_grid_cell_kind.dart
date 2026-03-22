@@ -1,34 +1,34 @@
-/// Categoría de una casilla del sync grid en el formato de datos de PoMaTools.
+/// Sync grid cell category in PoMaTools data format.
 ///
-/// El valor en JSON y en el bundle Angular compilado es la cadena [wire]
-/// (`STAT`, `LEARN`, etc.). El `switch` del componente de grid en el sitio
-/// original ramifica según este tipo y el campo `target` de la celda.
+/// JSON and the compiled Angular bundle use the [wire] string (`STAT`, `LEARN`,
+/// etc.). The original grid component `switch` branches on this type and the
+/// cell's `target` field.
 enum SyncGridCellKind {
-  /// Mejora de estadística (objetivo tipo `STAT_00n`).
+  /// Stat boost (target shaped like `STAT_00n`).
   stat('STAT'),
 
-  /// Nodo de aprendizaje de movimiento.
+  /// Move learning node.
   learn('LEARN'),
 
-  /// Potenciador de movimiento (id de movimiento en `target`).
+  /// Move power-up (move id in `target`).
   powerup('POWERUP'),
 
-  /// Nodo de habilidad pasiva u otra skill (id en `skills.json` vía `skill`).
+  /// Passive or other skill node (id in `skills.json` via `skill`).
   skill('SKILL'),
 
-  /// Modificador (p. ej. target numérico como id de efecto).
+  /// Modifier (e.g. numeric target as effect id).
   modifier('MODIFIER');
 
   const SyncGridCellKind(this.wire);
 
-  /// Valor tal como aparece en `pairgrids.json` y en eventos `syncTile`.
+  /// Value as it appears in `pairgrids.json` and `syncTile` events.
   final String wire;
 
-  /// Parsea la cadena del JSON; lanza [FormatException] si no es reconocida.
+  /// Parses the JSON string; throws [FormatException] if unknown.
   static SyncGridCellKind fromWire(String s) {
     return SyncGridCellKind.values.firstWhere(
       (e) => e.wire == s,
-      orElse: () => throw FormatException('SyncGridCellKind desconocido: $s'),
+      orElse: () => throw FormatException('Unknown SyncGridCellKind: $s'),
     );
   }
 }

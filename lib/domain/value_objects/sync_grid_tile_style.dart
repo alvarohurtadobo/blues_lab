@@ -1,10 +1,10 @@
 import 'package:blues_lab/domain/entities/sync_grid_cell.dart';
 import 'package:blues_lab/domain/entities/sync_grid_cell_kind.dart';
 
-/// Clasificación visual de una casilla, alineada a las clases CSS del sitio
-/// (`--bs-tile-*`). Determina color e iconografía en la réplica Flutter.
+/// Visual classification of a tile, aligned with site CSS classes (`--bs-tile-*`).
+/// Drives color and iconography in the Flutter port.
 ///
-/// Incluye [arc] para los slots de multi-grid que el original fuerza en ciertos índices.
+/// Includes [arc] for multi-grid slots the original app forces at certain indices.
 enum SyncGridTileStyleClass {
   stat,
   learn,
@@ -17,15 +17,15 @@ enum SyncGridTileStyleClass {
 }
 
 extension SyncGridTileStyleClassLabel on SyncGridTileStyleClass {
-  /// Nombre estable para depuración o tooltips (equivalente al sufijo CSS).
+  /// Stable name for debugging or tooltips (CSS-style suffix).
   String get label => name;
 }
 
-/// Resuelve la clase visual a partir de la celda de dominio.
+/// Resolves the visual class from a domain cell.
 ///
-/// Replica la lógica del `switch` del bundle Angular sobre [SyncGridCell.kind] y
-/// [SyncGridCell.target]. Sin `moves.json` completo, el target especial [demoSyncMoveTarget]
-/// identifica un nodo de sync move en demos.
+/// Mirrors the Angular bundle `switch` on [SyncGridCell.kind] and
+/// [SyncGridCell.target]. Without full `moves.json`, [kDemoSyncMoveTarget] marks
+/// a sync-move node in demos.
 const String kDemoSyncMoveTarget = 'DEMO_SN';
 
 SyncGridTileStyleClass resolveSyncGridTileStyleClass(SyncGridCell cell) {

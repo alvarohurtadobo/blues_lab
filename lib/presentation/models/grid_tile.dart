@@ -2,14 +2,14 @@ import 'package:blues_lab/domain/entities/sync_grid_cell.dart';
 import 'package:blues_lab/domain/value_objects/sync_grid_energy.dart';
 import 'package:blues_lab/presentation/models/grid_tile_label.dart';
 
-/// Sustituto Flutter de un `Observable` de textos: permite hidratar títulos y
-/// descripciones desde bundles i18n de forma asíncrona.
+/// Flutter stand-in for an RxJS-style text `Observable`: hydrate titles and
+/// descriptions from i18n bundles asynchronously.
 typedef GridTileI18nSetter = Future<void> Function(Map<String, String> bundle);
 
-/// Casilla del grid en estado de presentación: geometría, estilo y textos listos
-/// para render (equivalente a `gridTile` tras `_getSyncGridTile` en el bundle).
+/// Grid tile in presentation state: geometry, style, and strings ready to render
+/// (equivalent to `gridTile` after `_getSyncGridTile` in the bundle).
 ///
-/// En el JS original la propiedad de clase CSS se llama `class`; aquí se usa [cssClass].
+/// The original JS uses a property named `class` for CSS; here it is [cssClass].
 class GridTile {
   const GridTile({
     required this.index,
@@ -49,7 +49,7 @@ class GridTile {
   final bool selected;
   final GridTileI18nSetter? setLabelsFromI18n;
 
-  /// Constructor de apoyo alineado con `_getSyncGridTile` antes de enriquecer UI.
+  /// Scaffold aligned with `_getSyncGridTile` before UI enrichment.
   factory GridTile.fromSyncCell({
     required int index,
     required int i,
