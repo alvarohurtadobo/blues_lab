@@ -7,6 +7,10 @@ final class SyncPairDisplayCatalog {
     required this.pokemonNames,
     this.skillNames = const {},
     this.skillDescriptions = const {},
+    this.moveNames = const {},
+    this.gridStatTemplates = const {},
+    this.statShortLabels = const {},
+    this.gridPowerupTemplates = const {},
   });
 
   final Map<String, String> trainerNames;
@@ -15,6 +19,18 @@ final class SyncPairDisplayCatalog {
   /// `DATA.SKILLS` in i18n: keyed by numeric skill id string.
   final Map<String, String> skillNames;
   final Map<String, String> skillDescriptions;
+
+  /// `DATA.MOVES` NAME field, keyed by move id string.
+  final Map<String, String> moveNames;
+
+  /// `MSGS.GRID_STAT` templates (`{{value}}` placeholder).
+  final Map<String, String> gridStatTemplates;
+
+  /// `MSGS.LABEL_STAT` short labels for stats.
+  final Map<String, String> statShortLabels;
+
+  /// `MSGS.GRID_POWERUP` labels (may include `{{value}}`).
+  final Map<String, String> gridPowerupTemplates;
 
   /// `pairId` is 12 chars: trainer id (6) + Pokémon unit id (6), matching `pairgrids.json` keys.
   ///
@@ -45,4 +61,38 @@ final class SyncPairDisplayCatalog {
   String? skillName(int skillId) => skillNames['$skillId'];
 
   String? skillDescription(int skillId) => skillDescriptions['$skillId'];
+
+  String? moveName(String moveId) {
+    if (moveId.isEmpty) return null;
+    return moveNames[moveId];
+  }
+
+  static final RegExp _valuePlaceholder = RegExp(
+    r'\{\{\s*value\s*\}\}',
+    caseSensitive: false,
+  );
+
+  /// Replaces `{{value}}` (optional inner spaces, any casing) with [value].
+  String substituteValuePlaceholders(String text, int value) {
+    return text.replaceAllMapped(_valuePlaceholder, (_) => '$value');
+  }
+
+  /// Fills value placeholders in [template] using [value].
+  String applyValueTemplate(String template, int value) {
+    return substituteValuePlaceholders(template, value);
+  }
+
+  String? gridStatLine(String statKey, int value) {
+    final t = gridStatTemplates[statKey];
+    if (t == null) return null;
+    return applyValueTemplate(t, value);
+  }
+
+  String? gridPowerupLine(String key, int value) {
+    final t = gridPowerupTemplates[key];
+    if (t == null) return null;
+    return applyValueTemplate(t, value);
+  }
+
+  String? statShortLabel(String statKey) => statShortLabels[statKey];
 }

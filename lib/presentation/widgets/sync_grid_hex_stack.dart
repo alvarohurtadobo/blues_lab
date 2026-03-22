@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:blues_lab/domain/entities/sync_pair_display_catalog.dart';
+import 'package:blues_lab/domain/utils/sync_grid_cell_effect_label.dart';
 import 'package:blues_lab/domain/value_objects/sync_grid_tile_style.dart';
 import 'package:blues_lab/presentation/models/placed_sync_tile.dart';
 import 'package:blues_lab/presentation/theme/sync_grid_tile_palette.dart';
@@ -60,6 +62,7 @@ class SyncGridHexStack extends StatelessWidget {
     required this.energyCap,
     required this.viewportSize,
     required this.onTileToggle,
+    required this.displayCatalog,
     this.emptyMessage = 'No tiles',
   });
 
@@ -70,6 +73,7 @@ class SyncGridHexStack extends StatelessWidget {
   final bool energyCap;
   final Size viewportSize;
   final void Function(int index) onTileToggle;
+  final SyncPairDisplayCatalog displayCatalog;
   final String emptyMessage;
 
   @override
@@ -117,6 +121,7 @@ class SyncGridHexStack extends StatelessWidget {
                 height: hexH * scale,
                 child: SyncGridHexTile(
                   placed: t,
+                  displayCatalog: displayCatalog,
                   selected: selected.contains(t.index),
                   syncLevel: syncLevel,
                   energyBudget: energyBudget,
@@ -135,6 +140,7 @@ class SyncGridHexTile extends StatelessWidget {
   const SyncGridHexTile({
     super.key,
     required this.placed,
+    required this.displayCatalog,
     required this.selected,
     required this.syncLevel,
     required this.energyBudget,
@@ -143,6 +149,7 @@ class SyncGridHexTile extends StatelessWidget {
   });
 
   final PlacedSyncTile placed;
+  final SyncPairDisplayCatalog displayCatalog;
   final bool selected;
   final int syncLevel;
   final double energyBudget;
@@ -155,9 +162,11 @@ class SyncGridHexTile extends StatelessWidget {
     final locked = c.level > syncLevel;
     final overEnergy =
         energyCap && !selected && c.energyCost > energyBudget && c.energyCost > 0;
+    final effectLabel = syncGridCellEffectLabel(c, displayCatalog);
 
     return Tooltip(
-      message: '${c.kind.wire} · ${placed.styleClass.label}\n'
+      message: '$effectLabel\n'
+          '${c.kind.wire} · ${placed.styleClass.label}\n'
           'pos ${c.position} · lvl ${c.level} · orbs ${c.orbs} · energy ${c.energyCost.toStringAsFixed(1)}',
       child: GestureDetector(
         onTap: onTap,
@@ -170,20 +179,24 @@ class SyncGridHexTile extends StatelessWidget {
             dimmed: overEnergy,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(top: 6),
+            padding: const EdgeInsets.fromLTRB(4, 3, 4, 2),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   syncGridHexIconFor(placed.styleClass),
-                  size: 18,
+                  size: 12,
                   color: locked ? Colors.white54 : Colors.white.withValues(alpha: 0.95),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  c.position,
+                  effectLabel,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 7,
+                    height: 1.08,
                     fontWeight: FontWeight.w600,
                     color: locked ? Colors.white38 : Colors.white.withValues(alpha: 1),
                     shadows: const [Shadow(blurRadius: 2, color: Colors.black45)],
@@ -192,7 +205,7 @@ class SyncGridHexTile extends StatelessWidget {
                 if (locked)
                   const Text(
                     '🔒',
-                    style: TextStyle(fontSize: 10),
+                    style: TextStyle(fontSize: 8),
                   ),
               ],
             ),

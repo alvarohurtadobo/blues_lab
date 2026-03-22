@@ -183,6 +183,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
                   energyBudget: _energyBudget,
                   energyCap: _energyCap,
                   viewportSize: Size(inner.maxWidth, inner.maxHeight),
+                  displayCatalog: s.displayCatalog,
                   onTileToggle: (index) {
                     setState(() {
                       if (_selectedTileIndices.contains(index)) {

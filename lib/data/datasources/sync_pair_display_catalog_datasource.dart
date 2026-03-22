@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 
 import 'package:blues_lab/domain/entities/sync_pair_display_catalog.dart';
 
-/// Loads [SyncPairDisplayCatalog] from packaged i18n JSON (`DATA.CHAR`, `DATA.PKMN`).
+/// Loads [SyncPairDisplayCatalog] from packaged i18n JSON
+/// (`DATA.CHAR`, `DATA.PKMN`, `DATA.SKILLS`, `DATA.MOVES`, and grid strings under `MSGS`).
 final class SyncPairDisplayCatalogDataSource {
   const SyncPairDisplayCatalogDataSource();
 
@@ -29,14 +30,30 @@ final class SyncPairDisplayCatalogDataSource {
     if (data is! Map<String, dynamic>) {
       return const SyncPairDisplayCatalog(trainerNames: {}, pokemonNames: {});
     }
+    final msgs = root['MSGS'];
+    final gridStat = msgs is Map<String, dynamic>
+        ? _stringMap(msgs['GRID_STAT'])
+        : <String, String>{};
+    final statShort = msgs is Map<String, dynamic>
+        ? _stringMap(msgs['LABEL_STAT'])
+        : <String, String>{};
+    final gridPowerup = msgs is Map<String, dynamic>
+        ? _stringMap(msgs['GRID_POWERUP'])
+        : <String, String>{};
+
     final char = _stringMap(data['CHAR']);
     final pkmn = _stringMap(data['PKMN']);
     final skills = _skillNameAndDescMaps(data['SKILLS']);
+    final moves = _moveNameMap(data['MOVES']);
     return SyncPairDisplayCatalog(
       trainerNames: char,
       pokemonNames: pkmn,
       skillNames: skills.$1,
       skillDescriptions: skills.$2,
+      moveNames: moves,
+      gridStatTemplates: gridStat,
+      statShortLabels: statShort,
+      gridPowerupTemplates: gridPowerup,
     );
   }
 
@@ -52,6 +69,18 @@ final class SyncPairDisplayCatalogDataSource {
     return node.map(
       (k, v) => MapEntry(k.toString(), v?.toString() ?? ''),
     );
+  }
+
+  static Map<String, String> _moveNameMap(Object? node) {
+    if (node is! Map) return {};
+    final out = <String, String>{};
+    for (final e in node.entries) {
+      final v = e.value;
+      if (v is! Map) continue;
+      final n = v['NAME'];
+      if (n is String) out[e.key.toString()] = n;
+    }
+    return out;
   }
 
   /// (`NAME` map, `DESC` map) from `DATA.SKILLS`.
