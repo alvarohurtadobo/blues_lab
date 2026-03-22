@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:blues_lab/core/router/app_route_paths.dart';
 import 'package:blues_lab/presentation/screens/blues_lab_home_view.dart';
 import 'package:blues_lab/presentation/screens/login_placeholder_screen.dart';
-import 'package:blues_lab/presentation/screens/poma_tools_demo_screen.dart';
 import 'package:blues_lab/presentation/shells/blues_lab_main_shell.dart';
 
 /// Single [GoRouter] instance for the app (registered on [MaterialApp.router]).
@@ -35,13 +34,6 @@ final GoRouter appRouter = GoRouter(
           },
         ),
       ],
-    ),
-    GoRoute(
-      path: AppRoutePaths.pomaDemo,
-      name: AppRouteNames.pomaDemo,
-      builder: (BuildContext context, GoRouterState state) {
-        return const PoMaHomePage();
-      },
     ),
     GoRoute(
       path: AppRoutePaths.login,

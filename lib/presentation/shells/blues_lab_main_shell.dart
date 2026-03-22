@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:blues_lab/core/layout/responsive_breakpoints.dart';
-import 'package:blues_lab/core/router/app_route_paths.dart';
 import 'package:blues_lab/presentation/menu/legacy_main_menu.dart';
 import 'package:blues_lab/presentation/widgets/blues_lab_collapsible_menu_sidebar.dart';
 
 /// Main chrome: responsive drawer (compact) + collapsible legacy menu rail (wide).
 ///
 /// [child] is the active [ShellRoute] branch (e.g. home). Routes outside the shell
-/// (login, demo) do not use this widget — see [appRouter] in `app_router.dart`.
+/// (e.g. login) do not use this widget — see [appRouter] in `app_router.dart`.
 class BluesLabMainShell extends StatefulWidget {
   const BluesLabMainShell({super.key, required this.child});
 
@@ -36,13 +34,6 @@ class _BluesLabMainShellState extends State<BluesLabMainShell> {
           appBar: AppBar(
             automaticallyImplyLeading: useDrawer,
             title: const Text("Blue's Lab"),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.science_outlined),
-                tooltip: 'Open PoMa tools demo grid',
-                onPressed: () => context.pushNamed(AppRouteNames.pomaDemo),
-              ),
-            ],
           ),
           body: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
