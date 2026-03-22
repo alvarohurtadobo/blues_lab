@@ -1,21 +1,36 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:blues_lab/domain/entities/pair_grids_map.dart';
 import 'package:blues_lab/domain/entities/pair_grid_revision.dart';
+import 'package:blues_lab/domain/entities/sync_pair_display_catalog.dart';
+import 'package:blues_lab/domain/repositories/sync_pair_display_catalog_repository.dart';
 import 'package:blues_lab/domain/usecases/load_official_pair_grids.dart';
 import 'package:blues_lab/domain/utils/pair_grid_revision_sort.dart';
 import 'package:blues_lab/presentation/cubits/pair_grids_state.dart';
 
 final class PairGridsCubit extends Cubit<PairGridsState> {
-  PairGridsCubit({required LoadOfficialPairGrids loadOfficialPairGrids})
-      : _loadOfficialPairGrids = loadOfficialPairGrids,
+  PairGridsCubit({
+    required LoadOfficialPairGrids loadOfficialPairGrids,
+    required SyncPairDisplayCatalogRepository displayCatalogRepository,
+  })  : _loadOfficialPairGrids = loadOfficialPairGrids,
+        _displayCatalogRepository = displayCatalogRepository,
         super(const PairGridsInitial());
 
   final LoadOfficialPairGrids _loadOfficialPairGrids;
+  final SyncPairDisplayCatalogRepository _displayCatalogRepository;
 
   Future<void> load() async {
     emit(const PairGridsLoading());
     try {
-      final map = await _loadOfficialPairGrids();
+      final lang = PlatformDispatcher.instance.locale.languageCode;
+      final results = await Future.wait<Object>([
+        _loadOfficialPairGrids(),
+        _displayCatalogRepository.loadForLanguage(lang),
+      ]);
+      final map = results[0] as PairGridsMap;
+      final catalog = results[1] as SyncPairDisplayCatalog;
       if (map.isEmpty) {
         emit(const PairGridsFailure('Official pair grids asset is empty'));
         return;
@@ -31,6 +46,7 @@ final class PairGridsCubit extends Cubit<PairGridsState> {
         PairGridsReady(
           pairGrids: map,
           sortedPairIds: sortedIds,
+          displayCatalog: catalog,
           selectedPairId: firstId,
           selectedRevisionIndex: revisions.length - 1,
         ),
@@ -75,6 +91,10 @@ final class PairGridsCubit extends Cubit<PairGridsState> {
     if (q.isEmpty) {
       return s.sortedPairIds.take(limit);
     }
-    return s.sortedPairIds.where((id) => id.toLowerCase().contains(q)).take(limit);
+    return s.sortedPairIds
+        .where(
+          (id) => s.displayCatalog.filterHaystack(id).contains(q),
+        )
+        .take(limit);
   }
 }

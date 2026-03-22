@@ -1,4 +1,5 @@
 import 'package:blues_lab/domain/entities/pair_grids_map.dart';
+import 'package:blues_lab/domain/entities/sync_pair_display_catalog.dart';
 
 sealed class PairGridsState {
   const PairGridsState();
@@ -16,12 +17,14 @@ final class PairGridsReady extends PairGridsState {
   const PairGridsReady({
     required this.pairGrids,
     required this.sortedPairIds,
+    required this.displayCatalog,
     required this.selectedPairId,
     required this.selectedRevisionIndex,
   });
 
   final PairGridsMap pairGrids;
   final List<String> sortedPairIds;
+  final SyncPairDisplayCatalog displayCatalog;
   final String selectedPairId;
 
   /// Index into revisions sorted by [PairGridRevision.date] ascending.
@@ -34,6 +37,7 @@ final class PairGridsReady extends PairGridsState {
     return PairGridsReady(
       pairGrids: pairGrids,
       sortedPairIds: sortedPairIds,
+      displayCatalog: displayCatalog,
       selectedPairId: selectedPairId ?? this.selectedPairId,
       selectedRevisionIndex: selectedRevisionIndex ?? this.selectedRevisionIndex,
     );

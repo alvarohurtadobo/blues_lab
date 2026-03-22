@@ -4,8 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:blues_lab/core/router/app_router.dart';
 import 'package:blues_lab/data/datasources/pair_grids_asset_datasource.dart';
+import 'package:blues_lab/data/datasources/sync_pair_display_catalog_datasource.dart';
 import 'package:blues_lab/data/repositories/pair_grids_repository_impl.dart';
+import 'package:blues_lab/data/repositories/sync_pair_display_catalog_repository_impl.dart';
 import 'package:blues_lab/domain/repositories/pair_grids_repository.dart';
+import 'package:blues_lab/domain/repositories/sync_pair_display_catalog_repository.dart';
 import 'package:blues_lab/domain/usecases/load_official_pair_grids.dart';
 import 'package:blues_lab/presentation/cubits/pair_grids_cubit.dart';
 
@@ -26,13 +29,25 @@ class BluesLabApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<PairGridsRepository>(
-      create: (_) => const PairGridsRepositoryImpl(PairGridsAssetDataSource()),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<PairGridsRepository>(
+          create: (_) =>
+              const PairGridsRepositoryImpl(PairGridsAssetDataSource()),
+        ),
+        RepositoryProvider<SyncPairDisplayCatalogRepository>(
+          create: (_) => const SyncPairDisplayCatalogRepositoryImpl(
+            SyncPairDisplayCatalogDataSource(),
+          ),
+        ),
+      ],
       child: BlocProvider(
         create: (context) => PairGridsCubit(
           loadOfficialPairGrids: LoadOfficialPairGrids(
             context.read<PairGridsRepository>(),
           ),
+          displayCatalogRepository:
+              context.read<SyncPairDisplayCatalogRepository>(),
         )..load(),
         child: MaterialApp.router(
           title: "Blue's Lab",

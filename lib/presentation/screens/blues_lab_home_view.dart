@@ -179,7 +179,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
           const SizedBox(height: 8),
           TextField(
             decoration: const InputDecoration(
-              labelText: 'Filter pair ids',
+              labelText: 'Filtrar (nombre o id)',
               border: OutlineInputBorder(),
               isDense: true,
             ),
@@ -187,7 +187,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Selected: ${s.selectedPairId}',
+            'Seleccionado: ${s.displayCatalog.label(s.selectedPairId)}',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(height: 4),
@@ -210,7 +210,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
                     return ListTile(
                       dense: true,
                       title: Text(
-                        id,
+                        s.displayCatalog.label(id),
                         style: TextStyle(
                           fontWeight: selected ? FontWeight.bold : null,
                         ),
