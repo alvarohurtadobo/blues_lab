@@ -5,6 +5,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:blues_lab/core/constants/app_constants.dart';
 import 'package:blues_lab/data/datasources/pair_grids_asset_datasource.dart';
@@ -137,6 +138,7 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: _PoMaDemoLeadingAction(),
         title: const Text('PoMaTools · demo grid'),
         backgroundColor: const Color(0xFFFF4855),
         foregroundColor: Colors.white,
@@ -238,5 +240,28 @@ class _PoMaHomePageState extends State<PoMaHomePage> {
         ],
       ),
     );
+  }
+}
+
+/// Back control when opened via [GoRouter]; hidden for standalone [PoMaHomeDemoApp].
+class _PoMaDemoLeadingAction extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final go = GoRouter.maybeOf(context);
+    if (go != null && go.canPop()) {
+      return IconButton(
+        icon: const Icon(Icons.arrow_back_rounded),
+        onPressed: () => go.pop(),
+        tooltip: 'Back',
+      );
+    }
+    if (Navigator.of(context).canPop()) {
+      return IconButton(
+        icon: const Icon(Icons.arrow_back_rounded),
+        onPressed: () => Navigator.of(context).pop(),
+        tooltip: 'Back',
+      );
+    }
+    return const SizedBox.shrink();
   }
 }

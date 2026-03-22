@@ -1,12 +1,25 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:blues_lab/core/router/app_router.dart';
 import 'package:blues_lab/data/datasources/pair_grids_asset_datasource.dart';
 import 'package:blues_lab/data/repositories/pair_grids_repository_impl.dart';
 import 'package:blues_lab/domain/repositories/pair_grids_repository.dart';
 import 'package:blues_lab/domain/usecases/load_official_pair_grids.dart';
 import 'package:blues_lab/presentation/cubits/pair_grids_cubit.dart';
-import 'package:blues_lab/presentation/screens/blues_lab_home.dart';
+
+/// Lets scrollables and nested viewers react to mouse / trackpad drag (web-first).
+final class _AppScrollBehavior extends MaterialScrollBehavior {
+  const _AppScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
+}
 
 class BluesLabApp extends StatelessWidget {
   const BluesLabApp({super.key});
@@ -21,14 +34,15 @@ class BluesLabApp extends StatelessWidget {
             context.read<PairGridsRepository>(),
           ),
         )..load(),
-        child: MaterialApp(
+        child: MaterialApp.router(
           title: "Blue's Lab",
           debugShowCheckedModeBanner: false,
+          scrollBehavior: const _AppScrollBehavior(),
+          routerConfig: appRouter,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,
           ),
-          home: const BluesLabHome(),
         ),
       ),
     );
