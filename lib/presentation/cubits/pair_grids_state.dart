@@ -19,7 +19,7 @@ final class PairGridsReady extends PairGridsState {
     required this.sortedPairIds,
     required this.displayCatalog,
     required this.selectedPairId,
-    required this.selectedRevisionIndex,
+    required this.superAwakeningSkillByGridId,
   });
 
   final PairGridsMap pairGrids;
@@ -27,19 +27,18 @@ final class PairGridsReady extends PairGridsState {
   final SyncPairDisplayCatalog displayCatalog;
   final String selectedPairId;
 
-  /// Index into revisions sorted by [PairGridRevision.date] ascending.
-  final int selectedRevisionIndex;
+  /// From `pairs.json`: `awakeningSkill` id, or `0` if none.
+  final Map<String, int> superAwakeningSkillByGridId;
 
   PairGridsReady copyWith({
     String? selectedPairId,
-    int? selectedRevisionIndex,
   }) {
     return PairGridsReady(
       pairGrids: pairGrids,
       sortedPairIds: sortedPairIds,
       displayCatalog: displayCatalog,
       selectedPairId: selectedPairId ?? this.selectedPairId,
-      selectedRevisionIndex: selectedRevisionIndex ?? this.selectedRevisionIndex,
+      superAwakeningSkillByGridId: superAwakeningSkillByGridId,
     );
   }
 }

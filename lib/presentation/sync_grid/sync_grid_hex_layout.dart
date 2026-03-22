@@ -12,6 +12,24 @@ abstract final class SyncGridHexLayout {
     return tilesFromCells(revision.cells);
   }
 
+  /// Union of cells across [revisions] (oldest → newest): each [SyncGridCell.position]
+  /// appears once; later revisions overwrite the same slot. Positions never removed from
+  /// the map stay visible (tiles that disappeared in a newer snapshot remain).
+  static List<PlacedSyncTile> tilesFromRevisions(
+    List<PairGridRevision> revisions,
+  ) {
+    final byPosition = <String, SyncGridCell>{};
+    for (final rev in revisions) {
+      for (final cell in rev.cells) {
+        if (cell.position.length == 2) {
+          byPosition[cell.position] = cell;
+        }
+      }
+    }
+    final keys = byPosition.keys.toList()..sort();
+    return tilesFromCells(keys.map((k) => byPosition[k]!).toList());
+  }
+
   static List<PlacedSyncTile> tilesFromCells(List<SyncGridCell> cells) {
     final out = <PlacedSyncTile>[];
     for (var i = 0; i < cells.length; i++) {

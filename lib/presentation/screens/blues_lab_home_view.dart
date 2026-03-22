@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:blues_lab/core/layout/responsive_breakpoints.dart';
-import 'package:blues_lab/domain/entities/pair_grid_revision.dart';
+import 'package:blues_lab/domain/utils/pair_grid_revision_sort.dart';
 import 'package:blues_lab/presentation/cubits/pair_grids_cubit.dart';
 import 'package:blues_lab/presentation/cubits/pair_grids_state.dart';
 import 'package:blues_lab/presentation/sync_grid/sync_grid_hex_layout.dart';
@@ -19,7 +19,10 @@ class BluesLabHomeView extends StatefulWidget {
 class _BluesLabHomeViewState extends State<BluesLabHomeView> {
   final Set<int> _selectedTileIndices = {};
   String _pairFilter = '';
-  double _syncLevel = 3;
+  /// 1–5: tiles with `cell.level <= this` are unlocked; bar shows levels 1…n lit.
+  int _syncLevel = 3;
+  /// 0–5; al bajar el sincro no puede superar ese nivel; 0 = sin gemas SA.
+  int _awakeningLevel = 0;
   double _energyBudget = 24;
   bool _energyCap = true;
 
@@ -31,12 +34,18 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
           listenWhen: (prev, curr) {
             if (curr is! PairGridsReady) return false;
             if (prev is! PairGridsReady) return true;
-            return prev.selectedPairId != curr.selectedPairId ||
-                prev.selectedRevisionIndex != curr.selectedRevisionIndex;
+            return prev.selectedPairId != curr.selectedPairId;
           },
           listener: (context, state) {
             if (state is PairGridsReady) {
-              setState(() => _selectedTileIndices.clear());
+              setState(() {
+                _selectedTileIndices.clear();
+                if ((state.superAwakeningSkillByGridId[state.selectedPairId] ??
+                        0) !=
+                    0) {
+                  _awakeningLevel = 0;
+                }
+              });
             }
           },
           builder: (context, state) {
@@ -68,48 +77,127 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
     required double bodyWidth,
   }) {
     final cubit = context.read<PairGridsCubit>();
-    final revisions = cubit.sortedRevisionsFor(s);
-    final safeRevisionIndex =
-        s.selectedRevisionIndex.clamp(0, revisions.length - 1);
-    final revision = revisions[safeRevisionIndex];
-    final tiles = SyncGridHexLayout.tilesFromRevision(revision);
+    final revisions = PairGridRevisionSort.byDateAscending(
+      s.pairGrids[s.selectedPairId] ?? [],
+    );
+    final tiles = SyncGridHexLayout.tilesFromRevisions(revisions);
     final options = cubit.filteredPairIds(_pairFilter).toList();
+    final awakeningSkillId =
+        s.superAwakeningSkillByGridId[s.selectedPairId] ?? 0;
+    final hasSuperAwakening = awakeningSkillId != 0;
 
     final sideBySide = bodyWidth >= 720;
-    final controls = _buildControls(
-      context,
-      s,
-      revisions,
-      safeRevisionIndex,
-      cubit,
-      options,
-    );
+    final controls = _buildControls(context, s, cubit, options);
 
-    final grid = LayoutBuilder(
-      builder: (context, inner) {
-        return InteractiveViewer(
-          boundaryMargin: const EdgeInsets.all(120),
-          minScale: 0.15,
-          maxScale: 4,
-          child: SyncGridHexStack(
-            tiles: tiles,
-            selected: _selectedTileIndices,
-            syncLevel: _syncLevel.round(),
-            energyBudget: _energyBudget,
-            energyCap: _energyCap,
-            viewportSize: Size(inner.maxWidth, inner.maxHeight),
-            onTileToggle: (index) {
-              setState(() {
-                if (_selectedTileIndices.contains(index)) {
-                  _selectedTileIndices.remove(index);
-                } else {
-                  _selectedTileIndices.add(index);
-                }
-              });
+    final grid = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _FiveGemLevelBar(
+                        level: _syncLevel,
+                        onSelect: (n) => setState(() {
+                          _syncLevel = n;
+                          if (_awakeningLevel > n) {
+                            _awakeningLevel = n;
+                          }
+                        }),
+                        assetOn: 'assets/img/sync_level_on.png',
+                        assetOff: 'assets/img/sync_level_off.png',
+                        semanticsLabelBuilder: (slot) =>
+                            'Sync move level $slot',
+                      ),
+                      if (hasSuperAwakening) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: SizedBox(
+                            height: 44,
+                            child: VerticalDivider(
+                              width: 1,
+                              thickness: 1,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .outlineVariant,
+                            ),
+                          ),
+                        ),
+                        _FiveGemLevelBar(
+                          level: _awakeningLevel,
+                          onSelect: (n) => setState(() {
+                            if (n == 1 && _awakeningLevel == 1) {
+                              _awakeningLevel = 0;
+                            } else {
+                              if (_syncLevel < n) {
+                                _syncLevel = n;
+                              }
+                              _awakeningLevel = n;
+                            }
+                          }),
+                          assetOn: 'assets/img/awakening_level_on.png',
+                          assetOff: 'assets/img/awakening_level_off.png',
+                          semanticsLabelBuilder: (slot) =>
+                              'Super awakening level $slot',
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              if (hasSuperAwakening &&
+                  _syncLevel == 5 &&
+                  _awakeningLevel == 5 &&
+                  awakeningSkillId != 0) ...[
+                const SizedBox(height: 8),
+                _SuperAwakeningPassiveCallout(
+                  title: s.displayCatalog.skillName(awakeningSkillId) ??
+                      'Habilidad $awakeningSkillId',
+                  description:
+                      s.displayCatalog.skillDescription(awakeningSkillId) ?? '',
+                ),
+              ],
+            ],
+          ),
+        ),
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, inner) {
+              return InteractiveViewer(
+                boundaryMargin: const EdgeInsets.all(120),
+                minScale: 0.15,
+                maxScale: 4,
+                child: SyncGridHexStack(
+                  tiles: tiles,
+                  selected: _selectedTileIndices,
+                  syncLevel: _syncLevel,
+                  energyBudget: _energyBudget,
+                  energyCap: _energyCap,
+                  viewportSize: Size(inner.maxWidth, inner.maxHeight),
+                  onTileToggle: (index) {
+                    setState(() {
+                      if (_selectedTileIndices.contains(index)) {
+                        _selectedTileIndices.remove(index);
+                      } else {
+                        _selectedTileIndices.add(index);
+                      }
+                    });
+                  },
+                ),
+              );
             },
           ),
-        );
-      },
+        ),
+      ],
     );
 
     if (sideBySide) {
@@ -156,8 +244,6 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
   Widget _buildControls(
     BuildContext context,
     PairGridsReady s,
-    List<PairGridRevision> revisions,
-    int safeRevisionIndex,
     PairGridsCubit cubit,
     List<String> options,
   ) {
@@ -179,7 +265,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
           const SizedBox(height: 8),
           TextField(
             decoration: const InputDecoration(
-              labelText: 'Filtrar (nombre o id)',
+              labelText: 'Filtrar (nombre o ID)',
               border: OutlineInputBorder(),
               isDense: true,
             ),
@@ -223,49 +309,7 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
               ),
             ),
           ),
-          const SizedBox(height: 12),
-          Text(
-            'Revision (${revisions.length} total)',
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          const SizedBox(height: 4),
-          InputDecorator(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              isDense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<int>(
-                isExpanded: true,
-                value: safeRevisionIndex,
-                items: [
-                  for (var i = 0; i < revisions.length; i++)
-                    DropdownMenuItem(
-                      value: i,
-                      child: Text(
-                        _revisionLabel(revisions[i], i),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                ],
-                onChanged: (i) {
-                  if (i != null) cubit.selectRevisionIndex(i);
-                },
-              ),
-            ),
-          ),
           const SizedBox(height: 16),
-          Text('Sync level: ${_syncLevel.round()}'),
-          Slider(
-            value: _syncLevel,
-            min: 1,
-            max: 5,
-            divisions: 4,
-            label: '${_syncLevel.round()}',
-            onChanged: (v) => setState(() => _syncLevel = v),
-          ),
           Text('Energy budget: ${_energyBudget.toStringAsFixed(1)}'),
           Slider(
             value: _energyBudget,
@@ -283,14 +327,106 @@ class _BluesLabHomeViewState extends State<BluesLabHomeView> {
       ),
     );
   }
+}
 
-  static String _revisionLabel(PairGridRevision r, int index) {
-    final n = index + 1;
-    if (r.date == 0) {
-      return 'Revision $n (base · date 0)';
-    }
-    final dt = DateTime.fromMillisecondsSinceEpoch(r.date * 1000, isUtc: true);
-    return 'Revision $n · ${dt.toIso8601String().split('T').first} (UTC)';
+/// Pasiva adicional del compi con superdespertar al máximo (no añade nodos al grid).
+class _SuperAwakeningPassiveCallout extends StatelessWidget {
+  const _SuperAwakeningPassiveCallout({
+    required this.title,
+    required this.description,
+  });
+
+  final String title;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context);
+    return Align(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 440),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: t.colorScheme.surfaceContainerHighest.withValues(alpha: 0.45),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  title,
+                  style: t.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (description.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(description, style: t.textTheme.bodySmall),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Five level gems: tap [n] to set [level] to [n]; slots 1…[level] show [assetOn].
+class _FiveGemLevelBar extends StatelessWidget {
+  const _FiveGemLevelBar({
+    required this.level,
+    required this.onSelect,
+    required this.assetOn,
+    required this.assetOff,
+    required this.semanticsLabelBuilder,
+  });
+
+  final int level;
+  final ValueChanged<int> onSelect;
+  final String assetOn;
+  final String assetOff;
+  final String Function(int slot) semanticsLabelBuilder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (var slot = 1; slot <= 5; slot++) ...[
+          if (slot > 1) const SizedBox(width: 6),
+          _gem(slot),
+        ],
+      ],
+    );
+  }
+
+  Widget _gem(int slot) {
+    final lit = slot <= level;
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: () => onSelect(slot),
+        customBorder: const CircleBorder(),
+        child: Semantics(
+          button: true,
+          selected: lit,
+          label: semanticsLabelBuilder(slot),
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: Image.asset(
+              lit ? assetOn : assetOff,
+              width: 36,
+              height: 36,
+              filterQuality: FilterQuality.medium,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

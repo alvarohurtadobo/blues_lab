@@ -31,7 +31,13 @@ final class SyncPairDisplayCatalogDataSource {
     }
     final char = _stringMap(data['CHAR']);
     final pkmn = _stringMap(data['PKMN']);
-    return SyncPairDisplayCatalog(trainerNames: char, pokemonNames: pkmn);
+    final skills = _skillNameAndDescMaps(data['SKILLS']);
+    return SyncPairDisplayCatalog(
+      trainerNames: char,
+      pokemonNames: pkmn,
+      skillNames: skills.$1,
+      skillDescriptions: skills.$2,
+    );
   }
 
   static String _normalizeLanguageCode(String languageCode) {
@@ -46,5 +52,26 @@ final class SyncPairDisplayCatalogDataSource {
     return node.map(
       (k, v) => MapEntry(k.toString(), v?.toString() ?? ''),
     );
+  }
+
+  /// (`NAME` map, `DESC` map) from `DATA.SKILLS`.
+  static (Map<String, String>, Map<String, String>) _skillNameAndDescMaps(
+    Object? node,
+  ) {
+    if (node is! Map) {
+      return ({}, {});
+    }
+    final names = <String, String>{};
+    final descs = <String, String>{};
+    for (final e in node.entries) {
+      final v = e.value;
+      if (v is! Map) continue;
+      final key = e.key.toString();
+      final n = v['NAME'];
+      if (n is String) names[key] = n;
+      final d = v['DESC'];
+      if (d is String) descs[key] = d;
+    }
+    return (names, descs);
   }
 }

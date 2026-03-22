@@ -22,3 +22,7 @@ flutter:
   assets:
     - assets/data/
     - assets/i18n/
+    - assets/img/sync_level_on.png
+    - assets/img/sync_level_off.png
+    - assets/img/awakening_level_on.png
+    - assets/img/awakening_level_off.png

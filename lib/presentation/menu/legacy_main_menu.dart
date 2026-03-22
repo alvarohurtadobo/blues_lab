@@ -36,29 +36,9 @@ const List<LegacyMainMenuItem> kLegacyMainMenuItems = [
     icon: Icons.help_outline_rounded,
   ),
   LegacyMainMenuItem(
-    jsonKey: 'CHAMPION',
-    title: 'Champion Stadium',
-    icon: Icons.emoji_events_outlined,
-  ),
-  LegacyMainMenuItem(
-    jsonKey: 'PASIO_CS',
-    title: 'Pasio Special Stadium',
-    icon: Icons.stadium_outlined,
-  ),
-  LegacyMainMenuItem(
     jsonKey: 'FINDER',
     title: 'Move / Skill finder',
     icon: Icons.manage_search_rounded,
-  ),
-  LegacyMainMenuItem(
-    jsonKey: 'LODGE',
-    title: 'Trainer Lodge',
-    icon: Icons.cottage_outlined,
-  ),
-  LegacyMainMenuItem(
-    jsonKey: 'RALLY',
-    title: 'Battle Rally',
-    icon: Icons.flag_outlined,
   ),
 ];
 

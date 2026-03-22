@@ -7,4 +7,7 @@ class AppConstants {
 
   /// Production `pairgrids.json` bundled with the app.
   static const String officialPairGridsAssetPath = 'assets/data/pairgrids.json';
+
+  /// `pairs.json` — used for super awakening availability per grid id.
+  static const String officialPairsAssetPath = 'assets/data/pairs.json';
 }
