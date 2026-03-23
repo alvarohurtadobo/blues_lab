@@ -1,12 +1,15 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
 import 'package:blues_lab/domain/entities/sync_pair_display_catalog.dart';
+import 'package:blues_lab/domain/utils/sync_grid_cell_description.dart';
 import 'package:blues_lab/domain/utils/sync_grid_cell_effect_label.dart';
 import 'package:blues_lab/domain/value_objects/sync_grid_tile_style.dart';
 import 'package:blues_lab/presentation/models/placed_sync_tile.dart';
 import 'package:blues_lab/presentation/theme/sync_grid_tile_palette.dart';
+import 'package:blues_lab/presentation/widgets/sync_grid_hex_hover_popup.dart';
 
 /// Hex path (60×52 SVG control points from PoMaTools).
 Path syncGridHexPath(Size size) {
@@ -28,6 +31,31 @@ Path syncGridHexPath(Size size) {
   }
   p.close();
   return p;
+}
+
+/// Dark outline + soft drop shadow so white labels read like Pokémon Masters EX tiles.
+const List<Shadow> _kHexTileLabelShadows = [
+  Shadow(offset: Offset(-0.75, -0.75), blurRadius: 0, color: Color(0xD9000000)),
+  Shadow(offset: Offset(0.75, -0.75), blurRadius: 0, color: Color(0xD9000000)),
+  Shadow(offset: Offset(0.75, 0.75), blurRadius: 0, color: Color(0xD9000000)),
+  Shadow(offset: Offset(-0.75, 0.75), blurRadius: 0, color: Color(0xD9000000)),
+  Shadow(offset: Offset(0, -1), blurRadius: 0, color: Color(0xC0000000)),
+  Shadow(offset: Offset(0, 1), blurRadius: 0, color: Color(0xC0000000)),
+  Shadow(offset: Offset(-1, 0), blurRadius: 0, color: Color(0xC0000000)),
+  Shadow(offset: Offset(1, 0), blurRadius: 0, color: Color(0xC0000000)),
+  Shadow(offset: Offset(0, 1.25), blurRadius: 2.2, color: Color(0x73000000)),
+];
+
+/// Prefer the same [Overlay] as the route (needed for [LayerLink]); fall back to root/shell.
+OverlayState? _syncGridFindOverlay(BuildContext context) {
+  final local = Overlay.maybeOf(context);
+  if (local != null) return local;
+  final root = Overlay.maybeOf(context, rootOverlay: true);
+  if (root != null) return root;
+  final navRoot = Navigator.maybeOf(context, rootNavigator: true);
+  if (navRoot?.overlay != null) return navRoot!.overlay;
+  final nav = Navigator.maybeOf(context);
+  return nav?.overlay;
 }
 
 IconData syncGridHexIconFor(SyncGridTileStyleClass c) {
@@ -136,7 +164,7 @@ class SyncGridHexStack extends StatelessWidget {
   }
 }
 
-class SyncGridHexTile extends StatelessWidget {
+class SyncGridHexTile extends StatefulWidget {
   const SyncGridHexTile({
     super.key,
     required this.placed,
@@ -157,61 +185,188 @@ class SyncGridHexTile extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final c = placed.cell;
-    final locked = c.level > syncLevel;
-    final overEnergy =
-        energyCap && !selected && c.energyCost > energyBudget && c.energyCost > 0;
-    final effectLabel = syncGridCellEffectLabel(c, displayCatalog);
+  State<SyncGridHexTile> createState() => _SyncGridHexTileState();
+}
 
-    return Tooltip(
-      message: '$effectLabel\n'
-          '${c.kind.wire} · ${placed.styleClass.label}\n'
-          'pos ${c.position} · lvl ${c.level} · orbs ${c.orbs} · energy ${c.energyCost.toStringAsFixed(1)}',
-      child: GestureDetector(
-        onTap: onTap,
-        child: CustomPaint(
-          painter: _SyncGridHexPainter(
-            fill: SyncGridTilePalette.fill(placed.styleClass),
-            stroke: SyncGridTilePalette.dark(placed.styleClass),
-            selected: selected,
-            locked: locked,
-            dimmed: overEnergy,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(4, 3, 4, 2),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  syncGridHexIconFor(placed.styleClass),
-                  size: 12,
-                  color: locked ? Colors.white54 : Colors.white.withValues(alpha: 0.95),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  effectLabel,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 7,
-                    height: 1.08,
-                    fontWeight: FontWeight.w600,
-                    color: locked ? Colors.white38 : Colors.white.withValues(alpha: 1),
-                    shadows: const [Shadow(blurRadius: 2, color: Colors.black45)],
-                  ),
-                ),
-                if (locked)
-                  const Text(
-                    '🔒',
-                    style: TextStyle(fontSize: 8),
-                  ),
-              ],
+class _SyncGridHexTileState extends State<SyncGridHexTile> {
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
+  Timer? _showTimer;
+  Timer? _hideTimer;
+
+  @override
+  void dispose() {
+    _showTimer?.cancel();
+    _hideTimer?.cancel();
+    _removeOverlay();
+    super.dispose();
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  void _onHoverEnter() {
+    _hideTimer?.cancel();
+    _showTimer?.cancel();
+    _showTimer = Timer(const Duration(milliseconds: 200), _insertOverlay);
+  }
+
+  void _onHoverExit() {
+    _showTimer?.cancel();
+    _hideTimer?.cancel();
+    _hideTimer = Timer(const Duration(milliseconds: 280), () {
+      if (mounted) _removeOverlay();
+    });
+  }
+
+  String _footerLine() {
+    final c = widget.placed.cell;
+    final e = c.energyCost;
+    final energyStr =
+        e == e.roundToDouble() ? '${e.toInt()}' : e.toStringAsFixed(1);
+    return 'Energy: $energyStr - Orbs: ${c.orbs}';
+  }
+
+  void _insertOverlay() {
+    if (!mounted || _overlayEntry != null) return;
+    final overlay = _syncGridFindOverlay(context);
+    if (overlay == null) return;
+
+    final c = widget.placed.cell;
+    final title = syncGridCellEffectLabel(c, widget.displayCatalog);
+    final rawDesc = syncGridCellDescription(c, widget.displayCatalog);
+    final description = rawDesc.trim().isNotEmpty && rawDesc.trim() != title.trim()
+        ? rawDesc
+        : '';
+    final footer = _footerLine();
+
+    _overlayEntry = OverlayEntry(
+      opaque: false,
+      builder: (ctx) {
+        // Let pointer events reach hexes that sit *under* the popup (same column below).
+        // Otherwise the overlay tooltip steals hover and lower cells never open a popup.
+        return IgnorePointer(
+          ignoring: true,
+          child: CompositedTransformFollower(
+            link: _layerLink,
+            showWhenUnlinked: false,
+            followerAnchor: Alignment.topCenter,
+            targetAnchor: Alignment.bottomCenter,
+            offset: const Offset(0, 6),
+            child: Material(
+              type: MaterialType.transparency,
+              child: SyncGridHexHoverPopup(
+                title: title,
+                description: description,
+                energyOrbsLine: footer,
+                styleClass: widget.placed.styleClass,
+                caretPointsUp: true,
+              ),
             ),
+          ),
+        );
+      },
+    );
+    overlay.insert(_overlayEntry!);
+  }
+
+  String _fallbackTooltipMessage() {
+    final c = widget.placed.cell;
+    final title = syncGridCellEffectLabel(c, widget.displayCatalog);
+    final rawDesc = syncGridCellDescription(c, widget.displayCatalog);
+    final desc = rawDesc.trim().isNotEmpty && rawDesc.trim() != title.trim()
+        ? '\n\n$rawDesc'
+        : '';
+    return '$title$desc\n\n${_footerLine()}\n${c.kind.wire} · pos ${c.position} · Lv.${c.level}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = widget.placed.cell;
+    final locked = c.level > widget.syncLevel;
+    final overEnergy = widget.energyCap &&
+        !widget.selected &&
+        c.energyCost > widget.energyBudget &&
+        c.energyCost > 0;
+    final effectLabel = syncGridCellEffectLabel(c, widget.displayCatalog);
+    final overlayAvailable = _syncGridFindOverlay(context) != null;
+
+    Widget tileCore = GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: widget.onTap,
+      child: CustomPaint(
+        painter: _SyncGridHexPainter(
+          fill: SyncGridTilePalette.fill(widget.placed.styleClass),
+          stroke: SyncGridTilePalette.dark(widget.placed.styleClass),
+          selected: widget.selected,
+          locked: locked,
+          dimmed: overEnergy,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              IgnorePointer(
+                child: Icon(
+                  syncGridHexIconFor(widget.placed.styleClass),
+                  size: 30,
+                  color: locked
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.white.withValues(alpha: 0.22),
+                ),
+              ),
+              Text(
+                effectLabel,
+                textAlign: TextAlign.center,
+                softWrap: true,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 6.5,
+                  height: 1.14,
+                  letterSpacing: -0.05,
+                  fontWeight: FontWeight.w700,
+                  color: locked
+                      ? Colors.white.withValues(alpha: 0.45)
+                      : Colors.white,
+                  shadows: _kHexTileLabelShadows,
+                ),
+              ),
+              if (locked)
+                const Positioned(
+                  bottom: -1,
+                  child: Text(
+                    '🔒',
+                    style: TextStyle(fontSize: 7, height: 1),
+                  ),
+                ),
+            ],
           ),
         ),
       ),
+    );
+
+    if (overlayAvailable) {
+      tileCore = MouseRegion(
+        onEnter: (_) => _onHoverEnter(),
+        onExit: (_) => _onHoverExit(),
+        child: tileCore,
+      );
+    } else {
+      tileCore = Tooltip(
+        message: _fallbackTooltipMessage(),
+        waitDuration: const Duration(milliseconds: 400),
+        showDuration: const Duration(seconds: 12),
+        child: tileCore,
+      );
+    }
+
+    return CompositedTransformTarget(
+      link: _layerLink,
+      child: tileCore,
     );
   }
 }

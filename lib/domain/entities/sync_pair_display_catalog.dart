@@ -8,6 +8,7 @@ final class SyncPairDisplayCatalog {
     this.skillNames = const {},
     this.skillDescriptions = const {},
     this.moveNames = const {},
+    this.moveDescriptions = const {},
     this.gridStatTemplates = const {},
     this.statShortLabels = const {},
     this.gridPowerupTemplates = const {},
@@ -22,6 +23,9 @@ final class SyncPairDisplayCatalog {
 
   /// `DATA.MOVES` NAME field, keyed by move id string.
   final Map<String, String> moveNames;
+
+  /// `DATA.MOVES` DESC field, keyed by move id string.
+  final Map<String, String> moveDescriptions;
 
   /// `MSGS.GRID_STAT` templates (`{{value}}` placeholder).
   final Map<String, String> gridStatTemplates;
@@ -65,6 +69,11 @@ final class SyncPairDisplayCatalog {
   String? moveName(String moveId) {
     if (moveId.isEmpty) return null;
     return moveNames[moveId];
+  }
+
+  String? moveDescription(String moveId) {
+    if (moveId.isEmpty) return null;
+    return moveDescriptions[moveId];
   }
 
   static final RegExp _valuePlaceholder = RegExp(

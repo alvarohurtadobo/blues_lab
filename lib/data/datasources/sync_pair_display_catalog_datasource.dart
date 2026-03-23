@@ -44,13 +44,14 @@ final class SyncPairDisplayCatalogDataSource {
     final char = _stringMap(data['CHAR']);
     final pkmn = _stringMap(data['PKMN']);
     final skills = _skillNameAndDescMaps(data['SKILLS']);
-    final moves = _moveNameMap(data['MOVES']);
+    final moves = _moveNameAndDescMaps(data['MOVES']);
     return SyncPairDisplayCatalog(
       trainerNames: char,
       pokemonNames: pkmn,
       skillNames: skills.$1,
       skillDescriptions: skills.$2,
-      moveNames: moves,
+      moveNames: moves.$1,
+      moveDescriptions: moves.$2,
       gridStatTemplates: gridStat,
       statShortLabels: statShort,
       gridPowerupTemplates: gridPowerup,
@@ -71,16 +72,25 @@ final class SyncPairDisplayCatalogDataSource {
     );
   }
 
-  static Map<String, String> _moveNameMap(Object? node) {
-    if (node is! Map) return {};
-    final out = <String, String>{};
+  /// (`NAME` map, `DESC` map) from `DATA.MOVES`.
+  static (Map<String, String>, Map<String, String>) _moveNameAndDescMaps(
+    Object? node,
+  ) {
+    if (node is! Map) {
+      return ({}, {});
+    }
+    final names = <String, String>{};
+    final descs = <String, String>{};
     for (final e in node.entries) {
       final v = e.value;
       if (v is! Map) continue;
+      final key = e.key.toString();
       final n = v['NAME'];
-      if (n is String) out[e.key.toString()] = n;
+      if (n is String) names[key] = n;
+      final d = v['DESC'];
+      if (d is String) descs[key] = d;
     }
-    return out;
+    return (names, descs);
   }
 
   /// (`NAME` map, `DESC` map) from `DATA.SKILLS`.
