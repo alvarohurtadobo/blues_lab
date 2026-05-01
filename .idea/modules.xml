@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/blues_lab.iml" filepath="$PROJECT_DIR$/blues_lab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/blues_lab_android.iml" filepath="$PROJECT_DIR$/android/blues_lab_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blues_lab_calculator.iml" filepath="$PROJECT_DIR$/blues_lab_calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/blues_lab_calculator_android.iml" filepath="$PROJECT_DIR$/android/blues_lab_calculator_android.iml" />
     </modules>
   </component>
 </project>

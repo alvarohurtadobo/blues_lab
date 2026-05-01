@@ -1,0 +1,28 @@
+name: blues_lab
+description: "Blue's Lab for Pokémon Masters"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  go_router: ^17.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/
+    - assets/i18n/
+    - assets/img/sync_level_on.png
+    - assets/img/sync_level_off.png
+    - assets/img/awakening_level_on.png
+    - assets/img/awakening_level_off.png

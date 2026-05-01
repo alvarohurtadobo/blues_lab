@@ -1,7 +1,7 @@
-import 'package:blues_lab/app/blues_lab_app.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'app/blue_lab_app.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const BluesLabApp());
+  runApp(const BlueLabApp());
 }

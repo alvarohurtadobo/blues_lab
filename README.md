@@ -1,40 +1,17 @@
-# Blue's Lab
+# blues_lab_calculator
 
-Blue's Lab for Pokémon Masters — Web-first Flutter application.
+A new Flutter project.
 
-## Platform
+## Getting Started
 
-- **Primary**: Web
-- **Stage 1**: No backend (client-side only)
+This project is a starting point for a Flutter application.
 
-## Architecture
+A few resources to get you started if this is your first Flutter project:
 
-Simplified Clean Architecture. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details.
+- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
+- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-```
-lib/
-├── core/           # Constants, utilities
-├── domain/         # Entities, repositories (interfaces), use cases
-├── data/           # Data sources, repository implementations
-├── presentation/   # Screens, widgets
-└── main.dart
-```
-
-## Run (Web)
-
-```bash
-# Chrome
-flutter run -d chrome
-
-# Edge
-flutter run -d edge
-
-# Web server
-flutter run -d web-server
-```
-
-## Build for production
-
-```bash
-flutter build web
-```
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

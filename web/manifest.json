@@ -1,11 +1,11 @@
 {
-    "name": "Blue's Lab",
-    "short_name": "BluesLab",
+    "name": "blues_lab_calculator",
+    "short_name": "blues_lab_calculator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Blue's Lab for Pokémon Masters",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

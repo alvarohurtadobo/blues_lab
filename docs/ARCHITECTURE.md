@@ -1,118 +1,61 @@
-# Blue's Lab - Architecture
+# Architecture Notes
 
-## Overview
+This project has been reshaped around a few clearer layers so future features
+can grow without pushing more logic into a single screen file.
 
-This document describes the **simplified Clean Architecture** adopted for Blue's Lab. The architecture prioritizes **simplicity** and is designed for **Stage 1** (web-only, no backend).
+## Current layout
 
----
+- `lib/main.dart`
+  - Thin entry point only.
+- `lib/app/`
+  - App shell and theme.
+- `lib/data/`
+  - Repositories and asset loading.
+- `lib/models/`
+  - Domain models, future rule types, and search/tag metadata.
+- `lib/features/home/`
+  - Main screen and its current UI flow.
+- `lib/damage/`
+  - Damage formula helpers.
 
-## Platform Strategy
+## Why this helps
 
-- **Primary platform**: Web
-- **Stage 1**: Client-side only, no backend API
-- **Future stages**: Backend integration can be added without major refactoring
+The app was previously organized as one large UI file that also owned:
 
----
+- app bootstrap
+- JSON loading
+- data parsing
+- domain models
+- search logic
 
-## Folder Structure
+That structure works for a prototype, but it makes future features expensive.
+The new boundaries let us grow in smaller steps.
 
-```
-lib/
-├── core/                    # Shared utilities, constants, extensions
-│   └── constants/
-│       └── app_constants.dart
-│
-├── domain/                  # Business logic (framework-agnostic)
-│   ├── entities/            # Domain models
-│   ├── repositories/        # Abstract repository contracts (interfaces)
-│   └── usecases/            # Single-responsibility business operations
-│
-├── data/                    # Data layer (implementations)
-│   ├── datasources/         # Local/remote data sources (local only in Stage 1)
-│   └── repositories/       # Repository implementations
-│
-├── presentation/            # UI layer
-│   ├── screens/             # Full-page views
-│   └── widgets/             # Reusable UI components
-│
-└── main.dart
-```
+## Expansion path
 
----
+The new model layer includes placeholders for:
 
-## Layer Dependencies
+- `PairTag`
+- `PassiveCondition`
+- `PassiveEffect`
+- `PassiveRule`
+- `TeamConfig`
 
-```
-Presentation → Domain ← Data
-     ↓            ↑
-   (uses)    (implements)
-```
+These are intentionally generic so we can model future features like:
 
-- **Domain**: No dependencies on other layers. Pure Dart.
-- **Data**: Depends only on Domain (implements repository interfaces).
-- **Presentation**: Depends on Domain (uses entities, use cases).
+- theme skill matching for sync pairs
+- search by move effects
+- passives that only activate under certain conditions
+- teamwide passive resolution
+- field and team configuration
 
----
+## Recommended next refactors
 
-## Layer Responsibilities
-
-### Domain
-- **Entities**: Plain Dart classes representing business concepts.
-- **Repositories**: Abstract interfaces defining data operations.
-- **Use cases**: One class per business action (e.g., `GetItemsUseCase`).
-
-### Data
-- **Data sources**: Where data comes from (in-memory, local storage, future: API).
-- **Repository implementations**: Implement domain repository interfaces.
-
-### Presentation
-- **Screens**: Full-page widgets, route destinations.
-- **Widgets**: Reusable components.
-
----
-
-## Stage 1: No Backend
-
-For the first stage, data lives entirely on the client:
-
-| Need | Solution |
-|------|----------|
-| Persistence | `shared_preferences` or `localstorage` (web) |
-| Initial data | JSON assets, hardcoded mock data |
-| State | `ChangeNotifier`, `ValueNotifier`, or `Riverpod` (optional) |
-
----
-
-## Adding Backend Later
-
-When moving to Stage 2:
-
-1. Create a new data source in `data/datasources/` (e.g., `api_datasource.dart`).
-2. Update repository implementations to use the API.
-3. Keep local data source for offline/cache if needed.
-4. Domain and presentation layers remain unchanged.
-
----
-
-## Naming Conventions
-
-- **Entities**: `Item`, `User` (nouns)
-- **Repositories**: `ItemRepository` (interface), `ItemRepositoryImpl` (implementation)
-- **Use cases**: `GetItemsUseCase`, `SaveItemUseCase` (verb + noun)
-- **Screens**: `HomeScreen`, `ItemDetailScreen` (noun + Screen)
-- **Widgets**: `ItemCard`, `LoadingIndicator` (descriptive noun)
-
----
-
-## Running the App (Web)
-
-```bash
-# Chrome (default)
-flutter run -d chrome
-
-# Edge
-flutter run -d edge
-
-# Web server (for deployment testing)
-flutter run -d web-server
-```
+1. Split `home_screen.dart` into smaller widgets:
+   - roster picker
+   - grid builder
+   - overview panel
+   - damage calculator panel
+2. Normalize more text data into structured tags and effects during import.
+3. Add a dedicated team builder feature with its own state object.
+4. Move passive activation logic into a standalone rules engine.
