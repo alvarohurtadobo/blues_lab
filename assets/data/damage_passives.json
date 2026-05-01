@@ -484,7 +484,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -623,7 +623,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost",
@@ -641,7 +641,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -947,7 +947,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -964,7 +964,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1040,7 +1040,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1102,7 +1102,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1142,7 +1142,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1159,7 +1159,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1199,7 +1199,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1216,7 +1216,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1272,7 +1272,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -1956,7 +1956,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2249,7 +2249,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2266,7 +2266,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2339,7 +2339,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2356,7 +2356,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2396,7 +2396,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2500,7 +2500,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2571,7 +2571,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2619,7 +2619,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2642,7 +2642,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -2895,7 +2895,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -2946,7 +2946,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -3017,7 +3017,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -3040,7 +3040,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -3113,7 +3113,7 @@
             "affects": "team",
             "conditions": [
               [
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -3128,7 +3128,7 @@
             "conditions": [
               [
                 "type_Ground",
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -3607,7 +3607,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -3624,7 +3624,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -3798,7 +3798,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -4886,7 +4886,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -4903,7 +4903,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost",
@@ -5116,7 +5116,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5133,7 +5133,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5736,7 +5736,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5770,7 +5770,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5805,7 +5805,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5839,7 +5839,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5874,7 +5874,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5908,7 +5908,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -5972,7 +5972,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6070,7 +6070,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6240,7 +6240,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6305,7 +6305,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6555,7 +6555,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6621,7 +6621,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6644,7 +6644,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost",
@@ -6679,7 +6679,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -6991,7 +6991,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -7072,7 +7072,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -7123,7 +7123,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -7936,7 +7936,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost",
@@ -8048,7 +8048,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -8126,7 +8126,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -8283,7 +8283,7 @@
             "affects": "team",
             "conditions": [
               [
-                "ice_zone"
+                "fairy_zone"
               ]
             ],
             "mechanism": "flat_boost",
@@ -8353,7 +8353,7 @@
         "affects": "self",
         "conditions": [
           [
-            "ice_zone"
+            "fairy_zone"
           ]
         ],
         "mechanism": "flat_boost",
@@ -8371,7 +8371,7 @@
         "affects": "self",
         "conditions": [
           [
-            "ice_zone"
+            "fairy_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -8890,7 +8890,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -8968,7 +8968,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -8985,7 +8985,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9042,7 +9042,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9059,7 +9059,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9279,7 +9279,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9341,7 +9341,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9418,7 +9418,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9435,7 +9435,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9452,7 +9452,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9739,7 +9739,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -9860,7 +9860,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10199,7 +10199,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10233,7 +10233,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10256,7 +10256,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10293,7 +10293,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10310,7 +10310,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10333,7 +10333,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10350,7 +10350,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10373,7 +10373,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10390,7 +10390,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10455,7 +10455,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10588,7 +10588,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -10771,7 +10771,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11391,7 +11391,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11440,7 +11440,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11457,7 +11457,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11810,7 +11810,7 @@
             "affects": "self",
             "conditions": [
               [
-                "sunny"
+                "rainy"
               ]
             ],
             "mechanism": "flat_boost",
@@ -11887,7 +11887,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11942,7 +11942,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -11959,7 +11959,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12015,7 +12015,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12032,7 +12032,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12049,7 +12049,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12089,7 +12089,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12106,7 +12106,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12146,7 +12146,7 @@
         "affects": "self",
         "conditions": [
           [
-            "ice_zone"
+            "fairy_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -12961,7 +12961,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13047,7 +13047,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13101,7 +13101,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13183,7 +13183,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13292,7 +13292,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13392,7 +13392,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13423,7 +13423,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13513,7 +13513,7 @@
             "affects": "team",
             "conditions": [
               [
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -13572,7 +13572,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13635,7 +13635,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13962,7 +13962,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -13996,7 +13996,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -15320,7 +15320,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost",
@@ -15373,7 +15373,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -15803,7 +15803,7 @@
         "affects": "self",
         "conditions": [
           [
-            "water_zone"
+            "dragon_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -15947,7 +15947,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -15964,7 +15964,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16090,7 +16090,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16316,7 +16316,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16364,7 +16364,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16420,7 +16420,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16451,7 +16451,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16522,7 +16522,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16539,7 +16539,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -16603,7 +16603,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16678,7 +16678,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16886,7 +16886,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -16923,7 +16923,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17070,7 +17070,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17087,7 +17087,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost",
@@ -17150,7 +17150,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17167,7 +17167,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost",
@@ -17190,7 +17190,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17207,7 +17207,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost",
@@ -17270,7 +17270,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17287,7 +17287,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost",
@@ -17305,7 +17305,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -17518,7 +17518,7 @@
             "affects": "self",
             "conditions": [
               [
-                "flinching"
+                "confused"
               ]
             ],
             "mechanism": "flat_boost",
@@ -17532,7 +17532,7 @@
             "affects": "team",
             "conditions": [
               [
-                "ice_zone"
+                "fairy_zone"
               ]
             ],
             "mechanism": "flat_boost",
@@ -18207,7 +18207,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -18224,7 +18224,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -18875,7 +18875,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -18897,7 +18897,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -18930,7 +18930,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -18964,7 +18964,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19069,7 +19069,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19134,7 +19134,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19204,7 +19204,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -19276,7 +19276,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -19459,7 +19459,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19475,7 +19475,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19509,7 +19509,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19526,7 +19526,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -19549,7 +19549,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -21217,7 +21217,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -21234,7 +21234,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -21517,7 +21517,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -22392,7 +22392,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -22492,7 +22492,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -22592,7 +22592,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -22709,7 +22709,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -22935,7 +22935,7 @@
         "affects": "team",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23065,7 +23065,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23087,7 +23087,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23117,7 +23117,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23151,7 +23151,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23197,7 +23197,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23375,7 +23375,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23415,7 +23415,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23443,7 +23443,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23504,7 +23504,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23521,7 +23521,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23543,7 +23543,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23622,7 +23622,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -23977,7 +23977,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24010,7 +24010,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24027,7 +24027,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24067,7 +24067,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24084,7 +24084,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24115,7 +24115,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24132,7 +24132,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24204,7 +24204,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24221,7 +24221,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24238,7 +24238,7 @@
         "affects": "self",
         "conditions": [
           [
-            "poisoned"
+            "frozen"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24351,7 +24351,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24553,7 +24553,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -24570,7 +24570,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26406,7 +26406,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26423,7 +26423,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26559,7 +26559,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26593,7 +26593,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26628,7 +26628,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost",
@@ -26651,7 +26651,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26702,7 +26702,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -26737,7 +26737,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost",
@@ -26875,7 +26875,7 @@
         "affects": "team",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -27530,7 +27530,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -28269,7 +28269,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -28635,7 +28635,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -28687,7 +28687,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost",
@@ -28705,7 +28705,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -28957,7 +28957,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -28974,7 +28974,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29036,7 +29036,7 @@
         "affects": "self",
         "conditions": [
           [
-            "water_zone"
+            "dragon_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29053,7 +29053,7 @@
         "affects": "self",
         "conditions": [
           [
-            "water_zone"
+            "dragon_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29118,7 +29118,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29135,7 +29135,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29166,7 +29166,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29183,7 +29183,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29399,7 +29399,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29455,7 +29455,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29489,7 +29489,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29574,7 +29574,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29642,7 +29642,7 @@
             "affects": "team",
             "conditions": [
               [
-                "ice_zone"
+                "fairy_zone"
               ]
             ],
             "mechanism": "flat_boost",
@@ -29791,7 +29791,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -29808,7 +29808,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30102,7 +30102,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30136,7 +30136,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30181,7 +30181,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30595,7 +30595,7 @@
         "affects": "team",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30886,7 +30886,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30903,7 +30903,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -30920,7 +30920,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31064,7 +31064,7 @@
             "affects": "self",
             "conditions": [
               [
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -31144,7 +31144,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31175,7 +31175,7 @@
         "affects": "team",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31374,7 +31374,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31391,7 +31391,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31500,7 +31500,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31517,7 +31517,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31929,7 +31929,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31946,7 +31946,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31963,7 +31963,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -31980,7 +31980,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32098,7 +32098,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32115,7 +32115,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32293,7 +32293,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32347,7 +32347,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32364,7 +32364,7 @@
         "affects": "team",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32625,7 +32625,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32688,7 +32688,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -32966,7 +32966,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33470,7 +33470,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33783,7 +33783,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33800,7 +33800,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33897,7 +33897,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33925,7 +33925,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -33996,7 +33996,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -34048,7 +34048,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -34494,7 +34494,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -34936,7 +34936,7 @@
               [
                 "move_slot_MOVE_16",
                 "629",
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -34960,7 +34960,7 @@
             "affects": "self",
             "conditions": [
               [
-                "rain"
+                "sunny"
               ]
             ],
             "mechanism": "flat_boost",
@@ -34996,7 +34996,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35019,7 +35019,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35050,7 +35050,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35439,7 +35439,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35490,7 +35490,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35568,7 +35568,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -35690,7 +35690,7 @@
         "affects": "self",
         "conditions": [
           [
-            "sunny"
+            "rainy"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36063,7 +36063,7 @@
         "affects": "team",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36097,7 +36097,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36114,7 +36114,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36211,7 +36211,7 @@
         "affects": "self",
         "conditions": [
           [
-            "frozen"
+            "burned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36245,7 +36245,7 @@
         "affects": "self",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36793,7 +36793,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost",
@@ -36817,7 +36817,7 @@
         "affects": "self",
         "conditions": [
           [
-            "water_zone"
+            "dragon_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36834,7 +36834,7 @@
         "affects": "team",
         "conditions": [
           [
-            "water_zone"
+            "dragon_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36897,7 +36897,7 @@
         "affects": "self",
         "conditions": [
           [
-            "flinching"
+            "confused"
           ]
         ],
         "mechanism": "flat_boost"
@@ -36950,7 +36950,7 @@
         "affects": "team",
         "conditions": [
           [
-            "rain"
+            "sunny"
           ]
         ],
         "mechanism": "flat_boost"
@@ -37235,7 +37235,7 @@
         "affects": "self",
         "conditions": [
           [
-            "burned"
+            "poisoned"
           ]
         ],
         "mechanism": "flat_boost"
@@ -37327,7 +37327,7 @@
         "affects": "self",
         "conditions": [
           [
-            "ice_zone"
+            "fairy_zone"
           ]
         ],
         "mechanism": "flat_boost"
@@ -37477,7 +37477,7 @@
             "affects": "team",
             "conditions": [
               [
-                "water_zone"
+                "dragon_zone"
               ]
             ],
             "mechanism": "flat_boost",
@@ -37525,6 +37525,26 @@
         "type": "reducer",
         "applies_to": "pokemon_moves",
         "affects": ""
+      }
+    ]
+  },
+  {
+    "syncPair": "Sygna Suit Giovanni (Alt.) & Guzzlord",
+    "number": 74,
+    "passives": [
+      {
+        "source": "move_innate",
+        "skillId": 0,
+        "name": "Gorging Crunch: Innate Scaling",
+        "description": "The more the user's Defense or Sp. Def are raised, the greater the power of this attack.",
+        "value": 0,
+        "type": "powerup",
+        "applies_to": "moves",
+        "affects": "self",
+        "mechanism": "user_stat_raised",
+        "stat": "def_spd",
+        "stat_target": "self",
+        "move_name": "Gorging Crunch"
       }
     ]
   }

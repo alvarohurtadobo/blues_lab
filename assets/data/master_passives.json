@@ -1,0 +1,942 @@
+[
+  {
+    "syncPair": "Adaman & Leafeon",
+    "passiveName": "Sinnoh Pride",
+    "theme": "Sinnoh",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Arc Suit Alder & Volcarona",
+    "passiveName": "Insect Myth",
+    "theme": "Bug",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Blue & Pidgeot",
+    "passiveName": "Sky Myth",
+    "theme": "Flying",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Brock & Onix",
+    "passiveName": "Stone Myth",
+    "theme": "Rock",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Brock & Onix (Male♂️)",
+    "passiveName": "Stone Myth",
+    "theme": "Rock",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Cynthia & Garchomp",
+    "passiveName": "Earth Myth",
+    "theme": "Ground",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Ethan & Lugia",
+    "passiveName": "Sky Myth",
+    "theme": "Flying",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Korrina & Lucario",
+    "passiveName": "Fist Myth",
+    "theme": "Fighting",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Korrina & Lucario (Male♂️)",
+    "passiveName": "Fist Myth",
+    "theme": "Fighting",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Lance & Dragonite",
+    "passiveName": "Draco Myth",
+    "theme": "Dragon",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Leon & Charizard",
+    "passiveName": "Flame Myth",
+    "theme": "Fire",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Misty & Starmie",
+    "passiveName": "Splash Myth",
+    "theme": "Water",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit N & Zoroark",
+    "passiveName": "Dread Myth",
+    "theme": "Dark",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Sabrina & Alakazam",
+    "passiveName": "Mind Myth",
+    "theme": "Psychic",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Sabrina & Alakazam (Male♂️)",
+    "passiveName": "Mind Myth",
+    "theme": "Psychic",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Silver & Ho-Oh",
+    "passiveName": "Flame Myth",
+    "theme": "Fire",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Arc Suit Steven & Metagross",
+    "passiveName": "Iron Myth",
+    "theme": "Steel",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Archie & Kyogre",
+    "passiveName": "Hoenn Spirit",
+    "theme": "Hoenn",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Arezu & Hisuian Lilligant",
+    "passiveName": "Sinnoh Rush",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Ash & Pikachu",
+    "passiveName": "Kanto Spirit",
+    "theme": "Kanto",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Bede (Alt.) & Galarian Rapidash",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Bede (Alt.) & Rapidash (Male♂️)",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Bede (Champion) & Galarian Articuno",
+    "passiveName": "Galar Flag Bearer",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Bianca (Champion) & Virizion",
+    "passiveName": "Unova Flag Bearer",
+    "theme": "Unova",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Blue (Champion) & Zapdos",
+    "passiveName": "Kanto Flag Bearer",
+    "theme": "Kanto",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Brassius & Sudowoodo",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Brassius & Sudowoodo (Male♂️)",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Brendan (Champion) & Groudon ★",
+    "passiveName": "Hoenn Pride",
+    "theme": "Hoenn",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Cheren (Champion) & Tornadus Incarnate Forme",
+    "passiveName": "Unova Spirit",
+    "theme": "Unova",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Dana & Regice",
+    "passiveName": "Ice Teamwork",
+    "theme": "Ice",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Drayton & Archaludon (Male♂️)",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Elio (Champion) & Dusk Mane Necrozma ★",
+    "passiveName": "Alola Pride",
+    "theme": "Alola",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Evelyn & Entei",
+    "passiveName": "Fire Teamwork",
+    "theme": "Fire",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Florian & Miraidon",
+    "passiveName": "Paldea Spirit",
+    "theme": "Paldea",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Florian (Anniversary 2026) & Ogerpon",
+    "passiveName": "Paldea’s Bold Curiosity",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Florian (Anniversary 2026) & Ogerpon (Female♀️)",
+    "passiveName": "Paldea’s Bold Curiosity",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Geeta & Glimmora",
+    "passiveName": "Paldea Flag Bearer",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Gloria (Anniversary 2025) & Cinderace",
+    "passiveName": "Galar’s Shining Ace",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Hassel & Baxcalibur",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Hassel & Baxcalibur (Male♂️)",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Hilbert (Champion) & White Kyurem ★",
+    "passiveName": "Unova’s Gentle Hero",
+    "theme": "Unova",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Hilda (Champion) & Iron Leaves",
+    "passiveName": "Unova’s Hotblooded Girl",
+    "theme": "Unova",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Hop (Champion) & Galarian Zapdos",
+    "passiveName": "Galar Pride",
+    "theme": "Galar",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Irida & Glaceon",
+    "passiveName": "Sinnoh Spirit",
+    "theme": "Sinnoh",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Irida (Anniversary 2025) & Hisuian Typhlosion",
+    "passiveName": "Hisui’s Shining Pearl",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Juliana & Koraidon",
+    "passiveName": "Paldea Pride",
+    "theme": "Paldea",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Juliana (Anniversary 2026) & Terapagos",
+    "passiveName": "Paldea’s Grand Mystery",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Juliana (Anniversary 2026) & Terapagos (Male♂️)",
+    "passiveName": "Paldea’s Grand Mystery",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Kieran & Hydrapple",
+    "passiveName": "Paldea Flag Bearer",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Leaf (Champion) & Moltres",
+    "passiveName": "Kanto Pride",
+    "theme": "Kanto",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Leon & Charizard",
+    "passiveName": "Galar Flag Bearer",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Lillie (Anniversary 2021) & Lunala",
+    "passiveName": "Alola Flag Bearer",
+    "theme": "Alola",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Mai & Munchlax",
+    "passiveName": "Sinnoh Rush",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Marnie (Alt.) & Grimmsnarl",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Marnie (Alt.) & Grimmsnarl (Male♂️)",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Marnie (Champion) & Galarian Moltres",
+    "passiveName": "Galar Spirit",
+    "theme": "Galar",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Maxie & Groudon",
+    "passiveName": "Hoenn Pride",
+    "theme": "Hoenn",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "May (Champion) & Kyogre ★",
+    "passiveName": "Hoenn Spirit",
+    "theme": "Hoenn",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Miriam & Toxapex",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Morgan & Virizion",
+    "passiveName": "Grass Teamwork",
+    "theme": "Grass",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "N (Anniversary 2021) & Reshiram",
+    "passiveName": "Unova Flag Bearer",
+    "theme": "Unova",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Nate (Champion) & Haxorus ★",
+    "passiveName": "Unova Pride",
+    "theme": "Unova",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Nita & Landorus Incarnate Forme",
+    "passiveName": "Ground Teamwork",
+    "theme": "Ground",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Perrin & Hisuian Growlithe",
+    "passiveName": "Paldea Rush",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Buzzwole",
+    "passiveName": "Bug Teamwork",
+    "theme": "Bug",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Cobalion",
+    "passiveName": "Fighting Teamwork",
+    "theme": "Fighting",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Mesprit",
+    "passiveName": "Psychic Teamwork",
+    "theme": "Psychic",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Raikou",
+    "passiveName": "Electric Teamwork",
+    "theme": "Electric",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Regirock",
+    "passiveName": "Rock Teamwork",
+    "theme": "Rock",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Player & Registeel",
+    "passiveName": "Steel Teamwork",
+    "theme": "Steel",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Red (1996) & Pikachu (Male♂️)",
+    "passiveName": "Another Kanto Origin",
+    "theme": "Kanto",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Red (Anniversary 2025) & Charizard",
+    "passiveName": "Kanto’s Shining Legend",
+    "theme": "Kanto",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Red (Champion) & Articuno",
+    "passiveName": "Kanto Spirit",
+    "theme": "Kanto",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Selene (Champion) & Dawn Wings Necrozma ★",
+    "passiveName": "Alola Spirit",
+    "theme": "Alola",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Silver (Champion) & Tyranitar ★",
+    "passiveName": "Johto Pride",
+    "theme": "Johto",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Steven (Anniversary 2021) & Rayquaza ★",
+    "passiveName": "Hoenn Flag Bearer",
+    "theme": "Hoenn",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Ball Guy & Electrode (Genderless)",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Sygna Suit Ball Guy & Hisuian Electrode",
+    "passiveName": "Galar Rush",
+    "theme": "Galar",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Sygna Suit Carmine & Pecharunt",
+    "passiveName": "Cool Girl from Kitakami",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Cynthia (Aura) & Lucario",
+    "passiveName": "Sinnoh Flag Bearer",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Cynthia (Renegade) & Giratina Altered Forme",
+    "passiveName": "Sinnoh Flag Bearer",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Ethan & Lugia",
+    "passiveName": "Johto Spirit",
+    "theme": "Johto",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Giovanni (Alt.) & Guzzlord",
+    "passiveName": "Johto Flag Bearer",
+    "theme": "Johto",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Gladion & Magearna",
+    "passiveName": "Alola Spirit",
+    "theme": "Alola",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Kieran & Furret (Male♂️)",
+    "passiveName": "Paldea Willpower",
+    "theme": "Paldea",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Kris & Suicune",
+    "passiveName": "Johto Flag Bearer",
+    "theme": "Johto",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Lear & Gholdengo",
+    "passiveName": "Pasio Flagbearer",
+    "theme": "Pasio",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Lusamine & Dusk Mane Necrozma",
+    "passiveName": "Alola Spirit",
+    "theme": "Alola",
+    "category": "special",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Lyra & Celebi",
+    "passiveName": "Johto Pride",
+    "theme": "Johto",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Nemona & Scream Tail",
+    "passiveName": "Paldea Pride",
+    "theme": "Paldea",
+    "category": "physical",
+    "appliesToSync": false,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  },
+  {
+    "syncPair": "Sygna Suit Red (Thunderbolt) & Pikachu",
+    "passiveName": "Kanto Flag Bearer",
+    "theme": "Kanto",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Sygna Suit Serena & Zygarde 50% Forme",
+    "passiveName": "Kalos Flag Bearer",
+    "theme": "Kalos",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 10,
+    "maxPowerUpPct": 30
+  },
+  {
+    "syncPair": "Thorton & Regigigas",
+    "passiveName": "Normal Teamwork",
+    "theme": "Normal",
+    "category": "any",
+    "appliesToSync": false,
+    "basePowerUpPct": 10,
+    "perAdditionalAllyPct": 5,
+    "maxPowerUpPct": 20
+  },
+  {
+    "syncPair": "Volo (Alt.) & Giratina Origin Forme",
+    "passiveName": "Hisui’s Pokémon Wielder",
+    "theme": "Sinnoh",
+    "category": "any",
+    "appliesToSync": true,
+    "basePowerUpPct": 20,
+    "perAdditionalAllyPct": 15,
+    "maxPowerUpPct": 50
+  }
+]

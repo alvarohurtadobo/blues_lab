@@ -34,6 +34,8 @@ class SyncPairData {
     this.variations = const [],
     this.tags = const [],
     this.rules = const [],
+    this.damagePassives = const [],
+    this.masterPassives = const [],
   });
 
   final int number;
@@ -62,6 +64,8 @@ class SyncPairData {
   final List<VariationData> variations;
   final List<PairTag> tags;
   final List<PassiveRule> rules;
+  final List<DamagePassive> damagePassives;
+  final List<MasterPassiveData> masterPassives;
 
   Iterable<String> get searchTerms sync* {
     yield displayName;
@@ -114,6 +118,8 @@ class MoveData {
     this.slot,
     this.tags = const [],
     this.effects = const [],
+    this.scaling,
+    this.isExtendedRange = false,
   });
 
   final String name;
@@ -128,6 +134,8 @@ class MoveData {
   final int? slot;
   final List<PairTag> tags;
   final List<PassiveEffect> effects;
+  final MoveScaling? scaling;
+  final bool isExtendedRange;
 
   Iterable<String> get searchTerms sync* {
     yield name;
@@ -172,7 +180,119 @@ class SubPassiveData {
   final int value;
 }
 
+/// Innate power scaling for a move (loaded from move_scaling.json).
+class MoveScaling {
+  const MoveScaling({
+    required this.stat,
+    required this.who,
+    required this.direction,
+    required this.stepPer1000,
+    this.thresholdTable = '',
+    this.capPer1000 = 0,
+  });
+
+  /// Stat key: atk, def, spa, spd, spe, def_spd, all_stats, hp, acc, eva
+  final String stat;
+  /// 'user' or 'target'
+  final String who;
+  /// 'raised' or 'lowered'
+  final String direction;
+  /// Multiplier per stage in thousandths (250 = 0.25 per stage)
+  final int stepPer1000;
+  /// For HP-threshold moves like Fierce Fiery Wrath: "100,1000|75,1100|..."
+  final String thresholdTable;
+  /// Optional cap in thousandths
+  final int capPer1000;
+}
+
+/// Pre-processed damage passive from damage_passives.json.
+class DamagePassive {
+  const DamagePassive({
+    required this.source,
+    required this.name,
+    required this.type,
+    required this.appliesTo,
+    required this.affects,
+    this.mechanism = '',
+    this.value = 0,
+    this.stat = '',
+    this.statTarget = '',
+    this.conditions = const [],
+    this.moveName = '',
+    this.cellNumber,
+    this.subPassives = const [],
+  });
+
+  /// 'passive', 'grid_skill', 'super_awakening'
+  final String source;
+  final String name;
+  /// 'powerup', 'reducer', 'modifier', 'composite'
+  final String type;
+  /// 'moves', 'sync_move', 'moves_and_sync', 'all', 'pokemon_moves', 'max_move'
+  final String appliesTo;
+  /// 'self', 'team', ''
+  final String affects;
+  /// 'flat_boost', 'user_stat_raised', 'target_stat_lowered', 'stat_is_raised',
+  /// 'stat_is_lowered', 'stat_not_raised', 'gauge_cost_boost', 'PMUN', 'SMUN', 'stat_raised_30pct'
+  final String mechanism;
+  /// Numeric value (e.g. 5 for Power Reserves 5 = 50%)
+  final int value;
+  /// Stat key for stat-scaling mechanisms
+  final String stat;
+  /// 'self' or 'target'
+  final String statTarget;
+  /// Condition arrays for flat_boost (e.g. [["hp_low"]], [["sandstorm"]])
+  final List<List<String>> conditions;
+  /// If this passive only applies to a specific move
+  final String moveName;
+  /// Grid cell number (null for innate passives)
+  final int? cellNumber;
+  /// For composite passives
+  final List<DamagePassive> subPassives;
+}
+
+/// Pre-processed master passive from master_passives.json.
+class MasterPassiveData {
+  const MasterPassiveData({
+    required this.name,
+    required this.theme,
+    required this.category,
+    required this.appliesToSync,
+    required this.basePowerUpPct,
+    required this.perAdditionalAllyPct,
+    required this.maxPowerUpPct,
+  });
+
+  final String name;
+  final String theme;
+  /// 'any', 'physical', 'special'
+  final String category;
+  final bool appliesToSync;
+  final int basePowerUpPct;
+  final int perAdditionalAllyPct;
+  final int maxPowerUpPct;
+
+  double powerUpForAdditionalAllies(int additionalAllies) {
+    final extra = additionalAllies.clamp(0, 2);
+    final powerUp = basePowerUpPct + perAdditionalAllyPct * extra;
+    final capped = powerUp > maxPowerUpPct ? maxPowerUpPct : powerUp;
+    return capped / 100;
+  }
+
+  bool appliesToMove(MoveData move) {
+    final isPhysical = move.category.toLowerCase() == 'physical';
+    final isSpecial = move.category.toLowerCase() == 'special';
+    if (move.isSync && !appliesToSync) return false;
+    return switch (category) {
+      'physical' => isPhysical,
+      'special' => isSpecial,
+      _ => true,
+    };
+  }
+}
+
 class VariationData {
+
   const VariationData({
     required this.formName,
     this.moves = const [],

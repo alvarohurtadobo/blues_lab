@@ -511,46 +511,6 @@ int _calcOverviewStat({
   return (beforeForm * formMult).ceil() - 1;
 }
 
-enum _MasterPassiveCategory { any, physical, special }
-
-class _MasterPassiveEffect {
-  const _MasterPassiveEffect({
-    required this.name,
-    required this.description,
-    required this.theme,
-    required this.basePowerUp,
-    required this.perAdditionalAlly,
-    required this.maxPowerUp,
-    required this.appliesToSync,
-    required this.category,
-  });
-
-  final String name;
-  final String description;
-  final String theme;
-  final double basePowerUp;
-  final double perAdditionalAlly;
-  final double maxPowerUp;
-  final bool appliesToSync;
-  final _MasterPassiveCategory category;
-
-  double powerUpForAdditionalAllies(int additionalAllies) {
-    final extra = additionalAllies.clamp(0, 2);
-    final powerUp = basePowerUp + perAdditionalAlly * extra;
-    return powerUp > maxPowerUp ? maxPowerUp : powerUp;
-  }
-
-  bool appliesToMove(MoveData move) {
-    final isPhysical = move.category.toLowerCase() == 'physical';
-    final isSpecial = move.category.toLowerCase() == 'special';
-    if (move.isSync && !appliesToSync) return false;
-    return switch (category) {
-      _MasterPassiveCategory.any => true,
-      _MasterPassiveCategory.physical => isPhysical,
-      _MasterPassiveCategory.special => isSpecial,
-    };
-  }
-}
 
 class SyncPairOverview extends StatefulWidget {
   const SyncPairOverview({
@@ -1512,67 +1472,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   };
   final Map<String, int> _masterPassiveAllyCount = {};
 
-  List<_MasterPassiveEffect> get _masterPassives {
-    final found = <_MasterPassiveEffect>[];
-    for (final passive in widget.pair.passives) {
-      final parsed = _parseMasterPassive(passive);
-      if (parsed != null) {
-        found.add(parsed);
-        _masterPassiveAllyCount.putIfAbsent(parsed.name, () => 0);
-      }
+  List<MasterPassiveData> get _masterPassives {
+    for (final mp in widget.pair.masterPassives) {
+      _masterPassiveAllyCount.putIfAbsent(mp.name, () => 0);
     }
-    return found;
-  }
-
-  _MasterPassiveEffect? _parseMasterPassive(PassiveData passive) {
-    final description = passive.description.trim();
-    if (!description.contains('allied sync pairs')) return null;
-    if (!description.contains('theme you have on your team') &&
-        !description.contains('These percentages increase according')) {
-      return null;
-    }
-
-    final themeMatch = RegExp(
-      r'with the ([A-Za-z]+) theme you have on your team',
-      caseSensitive: false,
-    ).firstMatch(description);
-    if (themeMatch == null) return null;
-    final theme = themeMatch.group(1)!;
-
-    final lower = description.toLowerCase();
-    final category = lower.contains('physical attack moves')
-        ? _MasterPassiveCategory.physical
-        : lower.contains('special attack moves')
-        ? _MasterPassiveCategory.special
-        : _MasterPassiveCategory.any;
-    final appliesToSync = lower.contains('sync move');
-
-    final baseMatch = RegExp(
-      r'Powers up .*? by (\d+)%',
-      caseSensitive: false,
-    ).firstMatch(description);
-    final perAllyMatch = RegExp(
-      r'Each additional sync pair powers up .*? by (\d+)%',
-      caseSensitive: false,
-    ).firstMatch(description);
-    final maxMatch = RegExp(
-      r'The maximum power-up is (\d+)%',
-      caseSensitive: false,
-    ).firstMatch(description);
-    if (baseMatch == null || perAllyMatch == null || maxMatch == null) {
-      return null;
-    }
-
-    return _MasterPassiveEffect(
-      name: passive.name,
-      description: description,
-      theme: theme,
-      basePowerUp: int.parse(baseMatch.group(1)!) / 100,
-      perAdditionalAlly: int.parse(perAllyMatch.group(1)!) / 100,
-      maxPowerUp: int.parse(maxMatch.group(1)!) / 100,
-      appliesToSync: appliesToSync,
-      category: category,
-    );
+    return widget.pair.masterPassives;
   }
 
   double _masterPassivePowerUp(MoveData move) {
@@ -2067,157 +1971,91 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     if (_targetCount <= 1) return 1;
     final isMultiTarget = move.target.toLowerCase() == 'all opponents';
     if (!isMultiTarget) return 1;
-    if (move.description.contains('not lowered even if there are multiple targets')) return 1;
+    if (move.isExtendedRange) return 1;
     return _targetCount;
   }
 
   double _movePowerModifier(MoveData move) {
-    final desc = move.description.toLowerCase();
-    double modifier = 1.0;
+    final scaling = move.scaling;
+    if (scaling == null) return 1.0;
 
-    // Percentage increase: "power increases X% when"
-    final pctM = RegExp(r"power increases (\d+)% when", caseSensitive: false).firstMatch(desc);
-    if (pctM != null) {
-      final pct = int.parse(pctM.group(1)!);
-      final afterWhen = desc.substring(pctM.end);
-      if (_isConditionMetInText(afterWhen)) modifier *= 1 + pct / 100;
-    }
-    // Times modifier: "power increases when" (no percentage = x2)
-    else if (desc.contains('power increases when')) {
-      final afterWhen = desc.substring(desc.indexOf('power increases when') + 20);
-      if (_isConditionMetInText(afterWhen)) modifier *= 2.0;
-    }
+    final stages = scaling.who == 'user' ? _playerStages : _enemyStages;
 
-    // Single stat modifier: "the more the [user/target]'s [stat] is [raised/lowered], the greater the power"
-    final singleM = RegExp(r'the more the (user|target).+?(atk|attack|def(?:ense)?|sp\.?\s*atk|sp\.?\s*def|speed|accuracy|evasion|evasiveness).+?is (raised|lowered).+?greater the power', caseSensitive: false).firstMatch(desc);
-    if (singleM != null) {
-      final isUser = singleM.group(1)!.toLowerCase() == 'user';
-      final statKey = _parseSyncStatKey(singleM.group(2)!);
-      final isRaised = singleM.group(3)!.toLowerCase() == 'raised';
-      final stages = isUser ? _playerStages : _enemyStages;
-      final stage = stages[statKey] ?? 0;
-      final count = isRaised ? stage.clamp(0, 6) : (-stage).clamp(0, 6);
-      if (move.isSync) {
-        modifier *= 1 + (count * 0.167).clamp(0.0, 1.0);
-      } else {
-        modifier *= 1 + count.clamp(0, 11);
+    // Threshold table (HP-based like Fierce Fiery Wrath)
+    if (scaling.thresholdTable.isNotEmpty) {
+      final hpPct = scaling.who == 'user' ? _playerHpPercent : _enemyHpPercent;
+      final entries = scaling.thresholdTable.split('|');
+      for (final entry in entries) {
+        final parts = entry.split(',');
+        if (parts.length == 2) {
+          final threshold = int.parse(parts[0]);
+          final mult = int.parse(parts[1]);
+          if (hpPct <= threshold) continue;
+          return mult / 1000;
+        }
       }
+      // Fallback: use last entry
+      final lastParts = entries.last.split(',');
+      return lastParts.length == 2 ? int.parse(lastParts[1]) / 1000 : 1.0;
     }
 
-    // Multiple stats modifier: "the more the [user/target]'s stats are [raised/lowered], the greater the power"
-    final multiM = RegExp(r'the more the (user|target).+?stats.+?(raised|lowered).+?greater the power', caseSensitive: false).firstMatch(desc);
-    if (multiM != null) {
-      final isUser = multiM.group(1)!.toLowerCase() == 'user';
-      final isRaised = multiM.group(2)!.toLowerCase() == 'raised';
-      final stages = isUser ? _playerStages : _enemyStages;
-      int count = 0;
+    // Stat-based scaling
+    final isRaised = scaling.direction == 'raised';
+    int count;
+
+    if (scaling.stat == 'all_stats') {
+      count = 0;
       for (final key in ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']) {
         final s = stages[key] ?? 0;
         count += isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
       }
-      if (move.isSync) {
-        modifier *= 1 + (count * 0.067).clamp(0.0, 1.2);
-      } else {
-        // Special case: Almighty Psychic style (cap 30, /10 = max x4)
-        modifier *= 1 + count.clamp(0, 30) / 10;
-      }
+    } else if (scaling.stat == 'def_spd') {
+      final s1 = stages['def'] ?? 0;
+      final s2 = stages['spd'] ?? 0;
+      count = isRaised
+          ? s1.clamp(0, 6) + s2.clamp(0, 6)
+          : (-s1).clamp(0, 6) + (-s2).clamp(0, 6);
+    } else if (scaling.stat == 'hp') {
+      // HP percentage scaling (Eruption style: lower HP = lower power)
+      final hpPct = scaling.who == 'user' ? _playerHpPercent : _enemyHpPercent;
+      return hpPct / 100;
+    } else {
+      final s = stages[scaling.stat] ?? 0;
+      count = isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
     }
 
-    return modifier;
-  }
-
-  bool _isConditionMetInText(String text) {
-    // Zone conditions
-    if (text.contains('fairy zone')) return _selectedZone == 'Fairy Zone';
-    if (text.contains('dragon zone')) return _selectedZone == 'Dragon Zone';
-    if (text.contains('dark zone')) return _selectedZone == 'Dark Zone';
-    if (text.contains('normal zone')) return _selectedZone == 'Normal Zone';
-    if (text.contains('fighting zone')) return _selectedZone == 'Fighting Zone';
-    if (text.contains('ice zone')) return _selectedZone == 'Ice Zone';
-    if (text.contains('steel zone')) return _selectedZone == 'Steel Zone';
-    if (text.contains('ghost zone')) return _selectedZone == 'Ghost Zone';
-    if (text.contains('bug zone')) return _selectedZone == 'Bug Zone';
-    if (text.contains('rock zone')) return _selectedZone == 'Rock Zone';
-    if (text.contains('ground zone')) return _selectedZone == 'Ground Zone';
-    if (text.contains('flying zone')) return _selectedZone == 'Flying Zone';
-    if (text.contains('poison zone')) return _selectedZone == 'Poison Zone';
-    if (text.contains('zone')) return _selectedZone.isNotEmpty;
-    // Terrain conditions
-    if (text.contains('electric terrain')) return _selectedTerrain == 'Electric Terrain';
-    if (text.contains('psychic terrain')) return _selectedTerrain == 'Psychic Terrain';
-    if (text.contains('grassy terrain')) return _selectedTerrain == 'Grassy Terrain';
-    if (text.contains('terrain')) return _selectedTerrain.isNotEmpty;
-    // Weather conditions
-    if (text.contains('sunny')) return _selectedWeather == 'Sunny';
-    if (text.contains('rainy') || text.contains('rain')) return _selectedWeather == 'Rainy';
-    if (text.contains('hailstorm') || text.contains('hail')) return _selectedWeather == 'Hail';
-    if (text.contains('sandstorm')) return _selectedWeather == 'Sandstorm';
-    if (text.contains('weather')) return _selectedWeather.isNotEmpty;
-    // Circle conditions
-    if (text.contains('circle')) return _activeCircles().isNotEmpty;
-    // Status conditions
-    if (text.contains('paralyzed')) return _enemyStatusCondition == 'paralyzed';
-    if (text.contains('burned')) return _enemyStatusCondition == 'burned';
-    if (text.contains('frozen')) return _enemyStatusCondition == 'frozen';
-    if (text.contains('asleep')) return _enemyStatusCondition == 'asleep';
-    if (text.contains('poisoned')) return _enemyStatusCondition == 'poisoned' || _enemyStatusCondition == 'badly poisoned';
-    if (text.contains('flinching, confused, or trapped')) {
-      return (_enemyVolatile['flinching'] ?? false) || (_enemyVolatile['confused'] ?? false) || (_enemyVolatile['trapped'] ?? false);
+    final step = scaling.stepPer1000 / 1000;
+    var mult = 1.0 + count * step;
+    if (scaling.capPer1000 > 0) {
+      mult = mult.clamp(0.0, scaling.capPer1000 / 1000);
     }
-    if (text.contains('flinching')) return _enemyVolatile['flinching'] ?? false;
-    if (text.contains('confused')) return _enemyVolatile['confused'] ?? false;
-    if (text.contains('trapped')) return _enemyVolatile['trapped'] ?? false;
-    if (text.contains('restrained')) return _enemyVolatile['restrained'] ?? false;
-    if (text.contains('status condition')) return _enemyStatusCondition.isNotEmpty;
-    // Other conditions
-    if (text.contains('sync buff')) return _enemySyncBoosts > 0;
-    if (text.contains('type rebuff')) return _typeRebuffs.values.any((v) => v < 0) || _stellarRebuff < 0;
-    if (text.contains('super effective')) return _enemyWeakness.isNotEmpty;
-    if (text.contains('no field effects')) return _selectedZone.isEmpty && _selectedTerrain.isEmpty && _selectedWeather.isEmpty;
-    return false;
-  }
-
-  String _parseSyncStatKey(String raw) {
-    final s = raw.toLowerCase().replaceAll(' ', '');
-    if (s.contains('sp') && s.contains('atk')) return 'spa';
-    if (s.contains('sp') && s.contains('def')) return 'spd';
-    if (s == 'attack' || s == 'atk') return 'atk';
-    if (s == 'defense' || s == 'def') return 'def';
-    if (s == 'speed') return 'spe';
-    if (s == 'accuracy') return 'acc';
-    if (s == 'evasion' || s == 'evasiveness') return 'eva';
-    return 'atk';
+    return mult;
   }
 
   List<({String name, double value})> _gridSkillPowerUpDetails(MoveData move) {
     final results = <({String name, double value})>[];
     final pair = widget.pair;
-    for (int i = 0; i < pair.passives.length; i++) {
-      if (i == 0 && pair.hasSuperAwakening && _superAwakeningLevel < 5) continue;
-      final p = pair.passives[i];
-      // If passive has sub-passives, evaluate each independently
-      if (p.subPassives.isNotEmpty) {
-        for (final sub in p.subPassives) {
-          final v = _evalSkillPowerUp(sub.description, sub.name, move);
+    for (final dp in pair.damagePassives) {
+      // Skip grid skills whose cell is not active
+      if (dp.source == 'grid_skill' && dp.cellNumber != null) {
+        if (!widget.activeCells.contains(dp.cellNumber)) continue;
+      }
+      // Skip SA passive if SA level < 5
+      if (dp.source == 'super_awakening' && _superAwakeningLevel < 5) continue;
+
+      // Handle composite passives with sub_passives
+      if (dp.subPassives.isNotEmpty) {
+        for (final sub in dp.subPassives) {
+          if (sub.type != 'powerup') continue;
+          final v = _evalDamagePassive(sub, move);
           if (v > 0) results.add((name: sub.name, value: v));
         }
-      } else {
-        final v = _evalSkillPowerUp(p.description, p.name, move);
-        if (v > 0) results.add((name: p.name, value: v));
+        continue;
       }
-    }
-    for (final cell in pair.cells) {
-      if (!widget.activeCells.contains(cell.cellNumber)) continue;
-      if (!cell.colorKind.toLowerCase().contains('passive')) continue;
-      if (cell.subPassives.isNotEmpty) {
-        for (final sub in cell.subPassives) {
-          final v = _evalSkillPowerUp(sub.description, sub.name, move);
-          if (v > 0) results.add((name: sub.name, value: v));
-        }
-      } else {
-        final v = _evalSkillPowerUp(cell.description, cell.title, move);
-        if (v > 0) results.add((name: cell.title, value: v));
-      }
+
+      if (dp.type != 'powerup') continue;
+      final v = _evalDamagePassive(dp, move);
+      if (v > 0) results.add((name: dp.name, value: v));
     }
     return results;
   }
@@ -2225,161 +2063,175 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   double _gridSkillPowerUp(MoveData move) =>
       _gridSkillPowerUpDetails(move).fold(0.0, (sum, e) => sum + e.value);
 
-  double _evalSkillPowerUp(String description, String title, MoveData move) {
-    final desc = description.toLowerCase();
-    if (!desc.contains('powers up')) return 0;
-    // Skip master passives (handled separately)
-    if (desc.contains('allied sync pairs') && desc.contains('theme you have on your team')) return 0;
+  double _evalDamagePassive(DamagePassive dp, MoveData move) {
+    // Check if this passive applies to this move type
+    if (!_passiveAppliesToMove(dp, move)) return 0;
+    // Check move-specific restriction
+    if (dp.moveName.isNotEmpty && dp.moveName != move.name) return 0;
 
-    // Split into sentences and process each "powers up" clause independently
-    final sentences = desc.split('.');
-    final isSync = move.isSync;
-    double totalBoost = 0;
-
-    for (final rawSentence in sentences) {
-      final sentence = rawSentence.trim();
-      if (!sentence.contains('powers up')) continue;
-      // Skip zone creation: "a X zone powers up X-type attacks"
-      if (sentence.contains('zone powers up') || sentence.contains('zone that powers up')) continue;
-
-      // Determine scope from THIS sentence
-      final puIdx = sentence.indexOf('powers up');
-      final puClause = sentence.substring(puIdx);
-      // "sync move" in clause = applies to sync
-      // "moves and sync move(s)" = both
-      // "moves" alone (not preceded by "sync ") = attack moves only
-      final hasSyncMove = puClause.contains('sync move');
-      final hasMovesWord = RegExp(r'(?<!sync )moves').hasMatch(puClause) ||
-          puClause.contains('attacks');
-
-      if (isSync && !hasSyncMove) continue;
-      if (!isSync && !hasMovesWord) continue;
-
-      // Check for stat-scaling passives within this sentence's context
-      // Look for "the more" pattern in the SAME sentence or the sentence before
-      final sentenceIdx = sentences.indexOf(rawSentence);
-      final contextForMore = sentenceIdx > 0
-          ? '${sentences[sentenceIdx - 1]}. $sentence'
-          : sentence;
-
-      final singleM = RegExp(
-        r'the more the (user|target).+?(?:atk|attack|def(?:ense)?|sp\.?\s*atk|sp\.?\s*def|speed|accuracy|evasiveness?).+?is (raised|lowered)',
-        caseSensitive: false,
-      ).firstMatch(contextForMore);
-      if (singleM != null) {
-        final isUser = singleM.group(1)!.toLowerCase() == 'user';
-        final statRaw = RegExp(
-          r'(atk|attack|def(?:ense)?|sp\.?\s*atk|sp\.?\s*def|speed|accuracy|evasiveness?)',
-          caseSensitive: false,
-        ).firstMatch(contextForMore.substring(singleM.start));
-        if (statRaw != null) {
-          final statKey = _parseSyncStatKey(statRaw.group(1)!);
-          final isRaised = singleM.group(2)!.toLowerCase() == 'raised';
-          final stages = isUser ? _playerStages : _enemyStages;
-          final stage = stages[statKey] ?? 0;
-          final count = isRaised ? stage.clamp(0, 6) : (-stage).clamp(0, 6);
-          final step = isSync ? 0.167 : 0.05;
-          final max = isSync ? 1.0 : 0.3;
-          totalBoost += ((count * step * 100).round() / 100).clamp(0.0, max);
-          continue;
-        }
-      }
-
-      final multiM = RegExp(
-        r'the more the (user|target).+?stats.+?(raised|lowered)',
-        caseSensitive: false,
-      ).firstMatch(contextForMore);
-      if (multiM != null) {
-        final isUser = multiM.group(1)!.toLowerCase() == 'user';
-        final isRaised = multiM.group(2)!.toLowerCase() == 'raised';
-        final stages = isUser ? _playerStages : _enemyStages;
-        int count = 0;
-        for (final key in ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']) {
-          final s = stages[key] ?? 0;
-          count += isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
-        }
-        final step = isSync ? 0.0667 : 0.026;
-        final max = isSync ? 1.2 : 1.1;
-        totalBoost += ((count * step * 100).round() / 100).clamp(0.0, max);
-        continue;
-      }
-
-      // Conditional flat boost: extract condition from THIS sentence only
-      final titleValM = RegExp(r'(\d+)\s*$').firstMatch(title.trim());
-      int? skillValue;
-      if (titleValM != null) skillValue = int.tryParse(titleValM.group(1)!);
-      skillValue ??= 3;
-
-      if (_isSkillConditionMet(sentence, move)) {
-        totalBoost += skillValue * 0.1;
-      }
+    switch (dp.mechanism) {
+      case 'user_stat_raised':
+        return _calcStatScalingBoost(dp, move, isUser: true, isRaised: true);
+      case 'target_stat_lowered':
+        return _calcStatScalingBoost(dp, move, isUser: false, isRaised: false);
+      case 'stat_is_raised':
+        final stages = _playerStages[dp.stat] ?? 0;
+        return stages > 0 ? dp.value * 0.1 : 0;
+      case 'stat_is_lowered':
+        final stages = _enemyStages[dp.stat] ?? 0;
+        return stages < 0 ? dp.value * 0.1 : 0;
+      case 'stat_not_raised':
+        final anyRaised = ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']
+            .any((k) => (_enemyStages[k] ?? 0) > 0);
+        return !anyRaised ? dp.value * 0.1 : 0;
+      case 'gauge_cost_boost':
+        // Power Flux / Sync Power Flux: assume full gauge = 6 bars
+        // Step: 0.03 per bar for moves, 0.05 per bar for sync
+        final step = move.isSync ? 0.05 : 0.03;
+        return (6 * step * 100).round() / 100;
+      case 'flat_boost':
+        return _evalFlatBoostConditions(dp, move) ? dp.value * 0.1 : 0;
+      case 'PMUN':
+      case 'SMUN':
+        // Handled by boostRank in _totalBp, skip here
+        return 0;
+      case 'stat_raised_30pct':
+        final stages = _playerStages[dp.stat] ?? 0;
+        return stages > 0 ? 0.3 : 0;
+      default:
+        return 0;
     }
-
-    return totalBoost;
   }
 
-  bool _isSkillConditionMet(String desc, MoveData move) {
-    // Circle conditions
-    if (desc.contains('circle')) return _activeCircles().isNotEmpty;
-    // Zone conditions
-    if (desc.contains('dragon zone')) return _selectedZone == 'Dragon Zone';
-    if (desc.contains('dark zone')) return _selectedZone == 'Dark Zone';
-    if (desc.contains('normal zone')) return _selectedZone == 'Normal Zone';
-    if (desc.contains('fairy zone')) return _selectedZone == 'Fairy Zone';
-    if (desc.contains('fighting zone')) return _selectedZone == 'Fighting Zone';
-    if (desc.contains('ice zone')) return _selectedZone == 'Ice Zone';
-    if (desc.contains('steel zone')) return _selectedZone == 'Steel Zone';
-    if (desc.contains('ghost zone')) return _selectedZone == 'Ghost Zone';
-    if (desc.contains('bug zone')) return _selectedZone == 'Bug Zone';
-    if (desc.contains('rock zone')) return _selectedZone == 'Rock Zone';
-    if (desc.contains('ground zone')) return _selectedZone == 'Ground Zone';
-    if (desc.contains('flying zone')) return _selectedZone == 'Flying Zone';
-    if (desc.contains('poison zone')) return _selectedZone == 'Poison Zone';
-    // Terrain conditions
-    if (desc.contains('electric terrain')) return _selectedTerrain == 'Electric Terrain';
-    if (desc.contains('psychic terrain')) return _selectedTerrain == 'Psychic Terrain';
-    if (desc.contains('grassy terrain')) return _selectedTerrain == 'Grassy Terrain';
-    // Weather conditions
-    if (desc.contains('sunny') || desc.contains('sun')) return _selectedWeather == 'Sunny';
-    if (desc.contains('rainy') || desc.contains('rain')) return _selectedWeather == 'Rainy';
-    if (desc.contains('hail')) return _selectedWeather == 'Hail';
-    if (desc.contains('sandstorm')) return _selectedWeather == 'Sandstorm';
-    // Status conditions on target
-    if (desc.contains('target is trapped') || (desc.contains('trapped') && !desc.contains('flinching'))) return _enemyVolatile['trapped'] ?? false;
-    if (desc.contains('flinching, confused, or trapped') || desc.contains('flinching') && desc.contains('confused') && desc.contains('trapped')) {
-      return (_enemyVolatile['flinching'] ?? false) || (_enemyVolatile['confused'] ?? false) || (_enemyVolatile['trapped'] ?? false);
+  bool _passiveAppliesToMove(DamagePassive dp, MoveData move) {
+    final isSync = move.isSync;
+    switch (dp.appliesTo) {
+      case 'moves':
+      case 'pokemon_moves':
+        return !isSync;
+      case 'sync_move':
+        return isSync;
+      case 'moves_and_sync':
+      case 'all':
+        return true;
+      case 'max_move':
+        return false; // Not supported yet
+      default:
+        return !isSync;
     }
-    if (desc.contains('target is confused') || desc.contains('confused')) return _enemyVolatile['confused'] ?? false;
-    if (desc.contains('target is flinching') || desc.contains('flinching')) return _enemyVolatile['flinching'] ?? false;
-    if (desc.contains('target is restrained') || desc.contains('restrained')) return _enemyVolatile['restrained'] ?? false;
-    if (desc.contains('target is paralyzed') || desc.contains('paralyzed')) return _enemyStatusCondition == 'paralyzed';
-    if (desc.contains('target is burned') || desc.contains('burned')) return _enemyStatusCondition == 'burned';
-    if (desc.contains('target is frozen') || desc.contains('frozen')) return _enemyStatusCondition == 'frozen';
-    if (desc.contains('target is asleep') || desc.contains('asleep')) return _enemyStatusCondition == 'asleep';
-    if (desc.contains('poisoned') || desc.contains('badly poisoned')) return _enemyStatusCondition == 'poisoned' || _enemyStatusCondition == 'badly poisoned';
-    if (desc.contains('status condition')) return _enemyStatusCondition.isNotEmpty;
-    // Super effective
-    if (desc.contains('super effective')) {
-      return _enemyWeakness.isNotEmpty && move.type.toLowerCase() == _enemyWeakness.toLowerCase();
+  }
+
+  double _calcStatScalingBoost(DamagePassive dp, MoveData move, {required bool isUser, required bool isRaised}) {
+    final stages = isUser ? _playerStages : _enemyStages;
+    final isSync = move.isSync;
+    int count;
+
+    if (dp.stat == 'all_stats') {
+      count = 0;
+      for (final key in ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']) {
+        final s = stages[key] ?? 0;
+        count += isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
+      }
+      final step = isSync ? 0.0667 : 0.026;
+      final max = isSync ? 1.2 : 1.1;
+      return ((count * step * 100).round() / 100).clamp(0.0, max);
+    } else if (dp.stat == 'hp') {
+      // HP Advantage: higher HP% = more boost
+      final hpPct = isUser ? _playerHpPercent : _enemyHpPercent;
+      return (dp.value * 0.1 * hpPct / 100);
+    } else {
+      final s = stages[dp.stat] ?? 0;
+      count = isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
+      final step = isSync ? 0.167 : 0.05;
+      final max = isSync ? 1.0 : 0.3;
+      return ((count * step * 100).round() / 100).clamp(0.0, max);
     }
-    // Critical hit
-    if (desc.contains('critical hit')) return _isCriticalMove;
-    // Stat lowered on target
-    final statLowM = RegExp(r"target's (defense|sp\.?\s*def|attack|sp\.?\s*atk|speed|accuracy) is lowered", caseSensitive: false).firstMatch(desc);
-    if (statLowM != null) {
-      final key = _parseSyncStatKey(statLowM.group(1)!);
-      return (_enemyStages[key] ?? 0) < 0;
+  }
+
+  bool _evalFlatBoostConditions(DamagePassive dp, MoveData move) {
+    if (dp.conditions.isEmpty) return true;
+    // Each inner list is an AND group; outer list is OR
+    for (final andGroup in dp.conditions) {
+      if (andGroup.every((c) => _checkCondition(c, move))) return true;
     }
-    // Type Rebuff lowered on target
-    if (desc.contains('type rebuff') && desc.contains('lowered')) return _typeRebuffs.values.any((v) => v < 0) || _stellarRebuff < 0;
-    if (desc.contains('rebuff')) return _typeRebuffs.values.any((v) => v < 0) || _stellarRebuff < 0;
-    // Pinch (user HP < 25%)
-    if (desc.contains('pinch')) return _playerHpPercent <= 25;
-    // HP full
-    if (desc.contains('hp is full')) return _playerHpPercent == 100;
-    // Weather in effect
-    if (desc.contains('weather conditions are') && desc.contains('in effect')) return _selectedWeather.isNotEmpty;
-    return true; // default: condition met
+    return false;
+  }
+
+  bool _checkCondition(String condition, MoveData move) {
+    switch (condition) {
+      // Weather
+      case 'sunny': return _selectedWeather == 'Sunny';
+      case 'rain': return _selectedWeather == 'Rainy';
+      case 'hail': return _selectedWeather == 'Hail';
+      case 'sandstorm': return _selectedWeather == 'Sandstorm';
+      case 'any_weather': return _selectedWeather.isNotEmpty;
+      // Terrain
+      case 'electric_terrain': return _selectedTerrain == 'Electric Terrain';
+      case 'psychic_terrain': return _selectedTerrain == 'Psychic Terrain';
+      case 'grassy_terrain': return _selectedTerrain == 'Grassy Terrain';
+      case 'any_terrain': return _selectedTerrain.isNotEmpty;
+      // Zones
+      case 'normal_zone': return _selectedZone == 'Normal Zone';
+      case 'fire_zone': return _selectedZone == 'Fire Zone';
+      case 'water_zone': return _selectedZone == 'Water Zone';
+      case 'electric_zone': return _selectedZone == 'Electric Zone';
+      case 'ice_zone': return _selectedZone == 'Ice Zone';
+      case 'fighting_zone': return _selectedZone == 'Fighting Zone';
+      case 'poison_zone': return _selectedZone == 'Poison Zone';
+      case 'ground_zone': return _selectedZone == 'Ground Zone';
+      case 'flying_zone': return _selectedZone == 'Flying Zone';
+      case 'psychic_zone': return _selectedZone == 'Psychic Zone';
+      case 'bug_zone': return _selectedZone == 'Bug Zone';
+      case 'rock_zone': return _selectedZone == 'Rock Zone';
+      case 'ghost_zone': return _selectedZone == 'Ghost Zone';
+      case 'dragon_zone': return _selectedZone == 'Dragon Zone';
+      case 'dark_zone': return _selectedZone == 'Dark Zone';
+      case 'steel_zone': return _selectedZone == 'Steel Zone';
+      case 'fairy_zone': return _selectedZone == 'Fairy Zone';
+      case 'any_zone': return _selectedZone.isNotEmpty;
+      case 'any_weather_terrain_zone': return _selectedWeather.isNotEmpty || _selectedTerrain.isNotEmpty || _selectedZone.isNotEmpty;
+      // Status on target
+      case 'paralyzed': return _enemyStatusCondition == 'paralyzed';
+      case 'burned': return _enemyStatusCondition == 'burned';
+      case 'frozen': return _enemyStatusCondition == 'frozen';
+      case 'asleep': return _enemyStatusCondition == 'asleep';
+      case 'poisoned': return _enemyStatusCondition == 'poisoned' || _enemyStatusCondition == 'badly poisoned';
+      case 'any_status': return _enemyStatusCondition.isNotEmpty;
+      // Volatile status on target
+      case 'flinching': return _enemyVolatile['flinching'] ?? false;
+      case 'confused': return _enemyVolatile['confused'] ?? false;
+      case 'trapped': return _enemyVolatile['trapped'] ?? false;
+      case 'flinch_confuse_trap':
+        return (_enemyVolatile['flinching'] ?? false) ||
+            (_enemyVolatile['confused'] ?? false) ||
+            (_enemyVolatile['trapped'] ?? false);
+      case 'any_condition':
+        return _enemyStatusCondition.isNotEmpty ||
+            (_enemyVolatile['flinching'] ?? false) ||
+            (_enemyVolatile['confused'] ?? false) ||
+            (_enemyVolatile['trapped'] ?? false) ||
+            (_enemyVolatile['restrained'] ?? false);
+      // HP conditions
+      case 'hp_low': return _playerHpPercent <= 25;
+      case 'hp_full': return _playerHpPercent == 100;
+      // Super effective
+      case 'move_slot_MOVE_001':
+        return _enemyWeakness.isNotEmpty && move.type.toLowerCase() == _enemyWeakness.toLowerCase();
+      case 'move_slot_MOVE_002':
+        return _isCriticalMove;
+      // Unity bonus
+      case 'move_slot_MOVE_004': return false; // Unity bonus not tracked
+      // Circles
+      case 'circle': return _activeCircles().isNotEmpty;
+      // Type-specific moves
+      default:
+        if (condition.startsWith('type_')) {
+          final type = condition.substring(5);
+          return move.type.toLowerCase() == type.toLowerCase();
+        }
+        if (condition.startsWith('theme_')) return _activeCircles().isNotEmpty;
+        return true;
+    }
   }
 
   int _totalBp(MoveData move) {
@@ -2398,6 +2250,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final afterSyncTech = move.isSync && _syncTechExBoost
         ? (base * 1.5).floor()
         : afterTera;
+    // Innate scaling applies to base power before additive boosts
+    final modifier = _movePowerModifier(move);
+    final scaledBase = (afterSyncTech * modifier).floor();
     final isPhysical = move.category.toLowerCase() == 'physical';
     final boostRank = move.isSync
         ? 0
@@ -2406,11 +2261,10 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final masterPassiveSkill = _masterPassivePowerUp(move);
     final passiveSkill = _gridSkillPowerUp(move);
     final inner =
-        ((afterSyncTech + grid) *
+        ((scaledBase + grid) *
                 (1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4))
             .floor();
-    final modifier = _movePowerModifier(move);
-    return (inner * modifier).floor();
+    return inner;
   }
 
   static const _statusLabels = {
@@ -3311,14 +3165,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 Text(
                   passive.appliesToSync
                       ? 'Applies to ${switch (passive.category) {
-                          _MasterPassiveCategory.physical => 'physical moves and sync moves',
-                          _MasterPassiveCategory.special => 'special moves and sync moves',
-                          _MasterPassiveCategory.any => 'moves and sync moves',
+                          'physical' => 'physical moves and sync moves',
+                          'special' => 'special moves and sync moves',
+                          _ => 'moves and sync moves',
                         }}'
                       : 'Applies to ${switch (passive.category) {
-                          _MasterPassiveCategory.physical => 'physical moves',
-                          _MasterPassiveCategory.special => 'special moves',
-                          _MasterPassiveCategory.any => 'moves',
+                          'physical' => 'physical moves',
+                          'special' => 'special moves',
+                          _ => 'moves',
                         }}',
                   style: labelStyle,
                 ),
@@ -3887,8 +3741,7 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                             : _specialBoostNext > 0));
               final saBonusForMove = _calcSaBonus(widget.pair, _superAwakeningLevel, move);
               final baseBpVal = int.tryParse(_scaledPower(move.power, null, saBonusForMove));
-              final isExtendedRange = move.target.toLowerCase() == 'all opponents' &&
-                  move.description.contains('not lowered even if there are multiple targets');
+              final isExtendedRange = move.isExtendedRange;
               return _CalcMoveCard(
                 move: move,
                 totalBp: bp,

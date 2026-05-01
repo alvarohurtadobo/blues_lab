@@ -1,0 +1,300 @@
+[
+  {
+    "syncPair": "Adaman (Special Costume) & Ursaluna",
+    "moveName": "Hazy Headlong Rush",
+    "basePower": 200,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Arc Suit Brock & Onix",
+    "moveName": "Almighty Stone Edge",
+    "basePower": 300,
+    "stat": "def",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Arc Suit Lance & Dragonite",
+    "moveName": "Almighty Roar Hyper Beam",
+    "basePower": 300,
+    "stat": "def_spd",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 200
+  },
+  {
+    "syncPair": "Arc Suit N & Zoroark",
+    "moveName": "Almighty Obsidian Night Daze",
+    "basePower": 250,
+    "stat": "all_stats",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 100
+  },
+  {
+    "syncPair": "Arc Suit Sabrina & Alakazam",
+    "moveName": "Almighty Psychic",
+    "basePower": 150,
+    "stat": "all_stats",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 20
+  },
+  {
+    "syncPair": "Bianca & Musharna",
+    "moveName": "Stored Power",
+    "basePower": 13,
+    "stat": "all_stats",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 20
+  },
+  {
+    "syncPair": "Clavell & Quaquaval",
+    "moveName": "Liquidation Dance",
+    "basePower": 200,
+    "stat": "spe",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 100
+  },
+  {
+    "syncPair": "Eri & Annihilape",
+    "moveName": "Rage Fist of Friendship",
+    "basePower": 50,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Ethan & Cyndaquil",
+    "moveName": "Eruption",
+    "basePower": 135,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Ethan & Quilava",
+    "moveName": "Eruption",
+    "basePower": 135,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Ethan & Typhlosion",
+    "moveName": "Eruption",
+    "basePower": 135,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Giovanni & Rhydon",
+    "moveName": "Crushing Earthquake",
+    "basePower": 120,
+    "stat": "spa",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 50
+  },
+  {
+    "syncPair": "Grimsley (Kimono) & Bisharp",
+    "moveName": "Metal Burst",
+    "basePower": 150,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Grusha & Cetitan",
+    "moveName": "Absolute Zero Ice Avalanche",
+    "basePower": 100,
+    "stat": "hp",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Jacq & Farigiraf",
+    "moveName": "Experimental Stored Power",
+    "basePower": 150,
+    "stat": "all_stats",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 100
+  },
+  {
+    "syncPair": "Jasmine & Magnemite",
+    "moveName": "Gyro Ball",
+    "basePower": 44,
+    "stat": "spe",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Jasmine & Steelix",
+    "moveName": "Gyro Ball",
+    "basePower": 44,
+    "stat": "spe",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Lear & Krookodile",
+    "moveName": "Power Trip",
+    "basePower": 13,
+    "stat": "all_stats",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 20
+  },
+  {
+    "syncPair": "Marnie (Champion) & Galarian Moltres",
+    "moveName": "Fierce Fiery Wrath",
+    "basePower": 200,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 0,
+    "thresholdTable": "100,1000|75,1100|50,1200|25,1300|0,1500"
+  },
+  {
+    "syncPair": "May & Wailmer",
+    "moveName": "Brine",
+    "basePower": 38,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Mela & Armarouge",
+    "moveName": "Explosive Mystical Fire",
+    "basePower": 250,
+    "stat": "def",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Nemona & Pawmot",
+    "moveName": "Rapid Double Shock",
+    "basePower": 100,
+    "stat": "spe",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 500
+  },
+  {
+    "syncPair": "Olympia & Sigilyph",
+    "moveName": "Stored Power",
+    "basePower": 13,
+    "stat": "all_stats",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 20
+  },
+  {
+    "syncPair": "Palmer & Regigigas",
+    "moveName": "Crush Grip",
+    "basePower": 260,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Selene (Alt.) & Nihilego",
+    "moveName": "Nihil Meteor Beam",
+    "basePower": 210,
+    "stat": "spd",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Sygna Suit Giovanni (Alt.) & Guzzlord",
+    "moveName": "Gorging Crunch",
+    "basePower": 100,
+    "stat": "def_spd",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 250
+  },
+  {
+    "syncPair": "Sygna Suit Gladion & Magearna",
+    "moveName": "Piercing Fleur Cannon",
+    "basePower": 220,
+    "stat": "spa",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 250
+  },
+  {
+    "syncPair": "Sygna Suit Kris & Suicune",
+    "moveName": "Brine",
+    "basePower": 38,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Thorton & Bronzong",
+    "moveName": "Gyro Ball",
+    "basePower": 44,
+    "stat": "spe",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Wallace & Milotic",
+    "moveName": "Brine",
+    "basePower": 38,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Wallace & Milotic",
+    "moveName": "Mirror Coat",
+    "basePower": 100,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  },
+  {
+    "syncPair": "Will & Xatu",
+    "moveName": "Stored Power",
+    "basePower": 13,
+    "stat": "all_stats",
+    "who": "user",
+    "direction": "raised",
+    "stepPer1000": 20
+  },
+  {
+    "syncPair": "Wulfric & Avalugg",
+    "moveName": "Avalanche",
+    "basePower": 75,
+    "stat": "hp",
+    "who": "target",
+    "direction": "lowered",
+    "stepPer1000": 1000
+  }
+]

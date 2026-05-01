@@ -58,6 +58,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/data/sync_pairs.json
+    - assets/data/move_scaling.json
+    - assets/data/damage_passives.json
+    - assets/data/master_passives.json
     - assets/img/
     - assets/img/battle/
 
