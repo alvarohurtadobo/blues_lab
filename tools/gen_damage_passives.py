@@ -101,7 +101,8 @@ def parse_skill_damage_info(sid):
             if not sub_raw:
                 continue
             sub_sid = sub_raw[:7]
-            sub_val = int(sub_raw[7:9]) if len(sub_raw) >= 9 else 0
+            val_str = sub_raw[7:]
+            sub_val = int(val_str) if val_str.isdigit() else 0
             sub_info = parse_skill_damage_info(int(sub_sid))
             if sub_info:
                 sub_info['sub_value'] = sub_val

@@ -341,8 +341,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Rock Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Rock Moves ↑ 2",
             "sub_description": "Powers up the Rock-type moves of all allied sync pairs."
           }
         ]
@@ -2106,8 +2106,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Normal Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Normal Moves ↑ 2",
             "sub_description": "Powers up the Normal-type moves of all allied sync pairs."
           }
         ]
@@ -3117,8 +3117,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sunny: Team P-Moves ↑ & S-Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Sunny: Team P-Moves ↑ & S-Moves ↑ 2",
             "sub_description": "Powers up the moves and sync moves of all allied sync pairs when the weather is sunny."
           },
           {
@@ -3132,8 +3132,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sunny: Team Ground P-Moves ↑ & S-Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Sunny: Team Ground P-Moves ↑ & S-Moves ↑ 2",
             "sub_description": "Powers up the Ground-type moves and Ground-type sync moves of all allied sync pairs when the weather is sunny."
           }
         ]
@@ -3150,7 +3150,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -3740,8 +3740,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Flying Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Flying Moves ↑ 2",
             "sub_description": "Powers up the Flying-type moves of all allied sync pairs."
           }
         ]
@@ -4473,8 +4473,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Close Combat Power ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Close Combat Power ↑ 5",
             "sub_description": "Powers up the user’s Close Combat."
           }
         ]
@@ -7048,8 +7048,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Poison Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Poison Moves ↑ 2",
             "sub_description": "Powers up the Poison-type moves of all allied sync pairs."
           }
         ]
@@ -7629,8 +7629,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Fighting Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Fighting Moves ↑ 2",
             "sub_description": "Powers up the Fighting-type moves of all allied sync pairs."
           }
         ]
@@ -7704,8 +7704,8 @@
             "mechanism": "stat_not_raised",
             "stat": "all_stats",
             "stat_target": "target",
-            "sub_value": 0,
-            "sub_name": "Opp No Stats ↑: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp No Stats ↑: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that has no raised stats."
           }
         ]
@@ -8287,8 +8287,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Fairy Zone: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Fairy Zone: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the zone is a Fairy Zone."
           }
         ]
@@ -9689,7 +9689,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -10142,7 +10142,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           },
@@ -10150,7 +10150,7 @@
             "type": "modifier",
             "applies_to": "all",
             "affects": "CRIT_LEVEL",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Clutch Critical",
             "sub_description": "Except in certain circumstances, successful hits with the user’s following attacks become critical hits: Pokémon’s moves, sync move, or max moves."
           }
@@ -10753,8 +10753,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Ice Zone: S-Moves ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Ice Zone: S-Moves ↑ 5",
             "sub_description": "Powers up the user’s sync move when the zone is an Ice Zone."
           }
         ]
@@ -10895,8 +10895,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Rebuff ↓: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Rebuff ↓: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target with a lowered Type Rebuff."
           }
         ]
@@ -11253,8 +11253,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Terrain: S-Moves ↑ 0",
+            "sub_value": 9,
+            "sub_name": "Terrain: S-Moves ↑ 9",
             "sub_description": "Powers up the user’s sync move when a terrain applies to the field of play."
           }
         ]
@@ -11573,8 +11573,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "MAX Static Shock 0",
+            "sub_value": 5,
+            "sub_name": "MAX Static Shock 5",
             "sub_description": "Powers up the user’s max move when the target is paralyzed."
           },
           {
@@ -11587,8 +11587,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Power Induction 0",
+            "sub_value": 3,
+            "sub_name": "Team Power Induction 3",
             "sub_description": "Powers up the moves of all allied sync pairs when the terrain is Electric Terrain."
           }
         ]
@@ -11814,8 +11814,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Rainy: Max Moves ↑ 0",
+            "sub_value": 9,
+            "sub_name": "Rainy: Max Moves ↑ 9",
             "sub_description": "Powers up the user’s max move when the weather is rainy."
           }
         ]
@@ -12632,8 +12632,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Surging Sand 0",
+            "sub_value": 5,
+            "sub_name": "Surging Sand 5",
             "sub_description": "Powers up the user’s moves during a sandstorm."
           }
         ]
@@ -12741,7 +12741,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -13012,7 +13012,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -13332,7 +13332,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           },
@@ -13340,7 +13340,7 @@
             "type": "modifier",
             "applies_to": "all",
             "affects": "CRIT_LEVEL",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Clutch Critical",
             "sub_description": "Except in certain circumstances, successful hits with the user’s following attacks become critical hits: Pokémon’s moves, sync move, or max moves."
           }
@@ -13517,8 +13517,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sunny: Team P-Moves ↑ & S-Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Sunny: Team P-Moves ↑ & S-Moves ↑ 2",
             "sub_description": "Powers up the moves and sync moves of all allied sync pairs when the weather is sunny."
           }
         ]
@@ -13546,15 +13546,15 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Poisoned: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Poisoned: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is poisoned or badly poisoned."
           },
           {
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -13672,7 +13672,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -13696,8 +13696,8 @@
               ]
             ],
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Healthy Benefits 0",
+            "sub_value": 5,
+            "sub_name": "Healthy Benefits 5",
             "sub_description": "Reduces damage when the user is hit by an attack move or sync move when its HP is full."
           }
         ]
@@ -13748,7 +13748,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -13859,8 +13859,8 @@
             "mechanism": "stat_is_raised",
             "stat": "spa",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Brain Sync 0",
+            "sub_value": 5,
+            "sub_name": "Brain Sync 5",
             "sub_description": "Powers up the user’s sync move when its Sp. Atk is raised."
           }
         ]
@@ -14037,7 +14037,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -14110,7 +14110,7 @@
             "mechanism": "user_stat_raised",
             "stat": "spe",
             "stat_target": "self",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Inertia",
             "sub_description": "The more the user’s Speed is raised, the more it powers up the user’s sync move."
           }
@@ -14501,8 +14501,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Fighting Zone: Team S-Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Fighting Zone: Team S-Moves ↑ 2",
             "sub_description": "Powers up the sync moves of all allied sync pairs when the zone is a Fighting Zone."
           }
         ]
@@ -15113,8 +15113,8 @@
             "mechanism": "stat_is_raised",
             "stat": "def",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Defense ↑: P-Moves ↑ & S-Moves ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Defense ↑: P-Moves ↑ & S-Moves ↑ 5",
             "sub_description": "Powers up the user’s moves and sync move when its Defense is raised."
           }
         ]
@@ -15663,7 +15663,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           },
@@ -15671,7 +15671,7 @@
             "type": "modifier",
             "applies_to": "all",
             "affects": "CRIT_LEVEL",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Clutch Critical",
             "sub_description": "Except in certain circumstances, successful hits with the user’s following attacks become critical hits: Pokémon’s moves, sync move, or max moves."
           }
@@ -16196,8 +16196,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Ghost Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Ghost Moves ↑ 2",
             "sub_description": "Powers up the Ghost-type moves of all allied sync pairs."
           }
         ]
@@ -17350,8 +17350,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sandstorm: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Sandstorm: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs during a sandstorm."
           }
         ]
@@ -17522,8 +17522,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Confusion Synergy 0",
+            "sub_value": 9,
+            "sub_name": "Confusion Synergy 9",
             "sub_description": "Powers up the user’s moves when the target is confused."
           },
           {
@@ -17536,8 +17536,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Fairy Zone: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Fairy Zone: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the zone is a Fairy Zone."
           }
         ]
@@ -19352,8 +19352,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Asleep: Team Moves ↑ 0",
+            "sub_value": 4,
+            "sub_name": "Opp Asleep: Team Moves ↑ 4",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is asleep."
           }
         ]
@@ -19783,8 +19783,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Hyper Beam Power ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Hyper Beam Power ↑ 5",
             "sub_description": "Powers up the user’s Hyper Beam."
           }
         ]
@@ -19807,8 +19807,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "HP ≧ Half: S-Moves ↑ 0",
+            "sub_value": 9,
+            "sub_name": "HP ≧ Half: S-Moves ↑ 9",
             "sub_description": "Powers up the user’s sync move when its remaining HP is at half or more."
           }
         ]
@@ -20966,7 +20966,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -21451,8 +21451,8 @@
             "mechanism": "stat_is_raised",
             "stat": "atk",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Attack to the MAX 0",
+            "sub_value": 5,
+            "sub_name": "Attack to the MAX 5",
             "sub_description": "Powers up the user’s max move when its Attack is raised."
           }
         ]
@@ -22042,8 +22042,8 @@
             "mechanism": "stat_is_raised",
             "stat": "atk",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Brawn Sync 0",
+            "sub_value": 9,
+            "sub_name": "Brawn Sync 9",
             "sub_description": "Powers up the user’s sync move when its Attack is raised."
           },
           {
@@ -22056,8 +22056,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Double Down 0",
+            "sub_value": 5,
+            "sub_name": "Double Down 5",
             "sub_description": "Powers up the user’s sync moves that are super effective."
           }
         ]
@@ -22297,8 +22297,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Status Cond: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Status Cond: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is affected by a status condition."
           }
         ]
@@ -22856,7 +22856,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -22991,7 +22991,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -23259,8 +23259,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Dark Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Dark Moves ↑ 2",
             "sub_description": "Powers up the Dark-type moves of all allied sync pairs."
           },
           {
@@ -23273,8 +23273,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Flying Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Flying Moves ↑ 2",
             "sub_description": "Powers up the Flying-type moves of all allied sync pairs."
           }
         ]
@@ -23397,8 +23397,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Burned: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Burned: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is burned."
           }
         ]
@@ -23832,8 +23832,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sync Induction 0",
+            "sub_value": 5,
+            "sub_name": "Sync Induction 5",
             "sub_description": "Powers up the user’s sync move when the terrain is Electric Terrain."
           }
         ]
@@ -23942,7 +23942,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -24501,7 +24501,7 @@
             "applies_to": "pokemon_moves",
             "affects": "",
             "stat_target": "self",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Water Guard",
             "sub_description": "Reduces damage when the user is attacked by Water-type moves."
           }
@@ -24930,7 +24930,7 @@
             "mechanism": "user_stat_raised",
             "stat": "spa",
             "stat_target": "self",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Brainpower",
             "sub_description": "The more the user’s Sp. Atk is raised, the more it powers up its sync move."
           }
@@ -26128,8 +26128,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Weather Change: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Weather Change: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when weather conditions are in effect."
           }
         ]
@@ -26857,8 +26857,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Water Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Water Moves ↑ 2",
             "sub_description": "Powers up the Water-type moves of all allied sync pairs."
           }
         ]
@@ -26967,8 +26967,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Psychic Terrain: S-Moves ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Psychic Terrain: S-Moves ↑ 5",
             "sub_description": "Powers up the user’s sync move when the terrain is Psychic Terrain."
           }
         ]
@@ -27443,8 +27443,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Dirty Sync 0",
+            "sub_value": 5,
+            "sub_name": "Dirty Sync 5",
             "sub_description": "Powers up the user’s sync move against targets that are affected by a status condition."
           }
         ]
@@ -27600,8 +27600,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sand Blaster 0",
+            "sub_value": 5,
+            "sub_name": "Sand Blaster 5",
             "sub_description": "Powers up the user’s sync move during a sandstorm."
           }
         ]
@@ -27753,8 +27753,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Unova C (Defensive): Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Unova C (Defensive): Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs when Unova Circle (Defensive) applies to the allied field of play."
           }
         ]
@@ -27879,8 +27879,8 @@
             "mechanism": "stat_not_raised",
             "stat": "all_stats",
             "stat_target": "target",
-            "sub_value": 0,
-            "sub_name": "Better Prepared 0",
+            "sub_value": 3,
+            "sub_name": "Better Prepared 3",
             "sub_description": "Powers up the user’s moves when none of the target’s stats are raised."
           },
           {
@@ -27890,8 +27890,8 @@
             "mechanism": "stat_not_raised",
             "stat": "all_stats",
             "stat_target": "target",
-            "sub_value": 0,
-            "sub_name": "Opp No Stats ↑: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp No Stats ↑: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that has no raised stats."
           }
         ]
@@ -29213,8 +29213,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Earthquake Power ↑ 0",
+            "sub_value": 9,
+            "sub_name": "Earthquake Power ↑ 9",
             "sub_description": "Powers up the user’s Earthquake."
           }
         ]
@@ -29437,8 +29437,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Confused: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Confused: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is confused."
           }
         ]
@@ -29646,8 +29646,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Fairy Zone: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Fairy Zone: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the zone is a Fairy Zone."
           }
         ]
@@ -29731,7 +29731,7 @@
             "applies_to": "pokemon_moves",
             "affects": "",
             "stat_target": "self",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Water Guard",
             "sub_description": "Reduces damage when the user is attacked by Water-type moves."
           }
@@ -30233,8 +30233,8 @@
             "mechanism": "stat_is_raised",
             "stat": "atk",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Attack to the MAX 0",
+            "sub_value": 5,
+            "sub_name": "Attack to the MAX 5",
             "sub_description": "Powers up the user’s max move when its Attack is raised."
           }
         ]
@@ -31068,8 +31068,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Charging Sun 0",
+            "sub_value": 5,
+            "sub_name": "Charging Sun 5",
             "sub_description": "Powers up the user’s moves when the weather is sunny."
           }
         ]
@@ -31420,8 +31420,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Hail: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Hail: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs during a hailstorm."
           }
         ]
@@ -32409,8 +32409,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sandstorm: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Sandstorm: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs during a sandstorm."
           }
         ]
@@ -32716,8 +32716,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Normal Zone: S-Moves ↑ 0",
+            "sub_value": 9,
+            "sub_name": "Normal Zone: S-Moves ↑ 9",
             "sub_description": "Powers up the user’s sync move when the zone is a Normal Zone."
           }
         ]
@@ -32835,8 +32835,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Dark DF on Opp: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Dark DF on Opp: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when Dark Damage Field applies to the opponent’s field of play."
           }
         ]
@@ -33151,8 +33151,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Interference: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Interference: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is flinching, confused, or trapped."
           }
         ]
@@ -33301,7 +33301,7 @@
             "mechanism": "user_stat_raised",
             "stat": "spa",
             "stat_target": "self",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Brainpower",
             "sub_description": "The more the user’s Sp. Atk is raised, the more it powers up its sync move."
           }
@@ -33508,8 +33508,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Power Induction 0",
+            "sub_value": 2,
+            "sub_name": "Team Power Induction 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the terrain is Electric Terrain."
           }
         ]
@@ -33586,8 +33586,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Ice Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Ice Moves ↑ 2",
             "sub_description": "Powers up the Ice-type moves of all allied sync pairs."
           }
         ]
@@ -33950,8 +33950,8 @@
             "mechanism": "stat_is_raised",
             "stat": "spa",
             "stat_target": "self",
-            "sub_value": 0,
-            "sub_name": "Sp. Atk ↑: Max Moves ↑ 0",
+            "sub_value": 5,
+            "sub_name": "Sp. Atk ↑: Max Moves ↑ 5",
             "sub_description": "Powers up the user’s max move when its Sp. Atk is raised."
           }
         ]
@@ -34369,8 +34369,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Poisoned: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Poisoned: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is poisoned or badly poisoned."
           }
         ]
@@ -34604,7 +34604,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -34830,8 +34830,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Trapped: Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Opp Trapped: Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs when attacking a target that is trapped."
           }
         ]
@@ -34908,8 +34908,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Team Fire Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Team Fire Moves ↑ 2",
             "sub_description": "Powers up the Fire-type moves of all allied sync pairs."
           }
         ]
@@ -34940,7 +34940,7 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Sunny: High Horsepower Power ×2",
             "sub_description": "The power of the user’s High Horsepower is doubled when the weather is sunny."
           }
@@ -34964,8 +34964,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Sunny: S-Moves & Max Moves ↑ 0",
+            "sub_value": 9,
+            "sub_name": "Sunny: S-Moves & Max Moves ↑ 9",
             "sub_description": "Powers up the user’s sync move and max move when the weather is sunny."
           }
         ]
@@ -35078,8 +35078,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Hail: Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Hail: Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs during a hailstorm."
           }
         ]
@@ -35186,8 +35186,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Asleep: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Asleep: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when attacking a target that is asleep."
           }
         ]
@@ -35306,8 +35306,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Restrained: Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Opp Restrained: Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs when the target is restrained."
           },
           {
@@ -35320,8 +35320,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Restrained: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Opp Restrained: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the target is restrained."
           }
         ]
@@ -35763,8 +35763,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Paldea C (Defensive): Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Paldea C (Defensive): Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when Paldea Circle (Defensive) applies to the allied field of play."
           }
         ]
@@ -36518,8 +36518,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "MG → On Field: S-Moves ↑ 0",
+            "sub_value": 5,
+            "sub_name": "MG → On Field: S-Moves ↑ 5",
             "sub_description": "Powers up the user’s sync move when the Move Gauge Acceleration effect applies to the allied field of play."
           }
         ]
@@ -36666,7 +36666,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -36689,8 +36689,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Bug Zone: Team S-Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Bug Zone: Team S-Moves ↑ 2",
             "sub_description": "Powers up the sync moves of all allied sync pairs when the zone is a Bug Zone."
           }
         ]
@@ -37038,7 +37038,7 @@
             "type": "modifier",
             "applies_to": "pokemon_moves",
             "affects": "ENSURE_HIT",
-            "sub_value": 0,
+            "sub_value": 1,
             "sub_name": "Piercing Gaze",
             "sub_description": "Moves never miss."
           }
@@ -37061,8 +37061,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Rock DF on Opp: Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Rock DF on Opp: Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs when Rock Damage Field applies to the opponent’s field of play."
           }
         ]
@@ -37280,8 +37280,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Poison Zone: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Poison Zone: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the zone is a Poison Zone."
           }
         ]
@@ -37369,8 +37369,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Opp Rebuff ↓: Team S-Moves ↑ 0",
+            "sub_value": 3,
+            "sub_name": "Opp Rebuff ↓: Team S-Moves ↑ 3",
             "sub_description": "Powers up the sync moves of all allied sync pairs when attacking a target with a lowered Type Rebuff."
           }
         ]
@@ -37481,8 +37481,8 @@
               ]
             ],
             "mechanism": "flat_boost",
-            "sub_value": 0,
-            "sub_name": "Dragon Zone: Team Moves ↑ 0",
+            "sub_value": 2,
+            "sub_name": "Dragon Zone: Team Moves ↑ 2",
             "sub_description": "Powers up the moves of all allied sync pairs when the zone is a Dragon Zone."
           }
         ]
@@ -37525,26 +37525,6 @@
         "type": "reducer",
         "applies_to": "pokemon_moves",
         "affects": ""
-      }
-    ]
-  },
-  {
-    "syncPair": "Sygna Suit Giovanni (Alt.) & Guzzlord",
-    "number": 74,
-    "passives": [
-      {
-        "source": "move_innate",
-        "skillId": 0,
-        "name": "Gorging Crunch: Innate Scaling",
-        "description": "The more the user's Defense or Sp. Def are raised, the greater the power of this attack.",
-        "value": 0,
-        "type": "powerup",
-        "applies_to": "moves",
-        "affects": "self",
-        "mechanism": "user_stat_raised",
-        "stat": "def_spd",
-        "stat_target": "self",
-        "move_name": "Gorging Crunch"
       }
     ]
   }
