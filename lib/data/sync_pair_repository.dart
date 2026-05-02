@@ -38,17 +38,16 @@ class SyncPairRepository {
       );
     }
 
-    // Load damage passives data
+    // Load master passive definitions
     final dpStr = await rootBundle.loadString('assets/data/damage_passives.json');
-    final dpList = json.decode(dpStr) as List<dynamic>;
-    final dpMap = <String, List<DamagePassive>>{};
-    for (final entry in dpList) {
+    final dpMasterList = json.decode(dpStr) as List<dynamic>;
+    final dpMasterMap = <String, DamagePassive>{};
+    for (final entry in dpMasterList) {
       final e = entry as Map<String, dynamic>;
-      final pairName = (e['syncPair'] ?? '') as String;
-      final passives = (e['passives'] as List? ?? const [])
-          .map((p) => _parseDamagePassive(p as Map<String, dynamic>))
-          .toList();
-      dpMap.putIfAbsent(pairName, () => []).addAll(passives);
+      final moveName = (e['move_name'] ?? '') as String;
+      final name = (e['name'] ?? '') as String;
+      final key = moveName.isEmpty ? name : '$name|$moveName';
+      dpMasterMap[key] = _parseDamagePassive(e);
     }
 
     // Load master passives data
@@ -71,7 +70,7 @@ class SyncPairRepository {
 
     final pairs =
         jsonList
-            .map((entry) => _parsePair(entry as Map<String, dynamic>, scalingMap, dpMap, mpMap))
+            .map((entry) => _parsePair(entry as Map<String, dynamic>, scalingMap, dpMasterMap, mpMap))
             .toList()
           ..sort((left, right) {
             final leftDate = left.releaseDate ?? DateTime(2000);
@@ -82,7 +81,7 @@ class SyncPairRepository {
     return ParsedData(pairs: pairs);
   }
 
-  SyncPairData _parsePair(Map<String, dynamic> jsonMap, Map<String, MoveScaling> scalingMap, Map<String, List<DamagePassive>> dpMap, Map<String, List<MasterPassiveData>> mpMap) {
+  SyncPairData _parsePair(Map<String, dynamic> jsonMap, Map<String, MoveScaling> scalingMap, Map<String, DamagePassive> dpMasterMap, Map<String, List<MasterPassiveData>> mpMap) {
     final pairName = (jsonMap['displayName'] ?? '') as String;
     final pairType = (jsonMap['type'] ?? '') as String;
     final pairRole = (jsonMap['role'] ?? '') as String;
@@ -158,7 +157,7 @@ class SyncPairRepository {
             (rule) => rule.conditions.isNotEmpty || rule.effects.isNotEmpty,
           )
           .toList(),
-      damagePassives: dpMap[pairName] ?? const [],
+      damagePassives: _resolveDamagePassives(jsonMap['damagePassives'] as List? ?? const [], dpMasterMap),
       masterPassives: mpMap[pairName] ?? const [],
     );
   }
@@ -564,6 +563,34 @@ class SyncPairRepository {
       byKey[tag.key] = tag;
     }
     return byKey.values.toList();
+  }
+
+  List<DamagePassive> _resolveDamagePassives(List refs, Map<String, DamagePassive> masterMap) {
+    final result = <DamagePassive>[];
+    for (final ref in refs) {
+      final r = ref as Map<String, dynamic>;
+      final name = (r['name'] ?? '') as String;
+      final moveName = (r['moveName'] ?? '') as String;
+      final key = moveName.isEmpty ? name : '$name|$moveName';
+      final master = masterMap[key];
+      if (master == null) continue;
+      result.add(DamagePassive(
+        source: (r['source'] ?? '') as String,
+        name: master.name,
+        type: master.type,
+        appliesTo: master.appliesTo,
+        affects: master.affects,
+        mechanism: master.mechanism,
+        value: master.value,
+        stat: master.stat,
+        statTarget: master.statTarget,
+        conditions: master.conditions,
+        moveName: master.moveName,
+        cellNumber: (r['cellNumber'] as num?)?.toInt(),
+        subPassives: master.subPassives,
+      ));
+    }
+    return result;
   }
 
   DamagePassive _parseDamagePassive(Map<String, dynamic> p) {

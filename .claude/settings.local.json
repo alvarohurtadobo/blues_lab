@@ -5,7 +5,9 @@
       "Bash(Select-Object Name)",
       "Bash(flutter analyze *)",
       "mcp__ide__getDiagnostics",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(python transform_passives.py)",
+      "Bash(del transform_passives.py)"
     ]
   }
 }
