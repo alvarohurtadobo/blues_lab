@@ -17506,7 +17506,7 @@
     "number": 92,
     "passives": [
       {
-        "source": "super_awakening",
+        "source": "passive",
         "skillId": 3201720,
         "name": "The Prince with Green Hair",
         "description": "Powers up the user’s moves when the target is confused. Powers up the moves of all allied sync pairs when the zone is a Fairy Zone. Turns the field of play’s zone into a Fairy Zone the first time the user enters a battle each battle. (A Fairy Zone powers up Fairy-type attacks.)",

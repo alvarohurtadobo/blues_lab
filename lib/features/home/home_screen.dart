@@ -1933,23 +1933,35 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
   int _gridStatBonus(String statName) {
     final mapping = {
-      'hp': 'HP',
-      'atk': 'Attack',
-      'def': 'Defense',
-      'spa': 'Sp. Atk',
-      'spd': 'Sp. Def',
-      'spe': 'Speed',
+      'hp': ['HP'],
+      'atk': ['Attack'],
+      'def': ['Defense'],
+      'spa': ['Sp. Atk', 'Sp.Attack'],
+      'spd': ['Sp. Def', 'Sp.Defense', 'Sp.Defense'],
+      'spe': ['Speed'],
     };
-    final prefix = mapping[statName] ?? '';
-    if (prefix.isEmpty) return 0;
+    final prefixes = mapping[statName] ?? [];
+    if (prefixes.isEmpty) return 0;
     int total = 0;
     for (final cell in widget.pair.cells) {
       if (!widget.activeCells.contains(cell.cellNumber)) continue;
       final t = cell.title.trim();
-      if (t.startsWith(prefix)) {
-        final numStr = t.substring(prefix.length).trim();
-        final val = int.tryParse(numStr);
-        if (val != null) total += val;
+      for (final prefix in prefixes) {
+        // Handle common variations in space for Sp. Atk/Def
+        final normalizedPrefix = prefix.replaceAll(' ', '');
+        final normalizedTitle = t.replaceAll(' ', '');
+        
+        if (normalizedTitle.startsWith(normalizedPrefix)) {
+          // Extraer número después del prefijo original
+          final match = RegExp(r'(\d+)$').firstMatch(t);
+          if (match != null) {
+            final val = int.tryParse(match.group(1)!);
+            if (val != null) {
+              total += val;
+              break;
+            }
+          }
+        }
       }
     }
     return total;
@@ -1977,7 +1989,57 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
   double _movePowerModifier(MoveData move) {
     final scaling = move.scaling;
-    if (scaling == null) return 1.0;
+    if (scaling == null) {
+      if (move.isSync) {
+        final desc = move.description.toLowerCase();
+        if (desc.contains('power increases when')) {
+          final conditions = <String>[];
+          if (desc.contains('fairy zone')) conditions.add('fairy_zone');
+          if (desc.contains('dragon zone')) conditions.add('dragon_zone');
+          if (desc.contains('dark zone')) conditions.add('dark_zone');
+          if (desc.contains('steel zone')) conditions.add('steel_zone');
+          if (desc.contains('ghost zone')) conditions.add('ghost_zone');
+          if (desc.contains('rock zone')) conditions.add('rock_zone');
+          if (desc.contains('bug zone')) conditions.add('bug_zone');
+          if (desc.contains('poison zone')) conditions.add('poison_zone');
+          if (desc.contains('flying zone')) conditions.add('flying_zone');
+          if (desc.contains('ground zone')) conditions.add('ground_zone');
+          if (desc.contains('fighting zone')) conditions.add('fighting_zone');
+          if (desc.contains('ice zone')) conditions.add('ice_zone');
+          if (desc.contains('normal zone')) conditions.add('normal_zone');
+
+          if (desc.contains('weather is sunny')) conditions.add('sunny');
+          if (desc.contains('weather is rainy')) conditions.add('rain');
+          if (desc.contains('weather is sandstorm')) conditions.add('sandstorm');
+          if (desc.contains('weather is hail')) conditions.add('hail');
+
+          if (desc.contains('electric terrain')) conditions.add('electric_terrain');
+          if (desc.contains('grassy terrain')) conditions.add('grassy_terrain');
+          if (desc.contains('psychic terrain')) conditions.add('psychic_terrain');
+          if (desc.contains('terrain is in effect')) conditions.add('any_terrain');
+
+          if (desc.contains('target is paralyzed')) conditions.add('paralyzed');
+          if (desc.contains('target is burned')) conditions.add('burned');
+          if (desc.contains('target is frozen')) conditions.add('frozen');
+          if (desc.contains('target is asleep')) conditions.add('asleep');
+          if (desc.contains('target is poisoned')) conditions.add('poisoned');
+          if (desc.contains('target is confused')) conditions.add('confused');
+          if (desc.contains('target is trapped')) conditions.add('trapped');
+          if (desc.contains('target is flinching')) conditions.add('flinching');
+
+          if (desc.contains('none of the target’s stats are raised')) {
+            final anyRaised = ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']
+                .any((k) => (_enemyStages[k] ?? 0) > 0);
+            if (!anyRaised) return 2.0;
+          }
+
+          for (final cond in conditions) {
+            if (_checkCondition(cond, move)) return 2.0;
+          }
+        }
+      }
+      return 1.0;
+    }
 
     final stages = scaling.who == 'user' ? _playerStages : _enemyStages;
 
@@ -2238,21 +2300,31 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final saBonus = _calcSaBonus(widget.pair, _superAwakeningLevel, move);
     final base = int.tryParse(_scaledPower(move.power, null, saBonus)) ?? 0;
     final grid = _gridPowerBonus(move.name);
-    final isTeraMove =
-        widget.pair.teraMove != null && move.name == widget.pair.teraMove!.name;
-    final tera = _teraActive && widget.pair.hasTera;
-    final teraBonus =
-        tera &&
-        !move.isSync &&
-        !isTeraMove &&
-        move.type.toLowerCase() == widget.pair.type.toLowerCase();
-    final afterTera = teraBonus ? (base * 1.5).floor() : base;
-    final afterSyncTech = move.isSync && _syncTechExBoost
-        ? (base * 1.5).floor()
-        : afterTera;
-    // Innate scaling applies to base power before additive boosts
-    final modifier = _movePowerModifier(move);
-    final scaledBase = (afterSyncTech * modifier).floor();
+    
+    // 1. Initial Power with Increments (Tech EX, Tera, etc.)
+    double power = base.toDouble();
+    if (move.isSync) {
+      if (_syncTechExBoost) {
+        power = power * 1.5;
+      }
+    } else {
+      final isTeraMove =
+          widget.pair.teraMove != null && move.name == widget.pair.teraMove!.name;
+      final tera = _teraActive && widget.pair.hasTera;
+      final teraBonus =
+          tera &&
+          !isTeraMove &&
+          move.type.toLowerCase() == widget.pair.type.toLowerCase();
+      
+      if (teraBonus) {
+        power = power * 1.5;
+      }
+    }
+
+    // 2. Add Grid nodes
+    final baseWithGrid = power + grid;
+
+    // 3. Additive percentage boosts (ΣSkillPowerUps + Boosts)
     final isPhysical = move.category.toLowerCase() == 'physical';
     final boostRank = move.isSync
         ? 0
@@ -2260,11 +2332,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final syncSkill = move.isSync ? _syncMoveBoostNext * 0.1 : 0.0;
     final masterPassiveSkill = _masterPassivePowerUp(move);
     final passiveSkill = _gridSkillPowerUp(move);
-    final inner =
-        ((scaledBase + grid) *
-                (1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4))
-            .floor();
-    return inner;
+    
+    final totalSkillMult = 1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4;
+    
+    // 4. Apply Modifier (Innate Scaling / Stat Scaling)
+    final modifier = _movePowerModifier(move);
+    
+    // Final Calculation: floor((Power + Grid) * Skills * Modifier)
+    final finalBp = (baseWithGrid * totalSkillMult * modifier).floor();
+
+    return finalBp;
   }
 
   static const _statusLabels = {
