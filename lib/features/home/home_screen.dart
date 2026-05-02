@@ -4373,8 +4373,8 @@ class _PairPickerDialog extends StatefulWidget {
 
 class _PairPickerDialogState extends State<_PairPickerDialog> {
   String _query = '';
-  String _sortMode = 'Name';
-  bool _ascending = true;
+  String _sortMode = 'Release';
+  bool _ascending = false;
 
   static String _cleanName(String name) {
     return name.replaceAll(RegExp(r'\s*\((Male|Female)[^)]*\)'), '').replaceAll(RegExp(r'\s*\(Genderless\)'), '').trim();
@@ -4425,8 +4425,8 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
             underline: const SizedBox(),
             style: const TextStyle(fontSize: 12, color: Colors.black),
             items: const [
-              DropdownMenuItem(value: 'Name', child: Text('Name')),
               DropdownMenuItem(value: 'Release', child: Text('Release')),
+              DropdownMenuItem(value: 'Name', child: Text('Name')),
               DropdownMenuItem(value: 'Type', child: Text('Type')),
               DropdownMenuItem(value: 'Role', child: Text('Role')),
             ],
