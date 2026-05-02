@@ -7,7 +7,18 @@
       "mcp__ide__getDiagnostics",
       "Bash(python -c ' *)",
       "Bash(python transform_passives.py)",
-      "Bash(del transform_passives.py)"
+      "Bash(del transform_passives.py)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\Work\\\\Desktop\\\\Current Work\\\\blues_lab\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\Work\\\\Desktop\\\\Current Work\\\\blues_lab\" -Recurse -Force | Select-Object -First 100 | ForEach-Object { $_.FullName })",
+      "Bash(git *)",
+      "Bash(Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\build\\\\windows\\\\x64\\\\CMakeFiles\\\\76525823d67b9d550838a75595771896\\\\generate.stamp.rule\")",
+      "Bash(Select-Object -First 20)",
+      "Bash(where flutter *)",
+      "Bash(flutter pub *)",
+      "Bash(Get-ChildItem -Path \"E:\\\\Current Work\\\\blues_lab\\\\lib\" -File -Recurse)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(Sort-Object)"
     ]
   }
 }

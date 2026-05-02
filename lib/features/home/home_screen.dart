@@ -4171,120 +4171,85 @@ class HexGridView extends StatelessWidget {
             ...cells,
           ];
 
-    const double tileRadius = 60.0;
-
-    final coords = <int, Offset>{};
-    final hexW = 1.5 * tileRadius + 1;
-    final hexH = math.sqrt(3) * tileRadius - 0.5 + 1;
-    for (final cell in allCells) {
-      final x = hexW * cell.q;
-      final y = hexH * (cell.r + cell.q / 2.0);
-      coords[cell.cellNumber] = Offset(x, y);
-    }
-
-    final cMinX = coords.values.map((o) => o.dx).reduce(math.min);
-    final cMinY = coords.values.map((o) => o.dy).reduce(math.min);
-    final cMaxX = coords.values.map((o) => o.dx).reduce(math.max);
-    final cMaxY = coords.values.map((o) => o.dy).reduce(math.max);
-
-    final tileW = tileRadius * 2;
-    final tileH = math.sqrt(3) * tileRadius;
-    final contentW = (cMaxX - cMinX) + tileW + 32;
-    final contentH = (cMaxY - cMinY) + tileH + 32;
-
-    final vController = ScrollController();
-    final hController = ScrollController();
+    // Normalized layout at radius=1 — used to derive the scale factor.
+    const normHexW = 1.5;
+    final normHexH = math.sqrt(3);
+    final normCoords = {
+      for (final cell in allCells)
+        cell.cellNumber: Offset(
+          normHexW * cell.q,
+          normHexH * (cell.r + cell.q / 2.0),
+        ),
+    };
+    final ncMinX = normCoords.values.map((o) => o.dx).reduce(math.min);
+    final ncMinY = normCoords.values.map((o) => o.dy).reduce(math.min);
+    final normSpanW =
+        normCoords.values.map((o) => o.dx).reduce(math.max) - ncMinX + 2.0;
+    final normSpanH =
+        normCoords.values.map((o) => o.dy).reduce(math.max) - ncMinY + normHexH;
 
     return LayoutBuilder(
-      builder: (context, viewportConstraints) {
-        return Scrollbar(
-          controller: hController,
-          notificationPredicate: (n) => n.depth == 0,
-          thumbVisibility: true,
-          child: SingleChildScrollView(
-            controller: hController,
-            scrollDirection: Axis.horizontal,
-            child: Scrollbar(
-              controller: vController,
-              notificationPredicate: (n) => n.depth == 0,
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                controller: vController,
-                child: SizedBox(
-                  width: math.max(contentW, viewportConstraints.maxWidth),
-                  height: math.max(contentH, viewportConstraints.maxHeight),
-                  child: Builder(
-                    builder: (context) {
-                      final offsetX = math.max(
-                        0.0,
-                        (viewportConstraints.maxWidth - contentW) / 2,
-                      );
-                      final offsetY = math.max(
-                        0.0,
-                        (viewportConstraints.maxHeight - contentH) / 2,
-                      );
-                      return Stack(
-                        children: [
-                          for (final cell in allCells)
-                            Positioned(
-                              left:
-                                  coords[cell.cellNumber]!.dx - cMinX + offsetX,
-                              top:
-                                  coords[cell.cellNumber]!.dy - cMinY + offsetY,
-                              child: (cell.q == 0 && cell.r == 0 && cell.s == 0)
-                                  ? GestureDetector(
-                                      onTap: () => _showPairPicker(context),
-                                      child: SizedBox(
-                                        width: tileW,
-                                        height: tileH,
-                                        child: Center(
-                                          child: Image.asset(
-                                            'assets/img/sync_icon.png',
-                                            width: tileRadius * 2,
-                                            height: math.sqrt(3) * tileRadius,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : HoverTooltip(
-                                      message: _buildCellTooltip(cell),
-                                      child: Builder(
-                                        builder: (_) {
-                                          final colorKind =
-                                              _isSyncMoveTile(cell)
-                                              ? '(sync move)'
-                                              : cell.colorKind;
-                                          final (activeC, darkC) = _gridColors(
-                                            colorKind,
-                                          );
-                                          return HexTile(
-                                            radius: tileRadius,
-                                            activeColor: activeC,
-                                            darkColor: darkC,
-                                            active: activeCells.contains(
-                                              cell.cellNumber,
-                                            ),
-                                            locked: cell.moveLevel > moveLevel,
-                                            label: _buildCellLabel(
-                                              cell,
-                                              syncMoveName: syncMoveName,
-                                            ),
-                                            onTap: () =>
-                                                onToggleCell(cell.cellNumber),
-                                          );
-                                        },
-                                      ),
-                                    ),
+      builder: (context, constraints) {
+        const double pad = 16.0;
+        final availW = constraints.maxWidth - pad * 2;
+        final availH = constraints.maxHeight - pad * 2;
+        final tileRadius = math.min(availW / normSpanW, availH / normSpanH);
+        final tileW = tileRadius * 2;
+        final tileH = math.sqrt(3) * tileRadius;
+        final contentW = normSpanW * tileRadius;
+        final contentH = normSpanH * tileRadius;
+        final offsetX = pad + (availW - contentW) / 2;
+        final offsetY = pad + (availH - contentH) / 2;
+
+        return Stack(
+          children: [
+            for (final cell in allCells)
+              Positioned(
+                left: (normCoords[cell.cellNumber]!.dx - ncMinX) * tileRadius +
+                    offsetX,
+                top: (normCoords[cell.cellNumber]!.dy - ncMinY) * tileRadius +
+                    offsetY,
+                child: (cell.q == 0 && cell.r == 0 && cell.s == 0)
+                    ? GestureDetector(
+                        onTap: () => _showPairPicker(context),
+                        child: SizedBox(
+                          width: tileW,
+                          height: tileH,
+                          child: Center(
+                            child: Image.asset(
+                              'assets/img/sync_icon.png',
+                              width: tileW,
+                              height: tileH,
+                              fit: BoxFit.contain,
                             ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                          ),
+                        ),
+                      )
+                    : HoverTooltip(
+                        message: _buildCellTooltip(cell),
+                        child: Builder(
+                          builder: (_) {
+                            final colorKind = _isSyncMoveTile(cell)
+                                ? '(sync move)'
+                                : cell.colorKind;
+                            final (activeC, darkC) = _gridColors(colorKind);
+                            return HexTile(
+                              radius: tileRadius,
+                              activeColor: activeC,
+                              darkColor: darkC,
+                              active: activeCells.contains(cell.cellNumber),
+                              locked: cell.moveLevel > moveLevel,
+                              label: _buildCellLabel(
+                                cell,
+                                syncMoveName: syncMoveName,
+                              ),
+                              onTap: () => onToggleCell(cell.cellNumber),
+                            );
+                          },
+                        ),
+                      ),
               ),
-            ),
-          ),
+          ],
         );
       },
     );
@@ -4526,6 +4491,9 @@ class HexTile extends StatelessWidget {
       borderColor = Color.lerp(tinted, Colors.black, 0.3)!;
       fillColor = tinted;
     }
+    final borderWidth = math.max(1.5, radius * (5.0 / 60.0));
+    final hPad = math.max(3.0, radius * 0.3);
+    final vPad = math.max(2.0, radius * (14.0 / 60.0));
     return Listener(
       onPointerDown: (_) => onTap(),
       child: CustomPaint(
@@ -4533,13 +4501,13 @@ class HexTile extends StatelessWidget {
         painter: HexPainter(
           borderColor: borderColor,
           fillColor: fillColor,
-          borderWidth: 5.0,
+          borderWidth: borderWidth,
         ),
         child: SizedBox(
           width: width,
           height: height,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: hPad, vertical: vPad),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final safeWidth = constraints.maxWidth;
@@ -4548,6 +4516,7 @@ class HexTile extends StatelessWidget {
                   text: label,
                   maxWidth: safeWidth,
                   maxHeight: safeHeight,
+                  radius: radius,
                 );
                 return Center(
                   child: Text(
@@ -4587,9 +4556,10 @@ class HexTile extends StatelessWidget {
     required String text,
     required double maxWidth,
     required double maxHeight,
+    required double radius,
   }) {
-    const maxFont = 16.0;
-    const minFont = 10.0;
+    final maxFont = math.max(6.0, radius * (16.0 / 60.0));
+    final minFont = math.max(4.0, radius * (10.0 / 60.0));
 
     for (double size = maxFont; size >= minFont; size -= 0.25) {
       final painter = TextPainter(
