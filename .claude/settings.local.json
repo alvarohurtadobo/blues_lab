@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Work\\\\Desktop\\\\Current Work\\\\blues_lab\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Bash(flutter analyze *)",
+      "mcp__ide__getDiagnostics",
+      "Bash(python -c ' *)"
+    ]
+  }
+}

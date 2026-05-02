@@ -47,13 +47,21 @@ void main() {
     if (result != null) pomatoolsPairs.add(result);
   }
 
+  // Deduplicate pomatools pairs by displayName (keep first occurrence)
+  final seenNames = <String>{};
+  final dedupedPairs = <Map<String, dynamic>>[];
+  for (final p in pomatoolsPairs) {
+    if (seenNames.add(p['displayName'] as String)) dedupedPairs.add(p);
+  }
+  final pomatoolsPairsDeduped = dedupedPairs;
+
   // Load existing JSON (from txt files) to merge pairs not in pomatools
   final existingJson = jsonDecode(
     File('assets/data/sync_pairs.json').readAsStringSync(),
   ) as List;
 
   final pomatoolsNumbers = <int>{};
-  for (final p in pomatoolsPairs) {
+  for (final p in pomatoolsPairsDeduped) {
     pomatoolsNumbers.add(p['number'] as int);
   }
 
@@ -63,12 +71,12 @@ void main() {
     final num = existing['number'] as int;
     final name = existing['displayName'] as String;
     if (!pomatoolsNumbers.contains(num) ||
-        !pomatoolsPairs.any((p) => p['number'] == num && p['displayName'] == name)) {
+        !pomatoolsPairsDeduped.any((p) => p['number'] == num && p['displayName'] == name)) {
       txtOnlyPairs.add(Map<String, dynamic>.from(existing as Map));
     }
   }
 
-  final allPairs = [...pomatoolsPairs, ...txtOnlyPairs];
+  final allPairs = [...pomatoolsPairsDeduped, ...txtOnlyPairs];
   allPairs.sort((a, b) {
     final cmp = (a['number'] as int).compareTo(b['number'] as int);
     if (cmp != 0) return cmp;
@@ -78,7 +86,7 @@ void main() {
   final json = jsonEncode(allPairs);
   File('assets/data/sync_pairs.json').writeAsStringSync(json);
   print('Generated sync_pairs.json: ${allPairs.length} pairs '
-      '(${pomatoolsPairs.length} from pomatools, ${txtOnlyPairs.length} from txt)');
+      '(${pomatoolsPairsDeduped.length} from pomatools, ${txtOnlyPairs.length} from txt)');
 }
 
 Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersions) {
@@ -90,7 +98,9 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
   final trainerId = pair['trainerId'] as String;
   final trainerName = _chars[trainerId] ?? 'Unknown';
   final pkId = base['id'] as String;
-  final pkName = _pkmn[pkId] ?? 'Unknown';
+  final rawPkName = (_pkmn[pkId] ?? 'Unknown') as String;
+  // Strip gender markers — male/female forms of the same Pokémon are the same sync pair
+  final pkName = rawPkName.replaceAll(RegExp(r'\s*\((?:Male|Female)[♂♀️♂♀]*\)'), '').trim();
   final number = (pair['entry'] as int) ~/ 100;
   final displayName = '$trainerName & $pkName';
 
@@ -431,6 +441,16 @@ List<Map<String, dynamic>> _buildGridCells(List? gridVersions) {
     final titleDesc = _buildCellTitle(kind, target, value, skillId);
     final colorKind = _buildColorKind(kind, target, skillId);
 
+    final statBonus = <String, int>{};
+    final powerBonus = <String, int>{};
+    if (kind == 'STAT') {
+      final key = _statKeyFromTarget(target);
+      if (key != null) statBonus[key] = value;
+    } else if (kind == 'POWERUP') {
+      final moveName = (_moveNames[target] as Map?)?['NAME'] as String? ?? target;
+      powerBonus[moveName] = value;
+    }
+
     final cellEntry = <String, dynamic>{
       'cellNumber': cellNum,
       'q': qrs[0],
@@ -442,6 +462,8 @@ List<Map<String, dynamic>> _buildGridCells(List? gridVersions) {
       'description': titleDesc[0] == titleDesc[1] ? '' : titleDesc[1],
       'colorKind': colorKind,
       'moveLevel': level,
+      'statBonus': statBonus,
+      'powerBonus': powerBonus,
     };
     if (skillId != 0) {
       final subs = _buildSubPassives(skillId);
@@ -518,9 +540,14 @@ String _buildColorKind(String kind, String target, int skillId) {
 String _formatPower(dynamic power, dynamic powerup) {
   if (power == null || power == 0) return '--';
   final base = power as int;
-  // powerup is a list of [level, power] pairs
+  // powerup is a list of [level, power] pairs OR a stat-scaling formula with string tokens
   if (powerup != null && powerup is List && powerup.isNotEmpty) {
     final maxPower = powerup.last;
+    // Stat-scaling formula: inner list contains non-integer tokens (e.g. ['TARG_004', 'STAT_510', ...])
+    // These moves scale with stat stages — just return base power; scaling is in move_scaling.json
+    if (maxPower is List && maxPower.any((e) => e is! int)) {
+      return base.toString();
+    }
     if (maxPower is List && maxPower.length >= 2) {
       return '$base (1)/${maxPower[1]} (5↑ MAX)';
     }
@@ -571,6 +598,18 @@ List<Map<String, dynamic>> _buildSubPassives(int skillId) {
     });
   }
   return result;
+}
+
+String? _statKeyFromTarget(String target) {
+  const map = {
+    'STAT_001': 'hp',
+    'STAT_002': 'atk',
+    'STAT_004': 'def',
+    'STAT_008': 'spa',
+    'STAT_016': 'spd',
+    'STAT_032': 'spe',
+  };
+  return map[target];
 }
 
 dynamic _loadJson(String path) {

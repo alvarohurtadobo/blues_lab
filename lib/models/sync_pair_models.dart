@@ -87,6 +87,8 @@ class GridCellData {
     this.tags = const [],
     this.effects = const [],
     this.subPassives = const [],
+    this.statBonus = const {},
+    this.powerBonus = const {},
   });
 
   final int cellNumber;
@@ -102,6 +104,8 @@ class GridCellData {
   final List<PairTag> tags;
   final List<PassiveEffect> effects;
   final List<SubPassiveData> subPassives;
+  final Map<String, int> statBonus;
+  final Map<String, int> powerBonus;
 }
 
 class MoveData {
@@ -180,6 +184,16 @@ class SubPassiveData {
   final int value;
 }
 
+/// One entry in a threshold-based scaling table.
+class ThresholdEntry {
+  const ThresholdEntry({required this.minPct, required this.multiplierPer1000});
+
+  /// HP percentage lower bound (inclusive). The first entry whose minPct < hpPct applies.
+  final int minPct;
+  /// Power multiplier in thousandths (1000 = 1.0×).
+  final int multiplierPer1000;
+}
+
 /// Innate power scaling for a move (loaded from move_scaling.json).
 class MoveScaling {
   const MoveScaling({
@@ -187,7 +201,7 @@ class MoveScaling {
     required this.who,
     required this.direction,
     required this.stepPer1000,
-    this.thresholdTable = '',
+    this.thresholdTable = const [],
     this.capPer1000 = 0,
   });
 
@@ -199,8 +213,8 @@ class MoveScaling {
   final String direction;
   /// Multiplier per stage in thousandths (250 = 0.25 per stage)
   final int stepPer1000;
-  /// For HP-threshold moves like Fierce Fiery Wrath: "100,1000|75,1100|..."
-  final String thresholdTable;
+  /// For HP-threshold moves like Fierce Fiery Wrath. Each entry: minPct + multiplierPer1000.
+  final List<ThresholdEntry> thresholdTable;
   /// Optional cap in thousandths
   final int capPer1000;
 }

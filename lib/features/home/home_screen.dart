@@ -1932,49 +1932,19 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   }
 
   int _gridStatBonus(String statName) {
-    final mapping = {
-      'hp': ['HP'],
-      'atk': ['Attack'],
-      'def': ['Defense'],
-      'spa': ['Sp. Atk', 'Sp.Attack'],
-      'spd': ['Sp. Def', 'Sp.Defense', 'Sp.Defense'],
-      'spe': ['Speed'],
-    };
-    final prefixes = mapping[statName] ?? [];
-    if (prefixes.isEmpty) return 0;
     int total = 0;
     for (final cell in widget.pair.cells) {
       if (!widget.activeCells.contains(cell.cellNumber)) continue;
-      final t = cell.title.trim();
-      for (final prefix in prefixes) {
-        // Handle common variations in space for Sp. Atk/Def
-        final normalizedPrefix = prefix.replaceAll(' ', '');
-        final normalizedTitle = t.replaceAll(' ', '');
-        
-        if (normalizedTitle.startsWith(normalizedPrefix)) {
-          // Extraer número después del prefijo original
-          final match = RegExp(r'(\d+)$').firstMatch(t);
-          if (match != null) {
-            final val = int.tryParse(match.group(1)!);
-            if (val != null) {
-              total += val;
-              break;
-            }
-          }
-        }
-      }
+      total += cell.statBonus[statName] ?? 0;
     }
     return total;
   }
 
   int _gridPowerBonus(String moveName) {
     int total = 0;
-    final prefix = '$moveName: Power ';
     for (final cell in widget.pair.cells) {
       if (!widget.activeCells.contains(cell.cellNumber)) continue;
-      if (!cell.title.startsWith(prefix)) continue;
-      final val = int.tryParse(cell.title.substring(prefix.length).trim());
-      if (val != null) total += val;
+      total += cell.powerBonus[moveName] ?? 0;
     }
     return total;
   }
@@ -2046,19 +2016,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     // Threshold table (HP-based like Fierce Fiery Wrath)
     if (scaling.thresholdTable.isNotEmpty) {
       final hpPct = scaling.who == 'user' ? _playerHpPercent : _enemyHpPercent;
-      final entries = scaling.thresholdTable.split('|');
-      for (final entry in entries) {
-        final parts = entry.split(',');
-        if (parts.length == 2) {
-          final threshold = int.parse(parts[0]);
-          final mult = int.parse(parts[1]);
-          if (hpPct <= threshold) continue;
-          return mult / 1000;
-        }
+      for (final entry in scaling.thresholdTable) {
+        if (hpPct < entry.minPct) continue;
+        return entry.multiplierPer1000 / 1000;
       }
-      // Fallback: use last entry
-      final lastParts = entries.last.split(',');
-      return lastParts.length == 2 ? int.parse(lastParts[1]) / 1000 : 1.0;
+      return scaling.thresholdTable.last.multiplierPer1000 / 1000;
     }
 
     // Stat-based scaling
@@ -2301,11 +2263,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final base = int.tryParse(_scaledPower(move.power, null, saBonus)) ?? 0;
     final grid = _gridPowerBonus(move.name);
     
-    // 1. Initial Power with Increments (Tech EX, Tera, etc.)
+    // 1. Initial Power with Increments
     double power = base.toDouble();
     if (move.isSync) {
       if (_syncTechExBoost) {
-        power = power * 1.5;
+        power = (power * 1.5).floor().toDouble();
       }
     } else {
       final isTeraMove =
@@ -2317,14 +2279,12 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           move.type.toLowerCase() == widget.pair.type.toLowerCase();
       
       if (teraBonus) {
-        power = power * 1.5;
+        power = (power * 1.5).floor().toDouble();
       }
     }
 
-    // 2. Add Grid nodes
     final baseWithGrid = power + grid;
 
-    // 3. Additive percentage boosts (ΣSkillPowerUps + Boosts)
     final isPhysical = move.category.toLowerCase() == 'physical';
     final boostRank = move.isSync
         ? 0
@@ -2335,11 +2295,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     
     final totalSkillMult = 1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4;
     
-    // 4. Apply Modifier (Innate Scaling / Stat Scaling)
+    // 2. Inner Rounding: floor((Power + Grid) * Skills)
+    final scaled = (baseWithGrid * totalSkillMult).floor();
+    
+    // 3. Apply Modifier (Innate Scaling / Stat Scaling)
     final modifier = _movePowerModifier(move);
     
-    // Final Calculation: floor((Power + Grid) * Skills * Modifier)
-    final finalBp = (baseWithGrid * totalSkillMult * modifier).floor();
+    // Final Calculation: floor(scaled * Modifier)
+    final finalBp = (scaled * modifier).floor();
 
     return finalBp;
   }

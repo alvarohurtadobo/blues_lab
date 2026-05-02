@@ -25,7 +25,15 @@ class SyncPairRepository {
         who: (e['who'] ?? 'user') as String,
         direction: (e['direction'] ?? 'raised') as String,
         stepPer1000: (e['stepPer1000'] as num?)?.toInt() ?? 0,
-        thresholdTable: (e['thresholdTable'] ?? '') as String,
+        thresholdTable: (e['thresholdTable'] as List? ?? const [])
+            .map((t) {
+              final row = t as Map<String, dynamic>;
+              return ThresholdEntry(
+                minPct: (row['minPct'] as num).toInt(),
+                multiplierPer1000: (row['multiplierPer1000'] as num).toInt(),
+              );
+            })
+            .toList(),
         capPer1000: (e['capPer1000'] as num?)?.toInt() ?? 0,
       );
     }
@@ -167,6 +175,37 @@ class SyncPairRepository {
             ))
         .toList();
 
+    final Map<String, int> statBonus;
+    final Map<String, int> powerBonus;
+
+    if (jsonMap.containsKey('statBonus')) {
+      statBonus = (jsonMap['statBonus'] as Map<String, dynamic>? ?? {})
+          .map((k, v) => MapEntry(k, (v as num).toInt()));
+      powerBonus = (jsonMap['powerBonus'] as Map<String, dynamic>? ?? {})
+          .map((k, v) => MapEntry(k, (v as num).toInt()));
+    } else {
+      // Fallback for cells without pre-computed bonus fields
+      statBonus = <String, int>{};
+      powerBonus = <String, int>{};
+      final titleLower = title.toLowerCase();
+      final match = RegExp(r'(\d+)$').firstMatch(title);
+      if (match != null) {
+        final val = int.tryParse(match.group(1)!);
+        if (val != null) {
+          if (titleLower.contains('hp')) statBonus['hp'] = val;
+          else if (titleLower.contains('sp.atk') || titleLower.contains('sp.attack')) statBonus['spa'] = val;
+          else if (titleLower.contains('attack')) statBonus['atk'] = val;
+          else if (titleLower.contains('defense')) statBonus['def'] = val;
+          else if (titleLower.contains('sp.def') || titleLower.contains('sp.defense')) statBonus['spd'] = val;
+          else if (titleLower.contains('speed')) statBonus['spe'] = val;
+          else if (titleLower.contains(': power')) {
+            final moveName = title.split(':')[0].trim();
+            powerBonus[moveName] = val;
+          }
+        }
+      }
+    }
+
     return GridCellData(
       cellNumber: (jsonMap['cellNumber'] as num?)?.toInt() ?? 0,
       q: (jsonMap['q'] as num?)?.toInt() ?? 0,
@@ -182,8 +221,17 @@ class SyncPairRepository {
         PairTag(category: 'grid_kind', value: colorKind),
         ..._tileTags(title, colorKind),
       ]),
-      effects: _tileEffects(title, colorKind),
+      effects: powerBonus.entries
+          .map((e) => PassiveEffect(
+                kind: EffectKind.powerModifier,
+                scope: EntityScope.self,
+                value: e.value.toDouble(),
+                flag: colorKind,
+              ))
+          .toList(),
       subPassives: subPassives,
+      statBonus: statBonus,
+      powerBonus: powerBonus,
     );
   }
 
@@ -211,7 +259,7 @@ class SyncPairRepository {
       isSync: jsonMap['isSync'] == true,
       slot: jsonMap['slot'] as int?,
       scaling: scalingMap[scalingKey],
-      isExtendedRange: description.contains('not lowered even if there are multiple targets'),
+      isExtendedRange: jsonMap['isExtendedRange'] == true,
       tags: _dedupeTags([
         if (type.isNotEmpty) PairTag(category: 'move_type', value: type),
         if (category.isNotEmpty)
@@ -318,33 +366,7 @@ class SyncPairRepository {
   }
 
   Map<String, double> _parseTeraStatMultiplier(Map<String, dynamic> jsonMap) {
-    final result = <String, double>{};
-
-    final teraPassives = jsonMap['teraPassives'] as List? ?? const [];
-    for (final entry in teraPassives) {
-      final passive = entry as Map<String, dynamic>;
-      final name = (passive['name'] ?? '') as String;
-      final match = RegExp(
-        r'While S-Tera:\s*(\d)\s*Stats.*?(\d+)$',
-      ).firstMatch(name);
-      if (match == null) {
-        continue;
-      }
-
-      final statCount = int.parse(match.group(1)!);
-      final bonusValue = int.parse(match.group(2)!);
-      final multiplier = 1.0 + bonusValue * 0.1;
-      if (statCount == 5) {
-        for (final stat in ['atk', 'def', 'spa', 'spd', 'spe']) {
-          result[stat] = multiplier;
-        }
-      }
-    }
-
-    result.addAll(
-      _parseDoubleMap(jsonMap['teraStatMultiplier'] as Map<String, dynamic>?),
-    );
-    return result;
+    return _parseDoubleMap(jsonMap['teraStatMultiplier'] as Map<String, dynamic>?);
   }
 
   List<PairTag> _extractThemeTags(Map<String, dynamic> jsonMap) {
@@ -429,23 +451,6 @@ class SyncPairRepository {
       tags.add(const PairTag(category: 'tile_effect', value: 'gauge'));
     }
     return tags;
-  }
-
-  List<PassiveEffect> _tileEffects(String title, String colorKind) {
-    final lower = title.toLowerCase();
-    final effects = <PassiveEffect>[];
-    final powerMatch = RegExp(r'power\s+(\d+)').firstMatch(lower);
-    if (powerMatch != null) {
-      effects.add(
-        PassiveEffect(
-          kind: EffectKind.powerModifier,
-          scope: EntityScope.self,
-          value: double.parse(powerMatch.group(1)!),
-          flag: colorKind,
-        ),
-      );
-    }
-    return effects;
   }
 
   List<PassiveEffect> _effectsFromMoveDescription(String description) {
