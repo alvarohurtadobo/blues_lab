@@ -2239,12 +2239,12 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       case 'hp_low': return _playerHpPercent <= 25;
       case 'hp_full': return _playerHpPercent == 100;
       // Super effective
-      case 'move_slot_MOVE_001':
+      case 'super_effective':
         return _enemyWeakness.isNotEmpty && move.type.toLowerCase() == _enemyWeakness.toLowerCase();
-      case 'move_slot_MOVE_002':
+      case 'critical':
         return _isCriticalMove;
       // Unity bonus
-      case 'move_slot_MOVE_004': return false; // Unity bonus not tracked
+      case 'unity': return false; // Unity bonus not tracked
       // Circles
       case 'circle': return _activeCircles().isNotEmpty;
       // Type-specific moves
