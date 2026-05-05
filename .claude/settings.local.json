@@ -18,7 +18,16 @@
       "Bash(flutter pub *)",
       "Bash(Get-ChildItem -Path \"E:\\\\Current Work\\\\blues_lab\\\\lib\" -File -Recurse)",
       "Bash(Select-Object -ExpandProperty Name)",
-      "Bash(Sort-Object)"
+      "Bash(Sort-Object)",
+      "PowerShell(head *)",
+      "Bash(xargs grep *)",
+      "Bash(Get-ChildItem -Path \"E:\\\\Current Work\\\\blues_lab\" -Directory)",
+      "Bash(node -e ' *)",
+      "Bash(flutter build *)",
+      "Bash(start build\\\\windows\\\\x64\\\\runner\\\\Debug\\\\blues_lab_calculator.exe)",
+      "PowerShell(Start-Process \"E:\\\\Current Work\\\\blues_lab\\\\build\\\\windows\\\\x64\\\\runner\\\\Debug\\\\blues_lab_calculator.exe\")",
+      "Bash(flutter run *)",
+      "Bash(python3 *)"
     ]
   }
 }

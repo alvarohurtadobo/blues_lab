@@ -1,9 +1,10 @@
 import 'future_rules.dart';
 
 class ParsedData {
-  const ParsedData({required this.pairs});
+  const ParsedData({required this.pairs, required this.luckySkills});
 
   final List<SyncPairData> pairs;
+  final List<LuckySkillDef> luckySkills;
 }
 
 class SyncPairData {
@@ -302,6 +303,29 @@ class MasterPassiveData {
       'special' => isSpecial,
       _ => true,
     };
+  }
+}
+
+/// A lucky skill available in the lucky cookie pool, pre-resolved to a DamagePassive.
+class LuckySkillDef {
+  const LuckySkillDef({required this.passive, this.restrictedToRoles, this.restrictedToPairs});
+
+  final DamagePassive passive;
+
+  /// If non-null, only pairs whose role matches one of these values can select this skill.
+  final List<String>? restrictedToRoles;
+
+  /// If non-null, only the specific pairs whose displayName matches can select this skill.
+  final List<String>? restrictedToPairs;
+
+  bool isAvailableFor(String role, {String pairName = ''}) {
+    final rp = restrictedToPairs;
+    if (rp != null) {
+      return rp.any((p) => p.toLowerCase() == pairName.toLowerCase());
+    }
+    final r = restrictedToRoles;
+    if (r == null) return true;
+    return r.any((rr) => rr.toLowerCase() == role.toLowerCase());
   }
 }
 

@@ -1,0 +1,19 @@
+[
+    { "name": "Power Reserves 1", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Power Reserves 2", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Surging Sand 1", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Surging Sand 2", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Surging Sand 3", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Gritty 3", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Superduper Effective 1", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Power Flux 2", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Power Flux 3", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Critical Strike 1", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Critical Strike 2", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Critical Strike 3", "restricted_to_roles": ["Strike (Physical)", "Strike (Special)", "Tech", "Field"], "restricted_to_pairs": null },
+    { "name": "Weathered Warrior 3", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Super Powered 3", "restricted_to_roles": null, "restricted_to_pairs": null },
+    { "name": "Superduper Effective 5", "restricted_to_roles": ["Strike (Physical)"], "restricted_to_pairs": null },
+    { "name": "Double Down 5", "restricted_to_roles": ["Strike (Special)"], "restricted_to_pairs": null },
+    { "name": "Solar Flare 4", "restricted_to_roles": null, "restricted_to_pairs": ["Adaman & Leafeon"] }
+]

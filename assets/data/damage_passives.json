@@ -6405,6 +6405,23 @@
         "sub_passives": []
     },
     {
+        "name": "Power Reserves 1",
+        "type": "powerup",
+        "applies_to": "moves",
+        "affects": "self",
+        "mechanism": "flat_boost",
+        "value": 1,
+        "stat": "",
+        "stat_target": "",
+        "conditions": [
+            [
+                "hp_low"
+            ]
+        ],
+        "move_name": "",
+        "sub_passives": []
+    },
+    {
         "name": "Power Reserves 2",
         "type": "powerup",
         "applies_to": "moves",
@@ -8024,6 +8041,23 @@
         "affects": "self",
         "mechanism": "flat_boost",
         "value": 3,
+        "stat": "",
+        "stat_target": "",
+        "conditions": [
+            [
+                "sunny"
+            ]
+        ],
+        "move_name": "",
+        "sub_passives": []
+    },
+    {
+        "name": "Solar Flare 4",
+        "type": "powerup",
+        "applies_to": "sync_move",
+        "affects": "self",
+        "mechanism": "flat_boost",
+        "value": 4,
         "stat": "",
         "stat_target": "",
         "conditions": [

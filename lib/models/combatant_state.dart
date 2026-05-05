@@ -59,6 +59,9 @@ class CombatantState {
   Map<String, int> circleAllyCount;
   Map<String, int> masterPassiveAllyCount;
 
+  // Ally-only: selected lucky skill (damage-modifying passive from lucky cookies)
+  DamagePassive? luckySkill;
+
   // Ally-only: cheer multiplier (×1.5 on final damage)
   bool cheer;
 

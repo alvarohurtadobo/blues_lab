@@ -61,6 +61,7 @@ flutter:
     - assets/data/move_scaling.json
     - assets/data/damage_passives.json
     - assets/data/master_passives.json
+    - assets/data/lucky_skills.json
     - assets/img/
     - assets/img/battle/
 

@@ -318,6 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onToggleExpand: () =>
                       setState(() => _expandedRight = !_expandedRight),
                   superAwakeningLevel: selectedPair.hasSuperAwakening ? (_moveLevel - 5).clamp(0, 5) : 0,
+                  luckySkills: data.luckySkills,
                 ),
               ),
             ],
@@ -339,6 +340,7 @@ class RightPanel extends StatelessWidget {
     required this.expanded,
     required this.onToggleExpand,
     required this.superAwakeningLevel,
+    required this.luckySkills,
   });
 
   final SyncPairData pair;
@@ -349,6 +351,7 @@ class RightPanel extends StatelessWidget {
   final bool expanded;
   final VoidCallback onToggleExpand;
   final int superAwakeningLevel;
+  final List<LuckySkillDef> luckySkills;
 
   @override
   Widget build(BuildContext context) {
@@ -426,6 +429,7 @@ class RightPanel extends StatelessWidget {
                     moveLevel: moveLevel,
                     expanded: expanded,
                     superAwakeningLevel: superAwakeningLevel,
+                    luckySkills: luckySkills,
                   ),
           ),
         ],
@@ -1391,6 +1395,7 @@ class DamageCalculatorPanel extends StatefulWidget {
     required this.moveLevel,
     this.expanded = false,
     required this.superAwakeningLevel,
+    required this.luckySkills,
   });
 
   final SyncPairData pair;
@@ -1398,6 +1403,7 @@ class DamageCalculatorPanel extends StatefulWidget {
   final int moveLevel;
   final bool expanded;
   final int superAwakeningLevel;
+  final List<LuckySkillDef> luckySkills;
 
   @override
   State<DamageCalculatorPanel> createState() => _DamageCalculatorPanelState();
@@ -1417,6 +1423,13 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     super.didUpdateWidget(old);
     if (old.pair != widget.pair) {
       _battle.ally.pair = widget.pair;
+      final ls = _battle.ally.luckySkill;
+      if (ls != null) {
+        final available = widget.luckySkills.where((d) => d.isAvailableFor(widget.pair.role, pairName: widget.pair.displayName));
+        if (!available.any((d) => d.passive.name == ls.name)) {
+          _battle.ally.luckySkill = null;
+        }
+      }
     }
   }
 
@@ -1445,6 +1458,53 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   }
 
   static const _circleRegions = CombatantState.circleRegions;
+
+  List<LuckySkillDef> get _availableLuckySkills {
+    final role = widget.pair.role;
+    final name = widget.pair.displayName;
+    return widget.luckySkills.where((ls) => ls.isAvailableFor(role, pairName: name)).toList();
+  }
+
+  Widget _luckySkillRow(BuildContext context, SyncPairData pair, TextStyle labelStyle) {
+    final available = _availableLuckySkills;
+    final current = _battle.ally.luckySkill;
+    final currentName = current?.name;
+
+    return Row(
+      children: [
+        Text('Lucky Skill: ', style: labelStyle),
+        const SizedBox(width: 4),
+        Expanded(
+          child: DropdownButton<String?>(
+            value: currentName,
+            isDense: true,
+            isExpanded: true,
+            style: const TextStyle(fontSize: 12, color: Colors.black),
+            items: [
+              const DropdownMenuItem<String?>(
+                value: null,
+                child: Text('None', style: TextStyle(fontSize: 12)),
+              ),
+              for (final ls in available)
+                DropdownMenuItem<String?>(
+                  value: ls.passive.name,
+                  child: Text(ls.passive.name, style: const TextStyle(fontSize: 12)),
+                ),
+            ],
+            onChanged: (name) => setState(() {
+              if (name == null) {
+                _battle.ally.luckySkill = null;
+              } else {
+                _battle.ally.luckySkill = available
+                    .firstWhere((ls) => ls.passive.name == name)
+                    .passive;
+              }
+            }),
+          ),
+        ),
+      ],
+    );
+  }
 
   List<MasterPassiveData> get _masterPassives {
     for (final mp in widget.pair.masterPassives) {
@@ -1979,6 +2039,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
   List<({String name, double value})> _gridSkillPowerUpDetails(MoveData move) {
     final results = <({String name, double value})>[];
+    final lucky = _battle.ally.luckySkill;
+    if (lucky != null) {
+      final v = _evalDamagePassive(lucky, move);
+      if (v > 0) results.add((name: '★ ${lucky.name}', value: v));
+    }
     final pair = widget.pair;
     for (final dp in pair.damagePassives) {
       // Skip grid skills whose cell is not active
@@ -3096,6 +3161,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           ),
         ],
       ),
+      const SizedBox(height: 6),
+
+      _luckySkillRow(context, pair, labelStyle),
       const SizedBox(height: 6),
 
       if (masterPassives.isNotEmpty) ...[

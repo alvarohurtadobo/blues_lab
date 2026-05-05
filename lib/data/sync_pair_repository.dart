@@ -68,6 +68,34 @@ class SyncPairRepository {
       ));
     }
 
+    // Load lucky skill definitions
+    final lsStr = await rootBundle.loadString('assets/data/lucky_skills.json');
+    final lsList = json.decode(lsStr) as List<dynamic>;
+    final luckySkills = <LuckySkillDef>[];
+    for (final entry in lsList) {
+      final e = entry as Map<String, dynamic>;
+      final name = (e['name'] ?? '') as String;
+      final master = dpMasterMap[name];
+      if (master == null) continue;
+      final dp = DamagePassive(
+        source: 'lucky_skill',
+        name: master.name,
+        type: master.type,
+        appliesTo: master.appliesTo,
+        affects: master.affects,
+        mechanism: master.mechanism,
+        value: master.value,
+        stat: master.stat,
+        statTarget: master.statTarget,
+        conditions: master.conditions,
+        moveName: master.moveName,
+        subPassives: master.subPassives,
+      );
+      final roles = (e['restricted_to_roles'] as List?)?.cast<String>();
+      final pairs = (e['restricted_to_pairs'] as List?)?.cast<String>();
+      luckySkills.add(LuckySkillDef(passive: dp, restrictedToRoles: roles, restrictedToPairs: pairs));
+    }
+
     final pairs =
         jsonList
             .map((entry) => _parsePair(entry as Map<String, dynamic>, scalingMap, dpMasterMap, mpMap))
@@ -78,7 +106,7 @@ class SyncPairRepository {
             return rightDate.compareTo(leftDate);
           });
 
-    return ParsedData(pairs: pairs);
+    return ParsedData(pairs: pairs, luckySkills: luckySkills);
   }
 
   SyncPairData _parsePair(Map<String, dynamic> jsonMap, Map<String, MoveScaling> scalingMap, Map<String, DamagePassive> dpMasterMap, Map<String, List<MasterPassiveData>> mpMap) {
