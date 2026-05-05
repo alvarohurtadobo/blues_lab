@@ -11284,5 +11284,24 @@
         ],
         "move_name": "",
         "sub_passives": []
-    }
+    },
+    {"name":"Brain Sync 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"stat_is_raised","value":4,"stat":"spa","stat_target":"self","conditions":[],"move_name":"","sub_passives":[]},
+    {"name":"Shower Power 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["rainy"]],"move_name":"","sub_passives":[]},
+    {"name":"Heavy Hail 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["hail"]],"move_name":"","sub_passives":[]},
+    {"name":"Sand Blaster 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["sandstorm"]],"move_name":"","sub_passives":[]},
+    {"name":"Clear Sync-Up 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["no_weather"]],"move_name":"","sub_passives":[]},
+    {"name":"Grassy Terrain: S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["grassy_terrain"]],"move_name":"","sub_passives":[]},
+    {"name":"Psychic Terrain: S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["psychic_terrain"]],"move_name":"","sub_passives":[]},
+    {"name":"Rock Zone: S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["rock_zone"]],"move_name":"","sub_passives":[]},
+    {"name":"Speedster's Sync 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"stat_is_raised","value":4,"stat":"spe","stat_target":"self","conditions":[],"move_name":"","sub_passives":[]},
+    {"name":"Scholar's Sync (Sp. Def) 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"stat_is_raised","value":4,"stat":"spd","stat_target":"self","conditions":[],"move_name":"","sub_passives":[]},
+    {"name":"Static Shock 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["paralyzed"]],"move_name":"","sub_passives":[]},
+    {"name":"Status Cond: S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["any_status"]],"move_name":"","sub_passives":[]},
+    {"name":"Trap and Sync 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["trapped"]],"move_name":"","sub_passives":[]},
+    {"name":"Unova C (Defensive): S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["theme_THMD_5"]],"move_name":"","sub_passives":[]},
+    {"name":"Virulent Toxin 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["poisoned"]],"move_name":"","sub_passives":[]},
+    {"name":"Circle: S-Moves ↑ 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["theme_THM"]],"move_name":"","sub_passives":[]},
+    {"name":"Double Down 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"flat_boost","value":4,"stat":"","stat_target":"","conditions":[["super_efective"]],"move_name":"","sub_passives":[]},
+    {"name":"Slo-pponent Sync 4","type":"powerup","applies_to":"sync_move","affects":"self","mechanism":"stat_is_lowered","value":4,"stat":"spe","stat_target":"target","conditions":[],"move_name":"","sub_passives":[]},
+    {"name":"Sp. Atk ↑: Max Moves ↑ 3","type":"powerup","applies_to":"max_move","affects":"self","mechanism":"stat_is_raised","value":3,"stat":"spa","stat_target":"self","conditions":[],"move_name":"","sub_passives":[]}
 ]

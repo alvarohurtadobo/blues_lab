@@ -1462,7 +1462,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   List<LuckySkillDef> get _availableLuckySkills {
     final role = widget.pair.role;
     final name = widget.pair.displayName;
-    return widget.luckySkills.where((ls) => ls.isAvailableFor(role, pairName: name)).toList();
+    final all = widget.luckySkills.where((ls) => ls.isAvailableFor(role, pairName: name)).toList();
+    all.sort((a, b) {
+      final aExclusive = a.restrictedToPairs != null ? 0 : 1;
+      final bExclusive = b.restrictedToPairs != null ? 0 : 1;
+      if (aExclusive != bExclusive) return aExclusive.compareTo(bExclusive);
+      return a.passive.name.compareTo(b.passive.name);
+    });
+    return all;
   }
 
   Widget _luckySkillRow(BuildContext context, SyncPairData pair, TextStyle labelStyle) {
@@ -1480,6 +1487,19 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
             isDense: true,
             isExpanded: true,
             style: const TextStyle(fontSize: 12, color: Colors.black),
+            selectedItemBuilder: (context) => [
+              const Text('None', style: TextStyle(fontSize: 12)),
+              for (final ls in available)
+                Row(
+                  children: [
+                    if (ls.restrictedToPairs != null) ...[
+                      const Icon(Icons.star, size: 12, color: Color(0xFFFFAA00)),
+                      const SizedBox(width: 4),
+                    ],
+                    Flexible(child: Text(ls.passive.name, style: const TextStyle(fontSize: 12))),
+                  ],
+                ),
+            ],
             items: [
               const DropdownMenuItem<String?>(
                 value: null,
@@ -1488,7 +1508,15 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
               for (final ls in available)
                 DropdownMenuItem<String?>(
                   value: ls.passive.name,
-                  child: Text(ls.passive.name, style: const TextStyle(fontSize: 12)),
+                  child: ls.restrictedToPairs != null
+                      ? Row(
+                          children: [
+                            const Icon(Icons.star, size: 12, color: Color(0xFFFFAA00)),
+                            const SizedBox(width: 4),
+                            Flexible(child: Text(ls.passive.name, style: const TextStyle(fontSize: 12))),
+                          ],
+                        )
+                      : Text(ls.passive.name, style: const TextStyle(fontSize: 12)),
                 ),
             ],
             onChanged: (name) => setState(() {
