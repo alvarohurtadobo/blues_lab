@@ -3504,7 +3504,8 @@
           "Cobalt Justice Fighting Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 1,
@@ -4375,7 +4376,8 @@
           "Every Emotion Psychic Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 1,
@@ -6144,7 +6146,8 @@
           "Rumbling Thunder Electric Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 1,
@@ -7891,7 +7894,8 @@
           "Ancient Iron Steel Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 1,
@@ -9630,7 +9634,8 @@
           "Fire Sync Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 2,
@@ -16888,6 +16893,12 @@
         "name": "Shower Power 5",
         "source": "grid_skill",
         "cellNumber": 32
+      },
+      {
+        "name": "Raging Rain 2",
+        "moveName": "Water Gun",
+        "source": "grid_skill",
+        "cellNumber": 14
       }
     ]
   },
@@ -19497,7 +19508,8 @@
           "Zap-tastic Electric Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 4,
@@ -23897,6 +23909,10 @@
         "name": "Smarty-Pants",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -29142,6 +29158,12 @@
         "name": "Critical Strike 2",
         "source": "grid_skill",
         "cellNumber": 27
+      },
+      {
+        "name": "Smart Cookie",
+        "moveName": "Cross Chop",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -30876,7 +30898,8 @@
           "Elder’s Experience Poison Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 9,
@@ -32808,6 +32831,12 @@
         "name": "Super Powered 5",
         "source": "grid_skill",
         "cellNumber": 54
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Waterfall",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -33781,6 +33810,12 @@
         "name": "Super Powered 5",
         "source": "grid_skill",
         "cellNumber": 54
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Waterfall",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -35644,6 +35679,12 @@
         "name": "Super Powered 5",
         "source": "grid_skill",
         "cellNumber": 54
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Waterfall",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -38500,7 +38541,8 @@
           "Crystal Clear Surf": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 11,
@@ -39463,6 +39505,12 @@
       {
         "name": "Critical Strike 2",
         "source": "passive"
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Twineedle",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -40329,7 +40377,8 @@
           "Always Researching Bug Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 11,
@@ -46538,6 +46587,12 @@
         "name": "Dragon Guard",
         "source": "grid_skill",
         "cellNumber": 38
+      },
+      {
+        "name": "Paralysis Synergy 5",
+        "moveName": "Draco Meteor",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -50912,6 +50967,12 @@
         "name": "Sync Power Flux",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Confusion Synergy 2",
+        "moveName": "Stored Power",
+        "source": "grid_skill",
+        "cellNumber": 17
       }
     ]
   },
@@ -51980,6 +52041,12 @@
         "name": "Devastation",
         "source": "grid_skill",
         "cellNumber": 51
+      },
+      {
+        "name": "Overpower",
+        "moveName": "Dark Pulse",
+        "source": "grid_skill",
+        "cellNumber": 25
       }
     ]
   },
@@ -60440,7 +60507,8 @@
           "Good Times Draco Meteor": 30
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 19,
@@ -66443,6 +66511,18 @@
         "description": "Steamed Up Tera Blast: Power ↑ 25",
         "colorKind": "🟩 Green (Move Boost)",
         "moveLevel": 3
+      }
+    ],
+    "damagePassives": [
+      {
+        "name": "Superduper Effective 3",
+        "source": "grid_skill",
+        "cellNumber": 22
+      },
+      {
+        "name": "Solar Flare 9",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -76346,7 +76426,8 @@
           "Glimmering Gold Ghost Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 27,
@@ -77209,7 +77290,8 @@
           "Righteous Heart Dragon Claw": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 28,
@@ -84352,7 +84434,8 @@
           "Grow Up Right Grass Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 29,
@@ -85330,6 +85413,12 @@
       {
         "name": "Piercing Gaze",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Close Combat",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -87939,6 +88028,18 @@
         "name": "Double Down 5",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 2",
+        "moveName": "Leaf Storm",
+        "source": "grid_skill",
+        "cellNumber": 17
+      },
+      {
+        "name": "Charging Sun 3",
+        "moveName": "Leaf Storm",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -89695,6 +89796,12 @@
       {
         "name": "On the Ropes 3",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Drain Punch",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -90567,6 +90674,12 @@
       {
         "name": "On the Ropes 3",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Drain Punch",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -95848,7 +95961,8 @@
           "Overpowering Determination Fire Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 36,
@@ -97589,6 +97703,12 @@
       {
         "name": "Factory Knowledge",
         "source": "passive"
+      },
+      {
+        "name": "Paralysis Synergy 3",
+        "moveName": "Discharge",
+        "source": "grid_skill",
+        "cellNumber": 22
       }
     ]
   },
@@ -100207,7 +100327,8 @@
           "Itching for a Battle Water Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 38,
@@ -101984,6 +102105,12 @@
         "name": "Sinnoh C (Spec): Team S-Moves ↑ 2",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Brainteaser",
+        "moveName": "Seed Flare",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -107510,6 +107637,12 @@
         "name": "Unova C (Defensive): S-Moves ↑ 5",
         "source": "grid_skill",
         "cellNumber": 89
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Seed Bomb",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -109503,6 +109636,12 @@
         "name": "Unova C (Defensive): S-Moves ↑ 5",
         "source": "grid_skill",
         "cellNumber": 89
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Seed Bomb",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -118476,6 +118615,12 @@
         "name": "Invigorating Hail 3",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Freeze Synergy 5",
+        "moveName": "Ice Beam",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -121111,6 +121256,12 @@
       {
         "name": "Power Reserves 2",
         "source": "passive"
+      },
+      {
+        "name": "Confusion Boon 5",
+        "moveName": "Outrage",
+        "source": "grid_skill",
+        "cellNumber": 36
       }
     ]
   },
@@ -123007,6 +123158,18 @@
       {
         "name": "Power Loving",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 1",
+        "moveName": "Breaking Swipe",
+        "source": "grid_skill",
+        "cellNumber": 33
+      },
+      {
+        "name": "Superduper Effective 2",
+        "moveName": "Snarl",
+        "source": "grid_skill",
+        "cellNumber": 44
       }
     ]
   },
@@ -127534,6 +127697,12 @@
         "name": "Sync Induction 9",
         "source": "grid_skill",
         "cellNumber": 41
+      },
+      {
+        "name": "Poison Zone: Moves ↑ 3",
+        "moveName": "Overdrive",
+        "source": "grid_skill",
+        "cellNumber": 30
       }
     ]
   },
@@ -131038,6 +131207,12 @@
       {
         "name": "Gritty 5",
         "source": "passive"
+      },
+      {
+        "name": "Insult to Injury",
+        "moveName": "Rock Smash",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -133818,7 +133993,8 @@
           "Fervent Fighter Divine Power-Up Punch": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 49,
@@ -136674,7 +136850,7 @@
       },
       {
         "name": "Shadow Fighter",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Good Form",
@@ -136683,6 +136859,12 @@
       {
         "name": "Better Prepared 9",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Shadow Punch",
+        "source": "grid_skill",
+        "cellNumber": 24
       }
     ]
   },
@@ -139290,6 +139472,24 @@
         "name": "Double Down 5",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Freeze Synergy 3",
+        "moveName": "Ice Fang",
+        "source": "grid_skill",
+        "cellNumber": 16
+      },
+      {
+        "name": "Power Reserves 2",
+        "moveName": "Avalanche",
+        "source": "grid_skill",
+        "cellNumber": 26
+      },
+      {
+        "name": "Superduper Effective 2",
+        "moveName": "Avalanche",
+        "source": "grid_skill",
+        "cellNumber": 28
       }
     ]
   },
@@ -140164,6 +140364,12 @@
         "name": "Double Down 5",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Foul Fighting 3",
+        "moveName": "Water Pulse",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -141940,6 +142146,12 @@
         "name": "Inertia",
         "source": "grid_skill",
         "cellNumber": 44
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Thunder Shock",
+        "source": "grid_skill",
+        "cellNumber": 17
       }
     ]
   },
@@ -143522,6 +143734,18 @@
         "colorKind": "🌈 Rainbow (Sync Move)",
         "moveLevel": 3
       }
+    ],
+    "damagePassives": [
+      {
+        "name": "Haymaker",
+        "source": "grid_skill",
+        "cellNumber": 26
+      },
+      {
+        "name": "Hunter’s Instinct",
+        "source": "grid_skill",
+        "cellNumber": 46
+      }
     ]
   },
   {
@@ -144522,11 +144746,23 @@
       },
       {
         "name": "Guardian Deity of Conflict",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Team Power Induction 2",
         "source": "passive"
+      },
+      {
+        "name": "Whimsical Power 9",
+        "moveName": "Dazzling Gleam",
+        "source": "grid_skill",
+        "cellNumber": 30
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Dazzling Gleam",
+        "source": "grid_skill",
+        "cellNumber": 50
       }
     ]
   },
@@ -146298,6 +146534,12 @@
         "name": "Paralysis Synergy 3",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Paralysis Synergy 2",
+        "moveName": "Nuzzle",
+        "source": "grid_skill",
+        "cellNumber": 24
       }
     ]
   },
@@ -156963,7 +157205,8 @@
           "Say Cheese Ghost Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 63,
@@ -158728,6 +158971,12 @@
         "name": "HP Advantage 3",
         "source": "grid_skill",
         "cellNumber": 33
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Shadow Sneak",
+        "source": "grid_skill",
+        "cellNumber": 34
       }
     ]
   },
@@ -161456,6 +161705,12 @@
         "name": "Brainpower",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Snarl",
+        "source": "grid_skill",
+        "cellNumber": 14
       }
     ]
   },
@@ -166932,6 +167187,18 @@
       {
         "name": "Super Powered 3",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Swift",
+        "source": "grid_skill",
+        "cellNumber": 43
+      },
+      {
+        "name": "Power Posture",
+        "moveName": "Swift",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -167798,7 +168065,8 @@
           "Knock Ya Down Grass Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 65,
@@ -168854,6 +169122,12 @@
         "name": "Sync Power Flux",
         "source": "grid_skill",
         "cellNumber": 54
+      },
+      {
+        "name": "Critical Strike 3",
+        "moveName": "Air Cutter",
+        "source": "grid_skill",
+        "cellNumber": 28
       }
     ]
   },
@@ -170847,6 +171121,12 @@
         "name": "Piercing Gaze",
         "source": "grid_skill",
         "cellNumber": 50
+      },
+      {
+        "name": "Superduper Effective 2",
+        "moveName": "Double-Edge",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -178412,6 +178692,12 @@
         "name": "Rude Awakening 5",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Critical Strike 3",
+        "moveName": "Dazzling Gleam",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -180282,7 +180568,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 67,
@@ -182112,7 +182399,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 67,
@@ -183063,7 +183351,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 67,
@@ -184949,6 +185238,10 @@
       },
       {
         "name": "Ultracold Air",
+        "source": "passive"
+      },
+      {
+        "name": "Piercing Blows",
         "source": "passive"
       }
     ]
@@ -186839,7 +187132,7 @@
       },
       {
         "name": "Paleozoic Hunting Skills",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -189555,7 +189848,8 @@
           "Strengthened Spirit Fighting Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 68,
@@ -194308,6 +194602,18 @@
       {
         "name": "Tough Cookie",
         "source": "passive"
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Diamond Storm",
+        "source": "grid_skill",
+        "cellNumber": 17
+      },
+      {
+        "name": "Critical Strike 1",
+        "moveName": "Stone Edge",
+        "source": "grid_skill",
+        "cellNumber": 26
       }
     ]
   },
@@ -195174,7 +195480,8 @@
           "Never Give Up Fighting Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 68,
@@ -196174,6 +196481,12 @@
         "name": "Confusion Synergy 2",
         "source": "grid_skill",
         "cellNumber": 51
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Searing Shot",
+        "source": "grid_skill",
+        "cellNumber": 22
       }
     ]
   },
@@ -199028,7 +199341,13 @@
       },
       {
         "name": "The Shining Beauty",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Paralysis Synergy 4",
+        "moveName": "Nuzzle",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -199904,6 +200223,12 @@
       {
         "name": "Super Powered 5",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Metronome",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -203732,7 +204057,8 @@
           "Eerie Eyes Dark Impact": 30
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 71,
@@ -211999,6 +212325,12 @@
         "name": "Insult to Injury",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Critical Strike 3",
+        "moveName": "Metal Burst",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -214826,7 +215158,8 @@
           "World-Eroding Poison Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 74,
@@ -217618,6 +217951,18 @@
       {
         "name": "MAX Double Down 5",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Poison Jab",
+        "source": "grid_skill",
+        "cellNumber": 24
+      },
+      {
+        "name": "Furious Brawn",
+        "moveName": "Poison Jab",
+        "source": "grid_skill",
+        "cellNumber": 27
       }
     ]
   },
@@ -218514,7 +218859,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 75,
@@ -228980,7 +229326,13 @@
       },
       {
         "name": "A Journey in Green Awaits",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Razor Leaf",
+        "source": "grid_skill",
+        "cellNumber": 32
       }
     ]
   },
@@ -232929,7 +233281,7 @@
       },
       {
         "name": "Superior and Righteous Heart",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -234684,6 +235036,18 @@
       {
         "name": "Power Flux 5",
         "source": "passive"
+      },
+      {
+        "name": "Dire Rain 2",
+        "moveName": "Bounce",
+        "source": "grid_skill",
+        "cellNumber": 27
+      },
+      {
+        "name": "Paralysis Synergy 1",
+        "moveName": "Hyper Beam",
+        "source": "grid_skill",
+        "cellNumber": 42
       }
     ]
   },
@@ -236868,11 +237232,23 @@
       },
       {
         "name": "Celestic’s Curious Mind",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Surging Sand 5",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 3",
+        "moveName": "Slash",
+        "source": "grid_skill",
+        "cellNumber": 17
+      },
+      {
+        "name": "Critical Strike 9",
+        "moveName": "Slash",
+        "source": "grid_skill",
+        "cellNumber": 56
       }
     ]
   },
@@ -239541,7 +239917,8 @@
           "Rumored Seaside Beauty Water Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 78,
@@ -240626,6 +241003,12 @@
         "name": "Furious Brain",
         "source": "grid_skill",
         "cellNumber": 60
+      },
+      {
+        "name": "Furious Brawn",
+        "moveName": "Dragon Breath",
+        "source": "grid_skill",
+        "cellNumber": 27
       }
     ]
   },
@@ -242568,6 +242951,12 @@
         "name": "Smarty-Pants",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 1",
+        "moveName": "Shadow Ball",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -245322,6 +245711,12 @@
         "name": "Power Posture",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Harry 2",
+        "moveName": "Dragon Claw",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -249189,7 +249584,7 @@
       },
       {
         "name": "Proud of Being the Best",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Power Chain 3",
@@ -250066,7 +250461,8 @@
           "Tempered Armor Steel Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 81,
@@ -251088,6 +251484,12 @@
       {
         "name": "Good Form",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Draco Meteor",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -252853,6 +253255,18 @@
       {
         "name": "Invigorating Hail 5",
         "source": "passive"
+      },
+      {
+        "name": "Freeze Synergy 3",
+        "moveName": "Icicle Crash",
+        "source": "grid_skill",
+        "cellNumber": 28
+      },
+      {
+        "name": "Harry 2",
+        "moveName": "Icicle Crash",
+        "source": "grid_skill",
+        "cellNumber": 40
       }
     ]
   },
@@ -257679,6 +258093,12 @@
         "name": "Brain Sync 5",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Disarming Voice",
+        "source": "grid_skill",
+        "cellNumber": 36
       }
     ]
   },
@@ -259567,6 +259987,12 @@
       {
         "name": "Kanto Journey Legacy",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Razor Leaf",
+        "source": "grid_skill",
+        "cellNumber": 13
       }
     ]
   },
@@ -260798,6 +261224,24 @@
         "description": "Grown Up So Much Thunderbolt: Power ↑ 25",
         "colorKind": "🌈 Rainbow (Sync Move)",
         "moveLevel": 3
+      }
+    ],
+    "damagePassives": [
+      {
+        "name": "Power Induction 1",
+        "source": "grid_skill",
+        "cellNumber": 30
+      },
+      {
+        "name": "Brainpower",
+        "source": "grid_skill",
+        "cellNumber": 62
+      },
+      {
+        "name": "Chase Down 3",
+        "source": "grid_skill",
+        "cellNumber": 63,
+        "moveName": "Everlasting Thunderbolt"
       }
     ]
   },
@@ -272293,7 +272737,8 @@
           "Shake Things Up Savage Spin-Out": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 88,
@@ -274144,6 +274589,12 @@
         "name": "Haymaker",
         "source": "grid_skill",
         "cellNumber": 37
+      },
+      {
+        "name": "Confusion Synergy 1",
+        "moveName": "Dynamic Punch",
+        "source": "grid_skill",
+        "cellNumber": 17
       }
     ]
   },
@@ -276994,6 +277445,12 @@
       {
         "name": "Stationary Target 5",
         "source": "passive"
+      },
+      {
+        "name": "Dire Rain 1",
+        "moveName": "Brine",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -277873,6 +278330,12 @@
         "name": "Charging Sun 3",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Shadow Ball",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -281513,6 +281976,18 @@
       {
         "name": "Charging Sun 6",
         "source": "passive"
+      },
+      {
+        "name": "Charging Sun 3",
+        "moveName": "Solar Beam",
+        "source": "grid_skill",
+        "cellNumber": 16
+      },
+      {
+        "name": "Burn Synergy 3",
+        "moveName": "Sacred Fire",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -284610,7 +285085,19 @@
       },
       {
         "name": "The Prince with Green Hair",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Disarming Voice",
+        "source": "grid_skill",
+        "cellNumber": 7
+      },
+      {
+        "name": "Foul Fighting 5",
+        "moveName": "Disarming Voice",
+        "source": "grid_skill",
+        "cellNumber": 22
       }
     ]
   },
@@ -288292,7 +288779,8 @@
           "Hard Cold Sharp Strong Steel Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 93,
@@ -289328,6 +289816,12 @@
         "name": "Tough Cookie",
         "source": "grid_skill",
         "cellNumber": 21
+      },
+      {
+        "name": "Surging Sand 9",
+        "moveName": "Gyro Ball",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -291169,7 +291663,8 @@
           "Snowy Night’s Guide Electric Beam": 30
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 93,
@@ -292947,6 +293442,12 @@
         "name": "Overpower",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Metallic Power 9",
+        "moveName": "Flash Cannon",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -299193,7 +299694,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 95,
@@ -305528,6 +306030,12 @@
       {
         "name": "Ramming Speed",
         "source": "passive"
+      },
+      {
+        "name": "Troublemaker 1",
+        "moveName": "Stun Spore",
+        "source": "grid_skill",
+        "cellNumber": 42
       }
     ]
   },
@@ -309433,7 +309941,8 @@
           "See What Others Cannot Ghost Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 99,
@@ -310286,7 +310795,8 @@
           "Tales of Mystery Ghost Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 99,
@@ -313131,7 +313641,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 100,
@@ -314000,6 +314511,18 @@
       {
         "name": "Critical Strike 9",
         "source": "passive"
+      },
+      {
+        "name": "Confusion Synergy 3",
+        "moveName": "Water Pulse",
+        "source": "grid_skill",
+        "cellNumber": 26
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Hydro Pump",
+        "source": "grid_skill",
+        "cellNumber": 36
       }
     ]
   },
@@ -314989,7 +315512,19 @@
       },
       {
         "name": "Dark, Slumbering World",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Good Night-mare 5",
+        "moveName": "Dark Pulse",
+        "source": "grid_skill",
+        "cellNumber": 33
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Dark Pulse",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -317730,6 +318265,12 @@
         "name": "Power Flux 3",
         "source": "grid_skill",
         "cellNumber": 27
+      },
+      {
+        "name": "Superduper Effective 1",
+        "moveName": "Blizzard",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -325039,6 +325580,18 @@
       {
         "name": "Healthy Benefits 5",
         "source": "passive"
+      },
+      {
+        "name": "Power Flux 3",
+        "moveName": "Moongeist Beam",
+        "source": "grid_skill",
+        "cellNumber": 17
+      },
+      {
+        "name": "Critical Strike 1",
+        "moveName": "Moonblast",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -326816,6 +327369,12 @@
       {
         "name": "Ally Speed ↑: Moves ↑ 2",
         "source": "passive"
+      },
+      {
+        "name": "Troublemaker 1",
+        "moveName": "Sing",
+        "source": "grid_skill",
+        "cellNumber": 32
       }
     ]
   },
@@ -327690,7 +328249,8 @@
           "Bee-autiful Bug Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 103,
@@ -328555,7 +329115,8 @@
           "Curious Flavor Ghost Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 104,
@@ -328772,7 +329333,8 @@
         },
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 105,
@@ -331531,6 +332093,12 @@
         "name": "Double Down 3",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Paralysis Synergy 2",
+        "moveName": "Thunder",
+        "source": "grid_skill",
+        "cellNumber": 27
       }
     ]
   },
@@ -334374,6 +334942,12 @@
         "name": "Inertia",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Quick Attack",
+        "source": "grid_skill",
+        "cellNumber": 26
       }
     ]
   },
@@ -335378,6 +335952,18 @@
         "name": "Furious Brain",
         "source": "grid_skill",
         "cellNumber": 53
+      },
+      {
+        "name": "Critical Strike 5",
+        "moveName": "Struggle Bug",
+        "source": "grid_skill",
+        "cellNumber": 16
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Struggle Bug",
+        "source": "grid_skill",
+        "cellNumber": 45
       }
     ]
   },
@@ -337338,6 +337924,24 @@
       {
         "name": "Power Flux 3",
         "source": "passive"
+      },
+      {
+        "name": "Brutal Clarity",
+        "moveName": "Aerial Ace",
+        "source": "grid_skill",
+        "cellNumber": 13
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Aerial Ace",
+        "source": "grid_skill",
+        "cellNumber": 37
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Aerial Ace",
+        "source": "grid_skill",
+        "cellNumber": 45
       }
     ]
   },
@@ -340931,6 +341535,10 @@
       {
         "name": "The Will to Protect",
         "source": "passive"
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -342805,6 +343413,12 @@
         "name": "Haymaker",
         "source": "grid_skill",
         "cellNumber": 50
+      },
+      {
+        "name": "Superduper Effective 1",
+        "moveName": "Play Rough",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -343865,11 +344479,21 @@
       },
       {
         "name": "Bursting Fiery Passion",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Brawn Sync 5",
         "source": "passive"
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Bounce",
+        "source": "grid_skill",
+        "cellNumber": 29
       }
     ]
   },
@@ -346748,6 +347372,12 @@
       {
         "name": "Critical Strike 3",
         "source": "passive"
+      },
+      {
+        "name": "Foul Fighting 3",
+        "moveName": "Air Slash",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -351383,7 +352013,23 @@
       },
       {
         "name": "Unova’s Hero",
+        "source": "super_awakening"
+      },
+      {
+        "name": "Piercing Blows",
         "source": "passive"
+      },
+      {
+        "name": "Paralysis Synergy 3",
+        "moveName": "Outrage",
+        "source": "grid_skill",
+        "cellNumber": 26
+      },
+      {
+        "name": "Confusion Boon 3",
+        "moveName": "Outrage",
+        "source": "grid_skill",
+        "cellNumber": 42
       }
     ]
   },
@@ -352305,6 +352951,10 @@
         "name": "Piercing Gaze",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -353188,6 +353838,12 @@
         "name": "Furious Brain",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Snarl",
+        "source": "grid_skill",
+        "cellNumber": 26
       }
     ]
   },
@@ -354175,7 +354831,17 @@
       },
       {
         "name": "An Equation to Change the World",
+        "source": "super_awakening"
+      },
+      {
+        "name": "Piercing Blows",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Ice Beam",
+        "source": "grid_skill",
+        "cellNumber": 50
       }
     ]
   },
@@ -355120,6 +355786,12 @@
       {
         "name": "Dizzying Power",
         "source": "passive"
+      },
+      {
+        "name": "Surging Sand 5",
+        "moveName": "Earth Power",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -356064,6 +356736,12 @@
       {
         "name": "Dizzying Power",
         "source": "passive"
+      },
+      {
+        "name": "Surging Sand 5",
+        "moveName": "Earth Power",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -357044,6 +357722,12 @@
       {
         "name": "Dizzying Power",
         "source": "passive"
+      },
+      {
+        "name": "Surging Sand 5",
+        "moveName": "Earth Power",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -357936,6 +358620,12 @@
       {
         "name": "Superduper Effective 5",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Brine",
+        "source": "grid_skill",
+        "cellNumber": 27
       }
     ]
   },
@@ -359975,6 +360665,12 @@
       {
         "name": "Sure Hit | P-Moves & S-Moves Crit",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Thunder",
+        "source": "grid_skill",
+        "cellNumber": 26
       }
     ]
   },
@@ -362039,7 +362735,7 @@
       },
       {
         "name": "Everything I Experienced in Hoenn",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -362902,7 +363598,8 @@
           "Strong Kick to It Bloom Doom": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 114,
@@ -363893,6 +364590,12 @@
       {
         "name": "Power Posture",
         "source": "passive"
+      },
+      {
+        "name": "Power Posture",
+        "moveName": "Trop Kick",
+        "source": "grid_skill",
+        "cellNumber": 45
       }
     ]
   },
@@ -365776,7 +366479,7 @@
       },
       {
         "name": "He Who Weeps and Takes",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Dark Power 5",
@@ -366793,11 +367496,17 @@
       },
       {
         "name": "Power to Wipe Clean an Ugly World",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Searing Surge 5",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Heat Wave",
+        "source": "grid_skill",
+        "cellNumber": 34
       }
     ]
   },
@@ -367690,6 +368399,12 @@
       {
         "name": "Ramming Speed",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Sludge Bomb",
+        "source": "grid_skill",
+        "cellNumber": 27
       }
     ]
   },
@@ -372288,7 +373003,17 @@
       },
       {
         "name": "Spikemuth in the Old Days",
+        "source": "super_awakening"
+      },
+      {
+        "name": "Piercing Blows",
         "source": "passive"
+      },
+      {
+        "name": "Power Induction 5",
+        "moveName": "Sludge Bomb",
+        "source": "grid_skill",
+        "cellNumber": 32
       }
     ]
   },
@@ -375066,7 +375791,8 @@
           "Enjoying the Hype of the Crowd Ground Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 118,
@@ -376058,6 +376784,10 @@
         "name": "Confusion Synergy 1",
         "source": "grid_skill",
         "cellNumber": 37
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -376955,6 +377685,12 @@
         "name": "Heavy Hail 2",
         "source": "grid_skill",
         "cellNumber": 43
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Glacial Lance",
+        "source": "grid_skill",
+        "cellNumber": 17
       }
     ]
   },
@@ -385346,6 +386082,12 @@
         "name": "Power Posture",
         "source": "grid_skill",
         "cellNumber": 34
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Iron Head",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -387317,7 +388059,13 @@
       },
       {
         "name": "Kalos’s Famous Actress",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Superduper Effective 1",
+        "moveName": "Dazzling Gleam",
+        "source": "grid_skill",
+        "cellNumber": 36
       }
     ]
   },
@@ -402582,7 +403330,8 @@
           "Stacked-Up Emotions Continental Crush": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 122,
@@ -406376,7 +407125,7 @@
       },
       {
         "name": "Sandy Selfie",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -407257,7 +408006,8 @@
           "Snapping Up Likes Ground Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 124,
@@ -411778,7 +412528,8 @@
           "Sweet Tooth Ice Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 127,
@@ -412706,6 +413457,18 @@
       {
         "name": "Solar Surge 3",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 1",
+        "moveName": "Solar Beam",
+        "source": "grid_skill",
+        "cellNumber": 33
+      },
+      {
+        "name": "Charging Sun 5",
+        "moveName": "Solar Beam",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -413642,6 +414405,18 @@
       {
         "name": "Shower Surge 3",
         "source": "passive"
+      },
+      {
+        "name": "Paralysis Synergy 1",
+        "moveName": "Thunder",
+        "source": "grid_skill",
+        "cellNumber": 33
+      },
+      {
+        "name": "Raging Rain 5",
+        "moveName": "Thunder",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -418221,7 +418996,7 @@
       },
       {
         "name": "Scales of Life",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Team Weird Vibes 2",
@@ -422751,7 +423526,8 @@
           "Train to the Top Rock Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 133,
@@ -423722,7 +424498,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 133,
@@ -425622,7 +426399,7 @@
       },
       {
         "name": "All Aboard to Victory",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -426616,11 +427393,17 @@
       },
       {
         "name": "Subway Boss in White",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Sand Superiority 3",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 2",
+        "moveName": "Stone Edge",
+        "source": "grid_skill",
+        "cellNumber": 17
       }
     ]
   },
@@ -427324,6 +428107,23 @@
         "description": "Great Battle Fighting Impact: Power ↑ 25",
         "colorKind": "🌈 Rainbow (Sync Move)",
         "moveLevel": 3
+      }
+    ],
+    "damagePassives": [
+      {
+        "name": "Superduper Effective 2",
+        "source": "grid_skill",
+        "cellNumber": 16
+      },
+      {
+        "name": "Insult to Injury",
+        "source": "grid_skill",
+        "cellNumber": 17
+      },
+      {
+        "name": "Haymaker",
+        "source": "grid_skill",
+        "cellNumber": 33
       }
     ]
   },
@@ -429220,7 +430020,7 @@
       },
       {
         "name": "Follow the Rules and Drive Safely",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -431080,7 +431880,19 @@
       },
       {
         "name": "The King Who Treasures Bonds",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Superduper Effective 1",
+        "moveName": "Hyperspace Hole",
+        "source": "grid_skill",
+        "cellNumber": 33
+      },
+      {
+        "name": "Furious Brain",
+        "moveName": "Hyperspace Hole",
+        "source": "grid_skill",
+        "cellNumber": 35
       }
     ]
   },
@@ -434668,7 +435480,8 @@
           "Hellooo Feint Attack": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 138,
@@ -436424,7 +437237,8 @@
           "Staunch Ally Night Slash": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 139,
@@ -439135,6 +439949,12 @@
         "name": "Inertia",
         "source": "grid_skill",
         "cellNumber": 32
+      },
+      {
+        "name": "Foul Fighting 5",
+        "moveName": "Air Slash",
+        "source": "grid_skill",
+        "cellNumber": 24
       }
     ]
   },
@@ -440106,6 +440926,18 @@
       {
         "name": "Critical Strike 3",
         "source": "passive"
+      },
+      {
+        "name": "Critical Strike 5",
+        "moveName": "Brutal Swing",
+        "source": "grid_skill",
+        "cellNumber": 15
+      },
+      {
+        "name": "Critical Strike 3",
+        "moveName": "Night Slash",
+        "source": "grid_skill",
+        "cellNumber": 43
       }
     ]
   },
@@ -442780,6 +443612,12 @@
         "name": "Inertia",
         "source": "grid_skill",
         "cellNumber": 35
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Play Rough",
+        "source": "grid_skill",
+        "cellNumber": 23
       }
     ]
   },
@@ -445605,6 +446443,18 @@
       {
         "name": "Toxic Power 3",
         "source": "passive"
+      },
+      {
+        "name": "Hold Hostage 2",
+        "moveName": "Shadow Ball",
+        "source": "grid_skill",
+        "cellNumber": 14
+      },
+      {
+        "name": "Toxic Power 2",
+        "moveName": "Sludge Bomb",
+        "source": "grid_skill",
+        "cellNumber": 23
       }
     ]
   },
@@ -449231,7 +450081,8 @@
           "Young Studying Professor Steel Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 144,
@@ -452923,6 +453774,12 @@
       {
         "name": "Unparalleled Power",
         "source": "passive"
+      },
+      {
+        "name": "Sharpened Body 5",
+        "moveName": "Earthquake",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -455553,6 +456410,12 @@
       {
         "name": "Pecking Order",
         "source": "passive"
+      },
+      {
+        "name": "Foul Fighting 9",
+        "moveName": "Confusion",
+        "source": "grid_skill",
+        "cellNumber": 16
       }
     ]
   },
@@ -456553,7 +457416,7 @@
       },
       {
         "name": "Stubborn Pink Elite",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Baffle Buff 9",
@@ -459324,7 +460187,7 @@
     "damagePassives": [
       {
         "name": "So Sincere, Yet So Twisted",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -460115,7 +460978,7 @@
     "damagePassives": [
       {
         "name": "So Sincere, Yet So Twisted",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -461027,7 +461890,8 @@
         "statBonus": {},
         "powerBonus": {}
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 149,
@@ -464913,6 +465777,12 @@
         "name": "Brain Sync 8",
         "source": "grid_skill",
         "cellNumber": 27
+      },
+      {
+        "name": "Power Reserves 5",
+        "moveName": "Thunder",
+        "source": "grid_skill",
+        "cellNumber": 45
       }
     ]
   },
@@ -465781,7 +466651,8 @@
           "Spunky Sis Ground Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 154,
@@ -469316,7 +470187,8 @@
           "Severe Battle Style Frost Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 156,
@@ -470175,7 +471047,8 @@
           "Chilling Invitation Frost Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 157,
@@ -471167,10 +472040,14 @@
       },
       {
         "name": "Soothing Sounds in the Woods",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Chase Down 3",
+        "source": "passive"
+      },
+      {
+        "name": "Piercing Blows",
         "source": "passive"
       }
     ]
@@ -482921,7 +483798,8 @@
           "Piece It Together Steel Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 163,
@@ -485778,7 +486656,8 @@
           "Full of Surprises Poison Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 165,
@@ -487439,6 +488318,24 @@
         "colorKind": "🌈 Rainbow (Sync Move)",
         "moveLevel": 3
       }
+    ],
+    "damagePassives": [
+      {
+        "name": "Inertia",
+        "source": "grid_skill",
+        "cellNumber": 43
+      },
+      {
+        "name": "Wounded Power 9",
+        "moveName": "Energy Ball",
+        "source": "grid_skill",
+        "cellNumber": 50
+      },
+      {
+        "name": "Empowering Overgrowth 5",
+        "source": "grid_skill",
+        "cellNumber": 52
+      }
     ]
   },
   {
@@ -488445,6 +489342,12 @@
         "name": "Empowering Overgrowth 5",
         "source": "grid_skill",
         "cellNumber": 52
+      },
+      {
+        "name": "Wounded Power 9",
+        "moveName": "Energy Ball",
+        "source": "grid_skill",
+        "cellNumber": 50
       }
     ]
   },
@@ -491190,6 +492093,10 @@
         "name": "Haymaker",
         "source": "grid_skill",
         "cellNumber": 27
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -496762,6 +497669,12 @@
       {
         "name": "Trap and Buff 5",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Blizzard",
+        "source": "grid_skill",
+        "cellNumber": 40
       }
     ]
   },
@@ -503295,6 +504208,18 @@
         "name": "Static Shock 5",
         "source": "grid_skill",
         "cellNumber": 52
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Thunder Punch",
+        "source": "grid_skill",
+        "cellNumber": 21
+      },
+      {
+        "name": "Speed ↑: Moves ↑ 9",
+        "moveName": "Thunder Punch",
+        "source": "grid_skill",
+        "cellNumber": 23
       }
     ]
   },
@@ -507010,7 +507935,7 @@
       },
       {
         "name": "Conquering Evil",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -510560,6 +511485,10 @@
         "name": "Virulent Toxin 3",
         "source": "grid_skill",
         "cellNumber": 43
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -511437,7 +512366,8 @@
           "Scariest and Cruelest Flying Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 181,
@@ -512440,7 +513370,7 @@
       },
       {
         "name": "Words of the Tower Tycoon",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -514417,7 +515347,7 @@
       },
       {
         "name": "Hard of Heart and Deft of Blade",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Critical Strike 2",
@@ -518056,6 +518986,12 @@
         "name": "Double Down 9",
         "source": "grid_skill",
         "cellNumber": 45
+      },
+      {
+        "name": "Furious Brain",
+        "moveName": "Shell Trap",
+        "source": "grid_skill",
+        "cellNumber": 24
       }
     ]
   },
@@ -520919,7 +521855,7 @@
       },
       {
         "name": "Let’s Go, Eevee!",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -522684,6 +523620,12 @@
       {
         "name": "Pecking Order",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Dazzling Gleam",
+        "source": "grid_skill",
+        "cellNumber": 15
       }
     ]
   },
@@ -523673,7 +524615,7 @@
       },
       {
         "name": "The Supercharged Streamer",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -527315,7 +528257,7 @@
       },
       {
         "name": "Save That in Your Brainspace!",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Piercing Gaze",
@@ -533805,6 +534747,12 @@
         "name": "Haymaker",
         "source": "grid_skill",
         "cellNumber": 46
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Rock Slide",
+        "source": "grid_skill",
+        "cellNumber": 36
       }
     ]
   },
@@ -536567,7 +537515,13 @@
       },
       {
         "name": "Smile of the Arcade Star",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Confusion Synergy 9",
+        "moveName": "Razor Leaf",
+        "source": "grid_skill",
+        "cellNumber": 32
       }
     ]
   },
@@ -539426,6 +540380,12 @@
         "name": "Brainpower",
         "source": "grid_skill",
         "cellNumber": 48
+      },
+      {
+        "name": "Superduper Effective 3",
+        "moveName": "Shadow Ball",
+        "source": "grid_skill",
+        "cellNumber": 26
       }
     ]
   },
@@ -540421,6 +541381,12 @@
         "name": "Superduper Effective 3",
         "source": "grid_skill",
         "cellNumber": 29
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Twin Beam",
+        "source": "grid_skill",
+        "cellNumber": 22
       }
     ]
   },
@@ -541405,7 +542371,7 @@
       },
       {
         "name": "First of the Paldea Elite Four",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -545643,6 +546609,13 @@
         "colorKind": "🌈 Rainbow (Sync Move)",
         "moveLevel": 3
       }
+    ],
+    "damagePassives": [
+      {
+        "name": "Furious Brain",
+        "source": "grid_skill",
+        "cellNumber": 45
+      }
     ]
   },
   {
@@ -546625,7 +547598,19 @@
       },
       {
         "name": "Won’t Work on Me!",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Superduper Effective 5",
+        "moveName": "Play Rough",
+        "source": "grid_skill",
+        "cellNumber": 49
+      },
+      {
+        "name": "Paralysis Synergy 5",
+        "moveName": "Play Rough",
+        "source": "grid_skill",
+        "cellNumber": 52
       }
     ]
   },
@@ -548622,6 +549607,10 @@
       {
         "name": "Opp Rebuff ↓: Team Moves ↑ 2",
         "source": "passive"
+      },
+      {
+        "name": "Piercing Blows",
+        "source": "passive"
       }
     ]
   },
@@ -549498,7 +550487,8 @@
           "Floral Aroma Normal Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 205,
@@ -550209,6 +551199,18 @@
         "description": "Just Let Me Sleep Tera Blast: Power ↑ 25",
         "colorKind": "🟩 Green (Move Boost)",
         "moveLevel": 3
+      }
+    ],
+    "damagePassives": [
+      {
+        "name": "Dirty Fighting 3",
+        "source": "grid_skill",
+        "cellNumber": 14
+      },
+      {
+        "name": "Brainpower",
+        "source": "grid_skill",
+        "cellNumber": 37
       }
     ]
   },
@@ -552066,7 +553068,7 @@
       },
       {
         "name": "The Ever-Burning Man",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -553833,7 +554835,8 @@
           "Burn Upwards, Aim Higher Fire Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 206,
@@ -556746,7 +557749,7 @@
       },
       {
         "name": "Elegant Psychic Powers",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -557748,7 +558751,13 @@
       },
       {
         "name": "The Arena Tycoon’s Judgment",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Speed ↑: Moves ↑ 5",
+        "moveName": "Bullet Seed",
+        "source": "grid_skill",
+        "cellNumber": 51
       }
     ]
   },
@@ -558734,7 +559743,7 @@
       },
       {
         "name": "Bursting with Energy",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -563345,7 +564354,8 @@
           "Elegant Eldest Sister Grass Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 212,
@@ -564228,6 +565238,12 @@
         "name": "Ground Guard",
         "source": "grid_skill",
         "cellNumber": 44
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Flame Charge",
+        "source": "grid_skill",
+        "cellNumber": 46
       }
     ]
   },
@@ -566979,6 +567995,12 @@
         "name": "Furious Brawn",
         "source": "grid_skill",
         "cellNumber": 22
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Iron Head",
+        "source": "grid_skill",
+        "cellNumber": 52
       }
     ]
   },
@@ -569840,7 +570862,7 @@
       },
       {
         "name": "RAAAAAAAAAH!!!",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -582306,6 +583328,12 @@
         "name": "Sync Induction 5",
         "source": "grid_skill",
         "cellNumber": 48
+      },
+      {
+        "name": "Ramming Speed",
+        "moveName": "Electro Drift",
+        "source": "grid_skill",
+        "cellNumber": 29
       }
     ]
   },
@@ -586151,7 +587179,7 @@
       },
       {
         "name": "The Miner King’s Daughter",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -588805,7 +589833,8 @@
           "Shout from the Summit Golden Bug Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 230,
@@ -589823,11 +590852,17 @@
       },
       {
         "name": "He Who Overcame the Challenge",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Been Through Enough",
         "source": "passive"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Struggle Bug",
+        "source": "grid_skill",
+        "cellNumber": 32
       }
     ]
   },
@@ -590701,6 +591736,12 @@
         "name": "Interference Sync 9",
         "source": "grid_skill",
         "cellNumber": 33
+      },
+      {
+        "name": "Confusion Synergy 5",
+        "moveName": "Sludge Bomb",
+        "source": "grid_skill",
+        "cellNumber": 44
       }
     ]
   },
@@ -593472,7 +594513,8 @@
           "Get Ready to Eat Dirt Bug Beam": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 233,
@@ -596115,6 +597157,18 @@
         "colorKind": "🟩 Green (Move Boost)",
         "moveLevel": 3
       }
+    ],
+    "damagePassives": [
+      {
+        "name": "Furious Brain",
+        "source": "grid_skill",
+        "cellNumber": 18
+      },
+      {
+        "name": "Brainpower",
+        "source": "grid_skill",
+        "cellNumber": 39
+      }
     ]
   },
   {
@@ -598128,7 +599182,8 @@
           "Big Sis Warden Giga Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 237,
@@ -599160,7 +600215,7 @@
       },
       {
         "name": "Traveler with a Thing for Photography",
-        "source": "passive"
+        "source": "super_awakening"
       },
       {
         "name": "Sure Hit & Recoil Removal",
@@ -600952,7 +602007,8 @@
           "Fragrant Green Trouble Grass Impact": 25
         }
       }
-    ]
+    ],
+    "damagePassives": []
   },
   {
     "number": 239,
@@ -603728,7 +604784,7 @@
       },
       {
         "name": "Angel of the Nurse’s Office",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -605649,7 +606705,13 @@
       },
       {
         "name": "The Verdant Virtuoso",
-        "source": "passive"
+        "source": "super_awakening"
+      },
+      {
+        "name": "Superduper Effective 9",
+        "moveName": "Rock Slide",
+        "source": "grid_skill",
+        "cellNumber": 22
       }
     ]
   },
@@ -606668,7 +607730,7 @@
       },
       {
         "name": "The Roaring Dragon",
-        "source": "passive"
+        "source": "super_awakening"
       }
     ]
   },
@@ -607469,6 +608531,13 @@
         "description": "Reign of Dragon’s Blood Tera Blast: Power ↑ 25",
         "colorKind": "🟩 Green (Move Boost)",
         "moveLevel": 3
+      }
+    ],
+    "damagePassives": [
+      {
+        "name": "Foul Fighting 3",
+        "source": "grid_skill",
+        "cellNumber": 23
       }
     ]
   }

@@ -275,8 +275,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 final cell = selectedPair.cells.firstWhere(
                                   (c) => c.cellNumber == cellNumber,
                                 );
-                                if (cell.moveLevel > _moveLevel.clamp(1, 5))
+                                if (cell.moveLevel > _moveLevel.clamp(1, 5)) {
                                   return;
+                                }
                                 if (_hardCap &&
                                     !_isAdjacentToActiveOrCenter(
                                       cell,
@@ -2028,8 +2029,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
   bool _hasExpandedSync() {
     final pair = widget.pair;
-    if (pair.passives.any((p) => p.name.toLowerCase() == 'expanded sync'))
+    if (pair.passives.any((p) => p.name.toLowerCase() == 'expanded sync')) {
       return true;
+    }
     final fi = _battle.ally.formIndex;
     if (fi > 0 && fi <= pair.variations.length) {
       return pair.variations[fi - 1].passives.any(
@@ -2071,17 +2073,21 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
           if (desc.contains('weather is sunny')) conditions.add('sunny');
           if (desc.contains('weather is rainy')) conditions.add('rain');
-          if (desc.contains('weather is sandstorm'))
+          if (desc.contains('weather is sandstorm')) {
             conditions.add('sandstorm');
+          }
           if (desc.contains('weather is hail')) conditions.add('hail');
 
-          if (desc.contains('electric terrain'))
+          if (desc.contains('electric terrain')) {
             conditions.add('electric_terrain');
+          }
           if (desc.contains('grassy terrain')) conditions.add('grassy_terrain');
-          if (desc.contains('psychic terrain'))
+          if (desc.contains('psychic terrain')) {
             conditions.add('psychic_terrain');
-          if (desc.contains('terrain is in effect'))
+          }
+          if (desc.contains('terrain is in effect')) {
             conditions.add('any_terrain');
+          }
 
           if (desc.contains('target is paralyzed')) conditions.add('paralyzed');
           if (desc.contains('target is burned')) conditions.add('burned');
@@ -2253,7 +2259,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       case 'ice_plow':
         // Ice Face: powers up SE moves. SE check is already in battle conditions;
         // here we only apply when the move is super effective.
-        final isSE = _battle.enemy.weakness.isNotEmpty &&
+        final isSE =
+            _battle.enemy.weakness.isNotEmpty &&
             move.type.toLowerCase() == _battle.enemy.weakness.toLowerCase();
         return isSE ? dp.value * 0.1 : 0;
       case 'mode_swing':
@@ -2308,6 +2315,18 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       // HP Advantage: higher HP% = more boost
       final hpPct = isUser ? _battle.ally.hpPercent : _battle.enemy.hpPercent;
       return (dp.value * 0.1 * hpPct / 100);
+    } else if (dp.stat.contains('_')) {
+      // Dual-Stat: behaves as two independent Single-Stat skills (Added Insult, etc.)
+      final keys = dp.stat.split('_');
+      final step = isSync ? 0.167 : 0.05;
+      final singleCap = isSync ? 1.0 : 0.3;
+      var total = 0.0;
+      for (final key in keys) {
+        final s = stages[key] ?? 0;
+        final c = isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
+        total += ((c * step * 100).round() / 100).clamp(0.0, singleCap);
+      }
+      return total;
     } else {
       final s = stages[dp.stat] ?? 0;
       count = isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
@@ -2547,8 +2566,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   Widget build(BuildContext context) {
     final pair = widget.pair;
     final validStars = availableStarLevels(pair.rarity, pair.hasEx);
-    if (!validStars.contains(_battle.ally.starLevel))
+    if (!validStars.contains(_battle.ally.starLevel)) {
       _battle.ally.starLevel = validStars.last;
+    }
     final levels = pair.stats.keys.toList()
       ..sort((a, b) => int.parse(a).compareTo(int.parse(b)));
     if (levels.isNotEmpty && !levels.contains(_battle.ally.charLevel)) {
