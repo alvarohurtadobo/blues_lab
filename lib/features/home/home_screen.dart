@@ -275,7 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 final cell = selectedPair.cells.firstWhere(
                                   (c) => c.cellNumber == cellNumber,
                                 );
-                                if (cell.moveLevel > _moveLevel.clamp(1, 5)) return;
+                                if (cell.moveLevel > _moveLevel.clamp(1, 5))
+                                  return;
                                 if (_hardCap &&
                                     !_isAdjacentToActiveOrCenter(
                                       cell,
@@ -317,7 +318,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   expanded: _expandedRight,
                   onToggleExpand: () =>
                       setState(() => _expandedRight = !_expandedRight),
-                  superAwakeningLevel: selectedPair.hasSuperAwakening ? (_moveLevel - 5).clamp(0, 5) : 0,
+                  superAwakeningLevel: selectedPair.hasSuperAwakening
+                      ? (_moveLevel - 5).clamp(0, 5)
+                      : 0,
                   luckySkills: data.luckySkills,
                 ),
               ),
@@ -507,7 +510,7 @@ int _calcOverviewStat({
 }) {
   var base = baseStat;
   if (hasSA && saLevel >= 1) {
-    base = (base * 1.1).floor();
+    base = (base * 1.1).ceil();
   }
   if (hasSA && role.toLowerCase().trim() == 'support') {
     base += saSupportFlatBonus(saLevel)[stat] ?? 0;
@@ -516,7 +519,6 @@ int _calcOverviewStat({
   if (formMult == 1.0) return beforeForm;
   return (beforeForm * formMult).ceil() - 1;
 }
-
 
 class SyncPairOverview extends StatefulWidget {
   const SyncPairOverview({
@@ -617,23 +619,18 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
     return pair.megaStatMultiplier[stat] ?? 1.0;
   }
 
-  int _applyFormMultiplier(
-    int value,
-    double mult,
-    String stat, {
-    bool useExactMegaRatio = false,
-  }) {
+  int _applyFormMultiplier(int value, double mult, String stat) {
     if (mult == 1.0) return value;
     return (value * mult).ceil() - 1;
   }
 
   Map<String, int> _interpolatedStats() {
     if (pair.stats.isEmpty) return {};
-    return pair.stats[_level] ?? pair.stats.values.last;
+    return pair.effectiveStats(_level);
   }
 
   int _overviewTotal(String stat, int baseStat) {
-    return _calcOverviewStat(
+    final base = _calcOverviewStat(
       baseStat: baseStat,
       potentialBonus: _potentialBonus(),
       exBonus: _exBonusOverview(stat),
@@ -643,6 +640,9 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
       saLevel: _superAwakeningLevel,
       role: pair.role,
     );
+    final varMult = pair.variationStatMult(_formIndex, stat);
+    if (varMult == 1.0) return base;
+    return (base * varMult).floor();
   }
 
   Widget _formTab(String label, int index, {Color? color}) {
@@ -688,7 +688,11 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
   }
 
   String _scaledPower(String rawPower, [int? moveLevel]) {
-    final saBonus = _calcSaBonus(pair, _superAwakeningLevel, MoveData(name: ''));
+    final saBonus = _calcSaBonus(
+      pair,
+      _superAwakeningLevel,
+      MoveData(name: ''),
+    );
     return _calcScaledPower(rawPower, moveLevel ?? widget.moveLevel, saBonus);
   }
 
@@ -745,40 +749,61 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
     return _PassiveCard(passive: passive);
   }
 
+  List<PassiveData> _applyPassiveReplacements(
+    List<PassiveData> base,
+    List<PassiveData> replacements,
+  ) {
+    final result = <PassiveData>[];
+    int replIdx = 0;
+    for (final p in base) {
+      if (p.locked) {
+        result.add(p);
+      } else if (replIdx < replacements.length) {
+        result.add(replacements[replIdx++]);
+      } else {
+        result.add(p);
+      }
+    }
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     // Build display moves based on active form
     List<MoveData> displayMoves;
     List<PassiveData> displayPassives;
-    final lockedCount = pair.passives.where((p) => p.locked).length;
     if (_showTera) {
-      displayMoves = [...pair.moves, if (pair.teraMove != null) pair.teraMove!];
-      displayPassives = [
-        for (int i = 0; i < pair.passives.length; i++)
-          if (pair.passives[i].locked)
-            pair.passives[i]
-          else if ((i - lockedCount) < pair.teraPassives.length)
-            pair.teraPassives[i - lockedCount]
-          else
-            pair.passives[i],
+      final teraMoveBase = pair.teraMoves.isEmpty
+          ? pair.moves
+          : VariationData(
+              formName: '',
+              moves: pair.teraMoves,
+              passives: [],
+            ).applyTo(pair.moves);
+      displayMoves = [
+        ...teraMoveBase,
+        if (pair.teraMove != null) pair.teraMove!,
       ];
+      displayPassives = _applyPassiveReplacements(
+        pair.passives,
+        pair.teraPassives,
+      );
     } else if (_isVariation && _activeVariation != null) {
       displayMoves = _activeVariation!.applyTo(pair.moves);
-      displayPassives = [
-        for (int i = 0; i < pair.passives.length; i++)
-          if (pair.passives[i].locked)
-            pair.passives[i]
-          else if ((i - lockedCount) < _activeVariation!.passives.length)
-            _activeVariation!.passives[i - lockedCount]
-          else
-            pair.passives[i],
-      ];
+      displayPassives = _applyPassiveReplacements(
+        pair.passives,
+        _activeVariation!.passives,
+      );
     } else {
       displayMoves = pair.moves;
       displayPassives = pair.passives;
     }
-    if (pair.hasSuperAwakening && _superAwakeningLevel < 5 && displayPassives.isNotEmpty) {
-      displayPassives = displayPassives.where((p) => p != pair.passives.first).toList();
+    if (pair.hasSuperAwakening &&
+        _superAwakeningLevel < 5 &&
+        displayPassives.isNotEmpty) {
+      displayPassives = displayPassives
+          .where((p) => p != pair.passives.first)
+          .toList();
     }
     final teraMoveName = pair.teraMove?.name ?? '';
 
@@ -1425,7 +1450,12 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       _battle.ally.pair = widget.pair;
       final ls = _battle.ally.luckySkill;
       if (ls != null) {
-        final available = widget.luckySkills.where((d) => d.isAvailableFor(widget.pair.role, pairName: widget.pair.displayName));
+        final available = widget.luckySkills.where(
+          (d) => d.isAvailableFor(
+            widget.pair.role,
+            pairName: widget.pair.displayName,
+          ),
+        );
         if (!available.any((d) => d.passive.name == ls.name)) {
           _battle.ally.luckySkill = null;
         }
@@ -1462,7 +1492,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   List<LuckySkillDef> get _availableLuckySkills {
     final role = widget.pair.role;
     final name = widget.pair.displayName;
-    final all = widget.luckySkills.where((ls) => ls.isAvailableFor(role, pairName: name)).toList();
+    final all = widget.luckySkills
+        .where((ls) => ls.isAvailableFor(role, pairName: name))
+        .toList();
     all.sort((a, b) {
       final aExclusive = a.restrictedToPairs != null ? 0 : 1;
       final bExclusive = b.restrictedToPairs != null ? 0 : 1;
@@ -1472,7 +1504,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     return all;
   }
 
-  Widget _luckySkillRow(BuildContext context, SyncPairData pair, TextStyle labelStyle) {
+  Widget _luckySkillRow(
+    BuildContext context,
+    SyncPairData pair,
+    TextStyle labelStyle,
+  ) {
     final available = _availableLuckySkills;
     final current = _battle.ally.luckySkill;
     final currentName = current?.name;
@@ -1493,10 +1529,19 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 Row(
                   children: [
                     if (ls.restrictedToPairs != null) ...[
-                      const Icon(Icons.star, size: 12, color: Color(0xFFFFAA00)),
+                      const Icon(
+                        Icons.star,
+                        size: 12,
+                        color: Color(0xFFFFAA00),
+                      ),
                       const SizedBox(width: 4),
                     ],
-                    Flexible(child: Text(ls.passive.name, style: const TextStyle(fontSize: 12))),
+                    Flexible(
+                      child: Text(
+                        ls.passive.name,
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ),
                   ],
                 ),
             ],
@@ -1511,12 +1556,24 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   child: ls.restrictedToPairs != null
                       ? Row(
                           children: [
-                            const Icon(Icons.star, size: 12, color: Color(0xFFFFAA00)),
+                            const Icon(
+                              Icons.star,
+                              size: 12,
+                              color: Color(0xFFFFAA00),
+                            ),
                             const SizedBox(width: 4),
-                            Flexible(child: Text(ls.passive.name, style: const TextStyle(fontSize: 12))),
+                            Flexible(
+                              child: Text(
+                                ls.passive.name,
+                                style: const TextStyle(fontSize: 12),
+                              ),
+                            ),
                           ],
                         )
-                      : Text(ls.passive.name, style: const TextStyle(fontSize: 12)),
+                      : Text(
+                          ls.passive.name,
+                          style: const TextStyle(fontSize: 12),
+                        ),
                 ),
             ],
             onChanged: (name) => setState(() {
@@ -1708,7 +1765,6 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   };
   static const _weatherBoostType = {'Sunny': 'Fire', 'Rainy': 'Water'};
 
-
   static const Map<String, IconData> _fieldEffectIcons = {
     '': Icons.block,
     'Normal Zone': Icons.circle,
@@ -1767,8 +1823,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     if (!_isEx ||
         !widget.pair.hasEx ||
         !_battle.ally.hasExRole ||
-        widget.pair.exRole.isEmpty)
+        widget.pair.exRole.isEmpty) {
       return 0;
+    }
     return exRoleBonusMap[widget.pair.exRole]?[stat] ?? 0;
   }
 
@@ -1817,7 +1874,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   int _calcBaseStat(String stat, int jsonStat, {bool forceMega = false}) {
     return _calcOverviewStat(
       baseStat: jsonStat,
-      potentialBonus: {'hp': _potentialBonus('hp'), 'atk': _potentialBonus('atk'), 'def': _potentialBonus('def'), 'spa': _potentialBonus('spa'), 'spd': _potentialBonus('spd'), 'spe': _potentialBonus('spe')},
+      potentialBonus: {
+        'hp': _potentialBonus('hp'),
+        'atk': _potentialBonus('atk'),
+        'def': _potentialBonus('def'),
+        'spa': _potentialBonus('spa'),
+        'spd': _potentialBonus('spd'),
+        'spe': _potentialBonus('spe'),
+      },
       exBonus: _exRoleBonus(stat),
       formMult: _formStatMult(stat, forceMega: forceMega),
       stat: stat,
@@ -1835,20 +1899,24 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final pair = widget.pair;
     var base = jsonStat;
     if (pair.hasSuperAwakening && _superAwakeningLevel >= 1) {
-      base = (base * 1.1).floor();
+      base = (base * 1.1).ceil();
     }
     if (pair.hasSuperAwakening && pair.role.toLowerCase().trim() == 'support') {
       base += saSupportFlatBonus(_superAwakeningLevel)[stat] ?? 0;
     }
+    final gear = _battle.ally.gear[stat] ?? 0;
     final rawBase = base + _potentialBonus(stat) + _exRoleBonus(stat);
     final mult = _formStatMult(stat, forceMega: forceMega);
-    final modifiedBase = _applyFormMultiplier(
-      rawBase + (_battle.ally.gear[stat] ?? 0),
+    // Gear inside each form multiplier (MEGA, DEOX variation); grid always outside.
+    final afterMult = _applyFormMultiplier(
+      rawBase + gear,
       mult,
       stat,
       useExactMegaRatio: _megaActive || forceMega,
     );
-    return modifiedBase + _gridStatBonus(stat);
+    final varMult = widget.pair.variationStatMult(_battle.ally.formIndex, stat);
+    final afterVar = varMult == 1.0 ? afterMult : (afterMult * varMult).floor();
+    return afterVar + _gridStatBonus(stat);
   }
 
   int _calcTotalStat(
@@ -1958,8 +2026,22 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     return total;
   }
 
+  bool _hasExpandedSync() {
+    final pair = widget.pair;
+    if (pair.passives.any((p) => p.name.toLowerCase() == 'expanded sync'))
+      return true;
+    final fi = _battle.ally.formIndex;
+    if (fi > 0 && fi <= pair.variations.length) {
+      return pair.variations[fi - 1].passives.any(
+        (p) => p.name.toLowerCase() == 'expanded sync',
+      );
+    }
+    return false;
+  }
+
   int _effectiveTargetCount(MoveData move) {
     if (_battle.field.targetCount <= 1) return 1;
+    if (move.isSync && _hasExpandedSync()) return _battle.field.targetCount;
     final isMultiTarget = move.target.toLowerCase() == 'all opponents';
     if (!isMultiTarget) return 1;
     if (move.isExtendedRange) return 1;
@@ -1989,13 +2071,17 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
 
           if (desc.contains('weather is sunny')) conditions.add('sunny');
           if (desc.contains('weather is rainy')) conditions.add('rain');
-          if (desc.contains('weather is sandstorm')) conditions.add('sandstorm');
+          if (desc.contains('weather is sandstorm'))
+            conditions.add('sandstorm');
           if (desc.contains('weather is hail')) conditions.add('hail');
 
-          if (desc.contains('electric terrain')) conditions.add('electric_terrain');
+          if (desc.contains('electric terrain'))
+            conditions.add('electric_terrain');
           if (desc.contains('grassy terrain')) conditions.add('grassy_terrain');
-          if (desc.contains('psychic terrain')) conditions.add('psychic_terrain');
-          if (desc.contains('terrain is in effect')) conditions.add('any_terrain');
+          if (desc.contains('psychic terrain'))
+            conditions.add('psychic_terrain');
+          if (desc.contains('terrain is in effect'))
+            conditions.add('any_terrain');
 
           if (desc.contains('target is paralyzed')) conditions.add('paralyzed');
           if (desc.contains('target is burned')) conditions.add('burned');
@@ -2007,8 +2093,15 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           if (desc.contains('target is flinching')) conditions.add('flinching');
 
           if (desc.contains('none of the target’s stats are raised')) {
-            final anyRaised = ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']
-                .any((k) => (_battle.enemy.stages[k] ?? 0) > 0);
+            final anyRaised = [
+              'atk',
+              'def',
+              'spa',
+              'spd',
+              'spe',
+              'acc',
+              'eva',
+            ].any((k) => (_battle.enemy.stages[k] ?? 0) > 0);
             if (!anyRaised) return 2.0;
           }
 
@@ -2020,11 +2113,15 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       return 1.0;
     }
 
-    final stages = scaling.who == 'user' ? _battle.ally.stages : _battle.enemy.stages;
+    final stages = scaling.who == 'user'
+        ? _battle.ally.stages
+        : _battle.enemy.stages;
 
     // Threshold table (HP-based like Fierce Fiery Wrath)
     if (scaling.thresholdTable.isNotEmpty) {
-      final hpPct = scaling.who == 'user' ? _battle.ally.hpPercent : _battle.enemy.hpPercent;
+      final hpPct = scaling.who == 'user'
+          ? _battle.ally.hpPercent
+          : _battle.enemy.hpPercent;
       for (final entry in scaling.thresholdTable) {
         if (hpPct < entry.minPct) continue;
         return entry.multiplierPer1000 / 1000;
@@ -2050,8 +2147,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           : (-s1).clamp(0, 6) + (-s2).clamp(0, 6);
     } else if (scaling.stat == 'hp') {
       // HP percentage scaling (Eruption style: lower HP = lower power)
-      final hpPct = scaling.who == 'user' ? _battle.ally.hpPercent : _battle.enemy.hpPercent;
+      final hpPct = scaling.who == 'user'
+          ? _battle.ally.hpPercent
+          : _battle.enemy.hpPercent;
       return hpPct / 100;
+    } else if (scaling.stat == 'rebuff') {
+      final rebuff = scaling.who == 'user'
+          ? (_battle.ally.userTypeRebuffs[move.type] ?? 0)
+          : 0;
+      count = rebuff.clamp(0, 3);
+      if (count <= 0) return 1.0;
     } else {
       final s = stages[scaling.stat] ?? 0;
       count = isRaised ? s.clamp(0, 6) : (-s).clamp(0, 6);
@@ -2102,6 +2207,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       _gridSkillPowerUpDetails(move).fold(0.0, (sum, e) => sum + e.value);
 
   double _evalDamagePassive(DamagePassive dp, MoveData move) {
+    // Reducers (type_guard, group_type_guard) affect incoming damage, not outgoing.
+    if (dp.type == 'reducer') return 0;
     // Check if this passive applies to this move type
     if (!_passiveAppliesToMove(dp, move)) return 0;
     // Check move-specific restriction
@@ -2119,8 +2226,15 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
         final stages = _battle.enemy.stages[dp.stat] ?? 0;
         return stages < 0 ? dp.value * 0.1 : 0;
       case 'stat_not_raised':
-        final anyRaised = ['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']
-            .any((k) => (_battle.enemy.stages[k] ?? 0) > 0);
+        final anyRaised = [
+          'atk',
+          'def',
+          'spa',
+          'spd',
+          'spe',
+          'acc',
+          'eva',
+        ].any((k) => (_battle.enemy.stages[k] ?? 0) > 0);
         return !anyRaised ? dp.value * 0.1 : 0;
       case 'gauge_cost_boost':
         // Power Flux / Sync Power Flux: assume full gauge = 6 bars
@@ -2136,6 +2250,18 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       case 'stat_raised_30pct':
         final stages = _battle.ally.stages[dp.stat] ?? 0;
         return stages > 0 ? 0.3 : 0;
+      case 'ice_plow':
+        // Ice Face: powers up SE moves. SE check is already in battle conditions;
+        // here we only apply when the move is super effective.
+        final isSE = _battle.enemy.weakness.isNotEmpty &&
+            move.type.toLowerCase() == _battle.enemy.weakness.toLowerCase();
+        return isSE ? dp.value * 0.1 : 0;
+      case 'mode_swing':
+        // Morpeko: +0.5 when move type matches active mode (tracked via formIndex).
+        // formIndex 0 = Full Belly (Electric), 1 = Hangry (Dark).
+        final form = _battle.ally.formIndex;
+        final modeType = form == 0 ? 'electric' : 'dark';
+        return move.type.toLowerCase() == modeType ? dp.value * 0.1 : 0;
       default:
         return 0;
     }
@@ -2159,7 +2285,12 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     }
   }
 
-  double _calcStatScalingBoost(DamagePassive dp, MoveData move, {required bool isUser, required bool isRaised}) {
+  double _calcStatScalingBoost(
+    DamagePassive dp,
+    MoveData move, {
+    required bool isUser,
+    required bool isRaised,
+  }) {
     final stages = isUser ? _battle.ally.stages : _battle.enemy.stages;
     final isSync = move.isSync;
     int count;
@@ -2198,47 +2329,87 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   bool _checkCondition(String condition, MoveData move) {
     switch (condition) {
       // Weather
-      case 'sunny': return _battle.field.weather == 'Sunny';
-      case 'rain': return _battle.field.weather == 'Rainy';
-      case 'hail': return _battle.field.weather == 'Hail';
-      case 'sandstorm': return _battle.field.weather == 'Sandstorm';
-      case 'any_weather': return _battle.field.weather.isNotEmpty;
+      case 'sunny':
+        return _battle.field.weather == 'Sunny';
+      case 'rain':
+        return _battle.field.weather == 'Rainy';
+      case 'hail':
+        return _battle.field.weather == 'Hail';
+      case 'sandstorm':
+        return _battle.field.weather == 'Sandstorm';
+      case 'any_weather':
+        return _battle.field.weather.isNotEmpty;
       // Terrain
-      case 'electric_terrain': return _battle.field.terrain == 'Electric Terrain';
-      case 'psychic_terrain': return _battle.field.terrain == 'Psychic Terrain';
-      case 'grassy_terrain': return _battle.field.terrain == 'Grassy Terrain';
-      case 'any_terrain': return _battle.field.terrain.isNotEmpty;
+      case 'electric_terrain':
+        return _battle.field.terrain == 'Electric Terrain';
+      case 'psychic_terrain':
+        return _battle.field.terrain == 'Psychic Terrain';
+      case 'grassy_terrain':
+        return _battle.field.terrain == 'Grassy Terrain';
+      case 'any_terrain':
+        return _battle.field.terrain.isNotEmpty;
       // Zones
-      case 'normal_zone': return _battle.field.zone == 'Normal Zone';
-      case 'fire_zone': return _battle.field.zone == 'Fire Zone';
-      case 'water_zone': return _battle.field.zone == 'Water Zone';
-      case 'electric_zone': return _battle.field.zone == 'Electric Zone';
-      case 'ice_zone': return _battle.field.zone == 'Ice Zone';
-      case 'fighting_zone': return _battle.field.zone == 'Fighting Zone';
-      case 'poison_zone': return _battle.field.zone == 'Poison Zone';
-      case 'ground_zone': return _battle.field.zone == 'Ground Zone';
-      case 'flying_zone': return _battle.field.zone == 'Flying Zone';
-      case 'psychic_zone': return _battle.field.zone == 'Psychic Zone';
-      case 'bug_zone': return _battle.field.zone == 'Bug Zone';
-      case 'rock_zone': return _battle.field.zone == 'Rock Zone';
-      case 'ghost_zone': return _battle.field.zone == 'Ghost Zone';
-      case 'dragon_zone': return _battle.field.zone == 'Dragon Zone';
-      case 'dark_zone': return _battle.field.zone == 'Dark Zone';
-      case 'steel_zone': return _battle.field.zone == 'Steel Zone';
-      case 'fairy_zone': return _battle.field.zone == 'Fairy Zone';
-      case 'any_zone': return _battle.field.zone.isNotEmpty;
-      case 'any_weather_terrain_zone': return _battle.field.weather.isNotEmpty || _battle.field.terrain.isNotEmpty || _battle.field.zone.isNotEmpty;
+      case 'normal_zone':
+        return _battle.field.zone == 'Normal Zone';
+      case 'fire_zone':
+        return _battle.field.zone == 'Fire Zone';
+      case 'water_zone':
+        return _battle.field.zone == 'Water Zone';
+      case 'electric_zone':
+        return _battle.field.zone == 'Electric Zone';
+      case 'ice_zone':
+        return _battle.field.zone == 'Ice Zone';
+      case 'fighting_zone':
+        return _battle.field.zone == 'Fighting Zone';
+      case 'poison_zone':
+        return _battle.field.zone == 'Poison Zone';
+      case 'ground_zone':
+        return _battle.field.zone == 'Ground Zone';
+      case 'flying_zone':
+        return _battle.field.zone == 'Flying Zone';
+      case 'psychic_zone':
+        return _battle.field.zone == 'Psychic Zone';
+      case 'bug_zone':
+        return _battle.field.zone == 'Bug Zone';
+      case 'rock_zone':
+        return _battle.field.zone == 'Rock Zone';
+      case 'ghost_zone':
+        return _battle.field.zone == 'Ghost Zone';
+      case 'dragon_zone':
+        return _battle.field.zone == 'Dragon Zone';
+      case 'dark_zone':
+        return _battle.field.zone == 'Dark Zone';
+      case 'steel_zone':
+        return _battle.field.zone == 'Steel Zone';
+      case 'fairy_zone':
+        return _battle.field.zone == 'Fairy Zone';
+      case 'any_zone':
+        return _battle.field.zone.isNotEmpty;
+      case 'any_weather_terrain_zone':
+        return _battle.field.weather.isNotEmpty ||
+            _battle.field.terrain.isNotEmpty ||
+            _battle.field.zone.isNotEmpty;
       // Status on target
-      case 'paralyzed': return _battle.enemy.statusCondition == 'paralyzed';
-      case 'burned': return _battle.enemy.statusCondition == 'burned';
-      case 'frozen': return _battle.enemy.statusCondition == 'frozen';
-      case 'asleep': return _battle.enemy.statusCondition == 'asleep';
-      case 'poisoned': return _battle.enemy.statusCondition == 'poisoned' || _battle.enemy.statusCondition == 'badly poisoned';
-      case 'any_status': return _battle.enemy.statusCondition.isNotEmpty;
+      case 'paralyzed':
+        return _battle.enemy.statusCondition == 'paralyzed';
+      case 'burned':
+        return _battle.enemy.statusCondition == 'burned';
+      case 'frozen':
+        return _battle.enemy.statusCondition == 'frozen';
+      case 'asleep':
+        return _battle.enemy.statusCondition == 'asleep';
+      case 'poisoned':
+        return _battle.enemy.statusCondition == 'poisoned' ||
+            _battle.enemy.statusCondition == 'badly poisoned';
+      case 'any_status':
+        return _battle.enemy.statusCondition.isNotEmpty;
       // Volatile status on target
-      case 'flinching': return _battle.enemy.volatileStatus['flinching'] ?? false;
-      case 'confused': return _battle.enemy.volatileStatus['confused'] ?? false;
-      case 'trapped': return _battle.enemy.volatileStatus['trapped'] ?? false;
+      case 'flinching':
+        return _battle.enemy.volatileStatus['flinching'] ?? false;
+      case 'confused':
+        return _battle.enemy.volatileStatus['confused'] ?? false;
+      case 'trapped':
+        return _battle.enemy.volatileStatus['trapped'] ?? false;
       case 'flinch_confuse_trap':
         return (_battle.enemy.volatileStatus['flinching'] ?? false) ||
             (_battle.enemy.volatileStatus['confused'] ?? false) ||
@@ -2250,27 +2421,37 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
             (_battle.enemy.volatileStatus['trapped'] ?? false) ||
             (_battle.enemy.volatileStatus['restrained'] ?? false);
       // HP conditions
-      case 'hp_low': return _battle.ally.hpPercent <= 25;
-      case 'hp_full': return _battle.ally.hpPercent == 100;
+      case 'hp_low':
+        return _battle.ally.hpPercent <= 25;
+      case 'hp_full':
+        return _battle.ally.hpPercent == 100;
       // Super effective
       case 'super_effective':
-        return _battle.enemy.weakness.isNotEmpty && move.type.toLowerCase() == _battle.enemy.weakness.toLowerCase();
+        return _battle.enemy.weakness.isNotEmpty &&
+            move.type.toLowerCase() == _battle.enemy.weakness.toLowerCase();
       case 'critical':
         return _battle.ally.isCriticalMove;
       // Move Gauge Acceleration
       case 'move_gauge_accel':
       case 'field_FILD_001':
         return _battle.ally.moveGaugeAccel;
-      case 'enemy_move_gauge_accel': return _battle.enemy.moveGaugeAccel;
+      case 'enemy_move_gauge_accel':
+        return _battle.enemy.moveGaugeAccel;
       // Damage Fields (applied to enemy side)
-      case 'damage_field_DMFD_8':  return _battle.enemy.damageField == 'Poison';
-      case 'damage_field_DMFD_13': return _battle.enemy.damageField == 'Rock';
-      case 'damage_field_DMFD_16': return _battle.enemy.damageField == 'Dark';
-      case 'damage_field_DMFD_17': return _battle.enemy.damageField == 'Steel';
+      case 'damage_field_DMFD_8':
+        return _battle.enemy.damageField == 'Poison';
+      case 'damage_field_DMFD_13':
+        return _battle.enemy.damageField == 'Rock';
+      case 'damage_field_DMFD_16':
+        return _battle.enemy.damageField == 'Dark';
+      case 'damage_field_DMFD_17':
+        return _battle.enemy.damageField == 'Steel';
       // Unity bonus
-      case 'unity': return false; // Unity bonus not tracked
+      case 'unity':
+        return false; // Unity bonus not tracked
       // Circles
-      case 'circle': return _activeCircles().isNotEmpty;
+      case 'circle':
+        return _activeCircles().isNotEmpty;
       // Type-specific moves
       default:
         if (condition.startsWith('type_')) {
@@ -2286,7 +2467,7 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final saBonus = _calcSaBonus(widget.pair, _superAwakeningLevel, move);
     final base = int.tryParse(_scaledPower(move.power, null, saBonus)) ?? 0;
     final grid = _gridPowerBonus(move.name);
-    
+
     // 1. Initial Power with Increments
     double power = base.toDouble();
     if (move.isSync) {
@@ -2295,13 +2476,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       }
     } else {
       final isTeraMove =
-          widget.pair.teraMove != null && move.name == widget.pair.teraMove!.name;
+          widget.pair.teraMove != null &&
+          move.name == widget.pair.teraMove!.name;
       final tera = _teraActive && widget.pair.hasTera;
       final teraBonus =
           tera &&
           !isTeraMove &&
           move.type.toLowerCase() == widget.pair.type.toLowerCase();
-      
+
       if (teraBonus) {
         power = (power * 1.5).floor().toDouble();
       }
@@ -2312,19 +2494,22 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     final isPhysical = move.category.toLowerCase() == 'physical';
     final boostRank = move.isSync
         ? 0
-        : (isPhysical ? _battle.ally.physicalBoostNext : _battle.ally.specialBoostNext);
+        : (isPhysical
+              ? _battle.ally.physicalBoostNext
+              : _battle.ally.specialBoostNext);
     final syncSkill = move.isSync ? _battle.ally.syncMoveBoostNext * 0.1 : 0.0;
     final masterPassiveSkill = _masterPassivePowerUp(move);
     final passiveSkill = _gridSkillPowerUp(move);
-    
-    final totalSkillMult = 1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4;
-    
+
+    final totalSkillMult =
+        1 + syncSkill + masterPassiveSkill + passiveSkill + boostRank * 0.4;
+
     // 2. Inner Rounding: floor((Power + Grid) * Skills)
     final scaled = (baseWithGrid * totalSkillMult).floor();
-    
+
     // 3. Apply Modifier (Innate Scaling / Stat Scaling)
     final modifier = _movePowerModifier(move);
-    
+
     // Final Calculation: floor(scaled * Modifier)
     final finalBp = (scaled * modifier).floor();
 
@@ -2362,20 +2547,22 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   Widget build(BuildContext context) {
     final pair = widget.pair;
     final validStars = availableStarLevels(pair.rarity, pair.hasEx);
-    if (!validStars.contains(_battle.ally.starLevel)) _battle.ally.starLevel = validStars.last;
+    if (!validStars.contains(_battle.ally.starLevel))
+      _battle.ally.starLevel = validStars.last;
     final levels = pair.stats.keys.toList()
       ..sort((a, b) => int.parse(a).compareTo(int.parse(b)));
-    if (levels.isNotEmpty && !levels.contains(_battle.ally.charLevel))
+    if (levels.isNotEmpty && !levels.contains(_battle.ally.charLevel)) {
       _battle.ally.charLevel = levels.last;
-    final baseStats = pair.stats[_battle.ally.charLevel] ?? {};
-    final currentStats = baseStats;
-
+    }
     final isTeraActive = _teraActive;
     final isVariation =
-        _battle.ally.formIndex > 0 && _battle.ally.formIndex <= pair.variations.length;
+        _battle.ally.formIndex > 0 &&
+        _battle.ally.formIndex <= pair.variations.length;
     final activeVariation = isVariation
         ? pair.variations[_battle.ally.formIndex - 1]
         : null;
+
+    final currentStats = pair.effectiveStats(_battle.ally.charLevel);
 
     // Build display moves based on active form
     List<MoveData> baseMoves;
@@ -2535,7 +2722,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                         label: const Text('EX', style: TextStyle(fontSize: 11)),
                         selected: _battle.field.zoneEx,
                         showCheckmark: false,
-                        onSelected: (v) => setState(() => _battle.field.zoneEx = v),
+                        onSelected: (v) =>
+                            setState(() => _battle.field.zoneEx = v),
                         selectedColor: Colors.deepPurple,
                         visualDensity: VisualDensity.compact,
                       ),
@@ -2596,7 +2784,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                         label: const Text('EX', style: TextStyle(fontSize: 11)),
                         selected: _battle.field.terrainEx,
                         showCheckmark: false,
-                        onSelected: (v) => setState(() => _battle.field.terrainEx = v),
+                        onSelected: (v) =>
+                            setState(() => _battle.field.terrainEx = v),
                         selectedColor: Colors.deepPurple,
                         visualDensity: VisualDensity.compact,
                       ),
@@ -2657,7 +2846,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                         label: const Text('EX', style: TextStyle(fontSize: 11)),
                         selected: _battle.field.weatherEx,
                         showCheckmark: false,
-                        onSelected: (v) => setState(() => _battle.field.weatherEx = v),
+                        onSelected: (v) =>
+                            setState(() => _battle.field.weatherEx = v),
                         selectedColor: Colors.deepPurple,
                         visualDensity: VisualDensity.compact,
                       ),
@@ -2722,6 +2912,80 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
         'Ally',
         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
       ),
+
+      if (masterPassives.isNotEmpty) ...[
+        const SizedBox(height: 4),
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.amber.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final passive in masterPassives) ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        passive.name,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '+${(passive.powerUpForAdditionalAllies(_battle.ally.masterPassiveAllyCount[passive.name] ?? 0) * 100).toStringAsFixed(0)}%',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.orange.shade800,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text('${passive.theme} allies:', style: labelStyle),
+                    const SizedBox(width: 4),
+                    DropdownButton<int>(
+                      value:
+                          _battle.ally.masterPassiveAllyCount[passive.name] ??
+                          0,
+                      isDense: true,
+                      underline: const SizedBox(),
+                      items: [
+                        for (int i = 0; i <= 2; i++)
+                          DropdownMenuItem(value: i, child: Text('+$i')),
+                      ],
+                      onChanged: (v) => setState(
+                        () =>
+                            _battle.ally.masterPassiveAllyCount[passive.name] =
+                                v ?? 0,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  passive.appliesToSync
+                      ? 'Applies to ${switch (passive.category) {
+                          'physical' => 'physical moves and sync moves',
+                          'special' => 'special moves and sync moves',
+                          _ => 'moves and sync moves',
+                        }}'
+                      : 'Applies to ${switch (passive.category) {
+                          'physical' => 'physical moves',
+                          'special' => 'special moves',
+                          _ => 'moves',
+                        }}',
+                  style: labelStyle,
+                ),
+                if (passive != masterPassives.last) const SizedBox(height: 8),
+              ],
+            ],
+          ),
+        ),
+      ],
 
       // --- Stats table (horizontal: header, base, grid, gear, before stage, stage, total) ---
       if (currentStats.isNotEmpty)
@@ -2814,8 +3078,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                             border: OutlineInputBorder(),
                           ),
                           keyboardType: TextInputType.number,
-                          onChanged: (v) =>
-                              setState(() => _battle.ally.gear[s] = int.tryParse(v) ?? 0),
+                          onChanged: (v) => setState(
+                            () => _battle.ally.gear[s] = int.tryParse(v) ?? 0,
+                          ),
                         ),
                       ),
                     ),
@@ -2860,8 +3125,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                         ),
                         keyboardType: TextInputType.number,
                         onChanged: (v) => setState(
-                          () => _battle.ally.hpPercent = (int.tryParse(v) ?? 100)
-                              .clamp(0, 100),
+                          () => _battle.ally.hpPercent =
+                              (int.tryParse(v) ?? 100).clamp(0, 100),
                         ),
                       ),
                     ),
@@ -2924,7 +3189,37 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
             ],
           ),
         ),
-      const SizedBox(height: 6),
+      const SizedBox(height: 4),
+
+      _luckySkillRow(context, pair, labelStyle),
+      const SizedBox(height: 4),
+
+      Row(
+        children: [
+          FilterChip(
+            label: const Text(
+              'Move Gauge Acceleration',
+              style: TextStyle(fontSize: 11),
+            ),
+            selected: _battle.ally.moveGaugeAccel,
+            showCheckmark: false,
+            onSelected: (v) => setState(() => _battle.ally.moveGaugeAccel = v),
+            selectedColor: Colors.teal.withValues(alpha: 0.5),
+            visualDensity: VisualDensity.compact,
+          ),
+          const SizedBox(width: 8),
+          FilterChip(
+            label: const Text('Cheer', style: TextStyle(fontSize: 11)),
+            selected: _battle.ally.cheer,
+            showCheckmark: false,
+            onSelected: (v) => setState(() => _battle.ally.cheer = v),
+            selectedColor: Colors.amber.shade600,
+            visualDensity: VisualDensity.compact,
+          ),
+        ],
+      ),
+      const SizedBox(height: 4),
+
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -2957,7 +3252,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 for (int i = 0; i <= 3; i++)
                   DropdownMenuItem(value: i, child: Text('$i')),
               ],
-              onChanged: (v) => setState(() => _battle.ally.stages['crit'] = v!),
+              onChanged: (v) =>
+                  setState(() => _battle.ally.stages['crit'] = v!),
             ),
             const SizedBox(width: 8),
             Text('Sync Buffs: ', style: labelStyle),
@@ -2977,15 +3273,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
-                onChanged: (v) =>
-                    setState(() => _battle.ally.syncBoosts = int.tryParse(v) ?? 0),
+                onChanged: (v) => setState(
+                  () => _battle.ally.syncBoosts = int.tryParse(v) ?? 0,
+                ),
               ),
             ),
             const SizedBox(width: 4),
             if (_megaActive) ...[
               const SizedBox(width: 8),
               Text(
-                'Mega: +${_megaSyncBaseBoosts} ',
+                'Mega: +$_megaSyncBaseBoosts ',
                 style: TextStyle(fontSize: 11, color: Colors.blueGrey),
               ),
             ],
@@ -2997,7 +3294,45 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 color: _effectivePlayerSyncBoosts > 0 ? Colors.blue : null,
               ),
             ),
-            const SizedBox(width: 8),
+          ],
+        ),
+      ),
+      const SizedBox(height: 4),
+
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Text('Status Change: ', style: labelStyle),
+            const SizedBox(width: 4),
+            for (final entry in _battle.ally.volatileStatus.entries) ...[
+              FilterChip(
+                label: Text(
+                  _statusLabel(entry.key),
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: entry.value ? Colors.white : null,
+                  ),
+                ),
+                selected: entry.value,
+                showCheckmark: false,
+                onSelected: (v) =>
+                    setState(() => _battle.ally.volatileStatus[entry.key] = v),
+                selectedColor: _statusColor(entry.key),
+                visualDensity: VisualDensity.compact,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              const SizedBox(width: 4),
+            ],
+          ],
+        ),
+      ),
+      const SizedBox(height: 4),
+
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
             Text('Status Cond: ', style: labelStyle),
             DropdownButton<String>(
               value: _battle.ally.statusCondition,
@@ -3029,7 +3364,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                     ),
                   ),
               ],
-              onChanged: (v) => setState(() => _battle.ally.statusCondition = v!),
+              onChanged: (v) =>
+                  setState(() => _battle.ally.statusCondition = v!),
             ),
           ],
         ),
@@ -3074,7 +3410,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 1),
                           child: Opacity(
-                            opacity: _battle.ally.circleActive[region]![kind]! ? 1.0 : 0.3,
+                            opacity: _battle.ally.circleActive[region]![kind]!
+                                ? 1.0
+                                : 0.3,
                             child: Image.asset(
                               kind == 'physical'
                                   ? 'assets/img/battle/CATE_001.png'
@@ -3104,8 +3442,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                       for (int j = 0; j <= 3; j++)
                         DropdownMenuItem(value: j, child: Text('$j')),
                     ],
-                    onChanged: (v) =>
-                        setState(() => _battle.ally.circleAllyCount[region] = v!),
+                    onChanged: (v) => setState(
+                      () => _battle.ally.circleAllyCount[region] = v!,
+                    ),
                   ),
                 ),
               ],
@@ -3166,112 +3505,41 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           );
         },
       ),
-      const SizedBox(height: 4),
+      const SizedBox(height: 6),
 
-      Row(
-        children: [
-          FilterChip(
-            label: const Text('Move Gauge Acceleration', style: TextStyle(fontSize: 11)),
-            selected: _battle.ally.moveGaugeAccel,
-            showCheckmark: false,
-            onSelected: (v) => setState(() => _battle.ally.moveGaugeAccel = v),
-            selectedColor: Colors.teal.withValues(alpha: 0.5),
-            visualDensity: VisualDensity.compact,
-          ),
-          const SizedBox(width: 8),
-          FilterChip(
-            label: const Text('Cheer', style: TextStyle(fontSize: 11)),
-            selected: _battle.ally.cheer,
-            showCheckmark: false,
-            onSelected: (v) => setState(() => _battle.ally.cheer = v),
-            selectedColor: Colors.amber.shade600,
-            visualDensity: VisualDensity.compact,
-          ),
-        ],
+      // --- User Type Rebuffs ---
+      Text(
+        'Type Rebuffs',
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 12,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
+      const SizedBox(height: 4),
+      Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.orange.withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Wrap(
+          spacing: 6,
+          runSpacing: 4,
+          children: [
+            for (final type in CombatantState.allTypes)
+              _TypeRebuffDropdown(
+                type: type,
+                value: _battle.ally.userTypeRebuffs[type] ?? 0,
+                min: -3,
+                max: 3,
+                onChanged: (v) =>
+                    setState(() => _battle.ally.userTypeRebuffs[type] = v),
+              ),
+          ],
+        ),
       ),
       const SizedBox(height: 6),
-
-      _luckySkillRow(context, pair, labelStyle),
-      const SizedBox(height: 6),
-
-      if (masterPassives.isNotEmpty) ...[
-        Text(
-          'Master Passives',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 12,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.amber.withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (final passive in masterPassives) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        passive.name,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '+${(passive.powerUpForAdditionalAllies(_battle.ally.masterPassiveAllyCount[passive.name] ?? 0) * 100).toStringAsFixed(0)}%',
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.orange.shade800,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text('${passive.theme} allies:', style: labelStyle),
-                    const SizedBox(width: 4),
-                    DropdownButton<int>(
-                      value: _battle.ally.masterPassiveAllyCount[passive.name] ?? 0,
-                      isDense: true,
-                      underline: const SizedBox(),
-                      items: [
-                        for (int i = 0; i <= 2; i++)
-                          DropdownMenuItem(value: i, child: Text('+$i')),
-                      ],
-                      onChanged: (v) => setState(
-                        () => _battle.ally.masterPassiveAllyCount[passive.name] = v ?? 0,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  passive.appliesToSync
-                      ? 'Applies to ${switch (passive.category) {
-                          'physical' => 'physical moves and sync moves',
-                          'special' => 'special moves and sync moves',
-                          _ => 'moves and sync moves',
-                        }}'
-                      : 'Applies to ${switch (passive.category) {
-                          'physical' => 'physical moves',
-                          'special' => 'special moves',
-                          _ => 'moves',
-                        }}',
-                  style: labelStyle,
-                ),
-                if (passive != masterPassives.last) const SizedBox(height: 8),
-              ],
-            ],
-          ),
-        ),
-        const SizedBox(height: 6),
-      ],
 
       Text(
         'Enemy',
@@ -3279,7 +3547,10 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       ),
       const SizedBox(height: 4),
       FilterChip(
-        label: const Text('Move Gauge Acceleration', style: TextStyle(fontSize: 11)),
+        label: const Text(
+          'Move Gauge Acceleration',
+          style: TextStyle(fontSize: 11),
+        ),
         selected: _battle.enemy.moveGaugeAccel,
         showCheckmark: false,
         onSelected: (v) => setState(() => _battle.enemy.moveGaugeAccel = v),
@@ -3295,7 +3566,10 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
             isDense: true,
             underline: const SizedBox(),
             items: [
-              const DropdownMenuItem(value: '', child: Text('None', style: TextStyle(fontSize: 12))),
+              const DropdownMenuItem(
+                value: '',
+                child: Text('None', style: TextStyle(fontSize: 12)),
+              ),
               for (final t in _allTypes.skip(1))
                 DropdownMenuItem(
                   value: t,
@@ -3308,7 +3582,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   ),
                 ),
             ],
-            onChanged: (v) => setState(() => _battle.enemy.damageField = v ?? ''),
+            onChanged: (v) =>
+                setState(() => _battle.enemy.damageField = v ?? ''),
           ),
         ],
       ),
@@ -3388,8 +3663,10 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                           border: OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.number,
-                        onChanged: (v) =>
-                            setState(() => _battle.enemy.manualStats[s] = int.tryParse(v) ?? 0),
+                        onChanged: (v) => setState(
+                          () => _battle.enemy.manualStats[s] =
+                              int.tryParse(v) ?? 0,
+                        ),
                       ),
                     ),
                   ),
@@ -3421,10 +3698,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                       ),
                       keyboardType: TextInputType.number,
                       onChanged: (v) => setState(
-                        () => _battle.enemy.hpPercent = (int.tryParse(v) ?? 100).clamp(
-                          0,
-                          100,
-                        ),
+                        () => _battle.enemy.hpPercent = (int.tryParse(v) ?? 100)
+                            .clamp(0, 100),
                       ),
                     ),
                   ),
@@ -3484,8 +3759,9 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
-                onChanged: (v) =>
-                    setState(() => _battle.enemy.syncBoosts = int.tryParse(v) ?? 0),
+                onChanged: (v) => setState(
+                  () => _battle.enemy.syncBoosts = int.tryParse(v) ?? 0,
+                ),
               ),
             ),
             const SizedBox(width: 4),
@@ -3529,7 +3805,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                     ),
                   ),
               ],
-              onChanged: (v) => setState(() => _battle.enemy.statusCondition = v!),
+              onChanged: (v) =>
+                  setState(() => _battle.enemy.statusCondition = v!),
             ),
           ],
         ),
@@ -3608,7 +3885,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
               _TypeRebuffDropdown(
                 type: type,
                 value: _battle.enemy.typeRebuffs[type] ?? 0,
-                onChanged: (v) => setState(() => _battle.enemy.typeRebuffs[type] = v),
+                onChanged: (v) =>
+                    setState(() => _battle.enemy.typeRebuffs[type] = v),
               ),
             _TypeRebuffDropdown(
               type: 'Stellar',
@@ -3647,7 +3925,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   for (int i = 0; i <= 10; i++)
                     DropdownMenuItem(value: i, child: Text('$i')),
                 ],
-                onChanged: (v) => setState(() => _battle.ally.physicalBoostNext = v!),
+                onChanged: (v) =>
+                    setState(() => _battle.ally.physicalBoostNext = v!),
               ),
               const SizedBox(width: 8),
               Text('Spec Up Next: ', style: labelStyle),
@@ -3664,7 +3943,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   for (int i = 0; i <= 10; i++)
                     DropdownMenuItem(value: i, child: Text('$i')),
                 ],
-                onChanged: (v) => setState(() => _battle.ally.specialBoostNext = v!),
+                onChanged: (v) =>
+                    setState(() => _battle.ally.specialBoostNext = v!),
               ),
               const SizedBox(width: 8),
               Text('Sync Up Next: ', style: labelStyle),
@@ -3681,14 +3961,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   for (int i = 0; i <= 10; i++)
                     DropdownMenuItem(value: i, child: Text('$i')),
                 ],
-                onChanged: (v) => setState(() => _battle.ally.syncMoveBoostNext = v!),
+                onChanged: (v) =>
+                    setState(() => _battle.ally.syncMoveBoostNext = v!),
               ),
               const SizedBox(width: 8),
               FilterChip(
                 label: const Text('SEUN', style: TextStyle(fontSize: 10)),
                 selected: _battle.ally.superEffectiveNext,
                 showCheckmark: false,
-                onSelected: (v) => setState(() => _battle.ally.superEffectiveNext = v),
+                onSelected: (v) =>
+                    setState(() => _battle.ally.superEffectiveNext = v),
                 selectedColor: Colors.orange,
                 visualDensity: VisualDensity.compact,
               ),
@@ -3697,7 +3979,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 label: const Text('Crit', style: TextStyle(fontSize: 10)),
                 selected: _battle.ally.isCriticalMove,
                 showCheckmark: false,
-                onSelected: (v) => setState(() => _battle.ally.isCriticalMove = v),
+                onSelected: (v) =>
+                    setState(() => _battle.ally.isCriticalMove = v),
                 selectedColor: Colors.red,
                 visualDensity: VisualDensity.compact,
               ),
@@ -3717,7 +4000,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   DropdownMenuItem(value: 2, child: Text('2')),
                   DropdownMenuItem(value: 3, child: Text('3')),
                 ],
-                onChanged: (v) => setState(() => _battle.field.targetCount = v!),
+                onChanged: (v) =>
+                    setState(() => _battle.field.targetCount = v!),
               ),
             ],
           ),
@@ -3731,7 +4015,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
               final isPhysical = move.category.toLowerCase() == 'physical';
               final atkKey = isPhysical ? 'atk' : 'spa';
               final forceMega = _usesMegaSyncStats(move);
-              final defStat = _battle.enemy.manualStats[isPhysical ? 'def' : 'spd'] ?? 100;
+              final defStat =
+                  _battle.enemy.manualStats[isPhysical ? 'def' : 'spd'] ?? 100;
               List<int>? rolls;
               if (bp != null && bp > 0) {
                 final atkTotal = calcStat(
@@ -3754,7 +4039,8 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 );
                 final isSE =
                     _battle.enemy.weakness.isNotEmpty &&
-                    move.type.toLowerCase() == _battle.enemy.weakness.toLowerCase();
+                    move.type.toLowerCase() ==
+                        _battle.enemy.weakness.toLowerCase();
                 final moveType = move.type.isNotEmpty
                     ? move.type[0].toUpperCase() +
                           move.type.substring(1).toLowerCase()
@@ -3798,15 +4084,21 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                     terrainEx: _battle.field.terrainEx,
                     weatherBoost: weatherBoost,
                     weatherEx: _battle.field.weatherEx,
-                    physicalBreak: isPhysical && _battle.ally.physicalBreak && !move.isSync,
-                    specialBreak: !isPhysical && _battle.ally.specialBreak && !move.isSync,
+                    physicalBreak:
+                        isPhysical &&
+                        _battle.ally.physicalBreak &&
+                        !move.isSync,
+                    specialBreak:
+                        !isPhysical &&
+                        _battle.ally.specialBreak &&
+                        !move.isSync,
                     isPhysicalMove: isPhysical,
                     targetCount: _effectiveTargetCount(move),
                     circles: _activeCircles(),
                   ),
                 );
                 rolls = result.rolls;
-                if (_battle.ally.cheer && rolls != null) {
+                if (_battle.ally.cheer) {
                   rolls = rolls.map((r) => (r * 1.5).round()).toList();
                 }
               }
@@ -3819,8 +4111,14 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                   move.type.toLowerCase() == pair.type.toLowerCase();
               final tooltipLines = <String>[];
               if (bp != null) {
-                final saBonus = _calcSaBonus(widget.pair, _superAwakeningLevel, move);
-                tooltipLines.add('Base Power: ${_scaledPower(move.power, null, saBonus)}');
+                final saBonus = _calcSaBonus(
+                  widget.pair,
+                  _superAwakeningLevel,
+                  move,
+                );
+                tooltipLines.add(
+                  'Base Power: ${_scaledPower(move.power, null, saBonus)}',
+                );
                 if (move.isSync && _syncTechExBoost) {
                   tooltipLines.add('6EX Tech Sync Move ×1.5');
                 }
@@ -3835,25 +4133,30 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 }
                 final boostRank = move.isSync
                     ? 0
-                    : (isPhysical ? _battle.ally.physicalBoostNext : _battle.ally.specialBoostNext);
-                if (boostRank > 0)
+                    : (isPhysical
+                          ? _battle.ally.physicalBoostNext
+                          : _battle.ally.specialBoostNext);
+                if (boostRank > 0) {
                   tooltipLines.add(
                     '${isPhysical ? 'Phys' : 'Spec'} Up Next +${(boostRank * 40).toStringAsFixed(0)}%',
                   );
-                if (move.isSync && _battle.ally.syncMoveBoostNext > 0)
+                }
+                if (move.isSync && _battle.ally.syncMoveBoostNext > 0) {
                   tooltipLines.add(
                     'Sync Up Next +${(_battle.ally.syncMoveBoostNext * 10).toStringAsFixed(0)}%',
                   );
+                }
                 for (final skill in _gridSkillPowerUpDetails(move)) {
                   tooltipLines.add(
                     '${skill.name} +${(skill.value * 100).toStringAsFixed(0)}%',
                   );
                 }
                 final moveMod = _movePowerModifier(move);
-                if (moveMod != 1.0)
+                if (moveMod != 1.0) {
                   tooltipLines.add(
                     'Move Modifier ×${moveMod.toStringAsFixed(3)}',
                   );
+                }
                 if (_battle.ally.cheer) tooltipLines.add('Cheer ×1.5');
               }
               final hasBpMod =
@@ -3867,9 +4170,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                       : (isPhysical
                             ? _battle.ally.physicalBoostNext > 0
                             : _battle.ally.specialBoostNext > 0));
-              final saBonusForMove = _calcSaBonus(widget.pair, _superAwakeningLevel, move);
-              final baseBpVal = int.tryParse(_scaledPower(move.power, null, saBonusForMove));
+              final saBonusForMove = _calcSaBonus(
+                widget.pair,
+                _superAwakeningLevel,
+                move,
+              );
+              final baseBpVal = int.tryParse(
+                _scaledPower(move.power, null, saBonusForMove),
+              );
               final isExtendedRange = move.isExtendedRange;
+              final isAreaSync = move.isSync && _hasExpandedSync();
               return _CalcMoveCard(
                 move: move,
                 totalBp: bp,
@@ -3877,6 +4187,7 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 hasBpMod: hasBpMod,
                 teraBoost: moveTeraBoost,
                 isExtendedRange: isExtendedRange,
+                isAreaSync: isAreaSync,
                 atkStat: rolls != null
                     ? calcStat(
                         StatInput(
@@ -3890,7 +4201,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                       )
                     : null,
                 rolls: rolls,
-                enemyHp: ((_battle.enemy.manualStats['hp'] ?? 1) * _battle.enemy.hpPercent / 100).round(),
+                enemyHp:
+                    ((_battle.enemy.manualStats['hp'] ?? 1) *
+                            _battle.enemy.hpPercent /
+                            100)
+                        .round(),
                 tooltipText: tooltipLines.join('\n'),
               );
             },
@@ -3938,10 +4253,14 @@ class _TypeRebuffDropdown extends StatelessWidget {
     required this.type,
     required this.value,
     required this.onChanged,
+    this.min = -3,
+    this.max = 0,
   });
   final String type;
   final int value;
   final ValueChanged<int> onChanged;
+  final int min;
+  final int max;
 
   @override
   Widget build(BuildContext context) {
@@ -3980,11 +4299,15 @@ class _TypeRebuffDropdown extends StatelessWidget {
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w700,
-              color: value < 0 ? Colors.green.shade800 : Colors.black,
+              color: value < 0
+                  ? Colors.green.shade800
+                  : value > 0
+                  ? Colors.red.shade800
+                  : Colors.black,
             ),
             items: [
-              for (int i = 0; i >= -3; i--)
-                DropdownMenuItem(value: i, child: Text('$i')),
+              for (int i = max; i >= min; i--)
+                DropdownMenuItem(value: i, child: Text(i > 0 ? '+$i' : '$i')),
             ],
             onChanged: (v) => onChanged(v!),
           ),
@@ -4002,6 +4325,7 @@ class _CalcMoveCard extends StatelessWidget {
     this.hasBpMod = false,
     this.teraBoost = false,
     this.isExtendedRange = false,
+    this.isAreaSync = false,
     this.atkStat,
     this.rolls,
     this.enemyHp = 1,
@@ -4013,6 +4337,7 @@ class _CalcMoveCard extends StatelessWidget {
   final bool hasBpMod;
   final bool teraBoost;
   final bool isExtendedRange;
+  final bool isAreaSync;
   final int? atkStat;
   final List<int>? rolls;
   final int enemyHp;
@@ -4079,7 +4404,10 @@ class _CalcMoveCard extends StatelessWidget {
                 if (isExtendedRange)
                   Container(
                     margin: const EdgeInsets.only(right: 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 1,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.teal.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(3),
@@ -4091,6 +4419,27 @@ class _CalcMoveCard extends StatelessWidget {
                         fontSize: 9,
                         fontWeight: FontWeight.w700,
                         color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                if (isAreaSync)
+                  Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 1,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.purple.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(3),
+                      border: Border.all(color: Colors.purple, width: 0.5),
+                    ),
+                    child: const Text(
+                      'Area',
+                      style: TextStyle(
+                        fontSize: 9,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.purple,
                       ),
                     ),
                   ),
@@ -4293,9 +4642,11 @@ class HexGridView extends StatelessWidget {
           children: [
             for (final cell in allCells)
               Positioned(
-                left: (normCoords[cell.cellNumber]!.dx - ncMinX) * tileRadius +
+                left:
+                    (normCoords[cell.cellNumber]!.dx - ncMinX) * tileRadius +
                     offsetX,
-                top: (normCoords[cell.cellNumber]!.dy - ncMinY) * tileRadius +
+                top:
+                    (normCoords[cell.cellNumber]!.dy - ncMinY) * tileRadius +
                     offsetY,
                 child: (cell.q == 0 && cell.r == 0 && cell.s == 0)
                     ? GestureDetector(
@@ -4430,7 +4781,10 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
   bool _ascending = false;
 
   static String _cleanName(String name) {
-    return name.replaceAll(RegExp(r'\s*\((Male|Female)[^)]*\)'), '').replaceAll(RegExp(r'\s*\(Genderless\)'), '').trim();
+    return name
+        .replaceAll(RegExp(r'\s*\((Male|Female)[^)]*\)'), '')
+        .replaceAll(RegExp(r'\s*\(Genderless\)'), '')
+        .trim();
   }
 
   @override
@@ -4439,13 +4793,16 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
     final filtered = <int>[];
     for (int i = 0; i < widget.pairs.length; i++) {
       final p = widget.pairs[i];
-      if (normalizedQuery.isEmpty || p.searchTerms.any((t) => t.toLowerCase().contains(normalizedQuery))) {
+      if (normalizedQuery.isEmpty ||
+          p.searchTerms.any((t) => t.toLowerCase().contains(normalizedQuery))) {
         filtered.add(i);
       }
     }
     if (_sortMode == 'Name') {
       filtered.sort((a, b) {
-        final cmp = widget.pairs[a].displayName.compareTo(widget.pairs[b].displayName);
+        final cmp = widget.pairs[a].displayName.compareTo(
+          widget.pairs[b].displayName,
+        );
         return _ascending ? cmp : -cmp;
       });
     } else if (_sortMode == 'Release') {
@@ -4486,7 +4843,10 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
             onChanged: (v) => setState(() => _sortMode = v!),
           ),
           IconButton(
-            icon: Icon(_ascending ? Icons.arrow_upward : Icons.arrow_downward, size: 18),
+            icon: Icon(
+              _ascending ? Icons.arrow_upward : Icons.arrow_downward,
+              size: 18,
+            ),
             tooltip: _ascending ? 'Ascending' : 'Descending',
             onPressed: () => setState(() => _ascending = !_ascending),
           ),
@@ -4521,14 +4881,29 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
               return Container(
                 decoration: BoxDecoration(
                   color: typeColor?.withValues(alpha: 0.08),
-                  border: Border(bottom: BorderSide(color: typeColor?.withValues(alpha: 0.2) ?? Colors.grey.shade200)),
+                  border: Border(
+                    bottom: BorderSide(
+                      color:
+                          typeColor?.withValues(alpha: 0.2) ??
+                          Colors.grey.shade200,
+                    ),
+                  ),
                 ),
                 child: ListTile(
                   dense: true,
-                  title: Text(_cleanName(pair.displayName), style: const TextStyle(fontSize: 13)),
+                  title: Text(
+                    _cleanName(pair.displayName),
+                    style: const TextStyle(fontSize: 13),
+                  ),
                   subtitle: Text(
-                    [if (pair.role.isNotEmpty) pair.role, if (pair.type.isNotEmpty) pair.type].join(' | '),
-                    style: TextStyle(fontSize: 11, color: typeColor ?? Colors.grey),
+                    [
+                      if (pair.role.isNotEmpty) pair.role,
+                      if (pair.type.isNotEmpty) pair.type,
+                    ].join(' | '),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: typeColor ?? Colors.grey,
+                    ),
                   ),
                   onTap: () => widget.onSelect(index),
                 ),
@@ -4540,7 +4915,6 @@ class _PairPickerDialogState extends State<_PairPickerDialog> {
     );
   }
 }
-
 
 class HexTile extends StatelessWidget {
   const HexTile({

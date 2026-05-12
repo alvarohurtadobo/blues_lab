@@ -1,5 +1,13 @@
 [
     {
+        "syncPair": "Florian (Anniversary 2026) & Ogerpon",
+        "moveName": "Lush Ivy Cudgel",
+        "stat": "rebuff",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 500
+    },
+    {
         "syncPair": "Adaman (Special Costume) & Ursaluna",
         "moveName": "Hazy Headlong Rush",
         "basePower": 200,
@@ -82,10 +90,22 @@
         "direction": "lowered",
         "stepPer1000": 0,
         "thresholdTable": [
-            { "minPct": 100, "multiplierPer1000": 1000 },
-            { "minPct": 50,  "multiplierPer1000": 800 },
-            { "minPct": 33,  "multiplierPer1000": 650 },
-            { "minPct": 0,   "multiplierPer1000": 550 }
+            {
+                "minPct": 100,
+                "multiplierPer1000": 1000
+            },
+            {
+                "minPct": 50,
+                "multiplierPer1000": 800
+            },
+            {
+                "minPct": 33,
+                "multiplierPer1000": 650
+            },
+            {
+                "minPct": 0,
+                "multiplierPer1000": 550
+            }
         ]
     },
     {
@@ -97,10 +117,22 @@
         "direction": "lowered",
         "stepPer1000": 0,
         "thresholdTable": [
-            { "minPct": 100, "multiplierPer1000": 1000 },
-            { "minPct": 50,  "multiplierPer1000": 800 },
-            { "minPct": 33,  "multiplierPer1000": 650 },
-            { "minPct": 0,   "multiplierPer1000": 550 }
+            {
+                "minPct": 100,
+                "multiplierPer1000": 1000
+            },
+            {
+                "minPct": 50,
+                "multiplierPer1000": 800
+            },
+            {
+                "minPct": 33,
+                "multiplierPer1000": 650
+            },
+            {
+                "minPct": 0,
+                "multiplierPer1000": 550
+            }
         ]
     },
     {
@@ -112,10 +144,22 @@
         "direction": "lowered",
         "stepPer1000": 0,
         "thresholdTable": [
-            { "minPct": 100, "multiplierPer1000": 1000 },
-            { "minPct": 50,  "multiplierPer1000": 800 },
-            { "minPct": 33,  "multiplierPer1000": 650 },
-            { "minPct": 0,   "multiplierPer1000": 550 }
+            {
+                "minPct": 100,
+                "multiplierPer1000": 1000
+            },
+            {
+                "minPct": 50,
+                "multiplierPer1000": 800
+            },
+            {
+                "minPct": 33,
+                "multiplierPer1000": 650
+            },
+            {
+                "minPct": 0,
+                "multiplierPer1000": 550
+            }
         ]
     },
     {
@@ -192,11 +236,26 @@
         "direction": "lowered",
         "stepPer1000": 0,
         "thresholdTable": [
-            { "minPct": 100, "multiplierPer1000": 1000 },
-            { "minPct": 75,  "multiplierPer1000": 1100 },
-            { "minPct": 50,  "multiplierPer1000": 1200 },
-            { "minPct": 25,  "multiplierPer1000": 1300 },
-            { "minPct": 0,   "multiplierPer1000": 1500 }
+            {
+                "minPct": 100,
+                "multiplierPer1000": 1000
+            },
+            {
+                "minPct": 75,
+                "multiplierPer1000": 1100
+            },
+            {
+                "minPct": 50,
+                "multiplierPer1000": 1200
+            },
+            {
+                "minPct": 25,
+                "multiplierPer1000": 1300
+            },
+            {
+                "minPct": 0,
+                "multiplierPer1000": 1500
+            }
         ]
     },
     {
@@ -326,5 +385,77 @@
         "who": "target",
         "direction": "lowered",
         "stepPer1000": 1000
+    },
+    {
+        "syncPair": "Lyra & Meganium",
+        "moveName": "Heart of Gold Leaf Storm",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Olympia & Sigilyph",
+        "moveName": "Starlight Path Psychic",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Marnie (Summer 2021) & Grimmsnarl",
+        "moveName": "Kickback Summer Fairy Impact",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Sygna Suit Steven & Deoxys Normal Forme",
+        "moveName": "Space Rocks Psycho Boost",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Dawn (New Year's 2023) & Oricorio Sensu Style",
+        "moveName": "Elegant Celebration Ghost Beam",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Zinnia (Special Costume) & Thievul",
+        "moveName": "Steal the Win Dark Impact",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Jacq & Farigiraf",
+        "moveName": "Laid-Back Biology Teacher Twin Beam",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Lear & Krookodile",
+        "moveName": "Poetic Justice Dark Impact",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
     }
 ]

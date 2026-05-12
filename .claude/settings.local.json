@@ -31,7 +31,16 @@
       "Skill(update-config)",
       "Skill(update-config:*)",
       "PowerShell($content = Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\damage_passives.json\" -Raw; $lines = $content -split \"`n\"; $total = $lines.Count; Write-Host \"Total lines: $total\"; \\($lines[\\($total-10\\)..\\($total-1\\)]\\) -join \"`n\")",
-      "PowerShell(try { $dp = Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\damage_passives.json\" -Raw | ConvertFrom-Json; Write-Host \"damage_passives.json: valid JSON, $\\($dp.Count\\) entries\" } catch { Write-Host \"ERROR: $_\" }; try { $ls = Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\lucky_skills.json\" -Raw | ConvertFrom-Json; Write-Host \"lucky_skills.json: valid JSON, $\\($ls.Count\\) entries\" } catch { Write-Host \"ERROR: $_\" })"
+      "PowerShell(try { $dp = Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\damage_passives.json\" -Raw | ConvertFrom-Json; Write-Host \"damage_passives.json: valid JSON, $\\($dp.Count\\) entries\" } catch { Write-Host \"ERROR: $_\" }; try { $ls = Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\lucky_skills.json\" -Raw | ConvertFrom-Json; Write-Host \"lucky_skills.json: valid JSON, $\\($ls.Count\\) entries\" } catch { Write-Host \"ERROR: $_\" })",
+      "Bash(Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\sync_pairs.json\" -TotalCount 100)",
+      "Bash(Get-Content \"E:\\\\Current Work\\\\blues_lab\\\\assets\\\\data\\\\sync_pairs.json\")",
+      "Bash(Select-String '\"locked\":\\\\s*true')",
+      "Bash(Measure-Object)",
+      "Bash(flutter --version)",
+      "Bash(find \"E:\\\\\\\\Current Work\\\\\\\\blues_lab\\\\\\\\legacy\\\\\\\\Pomatools\\\\\\\\reverse_engineering\" -type f)",
+      "Bash(dart run *)",
+      "Bash(dart analyze *)",
+      "WebFetch(domain:pomatools.github.io)"
     ]
   }
 }

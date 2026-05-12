@@ -60,18 +60,39 @@ void main() {
     File('assets/data/sync_pairs.json').readAsStringSync(),
   ) as List;
 
-  final pomatoolsNumbers = <int>{};
+  // Build a normalized name index from pomatools pairs for dedup comparison.
+  // Pomatools uses ★ for shinies; txt files use ✨(Male♂️) / ✨(Female♀️).
+  // Normalize by stripping those markers so they match.
+  final pomatoolsNormNames = <int, Set<String>>{};
   for (final p in pomatoolsPairsDeduped) {
-    pomatoolsNumbers.add(p['number'] as int);
+    final num = p['number'] as int;
+    pomatoolsNormNames.putIfAbsent(num, () => {}).add(_normName(p['displayName'] as String));
   }
 
-  // Add txt-only pairs that pomatools doesn't have
+  // Build index of existing pairs for merging manually-curated fields.
+  final existingByKey = <String, Map<String, dynamic>>{};
+  for (final existing in existingJson) {
+    final key = '${existing['number']}|${_normName(existing['displayName'] as String)}';
+    existingByKey[key] = existing as Map<String, dynamic>;
+  }
+
+  // Preserve manually-curated fields (damagePassives, move_scaling overrides) from
+  // the existing JSON into freshly generated pomatools pairs.
+  for (final p in pomatoolsPairsDeduped) {
+    final key = '${p['number']}|${_normName(p['displayName'] as String)}';
+    final existing = existingByKey[key];
+    if (existing == null) continue;
+    final dp = existing['damagePassives'];
+    if (dp is List && dp.isNotEmpty) p['damagePassives'] = dp;
+  }
+
+  // Add txt-only pairs that pomatools doesn't have (by number+normalized name).
   final txtOnlyPairs = <Map<String, dynamic>>[];
   for (final existing in existingJson) {
     final num = existing['number'] as int;
     final name = existing['displayName'] as String;
-    if (!pomatoolsNumbers.contains(num) ||
-        !pomatoolsPairsDeduped.any((p) => p['number'] == num && p['displayName'] == name)) {
+    final normNames = pomatoolsNormNames[num];
+    if (normNames == null || !normNames.contains(_normName(name))) {
       txtOnlyPairs.add(Map<String, dynamic>.from(existing as Map));
     }
   }
@@ -92,9 +113,17 @@ void main() {
 Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersions) {
   final pokemon = pair['pokemon'] as List;
   final baseForms = pokemon.where((pk) => pk['kind'] == 'BASE').toList();
-  if (baseForms.isEmpty) return null;
 
-  final base = baseForms.first as Map;
+  // Deoxys-style pairs: DEOX00 is the primary/command form (raw base stats + form-switch moves).
+  // DEOX01-04 are the 4 switchable battle forms, treated as variations.
+  final deox00List = pokemon.cast<Map>().where((pk) => pk['kind'] == 'DEOX00').toList();
+  final isDeoxStyle = baseForms.isEmpty && deox00List.isNotEmpty;
+
+  if (baseForms.isEmpty && !isDeoxStyle) return null;
+
+  // DEOX00 is the primary form (moves, passives, and stats all come from it).
+  final Map base = isDeoxStyle ? deox00List.first : (baseForms.first as Map);
+
   final trainerId = pair['trainerId'] as String;
   final trainerName = _chars[trainerId] ?? 'Unknown';
   final pkId = base['id'] as String;
@@ -122,10 +151,10 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
     releaseDate = '${dt.year}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}';
   }
 
-  // Build moves from BASE form
+  // Build moves from the primary form (BASE or DEOX00 command form)
   final moves = <Map<String, dynamic>>[];
   String syncMoveName = '';
-  final baseMoves = base['moves'] as List;
+  final baseMoves = base['moves'] as List; // used later for variation diffing
   for (final moveId in baseMoves) {
     if (moveId == -1) continue;
     final mid = moveId.toString();
@@ -158,8 +187,34 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
     moves.add(move);
   }
 
-  // Build passives from BASE form skills
+  // Build passives from primary form skills
   final passives = <Map<String, dynamic>>[];
+
+  // For DEOX-style pairs, find which skill IDs are universal (appear in ALL forms).
+  // Universal passives should be marked locked=true so _applyPassiveReplacements keeps them
+  // unchanged when switching forms. Form-specific passives should be locked=false.
+  // For normal pairs the lock value (skill parameter) is used: lock > 0 means locked.
+  Set<int> universalSkillIds = {};
+  if (isDeoxStyle) {
+    final allDeoxForms = pokemon.cast<Map>()
+        .where((pk) => (pk['kind'] as String).startsWith('DEOX'))
+        .toList();
+    universalSkillIds = allDeoxForms.fold<Set<int>>(
+      allDeoxForms.first['skills']
+          .cast<List>()
+          .map<int>((s) => s[0] as int)
+          .where((id) => id != 0)
+          .toSet(),
+      (acc, form) {
+        final ids = (form['skills'] as List)
+            .cast<List>()
+            .map<int>((s) => s[0] as int)
+            .where((id) => id != 0)
+            .toSet();
+        return acc.intersection(ids);
+      },
+    );
+  }
 
   // Add awakening skill first if present
   if (hasSuperAwakening && awakeningId != 0) {
@@ -177,15 +232,18 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
     final lock = skill[1] as int;
     if (sid == 0) continue;
     final sData = _skillNames[sid.toString()] as Map?;
+    // DEOX pairs: locked = universal (shared across all forms) so it's never replaced.
+    // Normal pairs: locked = requires a move level to unlock (lock > 0).
+    final isLocked = isDeoxStyle ? universalSkillIds.contains(sid) : lock > 0;
     passives.add({
       'name': _resolveSkillTemplate(sData?['NAME'] ?? 'Skill $sid', lock),
       'description': _resolveSkillTemplate(sData?['DESC'] ?? '', lock),
-      'locked': lock > 0,
+      'locked': isLocked,
       'subPassives': _buildSubPassives(sid),
     });
   }
 
-  // Build stats
+  // Build stats from the primary form (BASE or DEOX00)
   final stats = <String, Map<String, int>>{};
   final baseStats = base['stats'] as List;
   for (final entry in _statLevels.entries) {
@@ -201,6 +259,8 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
       };
     }
   }
+
+  // DEOX form multipliers are stored per-variation (see statMultiplier in variation entries below).
 
   // Mega stats & multiplier
   final megaStats = <String, Map<String, int>>{};
@@ -298,11 +358,14 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
     }
   }
 
-  // Variations (non-BASE, non-MEGA, non-TERA, non-DMAX forms)
+  // Variations (non-BASE, non-MEGA, non-TERA, non-DMAX forms).
+  // For DEOX pairs: DEOX00 is the primary form, so DEOX01-04 all become variations.
   final variations = <Map<String, dynamic>>[];
   final variationKinds = pokemon.where((pk) {
     final kind = pk['kind'] as String;
-    return kind != 'BASE' && kind != 'MEGA' && !kind.startsWith('TERA') && kind != 'DMAX';
+    if (kind == 'BASE' || kind == 'MEGA' || kind.startsWith('TERA') || kind == 'DMAX') return false;
+    if (isDeoxStyle && kind == 'DEOX00') return false;
+    return true;
   }).toList();
 
   for (final vForm in variationKinds) {
@@ -347,11 +410,26 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
         'description': _resolveSkillTemplate(sData?['DESC'] ?? '', skill[1] as int),
       });
     }
-    if (vMoves.isNotEmpty || vPassives.isNotEmpty) {
+    // For DEOX forms, store per-stat multipliers so the UI can apply them last
+    // (after potential/EX/SA bonuses), matching how megaStatMultiplier works.
+    final statMultiplier = <String, double>{};
+    if (isDeoxStyle) {
+      final pcts = (vForm['stats'] as List)[0] as List;
+      const statMap = {'atk': 1, 'def': 2, 'spa': 3, 'spd': 4, 'spe': 5};
+      for (final e in statMap.entries) {
+        final pct = pcts[e.value] as int;
+        if (pct != 100) {
+          statMultiplier[e.key] = double.parse((pct / 100.0).toStringAsFixed(2));
+        }
+      }
+    }
+
+    if (vMoves.isNotEmpty || vPassives.isNotEmpty || statMultiplier.isNotEmpty) {
       variations.add({
         'formName': formPkName,
         'moves': vMoves,
         'passives': vPassives,
+        if (statMultiplier.isNotEmpty) 'statMultiplier': statMultiplier,
       });
     }
   }
@@ -405,6 +483,7 @@ Map<String, dynamic>? _buildSyncPair(Map<String, dynamic> pair, List? gridVersio
     'teraStatMultiplier': teraStatMultiplier,
     'megaStatMultiplier': megaStatMultiplier,
     'megaStats': megaStats,
+
     'variations': variations,
     'cells': cells,
   };
@@ -614,4 +693,15 @@ String? _statKeyFromTarget(String target) {
 
 dynamic _loadJson(String path) {
   return jsonDecode(File(path).readAsStringSync());
+}
+
+// Normalize a pair displayName for dedup comparison by stripping shiny/gender markers.
+// Pomatools uses ★; txt files use ✨(Male♂️) / ✨(Female♀️).
+String _normName(String name) {
+  return name
+      .replaceAll(RegExp(r'\s*✨\s*\([^)]*\)'), '')
+      .replaceAll('✨', '')
+      .replaceAll('★', '')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
 }

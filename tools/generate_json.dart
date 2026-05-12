@@ -106,19 +106,29 @@ Map<int, Map<String, dynamic>> parseKits(String input) {
 
     for (int i = 1; i < lines.length; i++) {
       final line = lines[i];
-      if (line.contains('Tera Details') || line.contains('Variation Details'))
+      if (line.contains('Tera Details') || line.contains('Variation Details')) {
         break;
+      }
       if (line.contains('Superawakened Passive:')) {
-        final saName = line.replaceFirst(RegExp(r'.*Superawakened Passive:\s*'), '').trim();
+        final saName = line
+            .replaceFirst(RegExp(r'.*Superawakened Passive:\s*'), '')
+            .trim();
         String saDesc = '';
         if (i + 1 < lines.length) {
           final pl = lines[i + 1].trim();
           if (pl.isNotEmpty &&
               !pl.startsWith('Passive ') &&
-              !RegExp(r'^(Role|Type|Category|Power|Accuracy|Gauge|Target|Rarity|Method|Sync Pair|EX |Lv\.|HP ):').hasMatch(pl))
+              !RegExp(
+                r'^(Role|Type|Category|Power|Accuracy|Gauge|Target|Rarity|Method|Sync Pair|EX |Lv\.|HP ):',
+              ).hasMatch(pl)) {
             saDesc = pl;
+          }
         }
-        superAwakenedPassive = {'name': saName, 'description': saDesc, 'locked': true};
+        superAwakenedPassive = {
+          'name': saName,
+          'description': saDesc,
+          'locked': true,
+        };
         continue;
       }
       if (line.startsWith('Role:')) {
@@ -128,22 +138,26 @@ Map<int, Map<String, dynamic>> parseKits(String input) {
       } else if (line.startsWith('Type:')) {
         final parts = line.replaceFirst('Type:', '').split('|');
         type = parts.first.trim();
-        if (parts.length > 1)
+        if (parts.length > 1) {
           weakness = parts[1].replaceAll(RegExp(r'Weakness:\s*'), '').trim();
+        }
       } else if (line.startsWith('Sync Move:')) {
         syncMoveName = line.replaceFirst('Sync Move:', '').trim();
       } else if (line.startsWith('Sync Pair Available:')) {
         final m = RegExp(r'(\d+)/(\d+)/(\d+)').firstMatch(line);
-        if (m != null)
+        if (m != null) {
           releaseDate =
               '${m.group(3)}-${m.group(2)!.padLeft(2, '0')}-${m.group(1)!.padLeft(2, '0')}';
+        }
       } else if (line.startsWith('Rarity:')) {
         rarity = '⭐'.allMatches(line).length;
         if (rarity == 0) rarity = RegExp(r'[★⭐]').allMatches(line).length;
         if (rarity == 0) rarity = 5;
       } else if (line.contains('EX Color')) {
         hasEx = line.contains('Yes');
-      } else if (line.contains('EX Effect Available') || line.contains('EX Role Available') || line.toLowerCase().contains('ex available')) {
+      } else if (line.contains('EX Effect Available') ||
+          line.contains('EX Role Available') ||
+          line.toLowerCase().contains('ex available')) {
         hasEx = true;
       } else if (RegExp(r'^Move \d+:').hasMatch(line)) {
         final moveName = line.replaceFirst(RegExp(r'^Move \d+:\s*'), '').trim();
@@ -204,11 +218,16 @@ Map<int, Map<String, dynamic>> parseKits(String input) {
               !pl.startsWith('Passive ') &&
               !RegExp(
                 r'^(Role|Type|Category|Power|Accuracy|Gauge|Target|Rarity|Method|Sync Pair|EX |Lv\.|HP ):',
-              ).hasMatch(pl))
+              ).hasMatch(pl)) {
             pDesc = pl;
+          }
         }
         final hasMarker = RegExp(r'Passive \d+\([^)]+\):').hasMatch(line);
-        passives.add({'name': pName, 'description': pDesc, 'locked': hasMarker});
+        passives.add({
+          'name': pName,
+          'description': pDesc,
+          'locked': hasMarker,
+        });
       }
     }
 
@@ -216,8 +235,10 @@ Map<int, Map<String, dynamic>> parseKits(String input) {
       String smType = '', smCat = '', smPower = '', smDesc = '';
       bool inSync = false;
       for (final line in lines) {
-        if (line.contains('Tera Details') || line.contains('Variation Details'))
+        if (line.contains('Tera Details') ||
+            line.contains('Variation Details')) {
           break;
+        }
         if (line.startsWith('Sync Move:')) {
           inSync = true;
           continue;
@@ -306,8 +327,9 @@ Map<int, Map<String, dynamic>> parseKits(String input) {
           final pl = lines[i + 1].trim();
           if (pl.isNotEmpty &&
               !pl.startsWith('Passive ') &&
-              !pl.startsWith('-'))
+              !pl.startsWith('-')) {
             pDesc = pl;
+          }
         }
         teraPassives.add({'name': pName, 'description': pDesc});
       }
@@ -580,19 +602,20 @@ List<Map<String, dynamic>> _parseVariations(List<String> lines) {
             ml.startsWith('Sync Move:') ||
             _passiveHeaderRegex.hasMatch(ml) ||
             ml.contains('Details') ||
-            ml.startsWith('----'))
+            ml.startsWith('----')) {
           break;
-        if (ml.startsWith('Type:'))
+        }
+        if (ml.startsWith('Type:')) {
           mType = ml.replaceFirst('Type:', '').trim();
-        else if (ml.startsWith('Category:'))
+        } else if (ml.startsWith('Category:'))
           mCat = ml.replaceFirst('Category:', '').trim();
         else if (ml.startsWith('Description:'))
           mDesc = ml.replaceFirst('Description:', '').trim();
         else if (ml.startsWith('Power:')) {
           for (final a in ml.split('|').map((e) => e.trim())) {
-            if (a.startsWith('Power:'))
+            if (a.startsWith('Power:')) {
               mPower = a.replaceFirst('Power:', '').trim();
-            else if (a.startsWith('Accuracy:'))
+            } else if (a.startsWith('Accuracy:'))
               mAcc = a.replaceFirst('Accuracy:', '').trim();
             else if (a.startsWith('Gauge:'))
               mGauge = a.replaceFirst('Gauge:', '').trim();
@@ -624,8 +647,9 @@ List<Map<String, dynamic>> _parseVariations(List<String> lines) {
             !pl.startsWith('Passive ') &&
             !pl.startsWith('-') &&
             !pl.startsWith('Move') &&
-            !pl.startsWith('Sync'))
+            !pl.startsWith('Sync')) {
           pDesc = pl;
+        }
       }
       passives.add({'name': pName, 'description': pDesc});
     }

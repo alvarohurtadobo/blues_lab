@@ -27,6 +27,7 @@ class SyncPairData {
     this.hasTera = false,
     this.teraMove,
     this.teraPassives = const [],
+    this.teraMoves = const [],
     this.stats = const {},
     this.teraStatMultiplier = const {},
     this.megaStatMultiplier = const {},
@@ -57,6 +58,7 @@ class SyncPairData {
   final bool hasTera;
   final MoveData? teraMove;
   final List<PassiveData> teraPassives;
+  final List<MoveData> teraMoves;
   final Map<String, Map<String, int>> stats;
   final Map<String, double> teraStatMultiplier;
   final Map<String, double> megaStatMultiplier;
@@ -67,6 +69,18 @@ class SyncPairData {
   final List<PassiveRule> rules;
   final List<DamagePassive> damagePassives;
   final List<MasterPassiveData> masterPassives;
+
+  /// Returns the base stats for [level] (before form multipliers).
+  Map<String, int> effectiveStats(String level) {
+    return stats[level] ?? (stats.isEmpty ? {} : stats.values.last);
+  }
+
+  /// Returns the stat multiplier for [stat] at variation [formIndex].
+  /// formIndex 0 = base form (mult = 1.0). 1..N = variations.
+  double variationStatMult(int formIndex, String stat) {
+    if (formIndex <= 0 || formIndex > variations.length) return 1.0;
+    return variations[formIndex - 1].statMultiplier[stat] ?? 1.0;
+  }
 
   Iterable<String> get searchTerms sync* {
     yield displayName;
@@ -335,11 +349,15 @@ class VariationData {
     required this.formName,
     this.moves = const [],
     this.passives = const [],
+    this.statMultiplier = const {},
   });
 
   final String formName;
   final List<MoveData> moves;
   final List<PassiveData> passives;
+  /// Per-stat multipliers for this form (same format as megaStatMultiplier).
+  /// Only populated for form-change variants like Deoxys formes.
+  final Map<String, double> statMultiplier;
 
   List<MoveData> applyTo(List<MoveData> baseMoves) {
     final result = List<MoveData>.from(baseMoves);

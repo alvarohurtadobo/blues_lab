@@ -13,7 +13,9 @@ class SyncPairRepository {
     final jsonList = json.decode(jsonStr) as List<dynamic>;
 
     // Load move scaling data
-    final scalingStr = await rootBundle.loadString('assets/data/move_scaling.json');
+    final scalingStr = await rootBundle.loadString(
+      'assets/data/move_scaling.json',
+    );
     final scalingList = json.decode(scalingStr) as List<dynamic>;
     // Key: "pairName|moveName" -> MoveScaling
     final scalingMap = <String, MoveScaling>{};
@@ -25,21 +27,21 @@ class SyncPairRepository {
         who: (e['who'] ?? 'user') as String,
         direction: (e['direction'] ?? 'raised') as String,
         stepPer1000: (e['stepPer1000'] as num?)?.toInt() ?? 0,
-        thresholdTable: (e['thresholdTable'] as List? ?? const [])
-            .map((t) {
-              final row = t as Map<String, dynamic>;
-              return ThresholdEntry(
-                minPct: (row['minPct'] as num).toInt(),
-                multiplierPer1000: (row['multiplierPer1000'] as num).toInt(),
-              );
-            })
-            .toList(),
+        thresholdTable: (e['thresholdTable'] as List? ?? const []).map((t) {
+          final row = t as Map<String, dynamic>;
+          return ThresholdEntry(
+            minPct: (row['minPct'] as num).toInt(),
+            multiplierPer1000: (row['multiplierPer1000'] as num).toInt(),
+          );
+        }).toList(),
         capPer1000: (e['capPer1000'] as num?)?.toInt() ?? 0,
       );
     }
 
     // Load master passive definitions
-    final dpStr = await rootBundle.loadString('assets/data/damage_passives.json');
+    final dpStr = await rootBundle.loadString(
+      'assets/data/damage_passives.json',
+    );
     final dpMasterList = json.decode(dpStr) as List<dynamic>;
     final dpMasterMap = <String, DamagePassive>{};
     for (final entry in dpMasterList) {
@@ -51,21 +53,28 @@ class SyncPairRepository {
     }
 
     // Load master passives data
-    final mpStr = await rootBundle.loadString('assets/data/master_passives.json');
+    final mpStr = await rootBundle.loadString(
+      'assets/data/master_passives.json',
+    );
     final mpList = json.decode(mpStr) as List<dynamic>;
     final mpMap = <String, List<MasterPassiveData>>{};
     for (final entry in mpList) {
       final e = entry as Map<String, dynamic>;
       final pairName = (e['syncPair'] ?? '') as String;
-      mpMap.putIfAbsent(pairName, () => []).add(MasterPassiveData(
-        name: (e['passiveName'] ?? '') as String,
-        theme: (e['theme'] ?? '') as String,
-        category: (e['category'] ?? 'any') as String,
-        appliesToSync: e['appliesToSync'] == true,
-        basePowerUpPct: (e['basePowerUpPct'] as num?)?.toInt() ?? 10,
-        perAdditionalAllyPct: (e['perAdditionalAllyPct'] as num?)?.toInt() ?? 5,
-        maxPowerUpPct: (e['maxPowerUpPct'] as num?)?.toInt() ?? 20,
-      ));
+      mpMap
+          .putIfAbsent(pairName, () => [])
+          .add(
+            MasterPassiveData(
+              name: (e['passiveName'] ?? '') as String,
+              theme: (e['theme'] ?? '') as String,
+              category: (e['category'] ?? 'any') as String,
+              appliesToSync: e['appliesToSync'] == true,
+              basePowerUpPct: (e['basePowerUpPct'] as num?)?.toInt() ?? 10,
+              perAdditionalAllyPct:
+                  (e['perAdditionalAllyPct'] as num?)?.toInt() ?? 5,
+              maxPowerUpPct: (e['maxPowerUpPct'] as num?)?.toInt() ?? 20,
+            ),
+          );
     }
 
     // Load lucky skill definitions
@@ -93,12 +102,25 @@ class SyncPairRepository {
       );
       final roles = (e['restricted_to_roles'] as List?)?.cast<String>();
       final pairs = (e['restricted_to_pairs'] as List?)?.cast<String>();
-      luckySkills.add(LuckySkillDef(passive: dp, restrictedToRoles: roles, restrictedToPairs: pairs));
+      luckySkills.add(
+        LuckySkillDef(
+          passive: dp,
+          restrictedToRoles: roles,
+          restrictedToPairs: pairs,
+        ),
+      );
     }
 
     final pairs =
         jsonList
-            .map((entry) => _parsePair(entry as Map<String, dynamic>, scalingMap, dpMasterMap, mpMap))
+            .map(
+              (entry) => _parsePair(
+                entry as Map<String, dynamic>,
+                scalingMap,
+                dpMasterMap,
+                mpMap,
+              ),
+            )
             .toList()
           ..sort((left, right) {
             final leftDate = left.releaseDate ?? DateTime(2000);
@@ -109,7 +131,12 @@ class SyncPairRepository {
     return ParsedData(pairs: pairs, luckySkills: luckySkills);
   }
 
-  SyncPairData _parsePair(Map<String, dynamic> jsonMap, Map<String, MoveScaling> scalingMap, Map<String, DamagePassive> dpMasterMap, Map<String, List<MasterPassiveData>> mpMap) {
+  SyncPairData _parsePair(
+    Map<String, dynamic> jsonMap,
+    Map<String, MoveScaling> scalingMap,
+    Map<String, DamagePassive> dpMasterMap,
+    Map<String, List<MasterPassiveData>> mpMap,
+  ) {
     final pairName = (jsonMap['displayName'] ?? '') as String;
     final pairType = (jsonMap['type'] ?? '') as String;
     final pairRole = (jsonMap['role'] ?? '') as String;
@@ -122,8 +149,12 @@ class SyncPairRepository {
 
     final moves = (jsonMap['moves'] as List? ?? const [])
         .map(
-          (entry) =>
-              _parseMove(entry as Map<String, dynamic>, pairType: pairType, pairName: pairName, scalingMap: scalingMap),
+          (entry) => _parseMove(
+            entry as Map<String, dynamic>,
+            pairType: pairType,
+            pairName: pairName,
+            scalingMap: scalingMap,
+          ),
         )
         .toList();
 
@@ -133,6 +164,17 @@ class SyncPairRepository {
 
     final teraPassives = (jsonMap['teraPassives'] as List? ?? const [])
         .map((entry) => _parsePassive(entry as Map<String, dynamic>))
+        .toList();
+
+    final teraMoves = (jsonMap['teraMoves'] as List? ?? const [])
+        .map(
+          (entry) => _parseMove(
+            entry as Map<String, dynamic>,
+            pairType: pairType,
+            pairName: pairName,
+            scalingMap: scalingMap,
+          ),
+        )
         .toList();
 
     final pairTags = <PairTag>[
@@ -167,8 +209,14 @@ class SyncPairRepository {
       passives: passives,
       description: '',
       hasTera: jsonMap['hasTera'] == true,
-      teraMove: _parseOptionalMove(jsonMap['teraMove'], pairType: pairType, pairName: pairName, scalingMap: scalingMap),
+      teraMove: _parseOptionalMove(
+        jsonMap['teraMove'],
+        pairType: pairType,
+        pairName: pairName,
+        scalingMap: scalingMap,
+      ),
       teraPassives: teraPassives,
+      teraMoves: teraMoves,
       stats: _parseNestedStats(jsonMap['stats'] as Map<String, dynamic>?),
       teraStatMultiplier: _parseTeraStatMultiplier(jsonMap),
       megaStatMultiplier: _parseMegaStatMultiplier(
@@ -178,14 +226,21 @@ class SyncPairRepository {
         jsonMap['megaStats'] as Map<String, dynamic>?,
       ),
       formStats: _parseFormStats(jsonMap['formStats'] as Map<String, dynamic>?),
-      variations: _parseVariations(jsonMap['variations'] as List?, pairName: pairName, scalingMap: scalingMap),
+      variations: _parseVariations(
+        jsonMap['variations'] as List?,
+        pairName: pairName,
+        scalingMap: scalingMap,
+      ),
       tags: _dedupeTags(pairTags),
       rules: rules
           .where(
             (rule) => rule.conditions.isNotEmpty || rule.effects.isNotEmpty,
           )
           .toList(),
-      damagePassives: _resolveDamagePassives(jsonMap['damagePassives'] as List? ?? const [], dpMasterMap),
+      damagePassives: _resolveDamagePassives(
+        jsonMap['damagePassives'] as List? ?? const [],
+        dpMasterMap,
+      ),
       masterPassives: mpMap[pairName] ?? const [],
     );
   }
@@ -195,21 +250,25 @@ class SyncPairRepository {
     final colorKind = (jsonMap['colorKind'] ?? 'Unknown') as String;
     final subPassivesRaw = jsonMap['subPassives'] as List? ?? const [];
     final subPassives = subPassivesRaw
-        .map((e) => SubPassiveData(
-              name: (e as Map<String, dynamic>)['name'] as String? ?? '',
-              description: e['description'] as String? ?? '',
-              value: (e['value'] as num?)?.toInt() ?? 0,
-            ))
+        .map(
+          (e) => SubPassiveData(
+            name: (e as Map<String, dynamic>)['name'] as String? ?? '',
+            description: e['description'] as String? ?? '',
+            value: (e['value'] as num?)?.toInt() ?? 0,
+          ),
+        )
         .toList();
 
     final Map<String, int> statBonus;
     final Map<String, int> powerBonus;
 
     if (jsonMap.containsKey('statBonus')) {
-      statBonus = (jsonMap['statBonus'] as Map<String, dynamic>? ?? {})
-          .map((k, v) => MapEntry(k, (v as num).toInt()));
-      powerBonus = (jsonMap['powerBonus'] as Map<String, dynamic>? ?? {})
-          .map((k, v) => MapEntry(k, (v as num).toInt()));
+      statBonus = (jsonMap['statBonus'] as Map<String, dynamic>? ?? {}).map(
+        (k, v) => MapEntry(k, (v as num).toInt()),
+      );
+      powerBonus = (jsonMap['powerBonus'] as Map<String, dynamic>? ?? {}).map(
+        (k, v) => MapEntry(k, (v as num).toInt()),
+      );
     } else {
       // Fallback for cells without pre-computed bonus fields
       statBonus = <String, int>{};
@@ -219,12 +278,20 @@ class SyncPairRepository {
       if (match != null) {
         final val = int.tryParse(match.group(1)!);
         if (val != null) {
-          if (titleLower.contains('hp')) statBonus['hp'] = val;
-          else if (titleLower.contains('sp.atk') || titleLower.contains('sp.attack')) statBonus['spa'] = val;
-          else if (titleLower.contains('attack')) statBonus['atk'] = val;
-          else if (titleLower.contains('defense')) statBonus['def'] = val;
-          else if (titleLower.contains('sp.def') || titleLower.contains('sp.defense')) statBonus['spd'] = val;
-          else if (titleLower.contains('speed')) statBonus['spe'] = val;
+          if (titleLower.contains('hp')) {
+            statBonus['hp'] = val;
+          } else if (titleLower.contains('sp.atk') ||
+              titleLower.contains('sp.attack'))
+            statBonus['spa'] = val;
+          else if (titleLower.contains('attack'))
+            statBonus['atk'] = val;
+          else if (titleLower.contains('defense'))
+            statBonus['def'] = val;
+          else if (titleLower.contains('sp.def') ||
+              titleLower.contains('sp.defense'))
+            statBonus['spd'] = val;
+          else if (titleLower.contains('speed'))
+            statBonus['spe'] = val;
           else if (titleLower.contains(': power')) {
             final moveName = title.split(':')[0].trim();
             powerBonus[moveName] = val;
@@ -249,12 +316,14 @@ class SyncPairRepository {
         ..._tileTags(title, colorKind),
       ]),
       effects: powerBonus.entries
-          .map((e) => PassiveEffect(
-                kind: EffectKind.powerModifier,
-                scope: EntityScope.self,
-                value: e.value.toDouble(),
-                flag: colorKind,
-              ))
+          .map(
+            (e) => PassiveEffect(
+              kind: EffectKind.powerModifier,
+              scope: EntityScope.self,
+              value: e.value.toDouble(),
+              flag: colorKind,
+            ),
+          )
           .toList(),
       subPassives: subPassives,
       statBonus: statBonus,
@@ -300,11 +369,21 @@ class SyncPairRepository {
     );
   }
 
-  MoveData? _parseOptionalMove(dynamic raw, {required String pairType, required String pairName, required Map<String, MoveScaling> scalingMap}) {
+  MoveData? _parseOptionalMove(
+    dynamic raw, {
+    required String pairType,
+    required String pairName,
+    required Map<String, MoveScaling> scalingMap,
+  }) {
     if (raw is! Map<String, dynamic>) {
       return null;
     }
-    return _parseMove(raw, pairType: pairType, pairName: pairName, scalingMap: scalingMap);
+    return _parseMove(
+      raw,
+      pairType: pairType,
+      pairName: pairName,
+      scalingMap: scalingMap,
+    );
   }
 
   PassiveData _parsePassive(Map<String, dynamic> jsonMap) {
@@ -312,11 +391,13 @@ class SyncPairRepository {
     final description = (jsonMap['description'] ?? '') as String;
     final subPassivesRaw = jsonMap['subPassives'] as List? ?? const [];
     final subPassives = subPassivesRaw
-        .map((e) => SubPassiveData(
-              name: (e as Map<String, dynamic>)['name'] as String? ?? '',
-              description: e['description'] as String? ?? '',
-              value: (e['value'] as num?)?.toInt() ?? 0,
-            ))
+        .map(
+          (e) => SubPassiveData(
+            name: (e as Map<String, dynamic>)['name'] as String? ?? '',
+            description: e['description'] as String? ?? '',
+            value: (e['value'] as num?)?.toInt() ?? 0,
+          ),
+        )
         .toList();
     return PassiveData(
       name: name,
@@ -332,7 +413,11 @@ class SyncPairRepository {
     );
   }
 
-  List<VariationData> _parseVariations(List? rawList, {required String pairName, required Map<String, MoveScaling> scalingMap}) {
+  List<VariationData> _parseVariations(
+    List? rawList, {
+    required String pairName,
+    required Map<String, MoveScaling> scalingMap,
+  }) {
     return (rawList ?? const []).map((entry) {
       final variation = entry as Map<String, dynamic>;
       final moves = (variation['moves'] as List? ?? const [])
@@ -348,10 +433,15 @@ class SyncPairRepository {
       final passives = (variation['passives'] as List? ?? const [])
           .map((passive) => _parsePassive(passive as Map<String, dynamic>))
           .toList();
+      final statMultiplier =
+          (variation['statMultiplier'] as Map<String, dynamic>? ?? {}).map(
+            (k, v) => MapEntry(k, (v as num).toDouble()),
+          );
       return VariationData(
         formName: (variation['formName'] ?? 'Variation') as String,
         moves: moves,
         passives: passives,
+        statMultiplier: statMultiplier,
       );
     }).toList();
   }
@@ -393,7 +483,9 @@ class SyncPairRepository {
   }
 
   Map<String, double> _parseTeraStatMultiplier(Map<String, dynamic> jsonMap) {
-    return _parseDoubleMap(jsonMap['teraStatMultiplier'] as Map<String, dynamic>?);
+    return _parseDoubleMap(
+      jsonMap['teraStatMultiplier'] as Map<String, dynamic>?,
+    );
   }
 
   List<PairTag> _extractThemeTags(Map<String, dynamic> jsonMap) {
@@ -593,7 +685,10 @@ class SyncPairRepository {
     return byKey.values.toList();
   }
 
-  List<DamagePassive> _resolveDamagePassives(List refs, Map<String, DamagePassive> masterMap) {
+  List<DamagePassive> _resolveDamagePassives(
+    List refs,
+    Map<String, DamagePassive> masterMap,
+  ) {
     final result = <DamagePassive>[];
     for (final ref in refs) {
       final r = ref as Map<String, dynamic>;
@@ -602,21 +697,23 @@ class SyncPairRepository {
       final key = moveName.isEmpty ? name : '$name|$moveName';
       final master = masterMap[key];
       if (master == null) continue;
-      result.add(DamagePassive(
-        source: (r['source'] ?? '') as String,
-        name: master.name,
-        type: master.type,
-        appliesTo: master.appliesTo,
-        affects: master.affects,
-        mechanism: master.mechanism,
-        value: master.value,
-        stat: master.stat,
-        statTarget: master.statTarget,
-        conditions: master.conditions,
-        moveName: master.moveName,
-        cellNumber: (r['cellNumber'] as num?)?.toInt(),
-        subPassives: master.subPassives,
-      ));
+      result.add(
+        DamagePassive(
+          source: (r['source'] ?? '') as String,
+          name: master.name,
+          type: master.type,
+          appliesTo: master.appliesTo,
+          affects: master.affects,
+          mechanism: master.mechanism,
+          value: master.value,
+          stat: master.stat,
+          statTarget: master.statTarget,
+          conditions: master.conditions,
+          moveName: master.moveName,
+          cellNumber: (r['cellNumber'] as num?)?.toInt(),
+          subPassives: master.subPassives,
+        ),
+      );
     }
     return result;
   }
@@ -637,7 +734,10 @@ class SyncPairRepository {
       appliesTo: (p['applies_to'] ?? '') as String,
       affects: (p['affects'] ?? '') as String,
       mechanism: (p['mechanism'] ?? '') as String,
-      value: (p['value'] as num?)?.toInt() ?? (p['sub_value'] as num?)?.toInt() ?? 0,
+      value:
+          (p['value'] as num?)?.toInt() ??
+          (p['sub_value'] as num?)?.toInt() ??
+          0,
       stat: (p['stat'] ?? '') as String,
       statTarget: (p['stat_target'] ?? '') as String,
       conditions: conditions,
@@ -659,7 +759,10 @@ class SyncPairRepository {
       appliesTo: (sp['applies_to'] ?? '') as String,
       affects: (sp['affects'] ?? '') as String,
       mechanism: (sp['mechanism'] ?? '') as String,
-      value: (sp['sub_value'] as num?)?.toInt() ?? (sp['value'] as num?)?.toInt() ?? 0,
+      value:
+          (sp['sub_value'] as num?)?.toInt() ??
+          (sp['value'] as num?)?.toInt() ??
+          0,
       stat: (sp['stat'] ?? '') as String,
       statTarget: (sp['stat_target'] ?? '') as String,
       conditions: conditions,

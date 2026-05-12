@@ -65,6 +65,9 @@ class CombatantState {
   // Ally-only: cheer multiplier (×1.5 on final damage)
   bool cheer;
 
+  // Ally-only: user-side type rebuffs (-3 to +3 per type)
+  Map<String, int> userTypeRebuffs;
+
   // Enemy-only: manual stats and damage reduction
   Map<String, int> manualStats;
   String weakness;
@@ -99,6 +102,7 @@ class CombatantState {
     Map<String, int>? circleAllyCount,
     Map<String, int>? masterPassiveAllyCount,
     this.cheer = false,
+    Map<String, int>? userTypeRebuffs,
     Map<String, int>? manualStats,
     this.weakness = '',
     Map<String, int>? typeRebuffs,
@@ -113,6 +117,7 @@ class CombatantState {
         circleAllyCount = circleAllyCount ?? {},
         masterPassiveAllyCount = masterPassiveAllyCount ?? {},
         manualStats = manualStats ?? {...enemyDefaults},
+        userTypeRebuffs = userTypeRebuffs ?? {for (final t in allTypes) t: 0},
         typeRebuffs = typeRebuffs ?? {for (final t in allTypes) t: 0},
         mitigations = mitigations ?? {'atk': 5, 'def': 5, 'spa': 5, 'spd': 5, 'spe': 5};
 
