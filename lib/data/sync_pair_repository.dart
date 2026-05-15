@@ -217,6 +217,7 @@ class SyncPairRepository {
       ),
       teraPassives: teraPassives,
       teraMoves: teraMoves,
+      teraTypeOverride: (jsonMap['teraTypeOverride'] ?? '') as String,
       stats: _parseNestedStats(jsonMap['stats'] as Map<String, dynamic>?),
       teraStatMultiplier: _parseTeraStatMultiplier(jsonMap),
       megaStatMultiplier: _parseMegaStatMultiplier(
@@ -341,7 +342,8 @@ class SyncPairRepository {
     final type = (jsonMap['type'] ?? '') as String;
     final category = (jsonMap['category'] ?? '') as String;
     final description = (jsonMap['description'] ?? '') as String;
-    final scalingKey = '$pairName|$name';
+    // Pair-specific scaling first; fall back to wildcard (generic move modifier)
+    final scaling = scalingMap['$pairName|$name'] ?? scalingMap['*|$name'];
 
     return MoveData(
       name: name,
@@ -354,7 +356,7 @@ class SyncPairRepository {
       description: description,
       isSync: jsonMap['isSync'] == true,
       slot: jsonMap['slot'] as int?,
-      scaling: scalingMap[scalingKey],
+      scaling: scaling,
       isExtendedRange: jsonMap['isExtendedRange'] == true,
       tags: _dedupeTags([
         if (type.isNotEmpty) PairTag(category: 'move_type', value: type),
@@ -442,6 +444,7 @@ class SyncPairRepository {
         moves: moves,
         passives: passives,
         statMultiplier: statMultiplier,
+        typeOverride: (variation['typeOverride'] ?? '') as String,
       );
     }).toList();
   }

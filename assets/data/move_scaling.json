@@ -423,7 +423,7 @@
         "capPer1000": 2200
     },
     {
-        "syncPair": "Dawn (New Year's 2023) & Oricorio Sensu Style",
+        "syncPair": "Dawn (New Year’s 2023) & Oricorio Sensu Style",
         "moveName": "Elegant Celebration Ghost Beam",
         "stat": "all_stats",
         "who": "user",
@@ -457,5 +457,2102 @@
         "direction": "raised",
         "stepPer1000": 67,
         "capPer1000": 2200
+    },
+    {
+        "syncPair": "Brock & Onix",
+        "moveName": "Rock-Solid Rockslide",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Misty & Golduck",
+        "moveName": "Open Ocean Dive Water Beam",
+        "stat": "acc",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Misty & Starmie",
+        "moveName": "Tomboyish Mermaid Bubble Beam",
+        "stat": "spd",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lt. Surge & Electrode",
+        "moveName": "Surging Charge Beam",
+        "stat": "spa",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Erika (Palentine's 2025) & Lurantis",
+        "moveName": "Growing Vibrant Gratitude Grass Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Will & Slowbro",
+        "moveName": "Stand Above All Psychic Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Brendan & Swellow",
+        "moveName": "Soaring in the Clear Sky Flying Beam",
+        "stat": "eva",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Brawly & Hariyama",
+        "moveName": "Arm Thrust of Mighty Waves",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Flannery (Special Costume) & Magcargo (Male♂️)",
+        "moveName": "Steamed Up Tera Blast",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Tate (Summer 2023) & Jirachi",
+        "moveName": "Friends Forever Steel Beam",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Noland & Ninjask",
+        "moveName": "Knowledge from Experience Bug Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Barry & Floatzel",
+        "moveName": "I Want a Theme Song Water Impact",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Marley & Arcanine",
+        "moveName": "Grateful Friend Flare Blitz",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Marley (Palentine's 2025) & Shaymin Land Forme",
+        "moveName": "Blooming Gratitude and Courage Grass Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Rosa & Dewott",
+        "moveName": "Entirely Exuberant Water Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Rosa (Special Costume) & Shaymin Sky Forme",
+        "moveName": "Grass Beam of Gratitude",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Clay & Seismitoad",
+        "moveName": "Rock-Bottom Bulldoze",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Skyla & Swanna",
+        "moveName": "High-Flying Sky Attack",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Brycen & Walrein",
+        "moveName": "Cold Heat Stout Heart Ice Impact",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Iris (Alt.) & Hydreigon",
+        "moveName": "Triple Threat Dragon Rush",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Sygna Suit Roxie & Toxtricity Amped Form",
+        "moveName": "Rock Them Away Poison Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Marlon & Carracosta",
+        "moveName": "Oversplash Aqua Tail",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Shauntal (Fall 2024) & Froslass",
+        "moveName": "Lost Soul on a Snowy Mountain Frost Beam",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Hau & Crabominable",
+        "moveName": "Having a Blast Ice Impact",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Mina & Granbull",
+        "moveName": "Wandering Artist Twinkle Tackle",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Acerola & Palossand",
+        "moveName": "Never-Ending Royal Nightmare",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren & Liepard",
+        "moveName": "Learning Who I Am Dark Beam",
+        "stat": "eva",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren & Purrloin",
+        "moveName": "Toward My Ideals Dark Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Blue & Blastoise",
+        "moveName": "Triumphant Hydro Cannon",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lyra & Vaporeon",
+        "moveName": "Overflowing Curiosity Water Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hilbert & Glaceon",
+        "moveName": "Sharp and Icy Determination Frost Beam",
+        "stat": "spa",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Hilbert & Genesect",
+        "moveName": "Aim for Victory Bug Buzz",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hilda & Leafeon",
+        "moveName": "Sun-Grown Fighting Spirit Grass Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Elesa (Classic) & Emolga",
+        "moveName": "Showstopping Electric Beam",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Calem & Sylveon",
+        "moveName": "Fighting Alongside You Fairy Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Grimsley (Kimono) & Absol",
+        "moveName": "Try Your Luck Dark Impact",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Grimsley (Kimono) & Bisharp",
+        "moveName": "Coin Flip of Destiny Iron Head",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Leaf (Champion) & Moltres",
+        "moveName": "Burning Love Fire Blast",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Arc Suit Lance & Dragonite",
+        "moveName": "Heroic Ascension Divine Outrage",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Steven (Special Costume) & Stoutland ★",
+        "moveName": "Illuminating Normal Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Red (1996) & Pikachu (Male♂️)",
+        "moveName": "Grown Up So Much Thunderbolt",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Plumeria & Gengar",
+        "moveName": "Ready to Go Acid Downpour",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Clemont & Heliolisk",
+        "moveName": "Light-Up-the-World Thunderbolt",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Silver & Feraligatr",
+        "moveName": "Whirls of Solitude Water Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Silver & Sneasel",
+        "moveName": "Strong for Your Sake Triple Axel",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Jasmine & Steelix",
+        "moveName": "Steel-Clad Iron Tail",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Dawn & Torterra",
+        "moveName": "New Dawn Wood Hammer",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Dawn (New Year’s 2023) & Oricorio Sensu Style",
+        "moveName": "Elegant Celebration Ghost Beam",
+        "stat": "all_stats",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Dawn (Palentine’s 2021) & Alcremie (Vanilla Cream Strawberry Sweet)",
+        "moveName": "Whipped Cream Fairy Beam",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Serena & Fletchling",
+        "moveName": "First Flight Flying Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lusamine & Milotic",
+        "moveName": "Caring Isn’t Enough Water Beam",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lillie & Comfey",
+        "moveName": "Vibrant Fairy Beam",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lillie (Anniversary 2024) & Solgaleo",
+        "moveName": "Wholesome Heart Searing Sunraze Smash",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lillie (Holiday 2024) & Primarina ★",
+        "moveName": "Beautiful Dancing Songstress Fairy Beam",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Volkner & Raichu",
+        "moveName": "Thrilling Battles Electric Beam",
+        "stat": "eva",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Bianca & Musharna",
+        "moveName": "Truth-Seeking Future Sight",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Gloria (Dojo Uniform) & Urshifu Rapid Strike Style",
+        "moveName": "Rapid Mastery Water Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "N & Archeops",
+        "moveName": "Soaring Ancient Dreams Rock Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "N & Sigilyph",
+        "moveName": "Steadfast Memories Psychic Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "N (Anniversary 2021) & Reshiram",
+        "moveName": "Blue Flare to Change the World",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Sygna Suit N & Black Kyurem",
+        "moveName": "World-Changing Freeze Shock",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "May (Anniversary 2022) & Latias",
+        "moveName": "Friendship Forging Mist Ball",
+        "stat": "spa",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit May & Blaziken",
+        "moveName": "All About Us Blaze Kick",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Leon (Alt.) & Dragapult",
+        "moveName": "Rise to the Peak Dragon Impact",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Marnie & Liepard",
+        "moveName": "Hard-Trained Favorite Dark Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Marnie & Toxicroak",
+        "moveName": "Get You Goin’ Poison Beam",
+        "stat": "acc",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Marnie (Academy) & Cyclizar",
+        "moveName": "Zoom Around School Dragon Impact",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Diantha (Special Costume) & Keldeo Resolute Form",
+        "moveName": "Shining Valor Fighting Beam",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Selene & Umbreon",
+        "moveName": "Floating High Black Hole Eclipse",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Selene (Champion) & Dawn Wings Necrozma ★",
+        "moveName": "Dawn Lunar Eclipse Moongeist Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Elio & Espeon",
+        "moveName": "Shining High Shattered Psyche",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ghetsis & Kyurem",
+        "moveName": "Absolute Zero Glaciate",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "The Masked Royal & Incineroar",
+        "moveName": "Heel Turn Malicious Moonsault",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Emmet & Gurdurr (Male♂️)",
+        "moveName": "Great Battle Fighting Impact",
+        "stat": "acc",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Falkner & Pidgeot",
+        "moveName": "Cherished Memories Flying Beam",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hop & Zacian Crowned Sword",
+        "moveName": "The Fairy King’s Sword Steel Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hop (Champion) & Galarian Zapdos",
+        "moveName": "Strongest Professor Thunderous Kick",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Darach & Staraptor",
+        "moveName": "Loyal Butler Brave Bird",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lucian & Girafarig",
+        "moveName": "Psychic Epilogue",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Bede & Iron Valiant",
+        "moveName": "Shouldering the Future Elite Focus Blast",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Courtney & Camerupt",
+        "moveName": "Analysis Complete Earthquake",
+        "stat": "def",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Gordie & Coalossal",
+        "moveName": "Stylish Hard Rock Impact",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hugh & Unfezant ♂",
+        "moveName": "Crush ’Em All Flying Beam",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Shauna & Sylveon",
+        "moveName": "Really Really Exciting Battle Fairy Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ball Guy & Voltorb",
+        "moveName": "Not Any Old Ball Electric Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Adaman & Leafeon",
+        "moveName": "Accelerating Time Razor Leaf",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Rose & Perrserker",
+        "moveName": "For a Prosperous Galar Steel Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Oleana & Garbodor",
+        "moveName": "Still Good with It Poison Impact",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Nemona & Pawmot",
+        "moveName": "Coming to Fruition Double Shock",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Archer & Houndoom",
+        "moveName": "Regaining Evil Glory Dark Impact",
+        "stat": "spe",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ariana & Arbok",
+        "moveName": "Punish the Meddlers Poison Impact",
+        "stat": "all_stats",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 67,
+        "capPer1000": 2200
+    },
+    {
+        "syncPair": "Rei & Hisuian Decidueye",
+        "moveName": "Space-Time Traveler Triple Arrows",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Rei (Academy) & Hisuian Braviary",
+        "moveName": "Flying to School Psychic Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ryuki & Turtonator",
+        "moveName": "Fiery Spirit Dragon Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Eve (Poké Kid) & Eevee",
+        "moveName": "Double Eevee Normal Beam",
+        "stat": "eva",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Katherine (Furisode Girl) & Slurpuff",
+        "moveName": "Beautiful Determination Fairy Beam",
+        "stat": "eva",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Chase & Eevee",
+        "moveName": "Chasing Possibilities Normal Impact",
+        "stat": "def",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Petey (Poké Kid) & Pikachu",
+        "moveName": "Double Pikachu Electric Beam",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Riley & Lucario",
+        "moveName": "Aura Driven Fighting Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Rika & Whiscash",
+        "moveName": "Testing Mind and Aptitude Ground Beam",
+        "stat": "acc",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Brycen-Man & Zoroark",
+        "moveName": "Dye This World Dark Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Klara & Galarian Slowbro",
+        "moveName": "Colorful, Caring, and Charismatic Poison Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Greta & Breloom",
+        "moveName": "Mind-Skill-Body Mastery Grass Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Arven (Holiday 2025) & Scovillain",
+        "moveName": "Real Spicy Flavor Fire Beam",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Malva & Talonflame",
+        "moveName": "Fiery Reporter Fire Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Clavell & Quaquaval",
+        "moveName": "Occasionally Strict Director’s Aqua Step",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Clavell (Alt.) & Sprigatito",
+        "moveName": "Director of the Academy Grass Impact",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sina & Glaceon",
+        "moveName": "Beautifully Beautiful Subzero Slammer",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Dexio & Espeon",
+        "moveName": "Pokémon-Voyage Veteran Shattered Psyche",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Blossom (Furisode Girl) & Kirlia",
+        "moveName": "Beautiful Blossoms Fairy Beam",
+        "stat": "atk",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Mela & Armarouge",
+        "moveName": "Explosive All-Rounder Armor Cannon",
+        "stat": "spa",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lacey & Alcremie (Ruby Swirl Berry Sweet)",
+        "moveName": "So Many Cute Things Fairy Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Arezu & Hisuian Lilligant",
+        "moveName": "Bold and Strong Hairstylist Petal Dance",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Perrin (Academy) & Noctowl",
+        "moveName": "Real Good Shot Flying Impact",
+        "stat": "atk",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cress & Simipour",
+        "moveName": "Flowing Blue Trouble Water Impact",
+        "stat": "spe",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Linnea (Furisode Girl) & Aromatisse",
+        "moveName": "To Learn from Her Fairy Beam",
+        "stat": "spd",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 167,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Drasna & Dragalge",
+        "moveName": "Infinite Smile Dragon Pulse",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Morty (Academy) & Hisuian Typhlosion",
+        "moveName": "Perilous Twilight Infernal Parade",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cynthia & Spiritomb",
+        "moveName": "Five Score and Eight Spirits Ghost Beam",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Skyla (Holiday 2020) & Togekiss",
+        "moveName": "Good Tidings Air Slash",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Koga & Crobat",
+        "moveName": "Modern Ninja Sludge Bomb",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Brine",
+        "stat": "cond:target_hp_half",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren & Stoutland",
+        "moveName": "Fundamental Takedown",
+        "stat": "cond:user_any_status",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "James & Weezing",
+        "moveName": "Make It Double Sludge",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Piers & Toxtricity Low Key Form",
+        "moveName": "Sorrowful Echoes Overdrive",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Leaf & Venusaur",
+        "moveName": "Tenacious Frenzy Plant",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lucy & Seviper",
+        "moveName": "Pike Queen Poison Fang",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Irida (Anniversary 2025) & Hisuian Typhlosion",
+        "moveName": "Illusory Light Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Irida (Special Costume) & Hisuian Zoroark",
+        "moveName": "Mystifying Bitter Malice",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Venoshock",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Morty (Academy) & Hisuian Typhlosion",
+        "moveName": "Infernal Parade",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Irida (Anniversary 2025) & Hisuian Typhlosion",
+        "moveName": "Graceful Hyper Beam",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Ingo & Chandelure",
+        "moveName": "Rising Flames Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Shauna & Delcatty",
+        "moveName": "Traveling Together Normal Impact",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Janine & Ariados",
+        "moveName": "Ninja Spirit Cross Poison",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Arc Suit Ethan & Lugia",
+        "moveName": "Almighty Seas Aeroblast",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Facade",
+        "stat": "cond:user_any_status",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Ingo & Chandelure",
+        "moveName": "Arrival at the Greatest Battle Ghost Beam",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren (Champion) & Tornadus Incarnate Forme",
+        "moveName": "Black Gale Bleakwind Storm",
+        "stat": "boost_rank_pmun",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 50,
+        "capPer1000": 0
+    },
+    {
+        "syncPair": "Red (Anniversary 2025) & Charizard",
+        "moveName": "Treasured Scales Outrage",
+        "stat": "boost_rank_smun",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 1000,
+        "capPer1000": 0
+    },
+    {
+        "syncPair": "Giacomo & Kingambit",
+        "moveName": "Perfect Kowtow Cleave",
+        "stat": "boost_rank_syun",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 100,
+        "capPer1000": 0
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Collision Course",
+        "stat": "cond:super_effective",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 300,
+        "capPer1000": 1300
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Electro Drift",
+        "stat": "cond:super_effective",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 300,
+        "capPer1000": 1300
+    },
+    {
+        "syncPair": "Juliana & Koraidon",
+        "moveName": "S Collision Course",
+        "stat": "cond:super_effective",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 300,
+        "capPer1000": 1300
+    },
+    {
+        "syncPair": "Florian & Miraidon",
+        "moveName": "V Electro Drift",
+        "stat": "cond:super_effective",
+        "who": "user",
+        "direction": "raised",
+        "stepPer1000": 300,
+        "capPer1000": 1300
+    },
+    {
+        "syncPair": "Erika & Tangela",
+        "moveName": "Wondrous Rainbow Grass Beam",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Erika & Vileplume",
+        "moveName": "Nature-Loving Petal Dance",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Erika & Leafeon",
+        "moveName": "Sunny Snooze Leaf Blade",
+        "stat": "cond:sunny",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Blaine & Rapidash",
+        "moveName": "Quizmaster Flame Charge",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lorelei & Lapras",
+        "moveName": "Freezing Terror Blizzard",
+        "stat": "cond:frozen",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Agatha & Gengar",
+        "moveName": "Tried-and-True Hex",
+        "stat": "cond:asleep",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Kris & Jolteon",
+        "moveName": "Jolt of Genius Electric Beam",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Whitney & Miltank",
+        "moveName": "Supercute Rolling Tackle",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Whitney (Holiday 2022) & Sawsbuck Winter Form",
+        "moveName": "Indomitable Happiness Normal Impact",
+        "stat": "cond:any_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Janine & Crobat",
+        "moveName": "Venoshock",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Will & Xatu",
+        "moveName": "Mystery Masquerade Psychic",
+        "stat": "cond:confused",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Roxanne (Fall 2023) & Runerigus",
+        "moveName": "Menacing Memories Ground Impact",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Flannery & Torkoal",
+        "moveName": "Fiery Passion Overheat",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Winona & Pelipper",
+        "moveName": "Flyaway Air Cutter",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Crasher Wake & Floatzel",
+        "moveName": "Crashdown Aqua Jet",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Candice & Abomasnow",
+        "moveName": "All-about-Focus Avalanche",
+        "stat": "cond:hail",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Thorton & Bronzong",
+        "moveName": "Post-analysis Flash Cannon",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Skyla (Anniversary 2022) & Tornadus Therian Forme",
+        "moveName": "Heartsoaring Hurricane",
+        "stat": "cond:flying_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Skyla (Summer 2025) & Jumpluff",
+        "moveName": "Floating Around the World Grass Beam",
+        "stat": "cond:sunny",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Iris (Fall 2022) & Naganadel",
+        "moveName": "With Every Fiber Poison Beam",
+        "stat": "cond:poison_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Roxie & Toxtricity Amped Form",
+        "moveName": "Frenzied Sludge Wave",
+        "stat": "cond:electric_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
+    },
+    {
+        "syncPair": "Shauntal & Chandelure",
+        "moveName": "Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Grant & Aurorus",
+        "moveName": "Crazy Cool Rock Tomb",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ramos & Victreebel",
+        "moveName": "Old Growth Razor Leaf",
+        "stat": "cond:asleep",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Siebold (Holiday 2019) & Octillery",
+        "moveName": "Gourmet Octazooka",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Hau & Tapu Koko",
+        "moveName": "Wild Electroweb",
+        "stat": "cond:fairy_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Hau & Tapu Koko",
+        "moveName": "Thundering Deity Gigavolt Havoc",
+        "stat": "cond:electric_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sophocles & Togedemaru",
+        "moveName": "Whiz Kid Gigavolt Havoc",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Viola & Masquerain",
+        "moveName": "Silver Wind Victory Shot",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Nanu & Alolan Persian",
+        "moveName": "Dark Authority Black Hole Eclipse",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Koga & Crobat",
+        "moveName": "Venoshock",
+        "stat": "cond:poisoned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Acerola (Fall 2020) & Mimikyu",
+        "moveName": "Trick-or-Treat Shadow Claw",
+        "stat": "cond:confused",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren & Stoutland",
+        "moveName": "Facade",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cheren (Champion) & Tornadus Incarnate Forme",
+        "moveName": "Wall for Challengers Bleakwind Storm",
+        "stat": "cond:target_rebuff_lowered",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Blue & Alakazam",
+        "moveName": "Beat Them All Psychic Beam",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Lyra & Celebi",
+        "moveName": "Time-Transcending Magical Leaf",
+        "stat": "cond:grassy_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Calem & Meowstic ♂",
+        "moveName": "Mind-Bending Psychic",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ethan & Ho-Oh",
+        "moveName": "Blazing Heart Fire Impact",
+        "stat": "cond:sunny",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lance & Dragonair",
+        "moveName": "Virtually Unstoppable Dragon Beam",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Cynthia & Spiritomb",
+        "moveName": "Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Cynthia (Renegade) & Giratina Altered Forme",
+        "moveName": "Renegade Shadow Force",
+        "stat": "cond:ghost_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Zinnia & Salamence",
+        "moveName": "New Beginning Dragon Impact",
+        "stat": "cond:flinching",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Steven & Cradily",
+        "moveName": "Agent of the Ancient Rock Beam",
+        "stat": "cond:damage_field_DMFD_13",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Red (Thunderbolt) & Pikachu",
+        "moveName": "Lightning-Fast Volt Tackle",
+        "stat": "cond:electric_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Wallace & Milotic",
+        "moveName": "Aquatic Prince Hydro Pump",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Wally & Gardevoir ★",
+        "moveName": "Take On the World Dazzling Gleam",
+        "stat": "cond:fairy_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Wally & Altaria",
+        "moveName": "Much, Much Stronger Dragon Impact",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Serena & Delphox",
+        "moveName": "Mystical Fire of Positivity",
+        "stat": "cond:asleep",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Serena (Palentine’s 2021) & Whimsicott",
+        "moveName": "Semisweet Fairy Beam",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Morty (Academy) & Hisuian Typhlosion",
+        "moveName": "Teaching Johto Myths Ghost Beam",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Morty (Fall 2021) & Banette",
+        "moveName": "Midnight Fright Ghost Impact",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Cyrus & Darkrai",
+        "moveName": "Perfect World Dark Pulse",
+        "stat": "cond:dark_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Volkner & Luxray",
+        "moveName": "Star Shock Thunder Fang",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Gloria (Alt. 2) & Cinderace",
+        "moveName": "Ace of the Team Fire Impact",
+        "stat": "cond:target_rebuff_lowered",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Gloria (Alt. 2) & Cinderace",
+        "moveName": "A Taste of My Skill Flying Impact",
+        "stat": "cond:target_rebuff_lowered",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Gloria (Alt. 2) & Cinderace",
+        "moveName": "Score a Victory Fighting Impact",
+        "stat": "cond:target_rebuff_lowered",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "May & Swampert",
+        "moveName": "Best Buddy Muddy Water",
+        "stat": "cond:rain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Mallow & Tsareena",
+        "moveName": "Bold-Flavored Bloom Doom",
+        "stat": "cond:confused",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Marnie (Palentine’s 2022) & Mawile",
+        "moveName": "Sweetheart Steel Impact",
+        "stat": "cond:steel_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sygna Suit Diantha & Diancie ★",
+        "moveName": "Noble Beauty Diamond Storm",
+        "stat": "cond:rock_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Raihan (Anniversary 2022) & Flygon",
+        "moveName": "Desert Spirit Dragon Beam",
+        "stat": "cond:any_weather",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Nessa & Drednaw",
+        "moveName": "Flood the Stadium Liquidation",
+        "stat": "cond:restrained",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Kiawe & Arcanine",
+        "moveName": "Dancing Together Inferno Overdrive",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Ingo (Special Costume) & Accelgor",
+        "moveName": "Express Line Bug Impact",
+        "stat": "cond:trapped",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Sidney & Absol",
+        "moveName": "Most Excellent Night Slash",
+        "stat": "cond:confused",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Allister & Gengar",
+        "moveName": "Silent Mystery Ghost Beam",
+        "stat": "cond:restrained",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Allister (Fall 2022) & Gourgeist",
+        "moveName": "Hex",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lucas & Dialga",
+        "moveName": "Illuminating Roar of Time",
+        "stat": "cond:dragon_zone",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lucas & Flareon",
+        "moveName": "Red-Hot Research Fire Beam",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Bertha & Hippowdon",
+        "moveName": "Team Effort Earthquake",
+        "stat": "cond:sandstorm",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Bede & Hatterene",
+        "moveName": "Most Elite Fairy Beam",
+        "stat": "cond:confused",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Helena (Hex Maniac) & Haunter",
+        "moveName": "Scary-but-True Ghost Beam",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Colress & Klinklang",
+        "moveName": "Potential-Surpassing Gear Grind",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Adaman (Special Costume) & Ursaluna",
+        "moveName": "Facade",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Irida & Glaceon",
+        "moveName": "Great Wide World Ice Beam",
+        "stat": "cond:hail",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Paulo & Lycanroc Dusk",
+        "moveName": "On the Path Together Rock Impact",
+        "stat": "cond:sandstorm",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Lenora & Watchog",
+        "moveName": "Facade",
+        "stat": "cond:any_status",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Larry & Dudunsparce",
+        "moveName": "Exceptional Everyman Hyper Drill",
+        "stat": "cond:target_rebuff_lowered",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Florian & Fuecoco",
+        "moveName": "Burn to Learn Fire Beam",
+        "stat": "cond:burned",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Clive & Amoonguss",
+        "moveName": "Just Between Us Poison Beam",
+        "stat": "cond:flinch_confuse_trap",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Behemoth Blade",
+        "stat": "cond:target_sync_buff",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Behemoth Bash",
+        "stat": "cond:target_sync_buff",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Dynamax Cannon",
+        "stat": "cond:target_sync_buff",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Stomping Tantrum",
+        "stat": "cond:user_prev_move_failed",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "*",
+        "moveName": "Avalanche",
+        "stat": "cond:user_prev_move_failed",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 1000,
+        "capPer1000": 2000
+    },
+    {
+        "syncPair": "Hilda (Champion) & Iron Leaves",
+        "moveName": "Shining Sword Psyblade",
+        "stat": "cond:any_terrain",
+        "who": "user",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
+    },
+    {
+        "syncPair": "Drayton & Archaludon (Male♂️)",
+        "moveName": "Steel Flash Dragon Pulse",
+        "stat": "cond:paralyzed",
+        "who": "target",
+        "direction": "lowered",
+        "stepPer1000": 500,
+        "capPer1000": 1500
     }
 ]

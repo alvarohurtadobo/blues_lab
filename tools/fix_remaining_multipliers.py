@@ -1,18 +1,12 @@
-"""Apply 159 auto-fixes for grid cells with title matching a master entry but no ref.
+"""Add move_scaling.json entries for sync moves whose descriptions imply
+Single-Stat or Multi-Stat sync modifiers (Tables 16-17 of the damage guide).
 
-Buckets:
-- A_AUTO_GENERIC (17): title = "<PassiveName>", master generic exists
-    add ref {name, source:'grid_skill', cellNumber}
-- B_AUTO_MOVE_SPECIFIC (141): title = "<MoveName>: <PassiveName>", master move-specific exists
-    add ref {name, moveName, source:'grid_skill', cellNumber}
-- C_AUTO_GENERIC_FOR_MOVE (1): title = "<MoveName>: <PassiveName>", only generic master exists
-    add ref {name, moveName, source:'grid_skill', cellNumber}
+Single-Stat Sync (Table 16): Modifier = 1 + min(count × 0.167, 1.000) → stepPer1000=167, capPer1000=2000
+Multi-Stat Sync (Table 17):  Modifier = 1 + min(count × 0.067, 1.200) → stepPer1000=67,  capPer1000=2200
 
-Idempotent: skips if ref already exists for that (cellNumber, name).
+Idempotent: skips if an entry for (syncPair, moveName) already exists.
 """
-import io
-import json
-import sys
+import io, json, re, sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -21,108 +15,131 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets" / "data"
 
-SP = ASSETS / "sync_pairs.json"
-sp = json.load(open(SP, encoding="utf-8"))
-dp = json.load(open(ASSETS / "damage_passives.json", encoding="utf-8"))
+SP_PATH = ASSETS / "sync_pairs.json"
+MS_PATH = ASSETS / "move_scaling.json"
 
-dp_by_key = {(e.get('name',''), e.get('move_name','')): e for e in dp}
-sub_names = set()
-for e in dp:
-    for s in e.get('sub_passives', []):
-        sub_names.add(s.get('name', ''))
+sp = json.load(open(SP_PATH, encoding="utf-8"))
+ms = json.load(open(MS_PATH, encoding="utf-8"))
+covered = {(e['syncPair'], e['moveName']) for e in ms}
+
+# Patterns
+STAT_NAMES = {
+    'attack': 'atk',
+    'defense': 'def',
+    'sp. atk': 'spa',
+    'sp. attack': 'spa',
+    'sp. def': 'spd',
+    'sp. defense': 'spd',
+    'speed': 'spe',
+    'accuracy': 'acc',
+    'evasiveness': 'eva',
+}
+
+# Single-stat user raised pattern: "The more (the )?user('|'s|s) <STAT> is raised"
+SINGLE_USER_RAISED = re.compile(
+    r"the more (?:the )?user[’'s]+ (attack|defense|sp\.\s*atk|sp\.\s*attack|sp\.\s*def|sp\.\s*defense|speed|accuracy|evasiveness)(?:\s+is)? raised",
+    re.IGNORECASE
+)
+# Single-stat target lowered
+SINGLE_TARGET_LOWERED = re.compile(
+    r"the more (?:the )?target[’'s]+ (attack|defense|sp\.\s*atk|sp\.\s*attack|sp\.\s*def|sp\.\s*defense|speed|accuracy|evasiveness)(?:\s+is)? lowered",
+    re.IGNORECASE
+)
+# Multi-stat target lowered
+MULTI_TARGET_LOWERED = re.compile(
+    r"the more (?:the )?target[’'s]+ stats (?:have been|are) lowered",
+    re.IGNORECASE
+)
+# Multi-stat user raised
+MULTI_USER_RAISED = re.compile(
+    r"the more (?:the )?user[’'s]+ stats (?:have been|are) raised",
+    re.IGNORECASE
+)
 
 
-def split_title(title):
-    if ':' in title:
-        a, b = title.split(':', 1)
-        return a.strip(), b.strip()
-    return None, title.strip()
+def normalize_stat(s):
+    s = s.lower().replace('  ', ' ').strip()
+    s = s.replace('sp.atk', 'sp. atk').replace('sp.def', 'sp. def').replace('sp.attack','sp. attack').replace('sp.defense','sp. defense')
+    return STAT_NAMES.get(s, s)
 
 
-added_A = []  # generic
-added_B = []  # move-specific
-added_C = []  # generic-for-move
+added = []
 skipped = 0
 
 for p in sp:
-    pname = p.get('displayName', '')
-    refs = p.setdefault('damagePassives', [])
-    existing = {(r.get('cellNumber'), r.get('name','')) for r in refs}
-    for c in p.get('cells', []):
-        if c.get('subPassives') or c.get('statBonus') or c.get('powerBonus'):
+    pname = p.get('displayName','')
+    all_moves = list(p.get('moves', [])) + list(p.get('teraMoves', []))
+    if isinstance(p.get('teraMove'), dict):
+        all_moves.append(p['teraMove'])
+    for v in p.get('variations', []):
+        all_moves.extend(v.get('moves', []))
+
+    for mv in all_moves:
+        if not mv.get('isSync'):
             continue
-        cn = c['cellNumber']
-        # Skip if any ref already mentions this cell
-        if any(r.get('cellNumber') == cn for r in refs):
+        mname = mv.get('name','')
+        if not mname:
             continue
-        title = c.get('title', '')
-        kind = c.get('colorKind', '')
-        if not title or kind.startswith('Rainbow') or kind.startswith('Blue') or kind.startswith('Green'):
+        key = (pname, mname)
+        if key in covered:
+            skipped += 1
             continue
-        desc = c.get('description', '') or ''
-        # boost filter
-        t = (title + ' ' + desc).lower()
-        boost_kw = ('powers up', 'power up', '↑', '↓', 'boost', 'raise', 'rebuff',
-                    'never miss', 'always hits', 'lands every', 'ignores',
-                    'piercing', 'critical hit', 'crit', 'team', 'zone', 'terrain',
-                    'weather', 'rush', 'spirit', 'pride', 'flag bearer', 'circle', 'myth')
-        if not any(k in t for k in boost_kw):
+        desc = mv.get('description','') or ''
+        if not desc:
             continue
 
-        move, passive = split_title(title)
+        entry = None
+        m = SINGLE_USER_RAISED.search(desc)
+        if m:
+            stat = normalize_stat(m.group(1))
+            entry = {
+                'syncPair': pname, 'moveName': mname,
+                'stat': stat, 'who': 'user', 'direction': 'raised',
+                'stepPer1000': 167, 'capPer1000': 2000,
+            }
+        if entry is None:
+            m = SINGLE_TARGET_LOWERED.search(desc)
+            if m:
+                stat = normalize_stat(m.group(1))
+                entry = {
+                    'syncPair': pname, 'moveName': mname,
+                    'stat': stat, 'who': 'target', 'direction': 'lowered',
+                    'stepPer1000': 167, 'capPer1000': 2000,
+                }
+        if entry is None:
+            if MULTI_TARGET_LOWERED.search(desc):
+                entry = {
+                    'syncPair': pname, 'moveName': mname,
+                    'stat': 'all_stats', 'who': 'target', 'direction': 'lowered',
+                    'stepPer1000': 67, 'capPer1000': 2200,
+                }
+        if entry is None:
+            if MULTI_USER_RAISED.search(desc):
+                entry = {
+                    'syncPair': pname, 'moveName': mname,
+                    'stat': 'all_stats', 'who': 'user', 'direction': 'raised',
+                    'stepPer1000': 67, 'capPer1000': 2200,
+                }
 
-        # B) move-specific master
-        if move and (passive, move) in dp_by_key:
-            ref = {'name': passive, 'moveName': move, 'source': 'grid_skill', 'cellNumber': cn}
-            if (cn, passive) in existing:
-                skipped += 1
-                continue
-            refs.append(ref)
-            existing.add((cn, passive))
-            added_B.append((pname, cn, title))
-            continue
+        if entry is not None:
+            ms.append(entry)
+            covered.add(key)
+            added.append(entry)
 
-        # A or C) generic master
-        if (passive, '') in dp_by_key:
-            ref = {'name': passive, 'source': 'grid_skill', 'cellNumber': cn}
-            if move:
-                ref['moveName'] = move
-            if (cn, passive) in existing:
-                skipped += 1
-                continue
-            refs.append(ref)
-            existing.add((cn, passive))
-            if move:
-                added_C.append((pname, cn, title))
-            else:
-                added_A.append((pname, cn, title))
-            continue
+MS_PATH.write_text(json.dumps(ms, ensure_ascii=False, indent=4) + "\n", encoding="utf-8")
 
-SP.write_text(json.dumps(sp, ensure_ascii=False, indent=2), encoding="utf-8")
-
-print(f"## Refs añadidos por bucket")
-print(f"  - A (generic match): {len(added_A)}")
-print(f"  - B (move-specific match): {len(added_B)}")
-print(f"  - C (generic match, move-scoped): {len(added_C)}")
-print(f"  - skipped (already had ref): {skipped}")
-print(f"\nsync_pairs.json reescrito ({SP.stat().st_size:,} bytes)")
-
-print(f"\n## Detalle A — generic match\n")
-for pn, cn, t in added_A:
-    pname = pn.encode('ascii','replace').decode('ascii')
-    title = t.encode('ascii','replace').decode('ascii')
-    print(f"  - {pname} cell#{cn} `{title}`")
-
-print(f"\n## Detalle B — move-specific match (primeros 30)\n")
-for pn, cn, t in added_B[:30]:
-    pname = pn.encode('ascii','replace').decode('ascii')
-    title = t.encode('ascii','replace').decode('ascii')
-    print(f"  - {pname} cell#{cn} `{title}`")
-if len(added_B) > 30:
-    print(f"  ... y {len(added_B)-30} más")
-
-print(f"\n## Detalle C — generic match scoped to move\n")
-for pn, cn, t in added_C:
-    pname = pn.encode('ascii','replace').decode('ascii')
-    title = t.encode('ascii','replace').decode('ascii')
-    print(f"  - {pname} cell#{cn} `{title}`")
+# Summarize
+print(f"## Auto-fix aplicado: +{len(added)} entradas en move_scaling.json (skipped existentes: {skipped})\n")
+by_dir = defaultdict(list)
+for e in added:
+    key = f"{e['who']}_{e['direction']}_{e['stat']}"
+    by_dir[key].append(e)
+for key in sorted(by_dir):
+    items = by_dir[key]
+    print(f"\n### {key} ({len(items)})")
+    for e in items[:15]:
+        pn = e['syncPair'].encode('ascii','replace').decode('ascii')
+        mn = e['moveName'].encode('ascii','replace').decode('ascii')
+        print(f"  - {pn} → `{mn}`  (step={e['stepPer1000']}/1000, cap={e['capPer1000']}/1000)")
+    if len(items) > 15:
+        print(f"  ... y {len(items)-15} más")

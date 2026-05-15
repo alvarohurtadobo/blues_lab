@@ -28,6 +28,7 @@ class SyncPairData {
     this.teraMove,
     this.teraPassives = const [],
     this.teraMoves = const [],
+    this.teraTypeOverride = '',
     this.stats = const {},
     this.teraStatMultiplier = const {},
     this.megaStatMultiplier = const {},
@@ -59,6 +60,7 @@ class SyncPairData {
   final MoveData? teraMove;
   final List<PassiveData> teraPassives;
   final List<MoveData> teraMoves;
+  final String teraTypeOverride;
   final Map<String, Map<String, int>> stats;
   final Map<String, double> teraStatMultiplier;
   final Map<String, double> megaStatMultiplier;
@@ -69,6 +71,34 @@ class SyncPairData {
   final List<PassiveRule> rules;
   final List<DamagePassive> damagePassives;
   final List<MasterPassiveData> masterPassives;
+
+  /// Resolves the active moves list given the current form state.
+  ///
+  /// - When [showTera] is true: applies [teraMoves] + [teraTypeOverride] on top
+  ///   of [moves], then appends [teraMove] if present.
+  /// - When [formIndex] points to a variation: applies that variation's overrides.
+  /// - Otherwise: returns base [moves].
+  ///
+  /// Single source of truth for the active moves list — used both for display
+  /// and damage calculation so they always agree.
+  List<MoveData> resolvedMoves({required int formIndex, required bool showTera}) {
+    if (showTera) {
+      final base = VariationData(
+        formName: '',
+        moves: teraMoves,
+        passives: const [],
+        typeOverride: teraTypeOverride,
+      ).applyTo(moves);
+      return [
+        ...base,
+        if (teraMove != null) teraMove!,
+      ];
+    }
+    if (formIndex > 0 && formIndex <= variations.length) {
+      return variations[formIndex - 1].applyTo(moves);
+    }
+    return moves;
+  }
 
   /// Returns the base stats for [level] (before form multipliers).
   Map<String, int> effectiveStats(String level) {
@@ -155,6 +185,23 @@ class MoveData {
   final List<PassiveEffect> effects;
   final MoveScaling? scaling;
   final bool isExtendedRange;
+
+  MoveData copyWith({String? type, String? power, String? target}) => MoveData(
+        name: name,
+        type: type ?? this.type,
+        category: category,
+        power: power ?? this.power,
+        accuracy: accuracy,
+        gauge: gauge,
+        target: target ?? this.target,
+        description: description,
+        isSync: isSync,
+        slot: slot,
+        tags: tags,
+        effects: effects,
+        scaling: scaling,
+        isExtendedRange: isExtendedRange,
+      );
 
   Iterable<String> get searchTerms sync* {
     yield name;
@@ -350,6 +397,7 @@ class VariationData {
     this.moves = const [],
     this.passives = const [],
     this.statMultiplier = const {},
+    this.typeOverride = '',
   });
 
   final String formName;
@@ -358,6 +406,9 @@ class VariationData {
   /// Per-stat multipliers for this form (same format as megaStatMultiplier).
   /// Only populated for form-change variants like Deoxys formes.
   final Map<String, double> statMultiplier;
+  /// If non-empty, overrides the type of every damaging move in this form.
+  /// Status moves (empty type) are not affected.
+  final String typeOverride;
 
   List<MoveData> applyTo(List<MoveData> baseMoves) {
     final result = List<MoveData>.from(baseMoves);
@@ -396,6 +447,16 @@ class VariationData {
         seenMoves++;
       }
     }
+
+    // Apply typeOverride to all moves that have a type (non-status moves).
+    if (typeOverride.isNotEmpty) {
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].type.isNotEmpty) {
+          result[i] = result[i].copyWith(type: typeOverride);
+        }
+      }
+    }
+
     return result;
   }
 }

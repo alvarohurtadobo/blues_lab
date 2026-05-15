@@ -73,7 +73,20 @@
       "Bash(python tools/inspect_sa.py)",
       "Bash(python tools/fix_sa_source.py)",
       "Bash(powershell -Command \"Get-Content tools/gen_passive_modifiers.py | Select-Object -First 80\")",
-      "Bash(powershell -Command \"Remove-Item 'assets/data/passive_modifiers.json' -Force; Test-Path 'assets/data/passive_modifiers.json'\")"
+      "Bash(powershell -Command \"Remove-Item 'assets/data/passive_modifiers.json' -Force; Test-Path 'assets/data/passive_modifiers.json'\")",
+      "Bash(python tools/check_apostrophes.py)",
+      "Bash(python tools/diag_gender.py)",
+      "Bash(powershell -Command \"\\(Get-Item 'reverse_engineering\\\\pairgrids.representative.json'\\).Length; Get-ChildItem -Filter '*.js' | Sort-Object Length -Descending | Select-Object -First 10 Name, Length\")",
+      "Bash(powershell -Command \"Select-String -Path '*.js' -Pattern 'Venoshock|Facade|Stomping Tantrum' -SimpleMatch | Group-Object Filename | Select-Object Name, Count\")",
+      "Bash(python)",
+      "Bash(python tools/verify_against_pomatools.py)",
+      "Bash(python tools/port_pomatools_scalings.py)",
+      "Bash(python tools/add_times_modifier_wildcards.py)",
+      "Bash(powershell -Command \"Select-String -Path 'lib\\\\features\\\\home\\\\home_screen.dart' -Pattern 'isSE\\\\s*=' -SimpleMatch | Select-Object -First 5\")",
+      "Bash(python tools/decode_pomatools_codes.py)",
+      "Bash(python tools/mass_port_pomatools.py)",
+      "Bash({t})",
+      "Bash(python*)"
     ]
   }
 }

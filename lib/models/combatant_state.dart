@@ -11,7 +11,7 @@ class CombatantState {
   static const List<String> allTypes = [
     'Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice',
     'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug',
-    'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy',
+    'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy', 'Stellar',
   ];
 
   static const Map<String, int> enemyDefaults = {
@@ -43,6 +43,12 @@ class CombatantState {
 
   // Side-specific field effect
   bool moveGaugeAccel;
+
+  // Side-specific transient flags used by move-innate Times Modifiers.
+  // - hasSyncBuff: target/user has an active sync buff (×1.5 for Behemoth Blade family)
+  // - prevMoveFailed: previous move failed (×2 for Stomping Tantrum / Avalanche)
+  bool hasSyncBuff;
+  bool prevMoveFailed;
 
   // Ally-only: move damage modifiers
   bool isCriticalMove;
@@ -90,6 +96,8 @@ class CombatantState {
     this.hpPercent = 100,
     this.syncBoosts = 0,
     this.moveGaugeAccel = false,
+    this.hasSyncBuff = false,
+    this.prevMoveFailed = false,
     this.isCriticalMove = true,
     this.physicalBoostNext = 0,
     this.specialBoostNext = 0,

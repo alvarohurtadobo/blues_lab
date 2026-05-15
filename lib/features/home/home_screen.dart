@@ -756,8 +756,10 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
   ) {
     final result = <PassiveData>[];
     int replIdx = 0;
-    for (final p in base) {
-      if (p.locked) {
+    for (int i = 0; i < base.length; i++) {
+      final p = base[i];
+      if (i == 0) {
+        // Index 0 is always the master passive — never replaced
         result.add(p);
       } else if (replIdx < replacements.length) {
         result.add(replacements[replIdx++]);
@@ -773,30 +775,21 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
     // Build display moves based on active form
     List<MoveData> displayMoves;
     List<PassiveData> displayPassives;
+    displayMoves = pair.resolvedMoves(
+      formIndex: _formIndex,
+      showTera: _showTera,
+    );
     if (_showTera) {
-      final teraMoveBase = pair.teraMoves.isEmpty
-          ? pair.moves
-          : VariationData(
-              formName: '',
-              moves: pair.teraMoves,
-              passives: [],
-            ).applyTo(pair.moves);
-      displayMoves = [
-        ...teraMoveBase,
-        if (pair.teraMove != null) pair.teraMove!,
-      ];
       displayPassives = _applyPassiveReplacements(
         pair.passives,
         pair.teraPassives,
       );
     } else if (_isVariation && _activeVariation != null) {
-      displayMoves = _activeVariation!.applyTo(pair.moves);
       displayPassives = _applyPassiveReplacements(
         pair.passives,
         _activeVariation!.passives,
       );
     } else {
-      displayMoves = pair.moves;
       displayPassives = pair.passives;
     }
     if (pair.hasSuperAwakening &&
@@ -2135,6 +2128,26 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       return scaling.thresholdTable.last.multiplierPer1000 / 1000;
     }
 
+    // Boost-rank scaling (Move ↑ Next rank multiplies step).
+    // These aren't binary conditions; they scale linearly with the current rank.
+    if (scaling.stat == 'boost_rank_pmun') {
+      return 1.0 + _battle.ally.physicalBoostNext * scaling.stepPer1000 / 1000;
+    }
+    if (scaling.stat == 'boost_rank_smun') {
+      return 1.0 + _battle.ally.specialBoostNext * scaling.stepPer1000 / 1000;
+    }
+    if (scaling.stat == 'boost_rank_syun') {
+      return 1.0 + _battle.ally.syncMoveBoostNext * scaling.stepPer1000 / 1000;
+    }
+    // Generic condition prefix: delegate to _checkCondition.
+    // Examples: 'cond:paralyzed', 'cond:sunny', 'cond:fairy_zone', 'cond:any_status',
+    //           'cond:user_any_status', 'cond:target_hp_half', 'cond:super_effective'.
+    // Multiplier = 1 + stepPer1000/1000 when condition holds, otherwise 1.0.
+    if (scaling.stat.startsWith('cond:')) {
+      final condMult = 1.0 + scaling.stepPer1000 / 1000;
+      return _checkCondition(scaling.stat.substring(5), move) ? condMult : 1.0;
+    }
+
     // Stat-based scaling
     final isRaised = scaling.direction == 'raised';
     int count;
@@ -2250,9 +2263,13 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       case 'flat_boost':
         return _evalFlatBoostConditions(dp, move) ? dp.value * 0.1 : 0;
       case 'PMUN':
+        // Additional scaling on top of the standard Phys Move ↑ Next ×0.4/rank.
+        // Used by passives like 'New Teacher's Quick Wit' that scale with current PMUN rank.
+        // Boost added = rank × value × 0.1.
+        return _battle.ally.physicalBoostNext * dp.value * 0.1;
       case 'SMUN':
-        // Handled by boostRank in _totalBp, skip here
-        return 0;
+        // Additional scaling per Special Move ↑ Next rank (e.g., 'Journey from Pallet').
+        return _battle.ally.specialBoostNext * dp.value * 0.1;
       case 'stat_raised_30pct':
         final stages = _battle.ally.stages[dp.stat] ?? 0;
         return stages > 0 ? 0.3 : 0;
@@ -2422,6 +2439,13 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
             _battle.enemy.statusCondition == 'badly poisoned';
       case 'any_status':
         return _battle.enemy.statusCondition.isNotEmpty;
+      case 'user_any_status':
+        return _battle.ally.statusCondition.isNotEmpty;
+      case 'user_poisoned':
+        final c = _battle.ally.statusCondition;
+        return c == 'poisoned' || c == 'badly poisoned';
+      case 'target_hp_half':
+        return _battle.enemy.hpPercent <= 50;
       // Volatile status on target
       case 'flinching':
         return _battle.enemy.volatileStatus['flinching'] ?? false;
@@ -2433,6 +2457,18 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
         return (_battle.enemy.volatileStatus['flinching'] ?? false) ||
             (_battle.enemy.volatileStatus['confused'] ?? false) ||
             (_battle.enemy.volatileStatus['trapped'] ?? false);
+      case 'restrained':
+        return _battle.enemy.volatileStatus['restrained'] ?? false;
+      case 'no_target_stats_raised':
+        return !['atk', 'def', 'spa', 'spd', 'spe', 'acc', 'eva']
+            .any((k) => (_battle.enemy.stages[k] ?? 0) > 0);
+      case 'target_rebuff_lowered':
+        return _battle.enemy.typeRebuffs.values.any((v) => v < 0) ||
+            _battle.enemy.stellarRebuff < 0;
+      case 'target_sync_buff':
+        return _battle.enemy.hasSyncBuff;
+      case 'user_prev_move_failed':
+        return _battle.ally.prevMoveFailed;
       case 'any_condition':
         return _battle.enemy.statusCondition.isNotEmpty ||
             (_battle.enemy.volatileStatus['flinching'] ?? false) ||
@@ -2575,26 +2611,18 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       _battle.ally.charLevel = levels.last;
     }
     final isTeraActive = _teraActive;
-    final isVariation =
-        _battle.ally.formIndex > 0 &&
-        _battle.ally.formIndex <= pair.variations.length;
-    final activeVariation = isVariation
-        ? pair.variations[_battle.ally.formIndex - 1]
-        : null;
 
     final currentStats = pair.effectiveStats(_battle.ally.charLevel);
 
-    // Build display moves based on active form
-    List<MoveData> baseMoves;
-    if (isVariation && activeVariation != null) {
-      baseMoves = activeVariation.applyTo(pair.moves);
-    } else {
-      baseMoves = pair.moves;
-    }
-    final displayMoves = <MoveData>[
-      ...baseMoves,
-      if (isTeraActive && pair.teraMove != null) pair.teraMove!,
-    ].where((move) => move.power.isNotEmpty && move.power != '--').toList();
+    // Build display moves based on active form — uses the single source of
+    // truth in SyncPairData so display and damage calc never diverge.
+    final displayMoves = pair
+        .resolvedMoves(
+          formIndex: _battle.ally.formIndex,
+          showTera: isTeraActive,
+        )
+        .where((move) => move.power.isNotEmpty && move.power != '--')
+        .toList();
     final masterPassives = _masterPassives;
 
     final labelStyle = TextStyle(
