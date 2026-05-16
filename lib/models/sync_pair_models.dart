@@ -25,10 +25,10 @@ class SyncPairData {
     this.passives = const [],
     this.description = '',
     this.hasTera = false,
+    this.teraType = '',
     this.teraMove,
     this.teraPassives = const [],
     this.teraMoves = const [],
-    this.teraTypeOverride = '',
     this.stats = const {},
     this.teraStatMultiplier = const {},
     this.megaStatMultiplier = const {},
@@ -57,10 +57,16 @@ class SyncPairData {
   final List<PassiveData> passives;
   final String description;
   final bool hasTera;
+  /// Pair's type when Terastallized. For most pairs equals [type]; for special
+  /// pairs like Terapagos this is "Stellar" while [type] stays "Normal".
+  /// Used for Tera STAB checks. Falls back to [type] when empty.
+  final String teraType;
   final MoveData? teraMove;
   final List<PassiveData> teraPassives;
+  /// Complete moves list to use when in Tera mode. When non-empty, this fully
+  /// replaces the base moves (and any Tera-exclusive move is included here).
+  /// When empty, base moves are kept and [teraMove] is appended (standard pairs).
   final List<MoveData> teraMoves;
-  final String teraTypeOverride;
   final Map<String, Map<String, int>> stats;
   final Map<String, double> teraStatMultiplier;
   final Map<String, double> megaStatMultiplier;
@@ -74,8 +80,10 @@ class SyncPairData {
 
   /// Resolves the active moves list given the current form state.
   ///
-  /// - When [showTera] is true: applies [teraMoves] + [teraTypeOverride] on top
-  ///   of [moves], then appends [teraMove] if present.
+  /// - When [showTera] is true:
+  ///   - If [teraMoves] is non-empty: returns it directly (full replacement;
+  ///     any Tera-exclusive move must already be included).
+  ///   - Otherwise: returns base [moves] with [teraMove] appended.
   /// - When [formIndex] points to a variation: applies that variation's overrides.
   /// - Otherwise: returns base [moves].
   ///
@@ -83,14 +91,11 @@ class SyncPairData {
   /// and damage calculation so they always agree.
   List<MoveData> resolvedMoves({required int formIndex, required bool showTera}) {
     if (showTera) {
-      final base = VariationData(
-        formName: '',
-        moves: teraMoves,
-        passives: const [],
-        typeOverride: teraTypeOverride,
-      ).applyTo(moves);
+      if (teraMoves.isNotEmpty) {
+        return teraMoves;
+      }
       return [
-        ...base,
+        ...moves,
         if (teraMove != null) teraMove!,
       ];
     }

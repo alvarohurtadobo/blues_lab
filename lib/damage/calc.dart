@@ -286,16 +286,20 @@ double calcBattleMultiplier(BattleConditions bc) {
     mult *= calcCircleOffenseMult(bc.circles, bc.isPhysicalMove);
   }
 
-  // Type Rebuff (Table 25)
+  // Type Rebuff (Table 25). Type rebuff and Stellar rebuff stack additively
+  // (boosts are summed) — Stellar moves use the Normal type rebuff plus the
+  // dedicated Stellar rebuff, applied as a single combined multiplier.
   const rebuffMultipliers = <int, double>{
     -3: 1.6, -2: 1.5, -1: 1.3,
   };
+  double rebuffBoost = 0;
   if (bc.typeRebuff != 0 && rebuffMultipliers.containsKey(bc.typeRebuff)) {
-    mult *= rebuffMultipliers[bc.typeRebuff]!;
+    rebuffBoost += rebuffMultipliers[bc.typeRebuff]! - 1.0;
   }
   if (bc.stellarRebuff != 0 && rebuffMultipliers.containsKey(bc.stellarRebuff)) {
-    mult *= rebuffMultipliers[bc.stellarRebuff]!;
+    rebuffBoost += rebuffMultipliers[bc.stellarRebuff]! - 1.0;
   }
+  if (rebuffBoost > 0) mult *= 1 + rebuffBoost;
 
   return mult;
 }

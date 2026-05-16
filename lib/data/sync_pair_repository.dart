@@ -215,9 +215,9 @@ class SyncPairRepository {
         pairName: pairName,
         scalingMap: scalingMap,
       ),
+      teraType: (jsonMap['teraType'] ?? '') as String,
       teraPassives: teraPassives,
       teraMoves: teraMoves,
-      teraTypeOverride: (jsonMap['teraTypeOverride'] ?? '') as String,
       stats: _parseNestedStats(jsonMap['stats'] as Map<String, dynamic>?),
       teraStatMultiplier: _parseTeraStatMultiplier(jsonMap),
       megaStatMultiplier: _parseMegaStatMultiplier(

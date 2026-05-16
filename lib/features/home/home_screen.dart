@@ -1477,8 +1477,16 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
   }
 
   int get _effectivePlayerSyncBoosts {
-    if (!_megaActive) return _battle.ally.syncBoosts;
-    return _battle.ally.syncBoosts + _megaSyncBaseBoosts;
+    int total = _battle.ally.syncBoosts;
+    if (_megaActive) total += _megaSyncBaseBoosts;
+    if (_teraActive) {
+      // Tera activation grants +1 sync buff (+2 if the pair has Support EX role
+      // active), matching PM:EX game mechanics.
+      final hasSupportEx = _battle.ally.hasExRole &&
+          widget.pair.exRole.toLowerCase() == 'support';
+      total += hasSupportEx ? 2 : 1;
+    }
+    return total;
   }
 
   static const _circleRegions = CombatantState.circleRegions;
@@ -2534,6 +2542,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
           widget.pair.teraMove != null &&
           move.name == widget.pair.teraMove!.name;
       final tera = _teraActive && widget.pair.hasTera;
+      // Tera STAB applies only when the move's type matches the pair's natural
+      // base type. For pairs whose Tera type differs from the base (e.g.,
+      // Terapagos: Normal → Stellar), Tera-mode moves won't match the base
+      // type and therefore won't get the +1.5x STAB — the doubled BP they
+      // gain is innate to the form, not STAB.
       final teraBonus =
           tera &&
           !isTeraMove &&
@@ -4093,7 +4106,11 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                     ? move.type[0].toUpperCase() +
                           move.type.substring(1).toLowerCase()
                     : '';
-                final rebuff = _battle.enemy.typeRebuffs[moveType] ?? 0;
+                // Stellar moves use Normal-type rebuff (the Stellar type
+                // doesn't have its own rebuff lookup — it inherits Normal's).
+                // The dedicated stellarRebuff is added on top and summed.
+                final rebuffLookupType = moveType == 'Stellar' ? 'Normal' : moveType;
+                final rebuff = _battle.enemy.typeRebuffs[rebuffLookupType] ?? 0;
                 final stellarRebuff = moveType == 'Stellar'
                     ? _battle.enemy.stellarRebuff
                     : 0;

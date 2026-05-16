@@ -578655,16 +578655,6 @@
             }
         ],
         "hasTera": true,
-        "teraMove": {
-            "name": "Rainbow Jewel Tera Blast",
-            "type": "Stellar",
-            "category": "Special",
-            "power": "300",
-            "accuracy": "101",
-            "gauge": "2",
-            "target": "All opponents",
-            "description": "Never misses. Makes the target flinch. Applies the Special Move Break effect to the target the first time this attack move is successful each battle. The power of this move is not lowered even if there are multiple targets. Reduces the users sync move countdown by three."
-        },
         "teraPassives": [
             {
                 "name": "Shine Back to Zero",
@@ -579534,7 +579524,6 @@
                 "cellNumber": 48
             }
         ],
-        "teraTypeOverride": "Stellar",
         "teraMoves": [
             {
                 "name": "Tera Starstorm",
@@ -579545,8 +579534,18 @@
                 "gauge": "4",
                 "target": "All opponents",
                 "description": "Power doubled and target becomes all opposing sync pairs.",
-                "isSync": false,
-                "slot": 1
+                "isSync": false
+            },
+            {
+                "name": "Potion",
+                "type": "",
+                "category": "Status",
+                "power": "--",
+                "accuracy": "--",
+                "gauge": "--",
+                "target": "An ally",
+                "description": "Restores an ally HP by approximately 40% of its maximum HP.",
+                "isSync": false
             },
             {
                 "name": "Kaleidoscopic Tera Starstorm",
@@ -579557,8 +579556,18 @@
                 "gauge": "2",
                 "target": "All opponents",
                 "description": "Never misses. Lowers the target Stellar Type Rebuff by 3 ranks. Power doubled and target all opposing sync pairs.",
-                "isSync": false,
-                "slot": 3
+                "isSync": false
+            },
+            {
+                "name": "Stellar Shine!",
+                "type": "",
+                "category": "Status",
+                "power": "--",
+                "accuracy": "--",
+                "gauge": "--",
+                "target": "Self",
+                "description": "Self buffs.",
+                "isSync": false
             },
             {
                 "name": "Ancient Indigo Disk Tera Blast",
@@ -579570,8 +579579,20 @@
                 "target": "An opponent",
                 "description": "No additional effect.",
                 "isSync": true
+            },
+            {
+                "name": "Rainbow Jewel Tera Blast",
+                "type": "Stellar",
+                "category": "Special",
+                "power": "300",
+                "accuracy": "101",
+                "gauge": "2",
+                "target": "All opponents",
+                "description": "Never misses. Makes the target flinch. Applies the Special Move Break effect to the target the first time this attack move is successful each battle. The power of this move is not lowered even if there are multiple targets. Reduces the users sync move countdown by three.",
+                "isSync": false
             }
-        ]
+        ],
+        "teraType": "Stellar"
     },
     {
         "number": 225,
