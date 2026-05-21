@@ -1981,33 +1981,35 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     );
   }
 
-  Widget _calcFormTab(String label, int index, {Color? color}) {
+  Widget _calcFormTab(String label, int index, {Color? color, double? width}) {
     final selected = _battle.ally.formIndex == index;
     final tabColor = color ?? Theme.of(context).colorScheme.primary;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => setState(() => _battle.ally.formIndex = index),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            color: selected ? tabColor : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: tabColor, width: 1.5),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: selected
-                  ? Colors.white
-                  : Theme.of(context).colorScheme.onSurface,
-            ),
+    final tab = GestureDetector(
+      onTap: () => setState(() => _battle.ally.formIndex = index),
+      child: Container(
+        width: width,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: selected ? tabColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: tabColor, width: 1.5),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: selected
+                ? Colors.white
+                : Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ),
     );
+    // When width is set, the caller is using a Wrap-style layout, so return
+    // the tab directly. Otherwise fall back to Expanded for Row layouts.
+    return width == null ? Expanded(child: tab) : tab;
   }
 
   int _gridStatBonus(String statName) {
@@ -2711,48 +2713,72 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
       ),
       const SizedBox(height: 8),
 
-      // --- Tera toggle (tab style) ---
+      // --- Form selector (Base / variations / Tera / Mega) ---
+      // Wrap layout that keeps the grid to at most 3 rows by computing the
+      // number of columns from the total tab count. Variation tabs whose
+      // formName matches a Pokémon type get coloured by that type (Silvally).
       if (pair.hasTera ||
           pair.variations.isNotEmpty ||
           pair.megaStatMultiplier.isNotEmpty ||
           pair.megaStats.isNotEmpty)
         Padding(
           padding: const EdgeInsets.only(bottom: 8),
-          child: Row(
-            children: [
-              _calcFormTab('Base', 0),
-              for (int i = 0; i < pair.variations.length; i++) ...[
-                const SizedBox(width: 6),
-                _calcFormTab(
-                  pair.variations[i].formName,
-                  i + 1,
-                  color: Colors.teal,
-                ),
-              ],
-              if (pair.hasTera) ...[
-                const SizedBox(width: 6),
-                _calcFormTab(
-                  'Tera',
-                  pair.variations.length + 1,
-                  color: const Color(0xFF6C5CE7),
-                ),
-              ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              const spacing = 6.0;
+              // Total tab count to decide column count.
+              int total = 1 + pair.variations.length;
+              if (pair.hasTera) total += 1;
               if (pair.megaStatMultiplier.isNotEmpty ||
-                  pair.megaStats.isNotEmpty) ...[
-                const SizedBox(width: 6),
-                Builder(
-                  builder: (_) {
-                    int megaIdx = pair.variations.length + 1;
-                    if (pair.hasTera) megaIdx++;
-                    return _calcFormTab(
-                      'Mega',
-                      megaIdx,
-                      color: Colors.deepOrange,
-                    );
-                  },
-                ),
-              ],
-            ],
+                  pair.megaStats.isNotEmpty) {
+                total += 1;
+              }
+              // Max 3 rows → cols = ceil(total / 3). Minimum 2 to avoid a
+              // single absurdly wide column when there are few tabs.
+              final cols = math.max(2, (total + 2) ~/ 3);
+              final tabWidth =
+                  (constraints.maxWidth - spacing * (cols - 1)) / cols;
+              Color variationColor(String formName) {
+                final key = formName.toLowerCase();
+                return _typeColors[key] ?? Colors.teal;
+              }
+              final tabs = <Widget>[
+                _calcFormTab('Base', 0, width: tabWidth),
+                for (int i = 0; i < pair.variations.length; i++)
+                  _calcFormTab(
+                    pair.variations[i].formName,
+                    i + 1,
+                    color: variationColor(pair.variations[i].formName),
+                    width: tabWidth,
+                  ),
+                if (pair.hasTera)
+                  _calcFormTab(
+                    'Tera',
+                    pair.variations.length + 1,
+                    color: const Color(0xFF6C5CE7),
+                    width: tabWidth,
+                  ),
+                if (pair.megaStatMultiplier.isNotEmpty ||
+                    pair.megaStats.isNotEmpty)
+                  Builder(
+                    builder: (_) {
+                      int megaIdx = pair.variations.length + 1;
+                      if (pair.hasTera) megaIdx++;
+                      return _calcFormTab(
+                        'Mega',
+                        megaIdx,
+                        color: Colors.deepOrange,
+                        width: tabWidth,
+                      );
+                    },
+                  ),
+              ];
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: tabs,
+              );
+            },
           ),
         ),
 
@@ -4245,6 +4271,13 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
               );
               final isExtendedRange = move.isExtendedRange;
               final isAreaSync = move.isSync && _hasExpandedSync();
+              // Auto sync buffs added by the active form state (Tera or Mega).
+              // Derived from the difference so any state that boosts
+              // `_effectivePlayerSyncBoosts` (Tera, Mega, future auto-Tera
+              // passives like Terapagos's 1st S-Move: Stellar S-Tera or
+              // Ogerpon's equivalent) shows the badge automatically.
+              final autoSyncBoosts =
+                  _effectivePlayerSyncBoosts - _battle.ally.syncBoosts;
               return _CalcMoveCard(
                 move: move,
                 totalBp: bp,
@@ -4253,6 +4286,7 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
                 teraBoost: moveTeraBoost,
                 isExtendedRange: isExtendedRange,
                 isAreaSync: isAreaSync,
+                autoSyncBoosts: autoSyncBoosts,
                 atkStat: rolls != null
                     ? calcStat(
                         StatInput(
@@ -4391,6 +4425,7 @@ class _CalcMoveCard extends StatelessWidget {
     this.teraBoost = false,
     this.isExtendedRange = false,
     this.isAreaSync = false,
+    this.autoSyncBoosts = 0,
     this.atkStat,
     this.rolls,
     this.enemyHp = 1,
@@ -4403,6 +4438,9 @@ class _CalcMoveCard extends StatelessWidget {
   final bool teraBoost;
   final bool isExtendedRange;
   final bool isAreaSync;
+  /// Sync buffs added automatically by being in a special state (e.g. Tera
+  /// with Support EX role). Shown as a badge on the move card.
+  final int autoSyncBoosts;
   final int? atkStat;
   final List<int>? rolls;
   final int enemyHp;
@@ -4506,6 +4544,37 @@ class _CalcMoveCard extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.purple,
                       ),
+                    ),
+                  ),
+                if (autoSyncBoosts > 0)
+                  Container(
+                    margin: const EdgeInsets.only(right: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 1,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(3),
+                      border: Border.all(color: Colors.blue, width: 0.5),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.flash_on,
+                          size: 10,
+                          color: Colors.blue,
+                        ),
+                        Text(
+                          '+$autoSyncBoosts',
+                          style: const TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 if (move.category.isNotEmpty)
@@ -4652,7 +4721,21 @@ class HexGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (cells.isEmpty) {
-      return const Center(child: Text('This character has no grid loaded.'));
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            'No sync grid available for this pair.',
+            style: TextStyle(
+              fontSize: 13,
+              color: Theme.of(context).colorScheme.onSurface.withValues(
+                alpha: 0.55,
+              ),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
     }
 
     // Inject a virtual center cell at (0,0,0) if none exists.

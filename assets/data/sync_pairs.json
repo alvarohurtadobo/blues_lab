@@ -608619,5 +608619,1477 @@
                 "cellNumber": 23
             }
         ]
+    },
+    {
+        "number": 246,
+        "displayName": "Gladion & Silvally",
+        "role": "Strike",
+        "exRole": "",
+        "type": "Normal",
+        "weakness": "Fighting",
+        "rarity": 5,
+        "hasEx": true,
+        "hasSuperAwakening": false,
+        "syncMoveName": "Audacious Multi-Attack",
+        "releaseDate": "2020-09-14",
+        "hasTera": false,
+        "teraType": "",
+        "teraPassives": [],
+        "teraMoves": [],
+        "stats": {
+            "1": {
+                "hp": 84,
+                "atk": 10,
+                "def": 10,
+                "spa": 10,
+                "spd": 10,
+                "spe": 10
+            },
+            "140": {
+                "hp": 600,
+                "atk": 200,
+                "def": 200,
+                "spa": 200,
+                "spd": 200,
+                "spe": 200
+            },
+            "150": {
+                "hp": 664,
+                "atk": 224,
+                "def": 224,
+                "spa": 224,
+                "spd": 224,
+                "spe": 224
+            },
+            "200": {
+                "hp": 856,
+                "atk": 296,
+                "def": 296,
+                "spa": 296,
+                "spd": 296,
+                "spe": 296
+            }
+        },
+        "teraStatMultiplier": {},
+        "megaStatMultiplier": {},
+        "megaStats": {},
+        "formStats": {},
+        "moves": [
+            {
+                "name": "Crush Claw",
+                "type": "Normal",
+                "category": "Physical",
+                "power": "63",
+                "accuracy": "95",
+                "gauge": "2",
+                "target": "An opponent",
+                "description": "Has a chance (50%) of lowering the target's Defense by 1 stat rank.",
+                "isSync": false
+            },
+            {
+                "name": "X Attack",
+                "type": "",
+                "category": "Status",
+                "power": "--",
+                "accuracy": "--",
+                "gauge": "0",
+                "target": "Self",
+                "description": "Raises the user's Attack by 2 stat ranks.",
+                "isSync": false
+            },
+            {
+                "name": "Multi-Attack",
+                "type": "Normal",
+                "category": "Physical",
+                "power": "125",
+                "accuracy": "100",
+                "gauge": "3",
+                "target": "An opponent",
+                "description": "This attack's type is determined by the user's type change.",
+                "isSync": false
+            },
+            {
+                "name": "My Mind's Made Up!",
+                "type": "",
+                "category": "Status",
+                "power": "--",
+                "accuracy": "--",
+                "gauge": "--",
+                "target": "Self",
+                "description": "Changes the user's type to that of the target's weakness. This changes the user's own weakness type and the type of the user's Multi-Attack and Audacious Multi-Attack. Raises the user's Speed by 3 stat ranks.",
+                "isSync": false
+            },
+            {
+                "name": "Audacious Multi-Attack",
+                "type": "Normal",
+                "category": "Physical",
+                "power": "300",
+                "accuracy": "101",
+                "gauge": "--",
+                "target": "An opponent",
+                "description": "This attack's type is determined by the user's type change.",
+                "isSync": true
+            }
+        ],
+        "passives": [
+            {
+                "name": "RKS System",
+                "description": "When the user's type changes, the user's own weakness type and the type of the user's Multi-Attack and Audacious Multi-Attack change.",
+                "locked": false,
+                "subPassives": []
+            },
+            {
+                "name": "Backfire 2",
+                "description": "Lowers all of the target's stats when the user faints.",
+                "locked": false,
+                "subPassives": []
+            }
+        ],
+        "variations": [
+            {
+                "formName": "Fire",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Fire",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Fire via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Fire",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Fire via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Water",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Water",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Water via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Water",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Water via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Electric",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Electric",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Electric via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Electric",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Electric via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Grass",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Grass",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Grass via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Grass",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Grass via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Ice",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Ice",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Ice via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Ice",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Ice via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Fighting",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Fighting",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Fighting via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Fighting",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Fighting via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Poison",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Poison",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Poison via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Poison",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Poison via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Ground",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Ground",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Ground via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Ground",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Ground via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Flying",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Flying",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Flying via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Flying",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Flying via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Psychic",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Psychic",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Psychic via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Psychic",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Psychic via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Bug",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Bug",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Bug via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Bug",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Bug via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Rock",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Rock",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Rock via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Rock",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Rock via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Ghost",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Ghost",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Ghost via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Ghost",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Ghost via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Dragon",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Dragon",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Dragon via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Dragon",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Dragon via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Dark",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Dark",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Dark via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Dark",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Dark via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Steel",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Steel",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Steel via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Steel",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Steel via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            },
+            {
+                "formName": "Fairy",
+                "moves": [
+                    {
+                        "name": "Multi-Attack",
+                        "type": "Fairy",
+                        "category": "Physical",
+                        "power": "125",
+                        "accuracy": "100",
+                        "gauge": "3",
+                        "target": "An opponent",
+                        "description": "Type changed to Fairy via RKS System.",
+                        "isSync": false,
+                        "slot": 3
+                    },
+                    {
+                        "name": "Audacious Multi-Attack",
+                        "type": "Fairy",
+                        "category": "Physical",
+                        "power": "300",
+                        "accuracy": "101",
+                        "gauge": "--",
+                        "target": "An opponent",
+                        "description": "Type changed to Fairy via RKS System.",
+                        "isSync": true
+                    }
+                ],
+                "passives": [],
+                "statMultiplier": {}
+            }
+        ],
+        "tags": [],
+        "rules": [],
+        "damagePassives": [],
+        "masterPassives": [],
+        "cells": [
+            {
+                "cellNumber": 1,
+                "q": 1,
+                "r": -1,
+                "s": 0,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "HP 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "hp": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 2,
+                "q": 1,
+                "r": 0,
+                "s": -1,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Attack 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 3,
+                "q": 0,
+                "r": 1,
+                "s": -1,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Defense 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "def": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 4,
+                "q": -1,
+                "r": 1,
+                "s": 0,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Attack 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 5,
+                "q": -1,
+                "r": 0,
+                "s": 1,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Sp.Defense 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "spd": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 6,
+                "q": 0,
+                "r": -1,
+                "s": 1,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Speed 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "spe": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 7,
+                "q": 1,
+                "r": -2,
+                "s": 1,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "Attack 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 8,
+                "q": 2,
+                "r": -3,
+                "s": 1,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "Defense 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "def": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 9,
+                "q": 1,
+                "r": -3,
+                "s": 2,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "Speed 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "spe": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 10,
+                "q": 3,
+                "r": -4,
+                "s": 1,
+                "energyCost": 3,
+                "orbCost": 36,
+                "title": "Headstrong",
+                "description": "Attack cannot be lowered.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 11,
+                "q": 2,
+                "r": -4,
+                "s": 2,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Multi-Attack: Power 3",
+                "description": "Multi-Attack: Power Up 3",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Multi-Attack": 3
+                }
+            },
+            {
+                "cellNumber": 12,
+                "q": 1,
+                "r": -4,
+                "s": 3,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Multi-Attack: Power 3",
+                "description": "Multi-Attack: Power Up 3",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {
+                    "Multi-Attack": 3
+                }
+            },
+            {
+                "cellNumber": 13,
+                "q": 3,
+                "r": -5,
+                "s": 2,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Attack 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 14,
+                "q": 2,
+                "r": -5,
+                "s": 3,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "Sp.Defense 20",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "spd": 20
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 15,
+                "q": 1,
+                "r": -5,
+                "s": 4,
+                "energyCost": 10,
+                "orbCost": 120,
+                "title": "HP Advantage 3",
+                "description": "The larger the user’s percentage of remaining HP, the more it powers up the user’s moves.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 16,
+                "q": 3,
+                "r": -6,
+                "s": 3,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "HP 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "hp": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 17,
+                "q": 2,
+                "r": -6,
+                "s": 4,
+                "energyCost": 10,
+                "orbCost": 120,
+                "title": "Superduper Effective 2",
+                "description": "Powers up moves that are super effective.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 18,
+                "q": -2,
+                "r": 1,
+                "s": 1,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Crush Claw: Power 4",
+                "description": "Crush Claw: Power Up 4",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Crush Claw": 4
+                }
+            },
+            {
+                "cellNumber": 19,
+                "q": -3,
+                "r": 2,
+                "s": 1,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Crush Claw: Power 4",
+                "description": "Crush Claw: Power Up 4",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Crush Claw": 4
+                }
+            },
+            {
+                "cellNumber": 20,
+                "q": -2,
+                "r": 2,
+                "s": 0,
+                "energyCost": 6,
+                "orbCost": 72,
+                "title": "Multi-Attack: Move Gauge Refresh 3",
+                "description": "Has a chance (40%) of charging the user’s move gauge by one when its move is successful.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 21,
+                "q": -3,
+                "r": 3,
+                "s": 0,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Speed 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "spe": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 22,
+                "q": -1,
+                "r": 2,
+                "s": -1,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Multi-Attack: Power 3",
+                "description": "Multi-Attack: Power Up 3",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Multi-Attack": 3
+                }
+            },
+            {
+                "cellNumber": 23,
+                "q": -2,
+                "r": 3,
+                "s": -1,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Speed 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "spe": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 24,
+                "q": -3,
+                "r": 4,
+                "s": -1,
+                "energyCost": 6,
+                "orbCost": 72,
+                "title": "Stamina Reserves 3",
+                "description": "Charges the user’s move gauge by 3 the first time it is in a pinch each battle.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 25,
+                "q": -1,
+                "r": 3,
+                "s": -2,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "My Mind’s Made Up!: Hit and Heal 9",
+                "description": "Has a chance (100%) of applying the Gradual Healing effect to the user when its move is successful.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 26,
+                "q": -2,
+                "r": 4,
+                "s": -2,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "Double Down 3",
+                "description": "Powers up the user’s sync moves that are super effective.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 27,
+                "q": 2,
+                "r": -1,
+                "s": -1,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "Sp.Defense 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "spd": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 28,
+                "q": 3,
+                "r": -1,
+                "s": -2,
+                "energyCost": 3,
+                "orbCost": 36,
+                "title": "Unbending",
+                "description": "Defense cannot be lowered.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 29,
+                "q": 2,
+                "r": 0,
+                "s": -2,
+                "energyCost": 7,
+                "orbCost": 84,
+                "title": "X Attack: MP Refresh 3",
+                "description": "Has a chance (40%) of restoring one MP of the user’s move when that move is successful.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 30,
+                "q": 1,
+                "r": 1,
+                "s": -2,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Multi-Attack: Power 3",
+                "description": "Multi-Attack: Power Up 3",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Multi-Attack": 3
+                }
+            },
+            {
+                "cellNumber": 31,
+                "q": 3,
+                "r": 0,
+                "s": -3,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "HP 20",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "hp": 20
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 32,
+                "q": 2,
+                "r": 1,
+                "s": -3,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Multi-Attack: Power 3",
+                "description": "Multi-Attack: Power Up 3",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {
+                    "Multi-Attack": 3
+                }
+            },
+            {
+                "cellNumber": 33,
+                "q": 1,
+                "r": 2,
+                "s": -3,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "My Mind’s Made Up!: Follow-Through 9",
+                "description": "Has a chance (100%) of applying the Critical Hit Next effect to the user when its move is successful.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 34,
+                "q": 3,
+                "r": 1,
+                "s": -4,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "Defense 20",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 2,
+                "statBonus": {
+                    "def": 20
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 35,
+                "q": 2,
+                "r": 2,
+                "s": -4,
+                "energyCost": 7,
+                "orbCost": 84,
+                "title": "HP 30",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 3,
+                "statBonus": {
+                    "hp": 30
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 36,
+                "q": -1,
+                "r": -1,
+                "s": 2,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "HP 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "hp": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 37,
+                "q": -2,
+                "r": -1,
+                "s": 3,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "HP 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "hp": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 38,
+                "q": -1,
+                "r": -2,
+                "s": 3,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "Attack 5",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 5
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 39,
+                "q": -3,
+                "r": -1,
+                "s": 4,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Crush Claw: Power 4",
+                "description": "Crush Claw: Power Up 4",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {
+                    "Crush Claw": 4
+                }
+            },
+            {
+                "cellNumber": 40,
+                "q": -2,
+                "r": -2,
+                "s": 4,
+                "energyCost": 6,
+                "orbCost": 72,
+                "title": "Crush Claw: Move Gauge Refresh 3",
+                "description": "Has a chance (40%) of charging the user’s move gauge by one when its move is successful.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 1,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 41,
+                "q": -3,
+                "r": -2,
+                "s": 5,
+                "energyCost": 2,
+                "orbCost": 24,
+                "title": "HP 10",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "hp": 10
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 42,
+                "q": -1,
+                "r": -3,
+                "s": 4,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Crush Claw: Power 4",
+                "description": "Crush Claw: Power Up 4",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {
+                    "Crush Claw": 4
+                }
+            },
+            {
+                "cellNumber": 43,
+                "q": -2,
+                "r": -3,
+                "s": 5,
+                "energyCost": 4,
+                "orbCost": 48,
+                "title": "Crush Claw: Power 4",
+                "description": "Crush Claw: Power Up 4",
+                "colorKind": "Green (Move Boost)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {
+                    "Crush Claw": 4
+                }
+            },
+            {
+                "cellNumber": 44,
+                "q": -3,
+                "r": -3,
+                "s": 6,
+                "energyCost": 10,
+                "orbCost": 120,
+                "title": "Crush Claw: On a Roll 1",
+                "description": "Raises the chance of lowering stat values with the additional effects of the user’s moves.",
+                "colorKind": "Red (Move Effect)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 45,
+                "q": -1,
+                "r": -4,
+                "s": 5,
+                "energyCost": 8,
+                "orbCost": 96,
+                "title": "Vigilance",
+                "description": "Protects the user against critical hits.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 46,
+                "q": -2,
+                "r": -4,
+                "s": 6,
+                "energyCost": 10,
+                "orbCost": 120,
+                "title": "Burst In",
+                "description": "Applies the Critical Hit Next effect to the user when it enters a battle.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 47,
+                "q": 0,
+                "r": -3,
+                "s": 3,
+                "energyCost": 5,
+                "orbCost": 60,
+                "title": "Audacious Multi-Attack: Power 25",
+                "description": "Audacious Multi-Attack: Power Up 25",
+                "colorKind": "Rainbow (Sync Move)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {
+                    "Audacious Multi-Attack": 25
+                }
+            },
+            {
+                "cellNumber": 48,
+                "q": 0,
+                "r": 3,
+                "s": -3,
+                "energyCost": 5,
+                "orbCost": 60,
+                "title": "Audacious Multi-Attack: Power 25",
+                "description": "Audacious Multi-Attack: Power Up 25",
+                "colorKind": "Rainbow (Sync Move)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {
+                    "Audacious Multi-Attack": 25
+                }
+            },
+            {
+                "cellNumber": 49,
+                "q": -2,
+                "r": 0,
+                "s": 2,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Attack 20",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "atk": 20
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 50,
+                "q": -3,
+                "r": 0,
+                "s": 3,
+                "energyCost": 3,
+                "orbCost": 36,
+                "title": "Critical Eye 1",
+                "description": "Raises the user’s critical-hit rate by 1 stat rank(s) when its move is successful.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 51,
+                "q": -3,
+                "r": 1,
+                "s": 2,
+                "energyCost": 5,
+                "orbCost": 60,
+                "title": "Super Powered 5",
+                "description": "Powers up the user’s moves and sync move that are super effective.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 52,
+                "q": 2,
+                "r": -2,
+                "s": 0,
+                "energyCost": 0,
+                "orbCost": 5,
+                "title": "Speed 20",
+                "description": "",
+                "colorKind": "Blue (Stat)",
+                "moveLevel": 1,
+                "statBonus": {
+                    "spe": 20
+                },
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 53,
+                "q": 3,
+                "r": -3,
+                "s": 0,
+                "energyCost": 3,
+                "orbCost": 36,
+                "title": "Super Freebie 4",
+                "description": "Has a chance (50%) of applying the Free Move Next effect to the user when its move is super effective.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 2,
+                "statBonus": {},
+                "powerBonus": {}
+            },
+            {
+                "cellNumber": 54,
+                "q": 3,
+                "r": -2,
+                "s": -1,
+                "energyCost": 5,
+                "orbCost": 60,
+                "title": "Superduper 9",
+                "description": "Has a chance (100%) of applying the Supereffective ↑ Next effect to the user when its move is super effective.",
+                "colorKind": "Yellow (Passive)",
+                "moveLevel": 3,
+                "statBonus": {},
+                "powerBonus": {}
+            }
+        ]
     }
 ]
