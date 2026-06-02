@@ -1,0 +1,460 @@
+========================================= 
+1. No. 183 Akari & Mime Jr. (Male♂️) 
+2. No. 246 Raifort & Gengar (Male♂️) - Tera Type Ghost 
+3. No. 247 Sabi & Rhyperior (Female♀️) 
+4. No. 66 Lyra (Champion) & Entei (Genderless) 
+5. No. 75 Ethan (Champion) & Raikou (Genderless) 
+========================================= 
+ 
+No. 183 Akari & Mime Jr. (Male♂️)
+
+Descriptions: This Trainer belongs to the Survey Corps of Hisui’s Galaxy Expedition Team. She is Rei’s teammate and wants to be a worthy opponent to him. She’s also good at crafting with natural materials.
+Role: Support
+Type: Psychic | Weakness: Steel
+Rarity: ⭐⭐⭐⭐
+Expedition 🤝: Wistful ↑2
+Method: 🏨 Exchange - Friendship Level-Up 100 in Lodge
+Item Exchange: 🗿 Lodge Stone (After Level 100)
+EX Color 👕🌈: No❌
+👥 Team Skill
+1. Psychic Support
+2. Sinnoh Support
+3. Main Character Support
+4. Scarf Support
+5. Hisui Adventurer Support
+
+Sync Pair Available: 1/6/2026 06:00:00
+EX Effect Available: 1/6/2026 06:00:00
+
+⚔️ Moves Details ⚔️
+Move 1: Confusion
+Type: Psychic
+Category: Special
+User: Pokemon
+Description: Has a chance (10%) of leaving the target confused.
+Power: 18 (1)/21 (5↑ MAX) | Accuracy: 100 | Gauge: 1 | Target: An opponent | Effect Tag: -- | Max uses: --
+
+Move 2: Mini Potion All
+Category: Status
+User: Pokemon
+Description: Restores the HP of all allied sync pairs by approximately 20% of their maximum HP.
+Power: -- | Accuracy: -- | Gauge: -- | Target: All allies | Effect Tag: Heals | Max uses: 2
+
+Move 3: Light Screen
+Type: Psychic
+Category: Status
+User: Pokemon
+Description: Applies the Special Damage Reduction effect to the allied field of play.
+Power: -- | Accuracy: -- | Gauge: 3 | Target: Allied side | Effect Tag: -- | Max uses: 2
+
+Move 4: It’s My Responsibility!
+Category: Status
+User: Trainer
+Description: Raises the Sp. Def of all allied sync pairs by four stat ranks. Applies the Gradual Healing effect to all allied sync pairs.
+Power: -- | Accuracy: -- | Gauge: -- | Target: All allies | Effect Tag: -- | Max uses: 1
+
+Sync Move: Reliable Mentor Psychic Beam
+Type: Psychic
+Category: Special
+User: Pokemon
+Description: No additional effect.
+Power: 250 (1)/300 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: -- | Max uses: --
+
+🛡️ Passive Details 🌟
+Passive 1: Take SE Hit: P-Move DR & S-Move DR 5
+Reduces damage taken by the user from super effective moves and super effective sync moves.
+
+Passive 2: First Aid 4
+Restores the user’s HP by approximately 40% of its maximum HP the first time it is in a pinch each battle.
+
+Passive 3: Aggravation 9
+Raises the chance of inflicting the flinching, confused, or trapped condition with the additional effects of moves.
+
+
+📊 Base Stats 📊
+Lv. 1
+HP : 105 | Attack : 3 | Defense : 11 | Sp. Atk : 12 | Sp. Def : 11 | Speed : 8
+
+Lv. 140
+HP : 642 | Attack : 112 | Defense : 201 | Sp. Atk : 244 | Sp. Def : 227 | Speed : 265
+
+Lv. 150
+HP : 672 | Attack : 118 | Defense : 211 | Sp. Atk : 256 | Sp. Def : 239 | Speed : 279
+
+Lv. 200
+HP : 822 | Attack : 148 | Defense : 261 | Sp. Atk : 316 | Sp. Def : 299 | Speed : 349
+
+
+
+----
+-------------------------------END-------------------------------
+ 
+No. 246 Raifort & Gengar (Male♂️)
+Form: Tera Type: Ghost
+Dialog 5 Stars: Greetings, my little students. Whatever you did yesterday, it is now a part of history.
+Descriptions: This history teacher from an academy in Paldea has a vibe that’s uniquely her. Her love of history gives her both an affinity for the antique and a distaste for new things.
+Role: Support | EX Role 🌈: Field
+Type: Ghost | Weakness: Dark
+Rarity: ⭐⭐⭐⭐⭐
+Expedition 🤝: Wistful ↑2
+Method: 🎈🌟 EX Fair Scout
+EX Color 👕🌈: Yes✅
+👥 Team Skill
+1. Ghost Support
+2. Paldea Support
+3. Glasses Support
+4. Knowledgeable Support
+5. Researcher Support
+
+Sync Pair Available: 14/6/2026 06:00:00
+EX Effect Available: 14/6/2026 06:00:00
+EX Role Available: 14/6/2026 06:00:00
+Superawakened Available: 14/6/2026 06:00:00
+
+⚔️ Moves Details ⚔️
+Move 1: Toxic
+Type: Poison
+Category: Status
+User: Pokemon
+Description: Leaves the target badly poisoned.
+Power: -- | Accuracy: 90 | Gauge: 2 | Target: An opponent | Effect Tag: -- | Max uses: --
+
+Move 2: Potion
+Category: Status
+User: Pokemon
+Description: Restores an ally’s HP by approximately 40% of its maximum HP.
+Power: -- | Accuracy: -- | Gauge: -- | Target: An ally | Effect Tag: Heals | Max uses: 2
+
+Move 3: Scintillating Souls Confuse Ray
+Type: Ghost
+Category: Status
+User: Pokemon
+Description: Activation Condition: When the user uses any move once. Deactivation Condition: Cannot be deactivated. Never misses. Leaves all opposing sync pairs confused. Turns the field of play’s zone into a Ghost Zone. (A Ghost Zone powers up Ghost-type attacks.) Reduces the user’s sync move countdown by one. Increases the Physical Moves ↑ Next effect and Special Moves ↑ Next effect of all allied sync pairs by one rank.
+Power: -- | Accuracy: -- | Gauge: 2 | Target: All opponents | Effect Tag: Sure Hit | Max uses: 3
+
+Move 4: History Is Wonderful!
+Category: Status
+User: Trainer
+Description: Raises the Defense and Sp. Def of all allied sync pairs by four stat ranks. Increases the Physical Moves ↑ Next effect and Special Moves ↑ Next effect of all allied sync pairs by one rank. Applies the Damage Guard Next effect to the user.
+Power: -- | Accuracy: -- | Gauge: -- | Target: All allies | Effect Tag: -- | Max uses: 1
+
+Sync Move: Imparting Past Knowledge Tera Blast
+Type: Ghost
+Category: Special
+User: Pokemon
+Description: No additional effect.
+Power: 250 (1)/300 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: -- | Max uses: --
+
+🛡️ Passive Details 🌟
+(🌅🌟) Superawakened Passive: The Explorer of Antiquity
+Reduces the user’s sync move countdown by one the first time it enters a battle each battle. Reduces the sync move countdown by one the first time the user’s sync move is used each battle. Powers up the moves of all allied sync pairs when attacking a target that is poisoned or badly poisoned.
+
+Passive 1(🏅): Paldea Rush
+Reduces the user’s sync move countdown by one the first time it enters a battle each battle. When used in a co-op battle, reduces the user’s sync move countdown by one the first time your team enters a battle each battle instead. The more allied sync pairs with the Paldea theme you have on your team, the greater the reduction is. (Each additional sync pair increases the reduction by one, and the maximum reduction is three.) The effects do not stack if you have more than one sync pair on your team with passive skills of the same name.
+
+Passive 2: Debut: Ghost S-Tera
+The user Sync Terastallizes into Ghost type the first time it enters a battle each battle.
+
+Passive 3: Power of a Deeply Held Grudge
+When the user’s status move is used and inflicted a status condition on an opponent, inflicts the same status condition on all opposing sync pairs. Lowers the target’s Attack and Sp. Atk by one stat rank when the user’s attack move is successful against targets that are affected by a status condition.
+
+Passive 4: Ghost Zone: Team P-Moves & S-Moves DR 2
+Reduces damage when an ally is hit by an attack move or sync move while the zone is a Ghost Zone.
+
+
+📊 Base Stats 📊
+Lv. 1
+HP : 100 | Attack : 12 | Defense : 11 | Sp. Atk : 10 | Sp. Def : 11 | Speed : 13
+
+Lv. 140
+HP : 678 | Attack : 176 | Defense : 308 | Sp. Atk : 224 | Sp. Def : 308 | Speed : 312
+
+Lv. 150
+HP : 710 | Attack : 184 | Defense : 324 | Sp. Atk : 236 | Sp. Def : 324 | Speed : 328
+
+Lv. 200
+HP : 870 | Attack : 224 | Defense : 404 | Sp. Atk : 296 | Sp. Def : 404 | Speed : 408
+
+
+📌 Tera Details 📌
+💎 Tera Moves Details ⚔️
+💎 Tera Move: Tanzanite Tera Blast
+Type: Ghost
+Category: Special
+User: Pokemon
+Description: Lowers the target’s Defense and Sp. Def by one stat rank.
+Power: 150 (1)/180 (5↑ MAX) | Accuracy: 100 | Gauge: 1 | Target: All opponents | Effect Tag: -- | Max uses: --
+
+🛡️ Passives Details 🌟
+Passive 2: Do Your Thing, Technology!
+Doubles the current number of Physical Moves ↑ Next effect and Special Moves ↑ Next effect ranks of all allied sync pairs the first time the user’s sync move is used each battle.
+
+-
+
+----
+-------------------------------END-------------------------------
+ 
+No. 247 Sabi & Rhyperior (Female♀️)
+
+Dialog 5 Stars: My clairvoyance told me... that I’d lead you on a chase!
+Descriptions: This warden of the Hisui region’s Diamond Clan was taking care of a special Braviary. Her carefree, childish personality can be tough to figure out.
+Role: Tech | EX Role 🌈: Strike (Physical)
+Type: Ground | Weakness: Water
+Rarity: ⭐⭐⭐⭐⭐
+Expedition 🤝: Soothing ↑2
+Method: 🎈🌟 EX Fair Scout
+EX Color 👕🌈: Yes✅
+👥 Team Skill
+1. Ground Tech
+2. Sinnoh Tech
+3. Pigtails Tech
+4. Supernatural Tech
+
+Sync Pair Available: 16/6/2026 06:00:00
+EX Effect Available: 16/6/2026 06:00:00
+EX Role Available: 16/6/2026 06:00:00
+Superawakened Available: 16/6/2026 06:00:00
+
+⚔️ Moves Details ⚔️
+Move 1: Earthquake
+Type: Ground
+Category: Physical
+User: Pokemon
+Description: No additional effect.
+Power: 100 (1)/120 (5↑ MAX) | Accuracy: 100 | Gauge: 3 | Target: All opponents | Effect Tag: -- | Max uses: --
+
+Move 2: Sinnoh Passion
+Category: Status
+User: Pokemon
+Description: Increases the Physical Moves ↑ Next effect of all allied sync pairs by one rank. Applies Sinnoh Circle (Physical) to the allied field of play. Sinnoh Circle (Physical) grants all of the following effects: Powers up the physical attack moves and physical sync moves of all allied sync pairs by 10%. Reduces physical attack move and physical sync move damage taken by all allied sync pairs by 5%. The more sync pairs with the Sinnoh theme that are on the allied field of play, the higher these percentages are. (Each additional sync pair powers up moves and sync moves by 10% and reduces damage by 3%. The maximum power-up is 40%, and the maximum damage reduction is 14%.)
+Power: -- | Accuracy: -- | Gauge: 2 | Target: Allied side | Effect Tag: -- | Max uses: 2
+
+Move 3: Earth-Smashing Drill Run
+Type: Ground
+Category: Physical
+User: Pokemon
+Description: Activation Condition: When the user’s Physical Moves ↑ Next effect is increased. Deactivation Condition: When the user’s Physical Moves ↑ Next effect is not increased. Never misses. Except in certain circumstances, successful hits with this attack become critical hits. Increases the user’s Sync Move ↑ Next effect by five ranks. Grants all of the following effects the first time this attack move is successful each battle: Applies the Physical Move Break effect to the target. Reduces the user’s sync move countdown by two. Increases the user’s Physical Moves ↑ Next effect by double the number of ranks consumed when using this move.
+Power: 200 (1)/240 (5↑ MAX) | Accuracy: -- | Gauge: 2 | Target: An opponent | Effect Tag: Sure Hit | Max uses: 2
+
+Move 4: The Real Question!
+Category: Status
+User: Trainer
+Description: Raises the user’s critical-hit rate by three stat ranks. Applies the Supereffective ↑ Next effect to the user. Increases the user’s Physical Moves ↑ Next effect by two ranks. Increases the user’s Sync Move ↑ Next effect by five ranks.
+Power: -- | Accuracy: -- | Gauge: -- | Target: Self | Effect Tag: -- | Max uses: 1
+
+Sync Move: Clairvoyant Drill Run
+Type: Ground
+Category: Physical
+User: Pokemon
+Description: The more the user’s Attack is raised, the greater the power of this attack.
+Power: 200 (1)/240 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: -- | Max uses: --
+
+🛡️ Passive Details 🌟
+(🌅🌟) Superawakened Passive: Carefree Clairvoyance
+Reduces the user’s sync move countdown by one the first time its sync move is used each battle. Turns the field of play’s zone into a Ground Zone the first time the user’s sync move is used each battle. (A Ground Zone powers up Ground-type attacks.) Extends the duration of the Ground Zone when the zone turns into a Ground Zone while the user is on the field.
+
+Passive 1(🏅): Sinnoh Rush
+Reduces the user’s sync move countdown by one the first time it enters a battle each battle. When used in a co-op battle, reduces the user’s sync move countdown by one the first time your team enters a battle each battle instead. The more allied sync pairs with the Sinnoh theme you have on your team, the greater the reduction is. (Each additional sync pair increases the reduction by one, and the maximum reduction is three.) The effects do not stack if you have more than one sync pair on your team with passive skills of the same name.
+
+Passive 2: You Got Cold Feet?
+Grants all of the following effects the first time the user enters a battle each battle: Applies Sinnoh Circle (Physical) to the allied field of play. Raises the user’s Attack by six stat ranks. Increases the user’s Physical Moves ↑ Next effect by two ranks.
+
+Passive 3: Try and Catch Me!
+Applies the Free Move Next effect to the user when its attack move (except its buddy move) is successful while the remaining MP for its buddy move is zero. Increases the Physical Moves ↑ Next effect of all allied sync pairs by one rank when the user’s attack move (except its buddy move) is successful while the remaining MP for its buddy move is zero.
+
+Passive 4: Soften Up 1
+Critical hits land more easily when the user attacks with a sync move.
+
+
+📊 Base Stats 📊
+Lv. 1
+HP : 98 | Attack : 20 | Defense : 12 | Sp. Atk : 10 | Sp. Def : 10 | Speed : 8
+
+Lv. 140
+HP : 702 | Attack : 448 | Defense : 201 | Sp. Atk : 132 | Sp. Def : 183 | Speed : 280
+
+Lv. 150
+HP : 736 | Attack : 472 | Defense : 211 | Sp. Atk : 138 | Sp. Def : 193 | Speed : 294
+
+Lv. 200
+HP : 906 | Attack : 592 | Defense : 261 | Sp. Atk : 168 | Sp. Def : 243 | Speed : 364
+
+
+
+----
+-------------------------------END-------------------------------
+ 
+No. 66 Lyra (Champion) & Entei (Genderless)
+
+Dialog 5 Stars: We’ll fire ourselves up... and face you head-on, no matter what it takes!
+Descriptions: Lyra is dressed in an outfit honoring her earned title: Neo Champion of Pasio. With Entei by her side, she feels fired up.
+Role: Strike (Physical) | EX Role 🌈: Sprint
+Type: Fire | Weakness: Rock
+Rarity: ⭐⭐⭐⭐⭐
+Expedition 🤝: Fiery ↑3 Soothing ↓1
+Method: 🎈✨🌟 EX Master Fair Scout
+EX Color 👕🌈: Yes✅
+👥 Team Skill
+1. Fire Strike
+2. Johto Strike
+3. Main Character Strike
+4. Champion Strike
+5. Pokéathlete Strike
+
+Sync Pair Available: 2/6/2026 06:00:00
+EX Effect Available: 2/6/2026 06:00:00
+EX Role Available: 2/6/2026 06:00:00
+
+⚔️ Moves Details ⚔️
+Move 1: Reigning Sacred Fire
+Type: Fire
+Category: Physical
+User: Pokemon
+Description: Activation Condition: When the user’s Attack is raised. Deactivation Condition: Cannot be deactivated. Removes the frozen condition from the user. Never misses. The more the user’s sync buff is raised, the greater the power of this attack. (The maximum increase is 10 ranks.) Lowers the target’s Attack and Defense by two stat ranks. Leaves the target burned.
+Power: 220 (1)/264 (5↑ MAX) | Accuracy: -- | Gauge: 2 | Target: An opponent | Effect Tag: Sure Hit, OK While Frozen | Max uses: --
+
+Move 2: Super Effective ↑
+Category: Status
+User: Pokemon
+Description: Applies the Supereffective ↑ Next effect to an ally.
+Power: -- | Accuracy: -- | Gauge: -- | Target: An ally | Effect Tag: -- | Max uses: 2
+
+Move 3: Entrapping Blaze Flare Blitz
+Type: Fire
+Category: Physical
+User: Pokemon
+Description: Activation Condition: When the user uses any move once. Deactivation Condition: Cannot be deactivated. Removes the frozen condition from the user. Never misses. The more the user’s sync buff is raised, the greater the power of this attack. (The maximum increase is 10 ranks.) Leaves the target burned. The power of this move is not lowered even if there are multiple targets. If the remaining MP for the user’s Super Effective ↑ is one or more when attacking with this move, reduces those MP by one and grants all of the following effects: Makes the weather sunny. Applies the Supereffective ↑ Next effect to the user.
+Power: 300 (1)/360 (5↑ MAX) | Accuracy: -- | Gauge: 2 | Target: All opponents | Effect Tag: Sure Hit, OK While Frozen | Max uses: 1
+
+Move 4: Erupting Glory!
+Category: Status
+User: Trainer
+Description: Reduces the user’s sync move countdown by two. Increases the user’s Physical Moves ↑ Next effect by three ranks. Increases the user’s Sync Move ↑ Next effect by five ranks.
+Power: -- | Accuracy: -- | Gauge: -- | Target: Self | Effect Tag: -- | Max uses: 1
+
+Sync Move: Youthful Eruption Sacred Fire
+Type: Fire
+Category: Physical
+User: Pokemon
+Description: No additional effect.
+Power: 250 (1)/300 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: -- | Max uses: --
+
+🛡️ Passive Details 🌟
+Passive 1(🏅): Johto’s Flaming Legend
+Powers up the moves and sync moves of all allied sync pairs by 20%. Reduces attack move and sync move damage taken by all allied sync pairs by 25%. The more allied sync pairs with the Johto theme you have on your team, the higher these percentages are. (Each additional sync pair powers up moves and sync moves by 15% and reduces damage by 3%. The maximum power-up is 50%, and the maximum damage reduction is 31%.) Raises the sync buff of the user’s team by one rank the first time its sync move is used each battle.
+
+Passive 2: Land of Bursting Fire
+Grants all of the following effects the first time the user enters a battle each battle: Reduces the user’s sync move countdown by three. Raises the user’s Attack by six stat ranks. Increases the user’s Physical Moves ↑ Next effect by two ranks.
+
+Passive 3: Uncontainable Volcanic Power
+Grants all of the following effects after your team’s sync pair uses their sync move: Restores the user’s HP by approximately 20% of its maximum HP. Increases the user’s Physical Moves ↑ Next effect by two ranks. Restores one MP of the user’s buddy move.
+
+Passive 4: P-Moves & S-Moves Crit
+Except in certain circumstances, successful hits with the user’s following attacks become critical hits: Pokémon’s moves or sync move.
+
+
+📊 Base Stats 📊
+Lv. 1
+HP : 95 | Attack : 24 | Defense : 4 | Sp. Atk : 17 | Sp. Def : 9 | Speed : 10
+
+Lv. 140
+HP : 674 | Attack : 468 | Defense : 151 | Sp. Atk : 336 | Sp. Def : 156 | Speed : 292
+
+Lv. 150
+HP : 706 | Attack : 492 | Defense : 159 | Sp. Atk : 354 | Sp. Def : 164 | Speed : 308
+
+Lv. 200
+HP : 866 | Attack : 612 | Defense : 199 | Sp. Atk : 444 | Sp. Def : 204 | Speed : 388
+
+
+
+----
+-------------------------------END-------------------------------
+ 
+No. 75 Ethan (Champion) & Raikou (Genderless)
+
+Dialog 5 Stars: We’re gonna speed up and race all the way to the top!
+Descriptions: Ethan is dressed in an outfit honoring his earned title: Neo Champion of Pasio. He uses Raikou’s speed and thundering attacks to their utmost in battle.
+Role: Support | EX Role 🌈: Field
+Type: Electric | Weakness: Ground
+Rarity: ⭐⭐⭐⭐⭐
+Expedition 🤝: Fiery ↓1 Wistful ↑3
+Method: 🎈✨🌟 EX Master Fair Scout
+EX Color 👕🌈: Yes✅
+👥 Team Skill
+1. Electric Support
+2. Johto Support
+3. Main Character Support
+4. Champion Support
+5. Pokéathlete Support
+
+Sync Pair Available: 31/5/2026 06:00:00
+EX Effect Available: 31/5/2026 06:00:00
+EX Role Available: 31/5/2026 06:00:00
+
+⚔️ Moves Details ⚔️
+Move 1: Reigning Thunder Fang
+Type: Electric
+Category: Physical
+User: Pokemon
+Description: Activation Condition: When a circle is applied to the allied field of play. Deactivation Condition: Cannot be deactivated. Never misses. Lowers the target’s Defense by two stat ranks. Leaves the target paralyzed. Has a chance (50%) of making the target flinch.
+Power: 150 (1)/180 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: Quick Move, Sure Hit | Max uses: --
+
+Move 2: Max Revive
+Category: Status
+User: Pokemon
+Description: Applies the Endure and Restore effect to an ally.
+Power: -- | Accuracy: -- | Gauge: 1 | Target: An ally | Effect Tag: -- | Max uses: 1
+
+Move 3: Thunderous Roar Wild Charge
+Type: Electric
+Category: Physical
+User: Pokemon
+Description: Activation Condition: When the user uses any move once. Deactivation Condition: When this move is used. Never misses. The power of this move is not lowered even if there are multiple targets. Turns the field of play’s terrain into Electric Terrain. Reduces the user’s sync move countdown by one. Increases the Physical Moves ↑ Next effect and Special Moves ↑ Next effect of all allied sync pairs by two ranks.
+Power: 150 (1)/180 (5↑ MAX) | Accuracy: -- | Gauge: 2 | Target: All opponents | Effect Tag: Sure Hit | Max uses: 3
+
+Move 4: Thundering Glory!
+Category: Status
+User: Trainer
+Description: Restores the user’s HP by approximately 20% of its maximum HP. Restores the HP of all allied sync pairs by approximately 30% of their maximum HP. Applies the Gradual Healing effect to all allied sync pairs.
+Power: -- | Accuracy: -- | Gauge: -- | Target: All allies | Effect Tag: Heals | Max uses: 2
+
+Sync Move: Lightning Dasher Wild Charge
+Type: Electric
+Category: Physical
+User: Pokemon
+Description: No additional effect.
+Power: 250 (1)/300 (5↑ MAX) | Accuracy: -- | Gauge: -- | Target: An opponent | Effect Tag: -- | Max uses: --
+
+🛡️ Passive Details 🌟
+Passive 1(🏅): Johto’s Thundering Legend
+Powers up the moves and sync moves of all allied sync pairs by 20%. Reduces attack move and sync move damage taken by all allied sync pairs by 25%. The more allied sync pairs with the Johto theme you have on your team, the higher these percentages are. (Each additional sync pair powers up moves and sync moves by 15% and reduces damage by 3%. The maximum power-up is 50%, and the maximum damage reduction is 31%.) Raises the sync buff of the user’s team by one rank the first time its sync move is used each battle.
+
+Passive 2: Earth-Shaking Roar
+Grants all of the following effects when the terrain is Electric Terrain: Powers up the moves of all allied sync pairs. Powers up the sync moves of all allied sync pairs. Reduces attack move damage taken by allies.
+
+Passive 3: Rough and Swirling Electric Energy
+Raises the Attack, Defense, Sp. Atk, and Sp. Def of all allied sync pairs by two stat ranks when the user’s attack move is successful.
+
+Passive 4: Debut / 1st S-Move: Johto C (Phys & Spec) on Field
+Applies Johto Circle (Physical) and Johto Circle (Special) to the allied field of play the first time the user enters a battle each battle. Applies Johto Circle (Physical) and Johto Circle (Special) to the allied field of play the first time the user’s sync move is used each battle.
+
+
+📊 Base Stats 📊
+Lv. 1
+HP : 110 | Attack : 14 | Defense : 17 | Sp. Atk : 14 | Sp. Def : 29 | Speed : 19
+
+Lv. 140
+HP : 688 | Attack : 244 | Defense : 314 | Sp. Atk : 244 | Sp. Def : 328 | Speed : 338
+
+Lv. 150
+HP : 720 | Attack : 256 | Defense : 330 | Sp. Atk : 256 | Sp. Def : 344 | Speed : 356
+
+Lv. 200
+HP : 880 | Attack : 316 | Defense : 410 | Sp. Atk : 316 | Sp. Def : 424 | Speed : 446
+
+
+
+----
+-------------------------------END-------------------------------
+ 

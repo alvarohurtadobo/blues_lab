@@ -86,7 +86,14 @@
       "Bash(python tools/decode_pomatools_codes.py)",
       "Bash(python tools/mass_port_pomatools.py)",
       "Bash({t})",
-      "Bash(python*)"
+      "Bash(python*)",
+      "Bash(sort -t'\"' -k8)",
+      "Bash(awk 'NR>=65800 && NR<=66400 {if \\(/^        \"[a-zA-Z]+\":/\\) print NR\": \"$0}' sync_pairs.json)",
+      "Bash(awk 'NR>=340623 && NR<=342500' sync_pairs.json)",
+      "Bash(grep -nA10 '\"cellNumber\": 49')",
+      "Bash(awk '/^Cell [0-9]+/{c=$2} /Grid Expand Unlock/{print c}' grids.txt)",
+      "Bash(awk '/Cell [0-9]+ \\\\|/{match\\($0,/Cell \\([0-9]+\\)/,a\\); c=a[1]} /Grid Expand Unlock/{print c}')",
+      "Bash(awk 'NR>=264252 && NR<=266500' sync_pairs.json)"
     ]
   }
 }
