@@ -11856,5 +11856,133 @@
     "conditions": [],
     "move_name": "",
     "sub_passives": []
+  },
+  {
+    "name": "1st S-Move: Dragon Zone & Extension 3",
+    "type": "powerup",
+    "applies_to": "moves_and_sync",
+    "affects": "self",
+    "mechanism": "flat_boost",
+    "value": 0,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Earth Power: Surging Sand 5",
+    "type": "powerup",
+    "applies_to": "pokemon_moves",
+    "affects": "self",
+    "mechanism": "flat_boost",
+    "value": 5,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "sandstorm"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Metal Burst: Critical Strike 3",
+    "type": "powerup",
+    "applies_to": "moves",
+    "affects": "self",
+    "mechanism": "flat_boost",
+    "value": 3,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "critical"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Normal Zone: Team S-Moves ↑ 3",
+    "type": "powerup",
+    "applies_to": "sync_move",
+    "affects": "team",
+    "mechanism": "flat_boost",
+    "value": 3,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "normal_zone"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Opp Defense ↓: S-Moves ↑ 9",
+    "type": "powerup",
+    "applies_to": "sync_move",
+    "affects": "self",
+    "mechanism": "stat_is_lowered",
+    "value": 9,
+    "stat": "def",
+    "stat_target": "target",
+    "conditions": [],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Earth-Shaking Roar (Moves)",
+    "type": "powerup",
+    "applies_to": "pokemon_moves",
+    "affects": "team",
+    "mechanism": "flat_boost",
+    "value": 2,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "electric_terrain"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Earth-Shaking Roar (Sync)",
+    "type": "powerup",
+    "applies_to": "sync_move",
+    "affects": "team",
+    "mechanism": "flat_boost",
+    "value": 2,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "electric_terrain"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
+  },
+  {
+    "name": "Earth-Shaking Roar (DR)",
+    "type": "reducer",
+    "applies_to": "pokemon_moves",
+    "affects": "team",
+    "mechanism": "",
+    "value": 2,
+    "stat": "",
+    "stat_target": "",
+    "conditions": [
+      [
+        "electric_terrain"
+      ]
+    ],
+    "move_name": "",
+    "sub_passives": []
   }
 ]
