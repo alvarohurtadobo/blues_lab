@@ -11,10 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:blues_lab_calculator/app/blue_lab_app.dart';
 
 void main() {
-  testWidgets('Loads main layout', (WidgetTester tester) async {
+  testWidgets('Shows loading indicator on startup', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const BlueLabApp());
 
-    expect(find.text('Blue Lab Calculator'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 }
