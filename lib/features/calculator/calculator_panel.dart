@@ -6,7 +6,6 @@ import '../../damage/calc.dart';
 import '../../helpers/damage_helpers.dart';
 import '../../models/battle_state.dart';
 import '../../models/combatant_state.dart';
-import '../../models/field_state.dart';
 import '../../models/sync_pair_models.dart';
 import '../../star_level.dart';
 import '../../constants/type_data.dart' as consts;

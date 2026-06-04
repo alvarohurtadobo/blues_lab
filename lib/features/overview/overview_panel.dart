@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../damage/calc.dart';
 import '../../helpers/damage_helpers.dart';
 import '../../models/sync_pair_models.dart';
 import '../../star_level.dart';
@@ -164,15 +163,6 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
     final role = pair.role.toLowerCase().trim();
     final exRole = pair.exRole.toLowerCase().trim();
     return role == 'tech' || (_exRoleActive && exRole == 'tech');
-  }
-
-  String _scaledPower(String rawPower, [int? moveLevel]) {
-    final saBonus = calcSaBonus(
-      pair,
-      _superAwakeningLevel,
-      const MoveData(name: ''),
-    );
-    return calcScaledPower(rawPower, moveLevel ?? widget.moveLevel, saBonus);
   }
 
   int _gridBonus(String moveName, String stat) {

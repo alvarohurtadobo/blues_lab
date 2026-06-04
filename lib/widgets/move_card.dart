@@ -272,13 +272,9 @@ class CalcMoveCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 6),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color:
-              typeC.withValues(alpha: 0.12) ??
-              Theme.of(context).colorScheme.surface,
+          color: typeC.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(6),
-          border: Border.all(
-            color: typeC.withValues(alpha: 0.5) ?? Colors.grey.shade300,
-          ),
+          border: Border.all(color: typeC.withValues(alpha: 0.5)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
