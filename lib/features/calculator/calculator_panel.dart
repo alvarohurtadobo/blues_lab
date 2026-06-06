@@ -71,26 +71,35 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
     return calcScaledPower(rawPower, moveLevel ?? widget.moveLevel, saBonus);
   }
 
-  bool get _isMegaSupport {
+  bool get _isSupportRole {
     final role = widget.pair.role.toLowerCase().trim();
-    final exRole = widget.pair.exRole.toLowerCase().trim();
-    return role == 'support' || exRole == 'support';
+    if (role == 'support') return true;
+    if (!_battle.ally.hasExRole || widget.pair.exRole.isEmpty) return false;
+    final exRole = normalizeExRole(widget.pair.exRole).toLowerCase().trim();
+    return exRole == 'support';
   }
 
   int get _megaSyncBaseBoosts {
     if (!_megaActive) return 0;
-    return _isMegaSupport ? 2 : 1;
+    return _isSupportRole ? 2 : 1;
+  }
+
+  /// Whether this pair's Tera form activates on sync move
+  /// (e.g. Terapagos, Ogerpon) rather than on entry (e.g. Raifort).
+  bool get _isSyncTera {
+    return widget.pair.teraStatMultiplier.isNotEmpty ||
+        widget.pair.variations.isNotEmpty;
+  }
+
+  int get _teraSyncBaseBoosts {
+    if (!_teraActive || !_isSyncTera) return 0;
+    return _isSupportRole ? 2 : 1;
   }
 
   int get _effectivePlayerSyncBoosts {
     int total = _battle.ally.syncBoosts;
     if (_megaActive) total += _megaSyncBaseBoosts;
-    if (_teraActive) {
-      final hasSupportEx =
-          _battle.ally.hasExRole &&
-          widget.pair.exRole.toLowerCase() == 'support';
-      total += hasSupportEx ? 2 : 1;
-    }
+    if (_teraActive && _isSyncTera) total += _teraSyncBaseBoosts;
     return total;
   }
 
@@ -218,7 +227,7 @@ class _DamageCalculatorPanelState extends State<DamageCalculatorPanel> {
         widget.pair.exRole.isEmpty) {
       return 0;
     }
-    return exRoleBonusMap[widget.pair.exRole]?[stat] ?? 0;
+    return lookupExRoleBonus(widget.pair.exRole)?[stat] ?? 0;
   }
 
   bool get _megaActive {

@@ -67,6 +67,13 @@ List<String> availableStarLevels(int baseRarity, bool hasEx) {
 /// Default star level for a pair.
 String defaultStarLevel(bool hasEx) => '5★ 20/20';
 
+/// Normalizes an exRole value by stripping parenthetical suffixes.
+/// E.g. "Strike (Physical)" -> "Strike", "Support" -> "Support".
+String normalizeExRole(String rawRole) {
+  final idx = rawRole.indexOf(' (');
+  return idx >= 0 ? rawRole.substring(0, idx) : rawRole;
+}
+
 const exBaseBonus = <String, int>{};
 
 const exRoleBonusMap = <String, Map<String, int>>{
@@ -78,6 +85,11 @@ const exRoleBonusMap = <String, Map<String, int>>{
   'Multi': {'hp': 60, 'atk': 20, 'def': 20, 'spa': 20, 'spd': 20, 'spe': 20},
 };
 
+/// Looks up the EX Role bonus map, normalizing the role name.
+Map<String, int>? lookupExRoleBonus(String rawRole) {
+  return exRoleBonusMap[normalizeExRole(rawRole)];
+}
+
 /// Super Awakening stat multiplier at SA level 1+ (×1.1 for all stats, all roles).
 double saStatMultiplier(int saLevel) => saLevel >= 1 ? 1.1 : 1.0;
 
@@ -85,7 +97,10 @@ double saStatMultiplier(int saLevel) => saLevel >= 1 ? 1.1 : 1.0;
 Map<String, int> saSupportFlatBonus(int saLevel) {
   int hp = 0, def = 0, spd = 0;
   if (saLevel >= 2) hp += 50;
-  if (saLevel >= 3) { def += 20; spd += 20; }
+  if (saLevel >= 3) {
+    def += 20;
+    spd += 20;
+  }
   if (saLevel >= 4) hp += 100;
   return {'hp': hp, 'def': def, 'spd': spd};
 }

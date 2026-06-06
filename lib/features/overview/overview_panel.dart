@@ -96,7 +96,7 @@ class _SyncPairOverviewState extends State<SyncPairOverview> {
     if (!_exActive || !pair.hasEx) return 0;
     int total = exBaseBonus[stat] ?? 0;
     if (_exRoleActive && pair.exRole.isNotEmpty) {
-      total += exRoleBonusMap[pair.exRole]?[stat] ?? 0;
+      total += lookupExRoleBonus(pair.exRole)?[stat] ?? 0;
     }
     return total;
   }
